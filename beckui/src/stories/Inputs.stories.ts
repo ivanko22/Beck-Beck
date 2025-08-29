@@ -102,8 +102,10 @@ export const Number: Story = {
 };
 
 // Input without label
-export const NoLabel: Story = {
+export const WithLabel: Story = {
   args: {
-    placeholder: 'Input without label',
+    placeholder: 'Input with label',
+    label: 'Input with label',
+    value: 'Input with label',
   },
 };

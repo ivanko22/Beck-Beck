@@ -125,11 +125,6 @@ export const Input: React.FC<InputProps> = ({
         </label>
       )}
 
-{/* {label && String(value).trim() !== '' && (
-  <label style={styles.label}>
-    {label}
-  </label>
-)} */}
       <input
         type={type}
         style={inputStyle}
