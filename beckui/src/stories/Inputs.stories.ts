@@ -35,77 +35,60 @@ export const Default: Story = {
   args: {
     placeholder: 'Enter text here...',
     label: 'Input Label',
-  },
-};
-
-// Small input
-export const Small: Story = {
-  args: {
-    size: 'small',
-    placeholder: 'Small input',
-    label: 'Small Input',
-  },
-};
-
-// Large input
-export const Large: Story = {
-  args: {
     size: 'large',
-    placeholder: 'Large input',
-    label: 'Large Input',
+  },
+};
+
+export const Active: Story = {
+  args: {
+    placeholder: 'Enter text here...',
+    label: 'Input Label',
+    size: 'large',
+    value: 'This is activated input',
+    active: true,
+  },
+};
+
+export const Filled: Story = {
+  args: {
+    value: 'This is filled input',
+    label: 'Filled Input Label',
+    size: 'large',
   },
 };
 
 // Input with error
-export const WithError: Story = {
-  args: {
-    placeholder: 'Enter text here...',
-    label: 'Input with Error',
-    error: 'This field is required',
-  },
-};
+// export const WithError: Story = {
+//   args: {
+//     placeholder: 'Enter text here...',
+//     label: 'Input with Error',
+//     error: 'This field is required',
+//   },
+// };
 
-// Disabled input
 export const Disabled: Story = {
   args: {
     placeholder: 'Disabled input',
     label: 'Disabled Input',
     disabled: true,
+    size: 'large',
   },
 };
 
-// Email input
-export const Email: Story = {
-  args: {
-    type: 'email',
-    placeholder: 'Enter your email',
-    label: 'Email Address',
-  },
-};
-
-// Password input
 export const Password: Story = {
   args: {
     type: 'password',
     placeholder: 'Enter your password',
     label: 'Password',
+    size: 'large',
   },
 };
 
-// Number input
-export const Number: Story = {
-  args: {
-    type: 'number',
-    placeholder: 'Enter a number',
-    label: 'Number Input',
-  },
-};
-
-// Input without label
 export const WithLabel: Story = {
   args: {
     placeholder: 'Input with label',
     label: 'Input with label',
     value: 'Input with label',
+    size: 'large',
   },
 };

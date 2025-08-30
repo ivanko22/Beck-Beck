@@ -9,13 +9,10 @@
   background-color: #ffffff;
   --primary-color: #0F1136;
   --secondary-color: #3338C1;
-  --success-color-hover: #3B40E2;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  --secondary-color-hover: #3B40E2;
+  --light-grey: #D6D6DD;
+  --middle-grey: #87889C;
+  --dark-grey: #4C4D69;
 
 a {
   font-weight: 500;
@@ -23,7 +20,7 @@ a {
   text-decoration: inherit;
 }
 a:hover {
-  color: var(--success-color-hover);
+  color: var(--secondary-color-hover);
 }
 
 body {

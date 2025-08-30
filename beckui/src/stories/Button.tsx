@@ -31,7 +31,7 @@ const styles = {
     fontSize: '21px',
   },
   primaryHover: {
-    backgroundColor: 'var(--success-color-hover)',
+    backgroundColor: 'var(--secondary-color-hover)',
   },
   secondary: {
     boxShadow: 'var(--secondary-color)',
