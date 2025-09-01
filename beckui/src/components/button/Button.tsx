@@ -22,34 +22,53 @@ const styles = {
     fontFamily: "'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif",
     transition: 'all 0.2s ease',
   },
+
   primary: {
     backgroundColor: 'var(--secondary-color)',
     color: 'white',
     height: '60px',
     width: '332px',
     fontWeight: 600,
-    fontSize: '21px',
   },
+
   primaryHover: {
     backgroundColor: 'var(--secondary-color-hover)',
   },
-  secondary: {
-    boxShadow: 'var(--secondary-color)',
+
+  primaryDisabled: {
+    color: 'var(--light-grey)',
     backgroundColor: 'transparent',
-    color: '#333',
+    border: '1px solid var(--light-grey)',
+    borderRadius: '40px',
+    cursor: 'not-allowed',
   },
+
+  secondary: {
+    backgroundColor: 'var(--white)',
+    color: 'var(--secondary-color)',
+    fontWeight: 600,
+  },
+
+  secondaryDisabled: {
+    color: 'var(--light-grey)',
+    cursor: 'not-allowed',
+  },
+
   small: {
     padding: '10px 16px',
     fontSize: '12px',
   },
+
   medium: {
     padding: '11px 20px',
-    fontSize: '14px',
+    fontSize: '18px',
   },
+
   large: {
     padding: '12px 24px',
     fontSize: '21px',
   },
+
   disabled: {
     opacity: 0.6,
     cursor: 'not-allowed',
@@ -59,6 +78,7 @@ const styles = {
 /** Primary UI component for user interaction */
 export const Button: React.FC<ButtonProps> = ({
   primary = false,
+  size = 'large',
   backgroundColor = null,
   label,
   onClick,
@@ -71,11 +91,15 @@ export const Button: React.FC<ButtonProps> = ({
 
   const buttonStyle = {
     ...styles.button,
+    ...styles[size],
     ...(primary ? styles.primary : styles.secondary),
     ...(primary && isHovered && styles.primaryHover),
-    ...(disabled && styles.disabled),
+    ...(disabled && (primary ? styles.primaryDisabled : styles.secondaryDisabled)),
     ...(backgroundColor && { backgroundColor }),
   };
+
+  // ...(disabled && (primary ? styles.primaryDisabled : styles.secondaryDisabled)),
+  console.log('buttonStyle', buttonStyle);
 
   return (
     <button

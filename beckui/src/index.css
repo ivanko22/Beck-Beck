@@ -13,6 +13,8 @@
   --light-grey: #D6D6DD;
   --middle-grey: #87889C;
   --dark-grey: #4C4D69;
+  --white: #ffff;
+  --warning: #F06161;
 
 a {
   font-weight: 500;
@@ -42,15 +44,23 @@ button {
   padding: 0.6em 1.2em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--secondary-color);
   cursor: pointer;
   transition: border-color 0.25s;
+  color: #ffffff;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.sb-show-main.sb-main-centered #storybook-root {
+  padding: 0 !important;
+}
+
+}

@@ -4,25 +4,32 @@ import { Input } from './Inputs';
 const meta: Meta<typeof Input> = {
   title: 'Components/Input',
   component: Input,
+
   parameters: {
     layout: 'centered',
   },
+
   tags: ['autodocs'],
+
   argTypes: {
     size: {
       control: { type: 'select' },
       options: ['small', 'medium', 'large'],
     },
+
     type: {
       control: { type: 'select' },
-      options: ['text', 'email', 'password', 'number', 'tel', 'url'],
+      options: ['text', 'email', 'password', 'PasswordForgot', 'number', 'tel', 'url'],
     },
+
     disabled: {
       control: { type: 'boolean' },
     },
+
     error: {
       control: { type: 'text' },
     },
+
     onChange: { action: 'changed' },
   },
 };
@@ -30,7 +37,6 @@ const meta: Meta<typeof Input> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Default input
 export const Default: Story = {
   args: {
     placeholder: 'Enter text here...',
@@ -57,14 +63,15 @@ export const Filled: Story = {
   },
 };
 
-// Input with error
-// export const WithError: Story = {
-//   args: {
-//     placeholder: 'Enter text here...',
-//     label: 'Input with Error',
-//     error: 'This field is required',
-//   },
-// };
+export const WithError: Story = {
+  args: {
+    placeholder: 'Enter text here...',
+    value: 'User&1234',
+    label: 'Username',
+    error: 'Username may only use A–Z, 0–9',
+    size: 'large',
+  },
+};
 
 export const Disabled: Story = {
   args: {
@@ -84,11 +91,22 @@ export const Password: Story = {
   },
 };
 
+export const PasswordForgot: Story = {
+  args: {
+    type: 'password',
+    placeholder: 'Enter your password',
+    label: 'Password',
+    size: 'large',
+    showForgotPassword: true,
+  },
+};
+
 export const WithLabel: Story = {
   args: {
     placeholder: 'Input with label',
     label: 'Input with label',
     value: 'Input with label',
     size: 'large',
+    showForgotPassword: false,
   },
 };

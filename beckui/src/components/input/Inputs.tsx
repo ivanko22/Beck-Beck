@@ -8,12 +8,13 @@ interface InputProps {
   error?: boolean | string;
   type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url';
   value?: string;
-  onChange?: (value: string | number) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   label?: string;
   className?: string;
+  name?: string;
+  showForgotPassword?: boolean;
 }
 
-// Scoped CSS styles
 const styles = {
   wrapper: {
     display: 'flex',
@@ -27,7 +28,7 @@ const styles = {
     fontSize: '14px',
     fontWeight: 400,
     lineHeight: 1.2,
-    paddingLeft: '17px',
+    padding: '0px 0px 5px 17px',
     color: 'var(--dark-grey)',
   },
 
@@ -51,7 +52,7 @@ const styles = {
   },
 
   inputError: {
-    borderColor: 'var(--light-grey)',
+    borderColor: 'var(--warning)',
   },
 
   inputDisabled: {
@@ -77,10 +78,11 @@ const styles = {
 
   errorMessage: {
     fontFamily: "'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif",
-    fontSize: '12px',
-    color: '#e74c3c',
+    fontSize: '14px',
+    color: 'var(--warning)',
     lineHeight: 1.2,
     marginTop: '2px',
+    marginLeft: '16px',
   },
 
   sizeVariants: {
@@ -97,15 +99,14 @@ const styles = {
     },
     
     large: {
-      height: '50px',
+      height: '52px',
       width: '330px',
       fontSize: '18px',
-      padding: '0 16px',
+      padding: '3px 0px 0px 16px',
     },
   },
 };
 
-/** Basic input component for user data entry */
 export const Input: React.FC<InputProps> = ({
   size = 'medium',
   placeholder = '',
@@ -117,6 +118,8 @@ export const Input: React.FC<InputProps> = ({
   onChange,
   label,
   className = '',
+  name,
+  showForgotPassword = false,
   ...props
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -124,7 +127,7 @@ export const Input: React.FC<InputProps> = ({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (onChange) {
-      onChange(e.target.value);
+      onChange(e);
     }
   };
 
@@ -148,7 +151,10 @@ export const Input: React.FC<InputProps> = ({
   return (
     <div style={styles.wrapper}>
       {label && String(value).trim() !=='' && (
-        <label style={styles.label}>
+        <label style={{
+          ...styles.label,
+          ...(error && { color: 'var(--warning)' })
+        }}>
           {label}
         </label>
       )}
@@ -162,10 +168,11 @@ export const Input: React.FC<InputProps> = ({
         onChange={handleChange}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        name={name}
         {...props}
       />
       
-      {type === "password" && (
+      {type === "password" && showForgotPassword && (
         <a 
           href="#"
           style={{
@@ -187,5 +194,3 @@ export const Input: React.FC<InputProps> = ({
     </div>
   );
 };
-
-

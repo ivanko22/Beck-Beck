@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-import { Input } from './stories/Inputs'
+import { Input } from './components/atoms/input/Inputs'
 
 function App() {
   const [count, setCount] = useState(0)
