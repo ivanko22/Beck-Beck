@@ -17,9 +17,13 @@ const styles: Record<NonNullable<TypographyProps['variant']>, React.CSSPropertie
     lineHeight: 1.2,
   },
   subtitle: {
-    fontSize: '18px',
-    fontWeight: 500,
+    width: '482px',
+    fontSize: '16px',
+    paddingTop: '20px',
+    fontWeight: 400,
     color: 'var(--middle-grey)',
+    alignItems: 'center',
+    textAlign: 'center',
   },
 };
 

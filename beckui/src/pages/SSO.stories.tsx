@@ -60,14 +60,20 @@ const AuthFormWrapper: React.FC<
 };
 
 export const SignIn: Story = {
-  render: () => <AuthFormWrapper type="signIn" title="Sign In" />,
+  render: () => <AuthFormWrapper type="signIn" title="Sign In" subtitle='' />,
 };
 
 export const SignUp: Story = {
-  render: () => <AuthFormWrapper type="signUp" title='Sign Up' />,
+  render: () => <AuthFormWrapper type="signUp" title='Sign Up' subtitle='' />,
 };
 
 export const ResetPassword: Story = {
-  render: () => <AuthFormWrapper type="resetPass" title="Reset Password" />,
+  render: () => <AuthFormWrapper type="resetPass" title="Reset Password" subtitle='' />,
 };
 
+export const CheckYourEmail: Story = {
+  render: () => <AuthFormWrapper 
+    type="checkEmail" 
+    title="Check Your Email" 
+    subtitle="We've sent you a link to reset your password. Please check your inbox (and spam folder just in case)." />,
+};

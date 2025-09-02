@@ -7,8 +7,9 @@ import { Link } from '../components/link/Link';
 import { PageWrapper } from '../components/wrapper/PageWrapper';
 
 export interface AuthFormProps {
-    type: 'signIn' | 'signUp' | 'resetPass';
+    type: 'signIn' | 'signUp' | 'resetPass' | 'checkEmail' ;
     title: string;
+    subtitle: string;
     onSubmit: (e: React.FormEvent) => void;
     email: string;
     password: string;
@@ -17,11 +18,11 @@ export interface AuthFormProps {
 }
 
 const style = {
-    formWrapper: (type: 'signIn' | 'signUp' | 'resetPass') => ({
+    formWrapper: (type: 'signIn' | 'signUp' | 'resetPass' | 'checkEmail') => ({
         display: 'flex' as const,
         flexDirection: 'column' as const,
         width: '725px',
-        height: type === 'resetPass' ? '480px' : '542px',
+        height: type === 'resetPass' || type === 'checkEmail' ? '480px' : '542px',
         alignItems: 'center' as const,
         borderRadius: '15px',
         background: 'var(--white)',
@@ -38,6 +39,7 @@ const style = {
 export const AuthForm: React.FC<AuthFormProps> = ({
     type,
     title,
+    subtitle,
     onSubmit,
     email,
     password,
@@ -93,89 +95,123 @@ export const AuthForm: React.FC<AuthFormProps> = ({
             </div>
         )}
 
-    {type === 'signUp' && (
-        <div style={style.formLogoWrapper} >
-            <Logo style={{ paddingBottom: '80px' }} />
+        {type === 'signUp' && (
+            <div style={style.formLogoWrapper} >
+                <Logo style={{ paddingBottom: '80px' }} />
 
-            <form style={style.formWrapper(type)} onSubmit={onSubmit}>
+                <form style={style.formWrapper(type)} onSubmit={onSubmit}>
 
-            <Typography 
-                variant="title"
-            >
-                { title }
-            </Typography>
+                <Typography 
+                    variant="title"
+                >
+                    { title }
+                </Typography>
 
-            <Input
-                type="email"
-                label="Username"
-                value={email}
-                error={error && email === ''}
-                placeholder="Username"
-                size='large'
-                name="email"
-                onChange={onChange}
-            />
-
-            <Input
-                type="password"
-                label="Password"
-                value={password}
-                error={error && password === ''}
-                placeholder="Enter your password"
-                size='large'
-                name="password"
-                onChange={onChange}
-                showForgotPassword={false}
-            />
-
-            <Button type="submit" primary label="Sign Up" />
-
-                <Link
-                href=''
-                text="Already have an Account? Sign In"
-                variant='SignUp'
+                <Input
+                    type="email"
+                    label="Username"
+                    value={email}
+                    error={error && email === ''}
+                    placeholder="Username"
+                    size='large'
+                    name="email"
+                    onChange={onChange}
                 />
 
-            </form>
-        </div>
-    )}
+                <Input
+                    type="password"
+                    label="Password"
+                    value={password}
+                    error={error && password === ''}
+                    placeholder="Enter your password"
+                    size='large'
+                    name="password"
+                    onChange={onChange}
+                    showForgotPassword={false}
+                />
 
-    {type === 'resetPass' && (        
-        <div style={style.formLogoWrapper} >
-            <Logo style={{ paddingBottom: '80px' }} />
+                <Button type="submit" primary label="Sign Up" />
 
-            <form style={style.formWrapper(type)} onSubmit={onSubmit}>
-
-            <Typography 
-                variant="title"
-            >
-                { title }
-            </Typography>
-
-            <Input
-                type="email"
-                label="Username"
-                value={email}
-                error={error && email === ''}
-                placeholder="Username"
-                size='large'
-                name="email"
-                onChange={onChange}
-            />
-
-            <Button type="submit" primary label="Reset Password" />
-
-                <div style={{ marginTop: '-20px' }}>
                     <Link
-                        href=''
-                        text="Back to Sign In"
-                        variant='SignUp'
+                    href=''
+                    text="Already have an Account? Sign In"
+                    variant='SignUp'
                     />
-                </div>
 
-            </form>
-        </div>
-    )}
+                </form>
+            </div>
+        )}
+
+        {type === 'resetPass' && (        
+            <div style={style.formLogoWrapper} >
+                <Logo style={{ paddingBottom: '80px' }} />
+
+                <form style={style.formWrapper(type)} onSubmit={onSubmit}>
+
+                <Typography 
+                    variant="title"
+                >
+                    { title }
+                </Typography>
+
+                <Input
+                    type="email"
+                    label="Username"
+                    value={email}
+                    error={error && email === ''}
+                    placeholder="Username"
+                    size='large'
+                    name="email"
+                    onChange={onChange}
+                />
+
+                <Button type="submit" primary label="Reset Password" />
+
+                    <div style={{ marginTop: '-20px' }}>
+                        <Link
+                            href=''
+                            text="Back to Sign In"
+                            variant='SignUp'
+                        />
+                    </div>
+
+                </form>
+            </div>
+        )}
+
+        {type === 'checkEmail' && (        
+            <div style={style.formLogoWrapper} >
+                <Logo style={{ paddingBottom: '80px' }} />
+
+                <form style={style.formWrapper(type)} onSubmit={onSubmit}>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <Typography 
+                            variant="title"
+                        >
+                            { title }
+                        </Typography>
+
+                        <Typography variant='subtitle'>
+                            { subtitle }
+                        </Typography>
+                        
+                    </div>
+                        
+                    <svg style={{ marginTop: '-20px' }} width="140" height="140" viewBox="0 0 127 126" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M25.5248 99.407L110.45 62.9931L25.5248 26.5791L25.4844 54.9011L86.1743 62.9931L25.4844 71.0851L25.5248 99.407Z" fill="#3338C1"/>
+                    </svg>
+
+                    <div style={{ marginTop: '-20px' }}>
+                        <Link
+                            href=''
+                            text="Did not got a link? Send Again"
+                            variant='SignUp'
+                        />
+                    </div>
+
+                </form>
+            </div>
+        )}
 
     </PageWrapper>
   );
