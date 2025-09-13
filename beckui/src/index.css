@@ -1,13 +1,19 @@
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-family-base: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
   line-height: 1.5;
   font-weight: 400;
+  
+  body {
+    font-family: var(--font-family-base);
+  }
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #ffffff;
   --primary-color: #0F1136;
+  --primary-color-hover: #333454;
   --secondary-color: #3338C1;
   --secondary-color-hover: #3B40E2;
   --light-grey: #D6D6DD;
