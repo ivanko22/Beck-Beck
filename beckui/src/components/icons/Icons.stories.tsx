@@ -40,7 +40,6 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj;
 
-// Individual icon stories
 export const ClientDetail: Story = {
   args: {
     size: 24,
@@ -236,16 +235,25 @@ export const NavigationStates: Story = {
     ];
 
     const states = [
-      { name: 'Default', color: 'var(--light-grey, #9CA3AF)', bgColor: 'transparent' },
-      { name: 'Hover', color: '#ffffff', bgColor: 'var(--primary-color-hover, #3B82F6)' },
-      { name: 'Active', color: '#60a5fa', bgColor: 'rgba(59, 130, 246, 0.2)' },
+      { name: 'Default', color: 'var(--middle-grey)', bgColor: 'var(--primary-color)' },
+      { name: 'Hover', color: 'var(--light-grey)', bgColor: 'var(--primary-color-hover)' },
+      { 
+        name: 'Active', 
+        color: 'var(--light-grey)', 
+        bgColor: 'var(--primary-color-hover)', 
+        borderColor: '1px solid var(--secondary-color)',
+      },
     ];
 
     return (
-      <div style={{ padding: '20px' }}>
+      <div style={{ 
+        padding: '20px', 
+        backgroundColor: 'var(--primary-color)',
+        minHeight: '100vh'
+      }}>
         <h2 style={{ marginBottom: '20px', color: '#374151' }}>Navigation States</h2>
         
-        {states.map(({ name, color, bgColor }) => (
+        {states.map(({ name, color, bgColor, borderColor }) => (
           <div key={name} style={{ marginBottom: '24px' }}>
             <h3 style={{ marginBottom: '12px', color: '#6B7280' }}>{name} State</h3>
             <div style={{ display: 'flex', gap: '8px' }}>
@@ -257,15 +265,15 @@ export const NavigationStates: Story = {
                     alignItems: 'center',
                     padding: '8px 16px',
                     backgroundColor: bgColor,
-                    borderRadius: '4px',
                     transition: 'all 0.2s ease',
                     cursor: 'pointer',
+                    borderBottom: borderColor || 'none',
                   }}
                 >
                   <div style={{ marginRight: '8px' }}>
                     <IconComponent size={20} color={color} />
                   </div>
-                  <span style={{ color, fontSize: '14px' }}>{iconName}</span>
+                  <span style={{ color, fontSize: '16px', fontWeight: 500 }}>{iconName}</span>
                 </div>
               ))}
             </div>
