@@ -11,6 +11,7 @@ import {
   CheckIcon,
   HandshakeIcon,
   ScaleIcon,
+  CloseIcon,
 } from './index';
 
 const meta: Meta = {
@@ -120,6 +121,14 @@ export const Scale: Story = {
   render: (args) => <ScaleIcon {...args} />,
 };
 
+export const Close: Story = {
+  args: {
+    size: 24,
+    color: '#000000',
+  },
+  render: (args) => <CloseIcon {...args} />,
+};
+
 // Showcase story - displays all icons in a grid
 export const IconShowcase: Story = {
   parameters: {
@@ -141,6 +150,7 @@ export const IconShowcase: Story = {
       { name: 'Check', component: CheckIcon },
       { name: 'Handshake', component: HandshakeIcon },
       { name: 'Scale', component: ScaleIcon },
+      { name: 'Close', component: CloseIcon },
     ];
 
     const colors = ['#6B7280', '#EF4444', '#10B981', '#3B82F6', '#8B5CF6', '#F59E0B'];
@@ -232,6 +242,7 @@ export const NavigationStates: Story = {
       { name: 'Document', component: DocumentIcon },
       { name: 'Medical', component: MedicalIcon },
       { name: 'Car', component: CarIcon },
+      { name: 'Close', component: CloseIcon },
     ];
 
     const states = [
@@ -263,7 +274,7 @@ export const NavigationStates: Story = {
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    padding: '8px 16px',
+                    height: '48px',
                     backgroundColor: bgColor,
                     transition: 'all 0.2s ease',
                     cursor: 'pointer',

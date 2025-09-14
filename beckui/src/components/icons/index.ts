@@ -8,3 +8,5 @@ export { ClipboardIcon } from './ClipboardIcon';
 export { CheckIcon } from './CheckIcon';
 export { HandshakeIcon } from './HandshakeIcon';
 export { ScaleIcon } from './ScaleIcon';
+export { CloseIcon } from './CloseIcon';
+export { SearchIcon } from './SearchIcon';

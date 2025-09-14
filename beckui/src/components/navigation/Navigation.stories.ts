@@ -31,10 +31,6 @@ const meta: Meta<typeof Navigation> = {
       action: 'search performed',
       description: 'Callback function when search is performed',
     },
-    className: {
-      control: { type: 'text' },
-      description: 'Additional CSS class name',
-    },
   },
 };
 

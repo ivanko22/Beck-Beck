@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Logo } from '../logo/Logo';
 import { NavigationMenuItem } from './NavigationMenuItem';
+
+import { SearchBox } from '../search/SearchBox';
+
 import {
   ClientDetailIcon,
   DocumentIcon,
@@ -19,7 +22,7 @@ interface NavigationItem {
   label: string;
   icon: React.ComponentType<{ size?: number; color?: string; className?: string }>;
   active?: boolean;
-}
+};
 
 interface NavigationProps {
   userEmail?: string;
@@ -27,7 +30,7 @@ interface NavigationProps {
   onSearch?: (query: string) => void;
   className?: string;
   customWidth?: string;
-}
+};
 
 const navigationItems: NavigationItem[] = [
   { id: 'client-detail', label: 'Client Detail Page', icon: ClientDetailIcon },
@@ -45,7 +48,7 @@ const navigationItems: NavigationItem[] = [
 const styles = {
   sidebar: {
     height: '100vh',
-    width: '320px',
+    width: '300px',
     backgroundColor: 'var(--primary-color)',
     color: 'var(--white)',
     display: 'flex',
