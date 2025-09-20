@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Logo } from '../logo/Logo';
 import { NavigationMenuItem } from './NavigationMenuItem';
-
 import { SearchBox } from '../search/SearchBox';
+import { UserDropdown } from '../dropdown/UserDropdown';
 
 import {
   ClientDetailIcon,
@@ -17,6 +17,10 @@ import {
   ScaleIcon,
 } from '../icons';
 
+interface dropdownMenuItems {
+  label: string;
+  icon?: React.ComponentType<{ size?: number; color?: string }>;
+}
 interface NavigationItem {
   id: string;
   label: string;
@@ -25,11 +29,13 @@ interface NavigationItem {
 };
 
 interface NavigationProps {
-  userEmail?: string;
+  userEmail: string;
   onItemClick?: (itemId: string) => void;
   onSearch?: (query: string) => void;
   className?: string;
   customWidth?: string;
+  dropdownMenuItems?: dropdownMenuItems[];
+  email: string;
 };
 
 const navigationItems: NavigationItem[] = [
@@ -45,59 +51,38 @@ const navigationItems: NavigationItem[] = [
   { id: 'lien', label: 'Lien', icon: ScaleIcon },
 ];
 
-const styles = {
+type Style = React.CSSProperties;
+
+const styles: {
+  sidebar: Style;
+  navigationContainer: Style;
+} = {
   sidebar: {
     height: '100vh',
     width: '300px',
     backgroundColor: 'var(--primary-color)',
     color: 'var(--white)',
     display: 'flex',
-    flexDirection: 'column' as const,
+    flexDirection: 'column',
+    alignItems: 'center',
     fontFamily: 'var(--font-family-base)',
-    position: 'fixed' as const,
+    position: 'fixed',
     left: 0,
     top: 0,
     zIndex: 1000,
   },
 
   navigationContainer: {
-    overflowY: 'auto' as const,
-    marginTop: '48px',
+    overflowY: 'auto',
+    marginTop: '28px',
+    width: '280px'
   },
-
-  separator: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '16px 0',
-    margin: '8px 0',
-  },
-
-  separatorLine: {
-    flex: 1,
-    height: '1px',
-    backgroundColor: 'rgba(var(--white), 0.2)',
-  },
-
-  scrollButton: {
-    width: '24px',
-    height: '24px',
-    borderRadius: '50%',
-    backgroundColor: 'rgba(var(--white), 0.1)',
-    border: 'none',
-    color: 'var(--white)',
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: '0 8px',
-    fontSize: '12px',
-  },
-
 };
 
+export default styles;
+
 export const Navigation: React.FC<NavigationProps> = ({
-  onItemClick,
+  onItemClick, userEmail, dropdownMenuItems,
 }) => {
   const [activeItem, setActiveItem] = useState<string>('client-detail');
 
@@ -110,7 +95,9 @@ export const Navigation: React.FC<NavigationProps> = ({
 
   return (
     <div style={styles.sidebar}>
-    <Logo size='200px' style={{ paddingTop: '32px' }}/>
+      <Logo size='200px' style={{ paddingTop: '32px' }}/>
+
+      <SearchBox style={{ marginTop: '30px'}} />
 
       <div style={styles.navigationContainer}>
         {navigationItems.map((item) => (
@@ -123,12 +110,11 @@ export const Navigation: React.FC<NavigationProps> = ({
           />
         ))}
 
-        {/* Separator with scroll indicator */}
-        {/* <div style={styles.separator}>
-          <div style={styles.separatorLine}></div>
-          <button style={styles.scrollButton}>▼</button>
-          <div style={styles.separatorLine}></div>
-        </div> */}
+        <UserDropdown 
+          email={userEmail} 
+          menuItems={dropdownMenuItems}
+          onSelect= {(item) => console.log('Clicked:', item)}
+        />
 
       </div>
 

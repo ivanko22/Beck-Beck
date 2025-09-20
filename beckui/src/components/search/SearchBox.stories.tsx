@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { SearchBox } from './SearchBox';
 
+import { PageWrapper } from '../wrapper/PageWrapper';
+
 const meta: Meta<typeof SearchBox> = {
   title: 'Components/SearchBox',
   component: SearchBox,
@@ -29,10 +31,15 @@ const meta: Meta<typeof SearchBox> = {
 export default meta;
 type Story = StoryObj<typeof SearchBox>;
 
+const withPageWrapper = (StoryFn: () => React.ReactNode) => (
+  <PageWrapper background="darkBlue">{StoryFn()}</PageWrapper>
+);
+
 export const Default: Story = {
   args: {
     placeholder: 'Search by Name, Phone',
   },
+  decorators: [withPageWrapper],
 };
 
 export const active: Story = {
@@ -41,6 +48,7 @@ export const active: Story = {
     value: 'John Doe',
     isActive: true,
   },
+  decorators: [withPageWrapper],
 };
 
 export const WithValue: Story = {
@@ -48,4 +56,5 @@ export const WithValue: Story = {
     placeholder: 'Search by Name, Phone',
     value: 'John Doe',
   },
+  decorators: [withPageWrapper],
 };

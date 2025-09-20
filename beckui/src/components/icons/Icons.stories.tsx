@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
+import { PageWrapper } from '../wrapper/PageWrapper';
+
 import {
   ClientDetailIcon,
   DocumentIcon,
@@ -12,6 +14,9 @@ import {
   HandshakeIcon,
   ScaleIcon,
   CloseIcon,
+  AvaIcon,
+  DropdownIcon,
+  SignOutIcon
 } from './index';
 
 const meta: Meta = {
@@ -129,7 +134,30 @@ export const Close: Story = {
   render: (args) => <CloseIcon {...args} />,
 };
 
-// Showcase story - displays all icons in a grid
+export const Ava: Story = {
+  args: {
+    size: 24,
+    color: '#000000',
+  },
+  render: (args) => <AvaIcon {...args} />,
+};
+
+export const Dropdown: Story = {
+  args: {
+    size: 18,
+    color: '#000000',
+  },
+  render: (args) => <DropdownIcon {...args} />,
+};
+
+export const SignOut: Story = {
+  args: {
+    size: 18,
+    color: '#000000',
+  },
+  render: (args) => <SignOutIcon {...args} />,
+};
+
 export const IconShowcase: Story = {
   parameters: {
     docs: {
@@ -138,6 +166,7 @@ export const IconShowcase: Story = {
       },
     },
   },
+  
   render: () => {
     const icons = [
       { name: 'Client Detail', component: ClientDetailIcon },
@@ -151,16 +180,29 @@ export const IconShowcase: Story = {
       { name: 'Handshake', component: HandshakeIcon },
       { name: 'Scale', component: ScaleIcon },
       { name: 'Close', component: CloseIcon },
+      { name: 'Ava', component: AvaIcon },
+      { name: 'DropDown', component: DropdownIcon },
+      { name: 'SignOut', component: SignOutIcon}
     ];
 
-    const colors = ['#6B7280', '#EF4444', '#10B981', '#3B82F6', '#8B5CF6', '#F59E0B'];
+    const colors = [
+      'var(--primary-color)',
+      'var(--primary-color-hover)',
+      'var(--secondary-color)',
+      'var(--secondary-color-hover)',
+      'var(--light-grey)',
+      'var(--middle-grey)',
+      'var(--dark-grey)',
+      'var(--white)',
+      'var(--warning)',
+    ];
+    
     const sizes = [20, 24, 28, 32];
 
     return (
       <div style={{ padding: '20px', maxWidth: '1200px' }}>
         <h2 style={{ marginBottom: '20px', color: '#374151' }}>Icon Showcase</h2>
         
-        {/* Size demonstration */}
         <div style={{ marginBottom: '40px' }}>
           <h3 style={{ marginBottom: '16px', color: '#6B7280' }}>Different Sizes</h3>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
@@ -175,22 +217,25 @@ export const IconShowcase: Story = {
           </div>
         </div>
 
-        {/* Color demonstration */}
         <div style={{ marginBottom: '40px' }}>
           <h3 style={{ marginBottom: '16px', color: '#6B7280' }}>Different Colors</h3>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            {colors.map((color) => (
-              <div key={color} style={{ textAlign: 'center' }}>
-                <DocumentIcon size={24} color={color} />
-                <div style={{ fontSize: '12px', color: '#6B7280', marginTop: '4px' }}>
-                  {color}
-                </div>
-              </div>
-            ))}
+            
+            {colors.map((color) => {
+              const label = color.replace(/^var\(--(.+)\)$/, '$1');
+
+              return (
+                <div key={color} style={{ textAlign: 'center' }}>
+                  <DocumentIcon size={24} color={color} />
+                    <div style={{ fontSize: '12px', color: 'var(--middle-grey)', marginTop: '4px' }}>
+                      {label}
+                    </div>
+                  </div>
+                );
+            })}
           </div>
         </div>
 
-        {/* All icons grid */}
         <div>
           <h3 style={{ marginBottom: '16px', color: '#6B7280' }}>All Icons</h3>
           <div style={{ 
@@ -227,7 +272,6 @@ export const IconShowcase: Story = {
   },
 };
 
-// Navigation state demonstration
 export const NavigationStates: Story = {
   parameters: {
     docs: {
@@ -257,12 +301,9 @@ export const NavigationStates: Story = {
     ];
 
     return (
-      <div style={{ 
-        padding: '20px', 
-        backgroundColor: 'var(--primary-color)',
-        minHeight: '100vh'
-      }}>
-        <h2 style={{ marginBottom: '20px', color: '#374151' }}>Navigation States</h2>
+      <PageWrapper background='darkBlue'>
+
+        <h2 style={{ marginBottom: '20px', color: 'var(--middle-grey)' }}>Navigation States</h2>
         
         {states.map(({ name, color, bgColor, borderColor }) => (
           <div key={name} style={{ marginBottom: '24px' }}>
@@ -275,6 +316,9 @@ export const NavigationStates: Story = {
                     display: 'flex',
                     alignItems: 'center',
                     height: '48px',
+                    width: '200px',
+                    paddingLeft: '24px',
+                    paddingTop: '4px',
                     backgroundColor: bgColor,
                     transition: 'all 0.2s ease',
                     cursor: 'pointer',
@@ -290,7 +334,7 @@ export const NavigationStates: Story = {
             </div>
           </div>
         ))}
-      </div>
+      </PageWrapper>
     );
   },
 };

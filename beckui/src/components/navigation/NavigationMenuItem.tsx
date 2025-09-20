@@ -12,7 +12,7 @@ const styles = {
   navItem: {
     display: 'flex',
     height: '50px',
-    paddingLeft: '30px',
+    paddingLeft: '14px',
     alignItems: 'center',
     cursor: 'pointer',
     transition: 'all 0.2s ease',
@@ -74,7 +74,7 @@ export const NavigationMenuItem: React.FC<NavigationMenuItemProps> = ({
             ? 'var(--light-grey)'
             : isHovered
             ? 'var(--light-grey)'
-            : 'var(--middle-grey'
+            : 'var(--middle-grey)'
           }
         />
 

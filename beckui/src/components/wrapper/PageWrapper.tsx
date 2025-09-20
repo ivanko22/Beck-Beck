@@ -21,9 +21,7 @@ export const PageWrapper: React.FC<PageWrapperProps> = ({
   center = true,
   children,
 }) => {
-    const backgroundColor = background === 'custom' ? customBackgroundColor : backgroundMap[background];
-
-  console.log('backgroundColor', backgroundColor);
+  const backgroundColor = background === 'custom' ? customBackgroundColor : backgroundMap[background];
 
   const wrapperStyle: React.CSSProperties = {
     backgroundColor,

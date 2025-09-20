@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Navigation } from './Navigation';
+import { SignOutIcon } from '../icons';
 
 const meta: Meta<typeof Navigation> = {
   title: 'Components/Navigation',
@@ -40,35 +41,10 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     userEmail: 'ivankordonets@gmail.com',
+    dropdownMenuItems: [
+      { label: 'Profile' },
+      { label: 'Settings' },
+      { label: 'Sign out', icon: SignOutIcon }
+    ],
   },
 };
-
-// export const CustomUserEmail: Story = {
-//   args: {
-//     userEmail: 'john.doe@beckbecklaw.com',
-//   },
-// };
-
-// export const WithInteractions: Story = {
-//   args: {
-//     userEmail: 'attorney@beckbecklaw.com',
-//     onItemClick: (itemId: string) => {
-//       console.log('Navigation item clicked:', itemId);
-//     },
-//     onSearch: (query: string) => {
-//       console.log('Search query:', query);
-//     },
-//   },
-// };
-
-// export const LongEmail: Story = {
-//   args: {
-//     userEmail: 'very.long.email.address@beckbecklaw.com',
-//   },
-// };
-
-// export const ShortEmail: Story = {
-//   args: {
-//     userEmail: 'a@b.co',
-//   },
-// };

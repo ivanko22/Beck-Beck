@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CloseIcon, SearchIcon } from '../icons/index.ts';
-import { PageWrapper } from '../wrapper/PageWrapper.tsx';
 
 interface SearchBoxProps {
   placeholder?: string;
@@ -8,6 +7,7 @@ interface SearchBoxProps {
   onChange?: (value: string) => void;
   onSearch?: (value: string) => void;
   isActive?: boolean;  
+  style?: React.CSSProperties;
 };
 
 export const SearchBox: React.FC<SearchBoxProps> = ({
@@ -16,9 +16,15 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
   isActive,
   onChange,
   onSearch,
+  style,
 }) => {
   const [searchValue, setSearchValue] = useState(value);
   const [isFocused, setIsFocused] = useState(false);
+
+  useEffect(() => {
+    setSearchValue(value ?? '');
+  }, [value]);
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
@@ -92,10 +98,9 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
   `;
 
   return (
-
-      <PageWrapper background='darkBlue'>
+      <div>
         <style>{inputPlaceholderStyle}</style>
-        <div style={containerStyle}>
+        <div style={{ ...containerStyle, ...style }}>
           <div style={searchBoxStyle}>
             
             <div style={searchIconStyle} onClick={handleSearchClick}>
@@ -107,7 +112,7 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
               placeholder={placeholder}
               value={searchValue}
               onChange={handleInputChange}
-              onKeyPress={handleKeyPress}
+              onKeyDown={handleKeyPress}
               onFocus={handleFocus}
               onBlur={handleBlur}
               style={{
@@ -119,14 +124,14 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
               <div style={{ cursor: 'pointer' }} onClick={handleResetSearch}>
                 <CloseIcon 
                   size={11} 
-                  color='var(--dark-grey' 
+                  color='var(--dark-grey)' 
                 />
               </div>
           )}
 
           </div>
         </div>
-      </PageWrapper>
+      </div>
 
   );
 };

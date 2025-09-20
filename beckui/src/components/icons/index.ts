@@ -10,3 +10,6 @@ export { HandshakeIcon } from './HandshakeIcon';
 export { ScaleIcon } from './ScaleIcon';
 export { CloseIcon } from './CloseIcon';
 export { SearchIcon } from './SearchIcon';
+export { AvaIcon } from './AvaIcon';
+export { DropdownIcon } from './DropdownIcon';
+export { SignOutIcon } from './SignOutIcon';
