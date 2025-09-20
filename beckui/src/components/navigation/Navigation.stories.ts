@@ -8,13 +8,6 @@ const meta: Meta<typeof Navigation> = {
 
   parameters: {
     layout: 'fullscreen',
-    backgrounds: {
-      default: 'light',
-      values: [
-        { name: 'light', value: '#f8fafc' },
-        { name: 'dark', value: '#1e293b' },
-      ],
-    },
   },
 
   tags: ['autodocs'],

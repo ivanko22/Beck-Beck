@@ -6,6 +6,7 @@ interface PageWrapperProps {
   padding?: string;
   center?: boolean;
   children?: React.ReactNode;
+  style?: React.CSSProperties;
 }
 
 const backgroundMap: Record<string, string> = {
@@ -20,6 +21,7 @@ export const PageWrapper: React.FC<PageWrapperProps> = ({
   padding = 0,
   center = true,
   children,
+  style,
 }) => {
   const backgroundColor = background === 'custom' ? customBackgroundColor : backgroundMap[background];
 
@@ -32,6 +34,7 @@ export const PageWrapper: React.FC<PageWrapperProps> = ({
     alignItems: center ? 'center' : undefined,
     width: '100vw',
     height: '100vh',
+    ...style,
   };
 
   return (

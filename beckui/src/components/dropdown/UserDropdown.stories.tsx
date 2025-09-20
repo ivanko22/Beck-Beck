@@ -10,11 +10,27 @@ const meta: Meta<typeof UserDropdown> = {
   parameters: {
     layout: 'centered',
   },
+
+  tags: ['autodocs'],
+  decorators: [
+    (Story, ctx) => (
+      <PageWrapper
+        background="darkBlue"
+        style={ctx.viewMode === 'docs' ? { width: '1000px' } : undefined}
+      >
+        <Story />
+      </PageWrapper>
+    ),
+  ],
+
+  args: {
+    email: 'ivankordonets@gmail.com',
+  },
+
   argTypes: {
     email: {
       control: 'text',
       description: 'User email displayed in the dropdown',
-      defaultValue: 'ivankordonets@gmail.com',
     },
     isOpen: {
       control: 'boolean',
@@ -23,14 +39,16 @@ const meta: Meta<typeof UserDropdown> = {
     },
     menuItems: {
       control: 'object',
-      description: 'Array of menu item labels',
-      defaultValue: ['Profile', 'Settings', 'Sign out'],
+      description: 'Array of menu items with optional icons',
     },
     onSelect: {
-      action: 'menu item selected',
-      description: 'Triggered when a menu item is clicked',
+      action: 'item clicked',
+      description: 'Callback when a menu item is selected',
     },
-    onLogout: { action: 'onLogout' },
+    onLogout: {
+      action: 'logout clicked',
+      description: 'Callback when logout is selected',
+    },
   },
 };
 
@@ -38,20 +56,31 @@ export default meta;
 type Story = StoryObj<typeof UserDropdown>;
 
 const withPageWrapper = (StoryFn: () => React.ReactNode) => (
-  <PageWrapper background="darkBlue" padding="32px">
+  <PageWrapper background="darkBlue">
     {StoryFn()}
   </PageWrapper>
 );
 
+const baseMenu = [
+  { label: 'Profile' },
+  { label: 'Settings' },
+  { label: 'Sign out', icon: SignOutIcon },
+];
+
 export const Default: Story = {
   args: {
     email: 'ivankordonets@gmail.com',
-    menuItems: [
-      { label: 'Profile' },
-      { label: 'Settings' },
-      { label: 'Sign out', icon: SignOutIcon }
-    ],
-    onSelect: (item) => console.log('Clicked:', item)
+    menuItems: baseMenu,
+    onSelect: (item) => console.log('Clicked:', item),
+  },
+  decorators: [withPageWrapper],
+};
+
+export const Open: Story = {
+  args: {
+    email: 'ivankordonets@gmail.com',
+    isOpen: true,
+    menuItems: baseMenu,
   },
   decorators: [withPageWrapper],
 };
