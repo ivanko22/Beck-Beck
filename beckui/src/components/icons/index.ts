@@ -1,0 +1,15 @@
+export { ClientDetailIcon } from './ClientDetailIcon';
+export { DocumentIcon } from './DocumentIcon';
+export { MedicalIcon } from './MedicalIcon';
+export { CarIcon } from './CarIcon';
+export { BookIcon } from './BookIcon';
+export { EmailIcon } from './EmailIcon';
+export { ClipboardIcon } from './ClipboardIcon';
+export { CheckIcon } from './CheckIcon';
+export { HandshakeIcon } from './HandshakeIcon';
+export { ScaleIcon } from './ScaleIcon';
+export { CloseIcon } from './CloseIcon';
+export { SearchIcon } from './SearchIcon';
+export { AvaIcon } from './AvaIcon';
+export { DropdownIcon } from './DropdownIcon';
+export { SignOutIcon } from './SignOutIcon';

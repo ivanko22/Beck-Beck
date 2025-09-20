@@ -1,5 +1,4 @@
 import React from 'react';
-// import { color } from 'storybook/internal/theming';
 
 export interface TypographyProps {
   variant?: 'title' | 'subtitle' ;

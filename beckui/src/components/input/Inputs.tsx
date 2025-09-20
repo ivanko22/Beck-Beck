@@ -24,7 +24,7 @@ const styles = {
   },
 
   label: {
-    fontFamily: "'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+    fontFamily: 'var(--font-family-base)',
     fontSize: '14px',
     fontWeight: 400,
     lineHeight: 1.2,
@@ -33,7 +33,7 @@ const styles = {
   },
 
   input: {
-    fontFamily: "'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+    fontFamily: 'var(--font-family-base)',
     border: '1px solid var(--light-grey)',
     borderRadius: '2px',
     padding: '0 12px',
@@ -77,7 +77,7 @@ const styles = {
   },
 
   errorMessage: {
-    fontFamily: "'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+    fontFamily: 'var(--font-family-base)',
     fontSize: '14px',
     color: 'var(--warning)',
     lineHeight: 1.2,
