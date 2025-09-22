@@ -75,7 +75,6 @@ const styles = {
   },
 };
 
-/** Primary UI component for user interaction */
 export const Button: React.FC<ButtonProps> = ({
   primary = false,
   size = 'large',
@@ -98,7 +97,6 @@ export const Button: React.FC<ButtonProps> = ({
     ...(backgroundColor && { backgroundColor }),
   };
 
-  // ...(disabled && (primary ? styles.primaryDisabled : styles.secondaryDisabled)),
   console.log('buttonStyle', buttonStyle);
 
   return (

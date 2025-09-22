@@ -5,7 +5,7 @@ import { PageWrapper } from '../wrapper/PageWrapper';
 import { SignOutIcon } from '../icons';
 
 const meta: Meta<typeof BaseDropdown> = {
-  title: 'Components/Dropdown/UserDropdown',
+  title: 'Components/Dropdown/BaseDropdown',
   component: BaseDropdown,
   parameters: {
     layout: 'centered',
@@ -13,22 +13,19 @@ const meta: Meta<typeof BaseDropdown> = {
 
   tags: ['autodocs'],
   decorators: [
-    (Story, ctx) => (
-      <PageWrapper
-        background="darkBlue"
-        style={ctx.viewMode === 'docs' ? { width: '1000px' } : undefined}
-      >
+    (Story) => (
+      <PageWrapper background="white">
         <Story />
       </PageWrapper>
     ),
   ],
 
   args: {
-    email: 'ivankordonets@gmail.com',
+    value: 'ivankordonets@gmail.com',
   },
 
   argTypes: {
-    email: {
+    value: {
       control: 'text',
       description: 'User email displayed in the dropdown',
     },
@@ -56,21 +53,27 @@ export default meta;
 type Story = StoryObj<typeof BaseDropdown>;
 
 const withPageWrapper = (StoryFn: () => React.ReactNode) => (
-  <PageWrapper background="darkBlue">
+  <PageWrapper background="white">
     {StoryFn()}
   </PageWrapper>
 );
 
 const baseMenu = [
-  { label: 'Profile' },
-  { label: 'Settings' },
-  { label: 'Sign out', icon: SignOutIcon },
+  { label: 'Dropdown Item 1' },
+  { label: 'Dropdown Item 2' },
+  { label: 'Dropdown Item 3' },
+];
+
+const baseMenuHovered = [
+  { label: 'Dropdown Item 1' },
+  { label: 'Dropdown Item 2', state: 'hover' },
+  { label: 'Dropdown Item 3' },
 ];
 
 export const Default: Story = {
   args: {
-    type: 'userDropdown',
-    value: 'ivankordonets@gmail.com',
+    type: 'BaseDropdown',
+    value: 'Base Dropdown',
     menuItems: baseMenu,
     onSelect: (item) => console.log('Clicked:', item),
   },
@@ -79,8 +82,8 @@ export const Default: Story = {
 
 export const Open: Story = {
   args: {
-    type: 'userDropdown',
-    value: 'ivankordonets@gmail.com',
+    type: 'BaseDropdown',
+    value: 'Base Dropdown',
     isOpen: true,
     menuItems: baseMenu,
   },
@@ -89,11 +92,10 @@ export const Open: Story = {
 
 export const Hover: Story = {
   args: {
-    type: 'userDropdown',
-    value: 'ivankordonets@gmail.com',
+    type: 'BaseDropdown',
+    value: 'Base Dropdown',
     isOpen: true,
-    state: 'hover',
-    menuItems: baseMenu,
+    menuItems: baseMenuHovered,
   },
   decorators: [withPageWrapper],
 };

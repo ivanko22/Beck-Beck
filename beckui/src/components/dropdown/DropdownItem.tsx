@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 type IconType = React.ComponentType<{ size?: number; color?: string; className?: string }>;
 
 export interface UserDropdownItemProps {
+  type: string;
   label: string;
   icon?: IconType;
-  active?: boolean;
+  hovered?: boolean;
   onClick?: () => void;
   className?: string;
   style?: React.CSSProperties;
 }
 
-const styles: Record<string, React.CSSProperties> = {
+const userDropdownstyles: Record<string, React.CSSProperties> = {
   item: {
     display: 'flex',
     alignItems: 'center',
@@ -31,11 +32,6 @@ const styles: Record<string, React.CSSProperties> = {
     borderBottom: '1px solid var(--secondary-color)',
   },
 
-  active: {
-    backgroundColor: 'var(--primary-color-hover)',
-    color: 'var(--white)',
-  },
-
   icon: {
     position: 'relative',
     left: '14px',
@@ -43,10 +39,34 @@ const styles: Record<string, React.CSSProperties> = {
   }
 };
 
+const BaseDropdownItemStyle: Record<string, React.CSSProperties> = {
+  item: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    fontSize: 18,
+    fontWeight: 500,
+    cursor: 'pointer',
+    color: 'var(--primary-color)',
+    width: '228px',
+    height: '60px',
+    margin: '0px 18px 0px 18px',
+    borderBottom: '1px solid var(--light-grey)',
+    padding: '0',
+    paddingLeft: '12px',
+  },
+
+  hover: {
+    backgroundColor: 'var(--ultra-light-grey)',
+    borderBottom: '1px solid var(--secondary-color)',
+  },
+}
+
 export const UserDropdownItem: React.FC<UserDropdownItemProps> = ({
+    type,
     icon: Icon,
     label,
-    active = false,
+    hovered = false,
     onClick,
     className = '',
     style,
@@ -54,14 +74,17 @@ export const UserDropdownItem: React.FC<UserDropdownItemProps> = ({
   const [hover, setHover] = useState(false);
 
   const itemStyle = {
-    ...styles.item,
-    ...(active ? styles.active : {}),
-    ...(hover ? styles.hover : {}),
     ...style,
+    ...(type === 'user' ? userDropdownstyles.item : BaseDropdownItemStyle.item),
+    ...(hovered || hover
+      ? type === 'user'
+        ? userDropdownstyles.hover
+        : BaseDropdownItemStyle.hover
+      : {}),
   };
 
   const iconColor =
-    active || hover ? 'var(--light-grey)' : 'var(--middle-grey)';
+    hovered || hover ? 'var(--light-grey)' : 'var(--middle-grey)';
 
   return (
     <div
@@ -78,7 +101,7 @@ export const UserDropdownItem: React.FC<UserDropdownItemProps> = ({
     <span>{label}</span>
 
     {Icon ? (
-        <span style={styles.icon}>
+        <span style={userDropdownstyles.icon}>
           <Icon size={20} color={iconColor} className="dropdown-icon" />
         </span>
     ) : null}
