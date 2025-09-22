@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Logo } from '../logo/Logo';
 import { NavigationMenuItem } from './NavigationMenuItem';
 import { SearchBox } from '../search/SearchBox';
-import { UserDropdown } from '../dropdown/UserDropdown';
+import { UserDropdown } from '../dropdown/Dropdown';
 
 import {
   ClientDetailIcon,
