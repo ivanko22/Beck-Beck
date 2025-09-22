@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Logo } from '../logo/Logo';
 import { NavigationMenuItem } from './NavigationMenuItem';
 import { SearchBox } from '../search/SearchBox';
-import { UserDropdown } from '../dropdown/Dropdown';
+import { BaseDropdown } from '../dropdown/Dropdown';
 
 import {
   ClientDetailIcon,
@@ -110,8 +110,9 @@ export const Navigation: React.FC<NavigationProps> = ({
           />
         ))}
 
-        <UserDropdown 
-          email={userEmail} 
+        <BaseDropdown 
+          type="userDropdown"
+          value={userEmail} 
           menuItems={dropdownMenuItems}
           onSelect= {(item) => console.log('Clicked:', item)}
         />
