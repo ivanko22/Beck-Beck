@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { BaseDropdown } from './Dropdown';
 import { PageWrapper } from '../wrapper/PageWrapper';
-import { SignOutIcon } from '../icons';
+import type { MenuItem } from './Dropdown'; 
 
 const meta: Meta<typeof BaseDropdown> = {
   title: 'Components/Dropdown/BaseDropdown',
@@ -25,6 +25,7 @@ const meta: Meta<typeof BaseDropdown> = {
   },
 
   argTypes: {
+    state: { control: 'radio', options: ['default', 'hover', 'active'] },
     value: {
       control: 'text',
       description: 'User email displayed in the dropdown',
@@ -58,15 +59,15 @@ const withPageWrapper = (StoryFn: () => React.ReactNode) => (
   </PageWrapper>
 );
 
-const baseMenu = [
+const baseMenu: MenuItem[] = [
   { label: 'Dropdown Item 1' },
   { label: 'Dropdown Item 2' },
   { label: 'Dropdown Item 3' },
 ];
 
-const baseMenuHovered = [
+const baseMenuHovered: MenuItem[] = [
   { label: 'Dropdown Item 1' },
-  { label: 'Dropdown Item 2', state: 'hover' },
+  { label: 'Dropdown Item 2', state: 'hover' }, // OK now
   { label: 'Dropdown Item 3' },
 ];
 
@@ -74,6 +75,7 @@ export const Default: Story = {
   args: {
     type: 'BaseDropdown',
     value: 'Base Dropdown',
+    state: 'default',
     menuItems: baseMenu,
     onSelect: (item) => console.log('Clicked:', item),
   },
@@ -99,3 +101,15 @@ export const Hover: Story = {
   },
   decorators: [withPageWrapper],
 };
+
+export const Selected: Story = {
+  args: {
+    type: 'BaseDropdown',
+    value: 'Base Dropdown',
+    isOpen: false,
+    state: 'selected',
+    menuItems: baseMenuHovered,
+  },
+  decorators: [withPageWrapper],
+};
+

@@ -26,8 +26,6 @@ const styles = {
   primary: {
     backgroundColor: 'var(--secondary-color)',
     color: 'white',
-    height: '60px',
-    width: '332px',
     fontWeight: 600,
   },
 
@@ -45,7 +43,7 @@ const styles = {
 
   secondary: {
     backgroundColor: 'var(--white)',
-    color: 'var(--secondary-color)',
+    color: 'var(--dark-grey)',
     fontWeight: 600,
   },
 
@@ -60,13 +58,15 @@ const styles = {
   },
 
   medium: {
-    padding: '11px 20px',
+    padding: '15px 20px',
     fontSize: '18px',
+    width: '210px',
   },
 
   large: {
-    padding: '12px 24px',
+    padding: '20px 24px',
     fontSize: '21px',
+    width: '280px',
   },
 
   disabled: {
@@ -96,8 +96,6 @@ export const Button: React.FC<ButtonProps> = ({
     ...(disabled && (primary ? styles.primaryDisabled : styles.secondaryDisabled)),
     ...(backgroundColor && { backgroundColor }),
   };
-
-  console.log('buttonStyle', buttonStyle);
 
   return (
     <button
