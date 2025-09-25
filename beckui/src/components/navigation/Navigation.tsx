@@ -35,7 +35,6 @@ interface NavigationProps {
   className?: string;
   customWidth?: string;
   dropdownMenuItems?: dropdownMenuItems[];
-  email: string;
 };
 
 const navigationItems: NavigationItem[] = [

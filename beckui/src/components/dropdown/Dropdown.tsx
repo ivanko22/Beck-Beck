@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import { AvaIcon, DropdownIcon, SignOutIcon } from '../icons';
 import { UserDropdownItem } from './DropdownItem';
 
-interface MenuItem {
+export type MenuState = 'default' | 'hover' | 'selected';
+export interface MenuItem {
   label: string;
   icon?: React.ComponentType<{ size?: number; color?: string }>;
-  state?: 'default' | 'hover' | 'active';
+  state?: MenuState;
 }
 
 interface UserDropdownProps {
   type: string;
-  state?: 'default' | 'hover' | 'active';
+  state?: 'default' | 'hover' | 'selected';
   value: string;
   isOpen?: boolean;
   defaultOpen?: boolean;
@@ -37,20 +38,24 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
   const open = controlled ? !!isOpen : internalOpen;
   const [hover, setHover] = useState(false);
   const [dropdownValue, setDropdownValue] = useState(value);
+  const [hasSelected, setHasSelected] = React.useState(false);
 
+  const effectiveState: MenuState = state ?? (hasSelected ? "selected" : "default");
+
+  React.useEffect(() => {
+    setDropdownValue(value);
+    if (value && value.trim() !== "" && value !== "Select User") {
+      setHasSelected(true);
+    }
+  }, [value]);
 
   const setOpen = (nextState: boolean) => {
-    console.log('setOpen, nextState', open, nextState);
-
     if (!controlled) setInternalOpen(nextState);
-      console.log('!controlled controlled, internalOpen, nextState', controlled, internalOpen, nextState);
-
       onOpenChange?.(nextState);
     };
 
   const toggle = () => {
     setOpen(!open);
-    console.log('toggle internalOpen, onOpenChange', internalOpen, onOpenChange);
   };
 
   const UserDropdownContainer: React.CSSProperties = {
@@ -116,6 +121,13 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
     overflow: 'hidden',
     marginTop: '-55px',
     padding: '10px 0',
+    fontWeight: 400,
+    color: 'var(--middle-grey)',
+  };
+
+  const labelStyle: React.CSSProperties = {
+    fontWeight: effectiveState === "selected" ? 500 : 400,
+    color: effectiveState === "selected" ? "var(--dark-grey)" : "var(--middle-grey)",
   };
 
   const dropdownContainer: React.CSSProperties = {
@@ -169,11 +181,11 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
         {type === 'BaseDropdown' && (
           <div style={BaseDropdownContainer} onClick={toggle} aria-expanded={open} role="button">
             
-            <span>{dropdownValue}</span>
+            <span style={labelStyle}>{dropdownValue}</span>
 
             <DropdownIcon 
-                size={11} 
-                color={hover ? 'var(--light-grey)' : 'var(--middle-grey)'}
+              size={11} 
+              color={hover ? 'var(--light-grey)' : 'var(--middle-grey)'}
             />
           </div>
         )}
@@ -181,19 +193,21 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
         {open && menuItems && type === 'BaseDropdown' && (
             <div style={BaseDropdownStyle} role="menu">
               {menuItems.map((item, index) => (
+              
               <UserDropdownItem
-              type='base'
-              key={index}
-              label={item.label}
-              icon={item.icon}
-              hovered={item.state === 'hover'}
-              onClick={() => {
-              setDropdownValue(item.label);
-              onSelect?.(item.label);
-              toggle();
-              }}
+                type='base'
+                key={index}
+                label={item.label}
+                icon={item.icon}
+                hovered={item.state === 'hover'}
+                onClick={() => {
+                  setDropdownValue(item.label);
+                  setHasSelected(true);
+                  onSelect?.(item.label);
+                  toggle();
+                }}
               />
-              ))}
+            ))}
             </div>
         )}
       </div>

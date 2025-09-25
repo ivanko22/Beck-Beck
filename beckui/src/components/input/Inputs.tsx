@@ -8,6 +8,7 @@ interface InputProps {
   error?: boolean | string;
   type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url';
   value?: string;
+  defaultValue?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   label?: string;
   className?: string;
@@ -99,8 +100,8 @@ const styles = {
     },
     
     large: {
-      height: '52px',
-      width: '330px',
+      height: '46px',
+      width: '264px',
       fontSize: '18px',
       padding: '3px 0px 0px 16px',
     },
@@ -108,13 +109,14 @@ const styles = {
 };
 
 export const Input: React.FC<InputProps> = ({
-  size = 'medium',
+  size = 'large',
   placeholder = '',
   disabled = false,
   active = false,
   error = false,
   type = 'text',
-  value = '',
+  value,
+  defaultValue,
   onChange,
   label,
   className = '',
@@ -125,10 +127,13 @@ export const Input: React.FC<InputProps> = ({
   const [isFocused, setIsFocused] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
+  const isControlled = value !== undefined;
+  const [internalValue, setInternalValue] = useState(defaultValue ?? '');
+  const currentValue = isControlled ? value! : internalValue;
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (onChange) {
-      onChange(e);
-    }
+    if (!isControlled) setInternalValue(e.target.value);
+    onChange?.(e);
   };
 
   const handleFocus = () => {
@@ -145,7 +150,7 @@ export const Input: React.FC<InputProps> = ({
     ...(active || isFocused ? styles.inputActive : {}),
     ...(error && styles.inputError),
     ...(disabled && styles.inputDisabled),
-    ...(String(value).trim() !== '' && { fontWeight: 600 }),
+    ...(String(currentValue).trim() !== '' && { fontWeight: 500 }),
   };
 
   return (
@@ -164,7 +169,7 @@ export const Input: React.FC<InputProps> = ({
         style={inputStyle}
         placeholder={placeholder}
         disabled={disabled}
-        value={value}
+        value={currentValue}
         onChange={handleChange}
         onFocus={handleFocus}
         onBlur={handleBlur}
