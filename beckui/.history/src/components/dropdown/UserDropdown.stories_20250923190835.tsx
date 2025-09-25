@@ -28,7 +28,7 @@ const meta: Meta<typeof BaseDropdown> = {
   },
 
   argTypes: {
-    value: {
+    email: {
       control: 'text',
       description: 'User email displayed in the dropdown',
     },

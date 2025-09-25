@@ -24,11 +24,11 @@ const meta: Meta<typeof BaseDropdown> = {
   ],
 
   args: {
-    value: 'ivankordonets@gmail.com',
+    email: 'ivankordonets@gmail.com',
   },
 
   argTypes: {
-    value: {
+    email: {
       control: 'text',
       description: 'User email displayed in the dropdown',
     },
