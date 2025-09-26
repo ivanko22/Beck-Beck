@@ -11,7 +11,7 @@ export interface BreadcrumbsProps {
 const styles: Record<string, React.CSSProperties> = {
   section: {
     fontSize: '28px',
-    fontWeight: 600,
+    fontWeight: 500,
     color: "var(--primary-color)",
     textDecoration: "none",
     paddingBottom: "6px",
