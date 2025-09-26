@@ -206,7 +206,7 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
             {!noBorder && (
               <DropdownIcon 
                 size={11} 
-                color={(!noBorder) ? 'var(--middle-grey)' : (hover ? 'var(--light-grey)' : 'var(--middle-grey)')}
+                color={(hover ? 'var(--light-grey)' : 'var(--middle-grey)')}
               />
             )}
           </div>
