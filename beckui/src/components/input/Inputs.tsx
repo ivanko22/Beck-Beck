@@ -14,6 +14,7 @@ interface InputProps {
   className?: string;
   name?: string;
   showForgotPassword?: boolean;
+  noBorder?: boolean;
 }
 
 const styles = {
@@ -61,6 +62,14 @@ const styles = {
     color: '#999',
     cursor: 'not-allowed',
     borderColor: '#D6D6DD',
+  },
+
+  inputNoBorder: {
+    border: 'none',
+    backgroundColor: 'transparent',
+    cursor: 'default',
+    outline: 'none',
+    boxShadow: 'none',
   },
 
   resetPassword: {
@@ -122,6 +131,7 @@ export const Input: React.FC<InputProps> = ({
   className = '',
   name,
   showForgotPassword = false,
+  noBorder = false,
   ...props
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -150,6 +160,7 @@ export const Input: React.FC<InputProps> = ({
     ...(active || isFocused ? styles.inputActive : {}),
     ...(error && styles.inputError),
     ...(disabled && styles.inputDisabled),
+    ...(noBorder && styles.inputNoBorder),
     ...(String(currentValue).trim() !== '' && { fontWeight: 500 }),
   };
 
@@ -168,7 +179,8 @@ export const Input: React.FC<InputProps> = ({
         type={type}
         style={inputStyle}
         placeholder={placeholder}
-        disabled={disabled}
+        disabled={disabled || noBorder}
+        readOnly={noBorder}
         value={currentValue}
         onChange={handleChange}
         onFocus={handleFocus}

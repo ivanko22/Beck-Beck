@@ -13,6 +13,9 @@ interface UserDropdownProps {
   type: string;
   state?: 'default' | 'hover' | 'selected';
   value: string;
+  label?: string;
+  disabled?: boolean;
+  noBorder?: boolean;
   isOpen?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -26,6 +29,9 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
   type,
   state,
   value,
+  label,
+  disabled = false,
+  noBorder = false,
   isOpen,
   defaultOpen = false,
   onOpenChange,
@@ -55,7 +61,9 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
     };
 
   const toggle = () => {
-    setOpen(!open);
+    if (!disabled) {
+      setOpen(!open);
+    }
   };
 
   const UserDropdownContainer: React.CSSProperties = {
@@ -78,10 +86,9 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
     gap: 8,
     fontSize: 18,
     fontWeight: 500,
-    cursor: 'pointer',
-    color: hover ? 'var(--light-grey)' : 'var(--primary-color)',
-    border: '1px solid var(--light-grey)',
-    borderRadius: '2px',
+    cursor: disabled ? 'not-allowed' : 'pointer',
+    color: (disabled) ? 'var(--dark-grey)' : (hover ? 'var(--light-grey)' : 'var(--primary-color)'),
+    ...(noBorder ? { border: 'none' } : { border: '1px solid var(--light-grey)', borderRadius: '2px' }),
     padding: '0 16px',
 
     ...style,
@@ -139,6 +146,7 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
   return (
     <>
       <div style={dropdownContainer}>
+
         {type === 'userDropdown' && (
           <>
             <div 
@@ -179,15 +187,30 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
 
       <div>
         {type === 'BaseDropdown' && (
-          <div style={BaseDropdownContainer} onClick={toggle} aria-expanded={open} role="button">
-            
+          <>
+            {label && effectiveState === 'selected' && (
+              <div style={{
+                fontSize: '14px',
+                fontWeight: 400,
+                color: disabled ? 'var(--middle-grey)' : 'var(--dark-grey)',
+                marginBottom: '8px',
+                paddingLeft: '16px',
+              }}>
+                {label}
+              </div>
+            )}
+
+          <div style={BaseDropdownContainer} onClick={disabled ? undefined : toggle} aria-expanded={open} role="button">
             <span style={labelStyle}>{dropdownValue}</span>
 
-            <DropdownIcon 
-              size={11} 
-              color={hover ? 'var(--light-grey)' : 'var(--middle-grey)'}
-            />
+            {!noBorder && (
+              <DropdownIcon 
+                size={11} 
+                color={(!noBorder) ? 'var(--middle-grey)' : (hover ? 'var(--light-grey)' : 'var(--middle-grey)')}
+              />
+            )}
           </div>
+          </>
         )}
 
         {open && menuItems && type === 'BaseDropdown' && (

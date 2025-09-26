@@ -12,6 +12,8 @@ type Story = StoryObj<typeof UserDetailsPage>;
 
 export const Empty: Story = {
   args: {
+    saved: false,
+    noBorder: false,
     defaultUser: 'Select User',
     defaultRole: 'Select User Role',
     defaultFirstLast: '',
@@ -30,6 +32,26 @@ export const Empty: Story = {
 
 export const Filled: Story = {
   args: {
+    saved: false,
+    defaultUser: 'Cooper Jane',
+    defaultRole: 'Admin',
+    defaultFirstLast: 'Cooper Jane',
+    defaultEmail: 'cooper.jane@example.com',
+    defaultPassword: 'password123',
+    defaultStillWorking: true,
+    defaultTeamFiles: {
+      intake: true,
+      medical: false,
+      litigation: true,
+      settlement: true,
+    },
+  } satisfies UserDetailsPageProps,
+};
+
+export const Saved: Story = {
+  args: {
+    saved: true,
+    noBorder: true,
     defaultUser: 'Cooper Jane',
     defaultRole: 'Admin',
     defaultFirstLast: 'Cooper Jane',

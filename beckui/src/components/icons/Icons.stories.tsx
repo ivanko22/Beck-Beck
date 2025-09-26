@@ -16,7 +16,12 @@ import {
   CloseIcon,
   AvaIcon,
   DropdownIcon,
-  SignOutIcon
+  SignOutIcon,
+  EditIcon,
+  RemoveIcon,
+  ArrowIcon,
+  SearchIcon,
+
 } from './index';
 
 const meta: Meta = {
@@ -158,6 +163,36 @@ export const SignOut: Story = {
   render: (args) => <SignOutIcon {...args} />,
 };
 
+export const Edit: Story = {
+  args: {
+    size: 18,
+    color: '#000000',
+  },
+  render: (args) => <EditIcon {...args} />,
+};
+export const Remove: Story = {
+  args: {
+    size: 18,
+    color: '#000000',
+  },
+  render: (args) => <RemoveIcon {...args} />,
+};
+export const Arrow: Story = {
+  args: {
+    size: 24,
+    color: '#000000',
+  },
+  render: (args) => <ArrowIcon {...args} />,
+};
+export const Search: Story = {
+  args: {
+    size: 24,
+    color: '#000000',
+  },
+  render: (args) => <SearchIcon {...args} />,
+};    
+
+
 export const IconShowcase: Story = {
   parameters: {
     docs: {
@@ -182,7 +217,11 @@ export const IconShowcase: Story = {
       { name: 'Close', component: CloseIcon },
       { name: 'Ava', component: AvaIcon },
       { name: 'DropDown', component: DropdownIcon },
-      { name: 'SignOut', component: SignOutIcon}
+      { name: 'SignOut', component: SignOutIcon},
+      { name: 'Edit', component: EditIcon },
+      { name: 'Remove', component: RemoveIcon },
+      { name: 'Arrow', component: ArrowIcon },
+      { name: 'Search', component: SearchIcon },
     ];
 
     const colors = [

@@ -5,6 +5,7 @@ import { BaseDropdown } from '../components/dropdown/Dropdown';
 import { Input } from '../components/input/Inputs';
 import { Checkbox } from '../components/checkbox/Checkbox';
 import { Button } from '../components/button/Button';
+import { Footer } from '../components/footer/Footer';
 
 type TeamAccess = {
   intake: boolean;
@@ -16,6 +17,9 @@ type TeamAccess = {
 export type UserDetailsPageProps = {
   users?: { label: string }[];
   roles?: { label: string }[];
+  noBorder?: boolean;
+
+  saved?: boolean;
 
   defaultUser?: string;
   defaultRole?: string;
@@ -67,13 +71,13 @@ const L = {
     fontSize: 16,
     fontWeight: 500,
     marginTop: 32,
-    marginBottom: 12,
+    marginBottom: 32,
   } as React.CSSProperties,
 
   grid: {
     display: 'grid',
     gridTemplateColumns: '0fr 0fr',
-    gap: 24,
+    gap: 44,
   } as React.CSSProperties,
 
   row: {
@@ -96,6 +100,8 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
   users = [{ label: 'Cooper Jane' }, { label: 'John Smith' }, { label: 'Maria Garcia' }],
   roles = [{ label: 'Admin' }, { label: 'Paralegal' }, { label: 'Attorney' }],
 
+  noBorder = false,
+  saved = false,
   defaultUser,
   defaultRole,
   defaultFirstLast = '',
@@ -123,6 +129,7 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
     settlement: !!defaultTeamFiles.settlement,
   });
 
+
   const toggleFile = (key: keyof TeamAccess, next: boolean) =>
     setTeamFiles((p) => ({ ...p, [key]: next }));
 
@@ -148,6 +155,9 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
 
         <div style={L.grid}>
           <BaseDropdown
+            label="User"
+            noBorder={noBorder}
+            disabled={noBorder}
             type="BaseDropdown"
             state={selectedUser === 'Select User' ? 'default' : 'selected'}
             value={selectedUser}
@@ -156,6 +166,9 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
           />
 
           <BaseDropdown
+            label="User Role"
+            noBorder={noBorder}
+            disabled={noBorder}
             type="BaseDropdown"
             state={selectedRole === 'Select User Role' ? 'default' : 'selected'}            
             value={selectedRole}
@@ -163,10 +176,12 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
             onSelect={(label) => setSelectedRole(label)}
           />
 
-          <Input 
+          <Input
+            label="First Last Name"
             placeholder="First Last Name" 
             value={firstLast} 
-            onChange={(e) => setFirstLast(e.target.value)} 
+            onChange={(e) => setFirstLast(e.target.value)}
+            noBorder={saved}
           />
 
           <div style={L.row}>
@@ -174,20 +189,25 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
               label="Still Working Here"
               checked={stillWorking}
               onChange={setStillWorking}
+              disabled={saved}
             />
           </div>
 
           <Input 
+            label="Email"
             placeholder="Email" 
             value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
+            onChange={(e) => setEmail(e.target.value)}
+            noBorder={saved}
           />
 
           <Input
+            label="Password"
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            noBorder={saved}
           />
         </div>
 
@@ -198,21 +218,25 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
             label="Intake & Case Review"
             checked={teamFiles.intake}
             onChange={(n) => toggleFile('intake', n)}
+            disabled={saved}
           />
           <Checkbox
             label="Medical Records & Liens"
             checked={teamFiles.medical}
             onChange={(n) => toggleFile('medical', n)}
+            disabled={saved}
           />
           <Checkbox
             label="Litigation Support"
             checked={teamFiles.litigation}
             onChange={(n) => toggleFile('litigation', n)}
+            disabled={saved}
           />
           <Checkbox
             label="Settlement & Negotiations"
             checked={teamFiles.settlement}
             onChange={(n) => toggleFile('settlement', n)}
+            disabled={saved}
           />
         </div>
 
@@ -221,29 +245,39 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
             label="Select All"
             checked={Object.values(teamFiles).every(Boolean)}
             onChange={selectAll}
+            disabled={saved}
           />
         </div>
 
-        <div style={L.actions}>
-          <Button
-            type="submit"
-            size="medium"
-            primary
-            disabled={disabledButton}
-            label="Save"
-            onClick={() =>
-              onSave?.({
-                user: selectedUser,
-                role: selectedRole,
-                firstLast,
-                email,
-                stillWorking,
-                teamFiles,
-              })
-            }
+        {!saved ? (
+          <div style={L.actions}>
+            <Button
+              type="submit"
+              size="medium"
+              primary
+              disabled={disabledButton}
+              label="Save"
+              onClick={() => {
+                onSave?.({
+                  user: selectedUser,
+                  role: selectedRole,
+                  firstLast,
+                  email,
+                  stillWorking,
+                  teamFiles,
+                });
+              }}
+            />
+            <Button type="reset" size="medium" label="Cancel" onClick={() => onCancel?.()} />
+          </div>
+        ) : (
+          <Footer
+            onEdit={() => console}
+            onRemove={() => {
+              console.log('Remove user');
+            }}
           />
-          <Button type="reset" size="medium" label="Cancel" onClick={() => onCancel?.()} />
-        </div>
+        )}
       </div>
     </div>
   );

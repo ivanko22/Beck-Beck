@@ -113,3 +113,41 @@ export const Selected: Story = {
   decorators: [withPageWrapper],
 };
 
+export const WithLabel: Story = {
+  args: {
+    type: 'BaseDropdown',
+    label: 'User',
+    value: 'John Doe',
+    isOpen: false,
+    state: 'selected',
+    menuItems: baseMenuHovered,
+  },
+  decorators: [withPageWrapper],
+};
+
+export const Disabled: Story = {
+  args: {
+    type: 'BaseDropdown',
+    label: 'User',
+    value: 'John Doe',
+    isOpen: false,
+    state: 'selected',
+    disabled: true,
+    menuItems: baseMenuHovered,
+  },
+  decorators: [withPageWrapper],
+};
+
+export const NoBorder: Story = {
+  args: {
+    type: 'BaseDropdown',
+    label: 'User',
+    value: 'John Doe',
+    isOpen: false,
+    state: 'selected',
+    noBorder: true,
+    menuItems: baseMenuHovered,
+  },
+  decorators: [withPageWrapper],
+};
+
