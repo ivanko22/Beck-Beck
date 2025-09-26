@@ -1,3 +1,4 @@
+import { ArrowIcon } from './../../../.history/src/components/icons/Arrow_20250925191533';
 export { ClientDetailIcon } from './ClientDetailIcon';
 export { DocumentIcon } from './DocumentIcon';
 export { MedicalIcon } from './MedicalIcon';
@@ -13,3 +14,4 @@ export { SearchIcon } from './SearchIcon';
 export { AvaIcon } from './AvaIcon';
 export { DropdownIcon } from './DropdownIcon';
 export { SignOutIcon } from './SignOutIcon';
+export { ArrowIcon } from './Arrow';
