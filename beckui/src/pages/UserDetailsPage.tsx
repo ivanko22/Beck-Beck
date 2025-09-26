@@ -4,8 +4,7 @@ import { Navigation } from '../components/navigation/Navigation';
 import { BaseDropdown } from '../components/dropdown/Dropdown';
 import { Input } from '../components/input/Inputs';
 import { Checkbox } from '../components/checkbox/Checkbox';
-import { Button } from '../components/button/Button';
-import { Footer } from '../components/footer/Footer';
+import { PageActions } from '../components/page-actions/PageActions';
 
 type TeamAccess = {
   intake: boolean;
@@ -249,35 +248,23 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
           />
         </div>
 
-        {!saved ? (
-          <div style={L.actions}>
-            <Button
-              type="submit"
-              size="medium"
-              primary
-              disabled={disabledButton}
-              label="Save"
-              onClick={() => {
-                onSave?.({
-                  user: selectedUser,
-                  role: selectedRole,
-                  firstLast,
-                  email,
-                  stillWorking,
-                  teamFiles,
-                });
-              }}
-            />
-            <Button type="reset" size="medium" label="Cancel" onClick={() => onCancel?.()} />
-          </div>
-        ) : (
-          <Footer
-            onEdit={() => console}
-            onRemove={() => {
-              console.log('Remove user');
-            }}
-          />
-        )}
+        <PageActions
+          saved={saved}
+          disabledButton={disabledButton}
+          onSave={() => {
+            onSave?.({
+              user: selectedUser,
+              role: selectedRole,
+              firstLast,
+              email,
+              stillWorking,
+              teamFiles,
+            });
+          }}
+          onCancel={onCancel}
+          onEdit={() => console.log('Edit user')}
+          onRemove={() => console.log('Remove user')}
+        />
       </div>
     </div>
   );

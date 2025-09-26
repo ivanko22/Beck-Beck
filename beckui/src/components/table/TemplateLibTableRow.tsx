@@ -12,6 +12,7 @@ export type TemplateRow = {
 type TemplateRowItemProps = {
   row: TemplateRow;
   disabled?: boolean;
+  saved?: boolean;
   onChange: (next: TemplateRow) => void;
 };
 
@@ -33,19 +34,24 @@ const L = {
         color: 'var(--primary-color)',
         fontWeight: 500,
     },
+    tdSaved: {
+        color: 'var(--dark-grey)',
+    },
 };
 
 export const TemplateRowItem: React.FC<TemplateRowItemProps> = ({
-  row, disabled, onChange
+  row, disabled, saved = false, onChange
 }) => {
   const toggle = (key: keyof Pick<TemplateRow, 'email' | 'text' | 'pdf'>) =>
     onChange({ ...row, [key]: !row[key] });
 
+  const cellStyle = saved ? { ...L.td, ...L.tdSaved } : L.td;
+
   return (
     <tr style={L.tr}>
-      <td style={L.td}>{row.name}</td>
+      <td style={cellStyle}>{row.name}</td>
       
-      <td style={L.td}>
+      <td style={cellStyle}>
         <Checkbox 
             checked={row.email}
             disabled={disabled}
@@ -54,7 +60,7 @@ export const TemplateRowItem: React.FC<TemplateRowItemProps> = ({
         />
       </td>
 
-      <td style={L.td}>
+      <td style={cellStyle}>
         <Checkbox 
             checked={row.text}
             disabled={disabled}
@@ -63,7 +69,7 @@ export const TemplateRowItem: React.FC<TemplateRowItemProps> = ({
         />  
       </td>
 
-      <td style={L.td}>
+      <td style={cellStyle}>
         <Checkbox 
             checked={row.pdf}
             disabled={disabled}
