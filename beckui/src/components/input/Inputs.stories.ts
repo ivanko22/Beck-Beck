@@ -17,7 +17,7 @@ const meta: Meta<typeof Input> = {
       options: ['small', 'medium', 'large'],
     },
 
-    type: {
+    inputType: {
       control: { type: 'select' },
       options: ['text', 'email', 'password', 'PasswordForgot', 'number', 'tel', 'url'],
     },
@@ -84,7 +84,7 @@ export const Disabled: Story = {
 
 export const Password: Story = {
   args: {
-    type: 'password',
+    inputType: 'password',
     placeholder: 'Enter your password',
     label: 'Password',
     size: 'large',
@@ -93,7 +93,7 @@ export const Password: Story = {
 
 export const PasswordForgot: Story = {
   args: {
-    type: 'password',
+    inputType: 'password',
     placeholder: 'Enter your password',
     label: 'Password',
     size: 'large',
@@ -117,5 +117,42 @@ export const NoBorder: Story = {
     label: 'Read-only Input',
     size: 'large',
     noBorder: true,
+  },
+};
+
+export const Textarea: Story = {
+  args: {
+    inputType: 'textarea',
+    placeholder: 'Enter multiple lines of text here...',
+    label: 'Textarea',
+    customSize: {
+      width: '1000px',
+      height: '100px',
+    },
+  },
+};
+
+export const TextareaFilled: Story = {
+  args: {
+    inputType: 'textarea',
+    value: 'This template is used to request medical records from a provider. It ensures we have complete documentation of the client’s treatment history, which is necessary for case evaluation and settlement negotiations. Use this request whenever medical records are needed to support the client’s claim.',
+    label: 'Textarea',
+    customSize: {
+      width: '1000px',
+      height: '100px',
+    },
+  },
+};
+
+export const TextareaFilledDisabled: Story = {
+  args: {
+    inputType: 'textarea',
+    value: 'This template is used to request medical records from a provider. It ensures we have complete documentation of the client’s treatment history, which is necessary for case evaluation and settlement negotiations. Use this request whenever medical records are needed to support the client’s claim.',
+    label: 'Textarea',
+    customSize: {
+      width: '1000px',
+      height: '100px',
+    },
+    disabled: true,
   },
 };

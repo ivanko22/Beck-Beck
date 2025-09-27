@@ -6,6 +6,7 @@ import { TableHeader } from '../components/table/TableHeader';
 import { TemplateRowItem } from '../components/table/TemplateLibTableRow';
 import { TemplateRow, TemplateLibraryProps, defaultRows } from '../components/table/Types';
 import { PageActions } from '../components/page-actions/PageActions';
+import { Input } from '../components/input/Inputs';
 
 const L = {
   shell: {
@@ -33,11 +34,19 @@ const L = {
     width: '100%',
     borderCollapse: 'collapse' as const,
     marginTop: 8,
+    marginBottom: 40,
   },
 
 };
 
-export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({ rows, onSave, onCancel, disabledButton, saved = false }) => {
+export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({ 
+    rows, 
+    onSave, 
+    onCancel, 
+    disabledButton, 
+    saved = false, 
+    textareaText = '',
+}) => {
   const seeded = useMemo(
     () =>
       (rows ?? defaultRows).map(r => ({
@@ -85,6 +94,17 @@ export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({ rows, onSa
             ))}
           </tbody>
         </table>
+
+        <Input
+          inputType="textarea"
+          placeholder="Send Medical Records Request to Provider"
+          label="Send Medical Records Request to Provider"
+          value={textareaText}
+          customSize={{
+            width: '100%',
+            height: '100px',
+          }}
+        />
 
         <PageActions
           saved={saved}

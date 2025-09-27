@@ -12,6 +12,8 @@ export type TemplateRow = {
     onCancel?: () => void;
     disabledButton?: boolean;
     saved?: boolean;
+    textareaText?: string;
+    disabled?: boolean;
   };
   
   export const defaultRows: TemplateRow[] = [
