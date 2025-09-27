@@ -202,7 +202,7 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
 
           <Input
             label="Password"
-            type="password"
+            inputType="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

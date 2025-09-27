@@ -6,15 +6,19 @@ interface InputProps {
   disabled?: boolean;
   active?: boolean;
   error?: boolean | string;
-  type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url';
+  inputType?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'textarea';
   value?: string;
   defaultValue?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   label?: string;
   className?: string;
   name?: string;
   showForgotPassword?: boolean;
   noBorder?: boolean;
+  customSize?: {
+    width?: string;
+    height?: string;
+  };
 }
 
 const styles = {
@@ -119,11 +123,11 @@ const styles = {
 
 export const Input: React.FC<InputProps> = ({
   size = 'large',
-  placeholder = '',
+  placeholder = 'Text Area Input',
   disabled = false,
   active = false,
   error = false,
-  type = 'text',
+  inputType = 'text',
   value,
   defaultValue,
   onChange,
@@ -132,6 +136,7 @@ export const Input: React.FC<InputProps> = ({
   name,
   showForgotPassword = false,
   noBorder = false,
+  customSize,
   ...props
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -141,7 +146,7 @@ export const Input: React.FC<InputProps> = ({
   const [internalValue, setInternalValue] = useState(defaultValue ?? '');
   const currentValue = isControlled ? value! : internalValue;
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (!isControlled) setInternalValue(e.target.value);
     onChange?.(e);
   };
@@ -166,7 +171,7 @@ export const Input: React.FC<InputProps> = ({
 
   return (
     <div style={styles.wrapper}>
-      {label && String(value).trim() !=='' && (
+      {label && String(currentValue).trim() !== '' && (
         <label style={{
           ...styles.label,
           ...(error && { color: 'var(--warning)' })
@@ -175,8 +180,9 @@ export const Input: React.FC<InputProps> = ({
         </label>
       )}
 
+    {inputType !== 'textarea' && 
       <input
-        type={type}
+        type={inputType}
         style={inputStyle}
         placeholder={placeholder}
         disabled={disabled || noBorder}
@@ -187,9 +193,9 @@ export const Input: React.FC<InputProps> = ({
         onBlur={handleBlur}
         name={name}
         {...props}
-      />
+      />}
       
-      {type === "password" && showForgotPassword && (
+      {inputType === "password" && showForgotPassword && (
         <a 
           href="#"
           style={{
@@ -207,6 +213,30 @@ export const Input: React.FC<InputProps> = ({
         <span style={styles.errorMessage}>
           {error}
         </span>
+      )}
+
+      {inputType === 'textarea' && (
+        <textarea
+          style={{
+            ...styles.input,
+            ...styles.sizeVariants[size],
+            padding: '12px',
+            resize: (disabled) ? 'none' : 'vertical',
+            ...(customSize && {
+              ...(customSize.width && { width: customSize.width }),
+              ...(customSize.height && { height: customSize.height }),
+            }),
+          }}
+          value={currentValue}
+          placeholder={placeholder}
+          disabled={disabled || noBorder}
+          readOnly={noBorder}
+          onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          name={name}
+          {...props}
+        />
       )}
     </div>
   );
