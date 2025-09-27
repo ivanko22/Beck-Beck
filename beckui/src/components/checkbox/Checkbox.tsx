@@ -37,9 +37,10 @@ const styles = {
   },
 
   disabled: {
-    color: 'var(--middle-grey)',
+    color: 'var(--dark-grey)',
     cursor: 'not-allowed'
   },
+  
 }
 
 export const Checkbox: React.FC<CheckboxProps> =  ({
@@ -50,7 +51,6 @@ export const Checkbox: React.FC<CheckboxProps> =  ({
   onChange,
   id,
   name,
-  style,
 }) => {
   const isControlled = checked !== undefined;
   const [internal, setInternal] = React.useState<boolean>(defaultChecked);
@@ -79,7 +79,7 @@ export const Checkbox: React.FC<CheckboxProps> =  ({
         onChange={handleChange}
         style={{
           ...styles.checkbox,
-          ...(disabled ? styles.disabled : {}),
+          ...(disabled ? { ...styles.disabled} : {}),
         }}
         area-checked={value}
       />

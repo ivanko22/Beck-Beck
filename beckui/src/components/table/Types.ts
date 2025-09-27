@@ -11,6 +11,7 @@ export type TemplateRow = {
     onSave?: (rows: TemplateRow[]) => void;
     onCancel?: () => void;
     disabledButton?: boolean;
+    saved?: boolean;
   };
   
   export const defaultRows: TemplateRow[] = [

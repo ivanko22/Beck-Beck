@@ -47,9 +47,18 @@ export const Checked: Story = {
   },
 };
 
-export const Disabled: Story = {
+export const DisabledUnchecked: Story = {
+    args: {
+    label: 'Disabled option',
+    disabled: true,
+    checked: false,
+  },
+};
+
+export const DisabledChecked: Story = {
   args: {
     label: 'Disabled option',
     disabled: true,
+    checked: true,
   },
 };

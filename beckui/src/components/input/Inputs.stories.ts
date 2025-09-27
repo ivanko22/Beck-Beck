@@ -110,3 +110,12 @@ export const WithLabel: Story = {
     showForgotPassword: false,
   },
 };
+
+export const NoBorder: Story = {
+  args: {
+    value: 'Read-only input',
+    label: 'Read-only Input',
+    size: 'large',
+    noBorder: true,
+  },
+};

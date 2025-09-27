@@ -1,5 +1,7 @@
+import React from 'react';
 import { fn } from 'storybook/test';
 import { Button } from './Button';
+import { RemoveIcon, EditIcon } from '../icons';
 
 export default {
   title: 'Components/Button',
@@ -43,5 +45,14 @@ export const SecondaryDisabled = {
     label: 'Secondary Button',
     size: 'medium',
     disabled: true,
+  },
+};
+
+export const WithIconLeft = {
+  args: {
+    label: 'Remove',
+    size: 'medium',
+    icon: <RemoveIcon size={35} color="currentColor" />,
+    iconPosition: 'left',
   },
 };
