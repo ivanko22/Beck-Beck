@@ -100,6 +100,7 @@ export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({
           placeholder="Send Medical Records Request to Provider"
           label="Send Medical Records Request to Provider"
           value={textareaText}
+          disabled={saved}
           customSize={{
             width: '100%',
             height: '100px',
