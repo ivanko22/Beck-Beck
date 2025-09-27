@@ -40,6 +40,7 @@ const styles = {
 
   input: {
     fontFamily: 'var(--font-family-base)',
+    fontWeight: 400,
     border: '1px solid var(--light-grey)',
     borderRadius: '2px',
     padding: '0 12px',
@@ -62,10 +63,9 @@ const styles = {
   },
 
   inputDisabled: {
-    backgroundColor: '#f5f5f5',
-    color: '#999',
+    color: 'var(--middle-grey)',
     cursor: 'not-allowed',
-    borderColor: '#D6D6DD',
+    borderColor: 'var(--light-grey)',
   },
 
   inputNoBorder: {
@@ -123,7 +123,7 @@ const styles = {
 
 export const Input: React.FC<InputProps> = ({
   size = 'large',
-  placeholder = 'Text Area Input',
+  placeholder,
   disabled = false,
   active = false,
   error = false,
@@ -166,7 +166,7 @@ export const Input: React.FC<InputProps> = ({
     ...(error && styles.inputError),
     ...(disabled && styles.inputDisabled),
     ...(noBorder && styles.inputNoBorder),
-    ...(String(currentValue).trim() !== '' && { fontWeight: 500 }),
+    ...(String(currentValue).trim() !== '' && { fontWeight: 400 }),
   };
 
   return (
@@ -218,8 +218,7 @@ export const Input: React.FC<InputProps> = ({
       {inputType === 'textarea' && (
         <textarea
           style={{
-            ...styles.input,
-            ...styles.sizeVariants[size],
+            ...inputStyle,
             padding: '12px',
             resize: (disabled) ? 'none' : 'vertical',
             ...(customSize && {
