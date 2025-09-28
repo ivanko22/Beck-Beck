@@ -1,5 +1,46 @@
 {
+  "name": "beck-beck",
+  "description": "Beck & Beck internal UI library / design system",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "cd beckui && npm run test",
+    "test:coverage": "cd beckui && npm run test:coverage",
+    "storybook": "cd beckui && npm run storybook",
+    "build-storybook": "cd beckui && npm run build-storybook",
+    "chromatic": "cd beckui && npm run chromatic",
+    "dev": "cd beckui && npm run dev",
+    "build": "cd beckui && npm run build",
+    "lint": "cd beckui && npm run lint",
+    "lint:fix": "cd beckui && npm run lint:fix",
+    "preview": "cd beckui && npm run preview",
+    "install:all": "npm install && cd beckui && npm install",
+    "clean": "rm -rf node_modules beckui/node_modules beckui/dist",
+    "fresh": "npm run clean && npm run install:all",
+    "type-check": "cd beckui && npx tsc --noEmit",
+    "format": "cd beckui && npx prettier --write .",
+    "format:check": "cd beckui && npx prettier --check .",
+    "start": "npm run dev"
+  },
   "devDependencies": {
     "chromatic": "^13.1.4"
-  }
+  },
+  "engines": {
+    "node": ">=20.19.0",
+    "npm": ">=10.0.0"
+  },
+  "workspaces": [
+    "beckui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivanko22/Beck-Beck.git"
+  },
+  "keywords": ["react", "storybook", "ui-components", "design-system", "beck-beck", "monorepo"],
+  "author": "Ivan Kordonets",
+  "bugs": {
+    "url": "https://github.com/ivanko22/Beck-Beck/issues"
+  },
+  "homepage": "https://github.com/ivanko22/Beck-Beck#readme"
 }
