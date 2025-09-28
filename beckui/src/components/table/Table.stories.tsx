@@ -19,6 +19,11 @@ const columns: Array<{ label: string; style?: React.CSSProperties }>  = [
   { label: "PDF for eFax / Mail", style: { position: "relative", right: "26px" } },
 ];
 
+const autoTextColumns: Array<{label: string; style?: React.CSSProperties}> = [
+    {label: "Triggering Event", style: { paddingLeft: "35px", width: "50%"}},
+    {label: "Text Message", style: {width: "50%"}}
+];
+
 const TablePreview: React.FC = () => {
   const [data, setData] = useState<TemplateRow[]>(defaultRows);
 
@@ -45,3 +50,15 @@ const TablePreview: React.FC = () => {
 export const Default: Story = {
   render: () => <TablePreview />,
 };
+
+export const AutoText: Story = {
+    render: () => {
+        const [data, setData] = useState<TemplateRow[]>(defaultRows);
+
+        return(
+            <table style={{width: "1000px"}}>
+                <TableHeader columns={autoTextColumns} />
+            </table>
+        )
+    }
+}
