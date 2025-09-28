@@ -1,4 +1,5 @@
 import React from 'react';
+import logoWhite from '../../assets/logoWhite.png';
 
 interface LogoProps {
   size?: 'sm' | 'md' | 'lg' | string;
@@ -32,11 +33,11 @@ export const Logo: React.FC<LogoProps> = ({
   return (
     <div style={{ ...styles.logo, ...style }}>
       <img
-        src='./logoWhite.png'
+        src={logoWhite}
         width={getWidth()}
         height="auto"
-      >
-      </img>
+        alt="Beck & Beck Logo"
+      />
     </div>
   );
 };
