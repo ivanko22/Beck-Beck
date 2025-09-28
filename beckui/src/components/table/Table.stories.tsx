@@ -13,15 +13,15 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const columns: Array<{ label: string; style?: React.CSSProperties }>  = [
-  { label: "Email / Fax Template Name", style: { paddingLeft: "30px" } },
-  { label: "Email", style: { paddingLeft: "26px" } },
-  { label: "Text", style: { paddingLeft: "32px" } },
-  { label: "PDF for eFax / Mail", style: { position: "relative", right: "26px" } },
+  { label: "Email / Fax Template Name"},
+  { label: "Email"},
+  { label: "Text"},
+  { label: "PDF for eFax / Mail", style: { position: "relative", right: "26px" }},
 ];
 
 const autoTextColumns: Array<{label: string; style?: React.CSSProperties}> = [
-    {label: "Triggering Event", style: { paddingLeft: "35px", width: "50%"}},
-    {label: "Text Message", style: {width: "50%"}}
+    {label: "Triggering Event"},
+    {label: "Text Message"},
 ];
 
 const TablePreview: React.FC = () => {
@@ -53,7 +53,6 @@ export const Default: Story = {
 
 export const AutoText: Story = {
     render: () => {
-        const [data, setData] = useState<TemplateRow[]>(defaultRows);
 
         return(
             <table style={{width: "1000px"}}>
