@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
 import { PageWrapper } from '../wrapper/PageWrapper';
 
 import {
@@ -21,6 +20,7 @@ import {
   RemoveIcon,
   ArrowIcon,
   SearchIcon,
+  PlusIcon,
 
 } from './index';
 
@@ -170,6 +170,7 @@ export const Edit: Story = {
   },
   render: (args) => <EditIcon {...args} />,
 };
+
 export const Remove: Story = {
   args: {
     size: 18,
@@ -177,6 +178,7 @@ export const Remove: Story = {
   },
   render: (args) => <RemoveIcon {...args} />,
 };
+
 export const Arrow: Story = {
   args: {
     size: 24,
@@ -184,6 +186,7 @@ export const Arrow: Story = {
   },
   render: (args) => <ArrowIcon {...args} />,
 };
+
 export const Search: Story = {
   args: {
     size: 24,
@@ -192,6 +195,13 @@ export const Search: Story = {
   render: (args) => <SearchIcon {...args} />,
 };    
 
+export const Plus: Story = {
+  args: {
+    size: 24,
+    color: '#000000',
+  },
+  render: (args) => <PlusIcon {...args} />,
+};
 
 export const IconShowcase: Story = {
   parameters: {
@@ -222,6 +232,7 @@ export const IconShowcase: Story = {
       { name: 'Remove', component: RemoveIcon },
       { name: 'Arrow', component: ArrowIcon },
       { name: 'Search', component: SearchIcon },
+      { name: 'Plus', component: PlusIcon },  
     ];
 
     const colors = [

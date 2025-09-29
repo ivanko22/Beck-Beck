@@ -17,10 +17,13 @@ const styles: Record<string, React.CSSProperties> = {
     paddingBottom: "6px",
     cursor: "pointer",
   },
+
   current: {
     fontSize: '20px',
     fontWeight: 500,
-    color: "var(--middle-grey)",},
+    color: "var(--middle-grey)",
+  },
+  
   separator: {
     margin: "0 8px",
     color: "var(--middle-grey)",
@@ -37,13 +40,15 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
     <nav style={{ display: "flex", alignItems: "center", ...style }}>
       <span style={styles.section}>{section}</span>
 
-      <span style={styles.separator}>/</span>
-
-      <a href={href} style={styles.section}></a>
-      
-      <span style={styles.current}>
-        {current}
-      </span>
+      {current && (
+        <>
+          <span style={styles.separator}>/</span>
+          <a href={href} style={styles.section}></a>
+          <span style={styles.current}>
+            {current}
+          </span>
+        </>
+      )}
     </nav>
   );
 };

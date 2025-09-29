@@ -3,7 +3,7 @@ import React, { useMemo, useState } from 'react';
 import { Navigation } from '../components/navigation/Navigation';
 import { Header } from '../components/header/Header';
 import { TableHeader } from '../components/table/TableHeader';
-import { TemplateRowItem } from '../components/table/TemplateLibTableRow';
+import { TemplateRowItem } from '../components/row/insurance/TemplateLibTableRow';
 import { TemplateRow, TemplateLibraryProps, defaultRows } from '../components/table/Types';
 import { PageActions } from '../components/page-actions/PageActions';
 import { Input } from '../components/input/Inputs';
@@ -31,7 +31,6 @@ const L = {
   } as React.CSSProperties,
 
   table: {
-    width: '100%',
     borderCollapse: 'collapse' as const,
     marginTop: 8,
     marginBottom: 40,
@@ -67,6 +66,7 @@ export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({
       <div style={L.main}>
         <Header
           section="Template Library"
+
           current=""
           subtitle=""
           onClose={() => onCancel?.()}
@@ -74,11 +74,13 @@ export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({
 
         <table style={L.table}>
           <TableHeader
+            template="4fr 1fr 1fr 1fr"
+
             columns={[
-              { label: "Email / Fax Template Name", style: {  paddingLeft: "30px" } },
-              { label: "Email", style: { paddingLeft: "26px" } },
-              { label: "Text", style: { paddingLeft: "32px" } },
-              { label: "PDF for eFax / Mail", style: {  position: "relative", right: "26px" } },
+              {label: "Email / Fax Template Name"},
+              {label: "Email", style: { left: "6px" }},
+              {label: "Text", style: { left: "6px" }}, 
+              { label: "PDF for eFax / Mail", style: { right: "36px" } }
             ]}
           />
 

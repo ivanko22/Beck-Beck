@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { UserDetailsPage, UserDetailsPageProps } from './UserDetailsPage';
 
 const meta: Meta<typeof UserDetailsPage> = {
-  title: 'Pages/User Details',
+  title: 'Pages/Admin/User Details',
   component: UserDetailsPage,
   parameters: { layout: 'fullscreen' },
 };

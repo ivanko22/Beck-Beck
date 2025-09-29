@@ -22,5 +22,6 @@ export const Default: Story = {
     section: "User Details",
     current: "Cooper Jane",
     subtitle: "Here you can manage internal user",
+    width: "1000px",
   },
 };
