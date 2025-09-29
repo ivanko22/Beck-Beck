@@ -10,7 +10,7 @@ const styles = {
         textAlign: 'left' as const,
         fontWeight: 400,
         fontSize: '14px',
-        padding: '14px 16px',
+        padding: '14px 30px',
         borderBottom: '1px solid var(--light-grey)',
         color: 'var(--middle-grey)',
       }
