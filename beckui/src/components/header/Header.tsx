@@ -8,6 +8,7 @@ export interface HeaderProps {
   subtitle?: string;
   onClose?: () => void;
   style?: React.CSSProperties;
+  width?: string;
 }
 
 const styles = {
@@ -41,9 +42,10 @@ export const Header: React.FC<HeaderProps> = ({
   subtitle,
   onClose,
   style,
+  width,
 }) => {
   return (
-    <div style={{ ...styles.container, ...style }}>
+    <div style={{ ...styles.container, ...(width && { width }), ...style }}>
       <div style={styles.left}>
         <Breadcrumbs section={section} current={current} />
         {subtitle && <span style={styles.subtitle}>{subtitle}</span>}

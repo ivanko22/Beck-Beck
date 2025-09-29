@@ -1,7 +1,6 @@
-import React from 'react';
 import { fn } from 'storybook/test';
 import { Button } from './Button';
-import { RemoveIcon, EditIcon } from '../icons';
+import { RemoveIcon } from '../icons';
 
 export default {
   title: 'Components/Button',

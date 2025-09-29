@@ -1,4 +1,3 @@
-import { ArrowIcon } from './../../../.history/src/components/icons/Arrow_20250925191533';
 export { ClientDetailIcon } from './ClientDetailIcon';
 export { DocumentIcon } from './DocumentIcon';
 export { MedicalIcon } from './MedicalIcon';
@@ -17,3 +16,4 @@ export { SignOutIcon } from './SignOutIcon';
 export { ArrowIcon } from './Arrow';
 export { RemoveIcon } from './Remove';
 export { EditIcon } from './Edit';
+export { PlusIcon } from './Plus';

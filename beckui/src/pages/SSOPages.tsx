@@ -13,7 +13,7 @@ export interface AuthFormProps {
     onSubmit: (e: React.FormEvent) => void;
     email: string;
     password: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
     error?: string;
 }
 
@@ -55,40 +55,40 @@ export const AuthForm: React.FC<AuthFormProps> = ({
 
                 <form style={style.formWrapper(type)} onSubmit={onSubmit}>
 
-                <Typography 
-                    variant="title"
-                >
-                    { title }
-                </Typography>
+                    <Typography 
+                        variant="title"
+                    >
+                        { title }
+                    </Typography>
 
-                <Input
-                    type="email"
-                    label="Username"
-                    value={email}
-                    error={error && email === ''}
-                    placeholder="Username"
-                    size='large'
-                    name="email"
-                    onChange={onChange}
-                />
+                    <Input
+                        inputType="email"
+                        label="Username"
+                        value={email}
+                        error={error && email === ''}
+                        placeholder="Username"
+                        size='large'
+                        name="email"
+                        onChange={onChange}
+                    />
 
-                <Input
-                    type="password"
-                    label="Password"
-                    value={password}
-                    error={error && password === ''}
-                    placeholder="Enter your password"
-                    size='large'
-                    name="password"
-                    onChange={onChange}
-                />
+                    <Input
+                        inputType="password"
+                        label="Password"
+                        value={password}
+                        error={error && password === ''}
+                        placeholder="Enter your password"
+                        size='large'
+                        name="password"
+                        onChange={onChange}
+                    />
 
-                <Button type="submit" primary label="Sign In" />
+                    <Button type="submit" primary label="Sign In" />
 
                     <Link
-                    href=''
-                    text="Don't have an Account? Sign Up"
-                    variant='SignUp'
+                        href=''
+                        text="Don't have an Account? Sign Up"
+                        variant='SignUp'
                     />
 
                 </form>
@@ -101,36 +101,36 @@ export const AuthForm: React.FC<AuthFormProps> = ({
 
                 <form style={style.formWrapper(type)} onSubmit={onSubmit}>
 
-                <Typography 
-                    variant="title"
-                >
-                    { title }
-                </Typography>
+                    <Typography 
+                        variant="title"
+                    >
+                        { title }
+                    </Typography>
 
-                <Input
-                    type="email"
-                    label="Username"
-                    value={email}
-                    error={error && email === ''}
-                    placeholder="Username"
-                    size='large'
-                    name="email"
-                    onChange={onChange}
-                />
+                    <Input
+                        inputType="email"
+                        label="Username"
+                        value={email}
+                        error={error && email === ''}
+                        placeholder="Username"
+                        size='large'
+                        name="email"
+                        onChange={onChange}
+                    />
 
-                <Input
-                    type="password"
-                    label="Password"
-                    value={password}
-                    error={error && password === ''}
-                    placeholder="Enter your password"
-                    size='large'
-                    name="password"
-                    onChange={onChange}
-                    showForgotPassword={false}
-                />
+                    <Input
+                        inputType="password"
+                        label="Password"
+                        value={password}
+                        error={error && password === ''}
+                        placeholder="Enter your password"
+                        size='large'
+                        name="password"
+                        onChange={onChange}
+                        showForgotPassword={false}
+                    />
 
-                <Button type="submit" primary label="Sign Up" />
+                    <Button type="submit" primary label="Sign Up" />
 
                     <Link
                     href=''
@@ -155,7 +155,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                 </Typography>
 
                 <Input
-                    type="email"
+                    inputType="email"
                     label="Username"
                     value={email}
                     error={error && email === ''}

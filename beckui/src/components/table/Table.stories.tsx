@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React, { useState } from "react";
 import { TableHeader } from "./TableHeader";
-import { TemplateRowItem } from "./TemplateLibTableRow";
+import { TemplateRowItem } from "../row/insurance/TemplateLibTableRow";
+import { InsuranceRow } from "../row/insurance/InsuranceRow";
 import { defaultRows, TemplateRow } from "../table/Types";
 
 const meta: Meta = {
@@ -12,16 +13,16 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const columns: Array<{ label: string; style?: React.CSSProperties }>  = [
-  { label: "Email / Fax Template Name"},
-  { label: "Email"},
-  { label: "Text"},
-  { label: "PDF for eFax / Mail", style: { position: "relative", right: "26px" }},
+const columns= [
+  {label: "Email / Fax Template Name"},
+  {label: "Email", style: { left: "6px" }},
+  {label: "Text", style: { left: "6px" }}, 
+  { label: "PDF for eFax / Mail", style: { right: "36px" } }
 ];
 
-const autoTextColumns: Array<{label: string; style?: React.CSSProperties}> = [
-    {label: "Triggering Event"},
-    {label: "Text Message"},
+const autoTextColumns = [
+    "Triggering Event",
+    "Text Message"
 ];
 
 const TablePreview: React.FC = () => {
@@ -29,7 +30,7 @@ const TablePreview: React.FC = () => {
 
   return (
     <table style={{ borderCollapse: "collapse", width: "1000px" }}>
-      <TableHeader columns={columns} />
+      <TableHeader columns={columns} template="4fr 1fr 1fr 1fr"/>
       <tbody>
         {data.map((row) => (
           <TemplateRowItem
@@ -47,16 +48,18 @@ const TablePreview: React.FC = () => {
   );
 };
 
-export const Default: Story = {
+export const TemplateLibrayTable: Story = {
   render: () => <TablePreview />,
 };
 
-export const AutoText: Story = {
-    render: () => {
 
+
+
+export const TableHeaderWithActiveColumn: Story = {
+    render: () => {
         return(
             <table style={{width: "1000px"}}>
-                <TableHeader columns={autoTextColumns} />
+                <TableHeader columns={autoTextColumns} activeColumn={1} />
             </table>
         )
     }

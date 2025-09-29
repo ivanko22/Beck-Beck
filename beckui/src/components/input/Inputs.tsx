@@ -27,6 +27,7 @@ const styles = {
     flexDirection: 'column' as const,
     gap: '8px',
     position: 'relative' as const,
+    // width: '100%',
   },
 
   label: {
@@ -167,6 +168,10 @@ export const Input: React.FC<InputProps> = ({
     ...(disabled && styles.inputDisabled),
     ...(noBorder && styles.inputNoBorder),
     ...(String(currentValue).trim() !== '' && { fontWeight: 400 }),
+    ...(customSize && {
+      ...(customSize.width && { width: customSize.width }),
+      ...(customSize.height && { height: customSize.height }),
+    }),
   };
 
   return (
