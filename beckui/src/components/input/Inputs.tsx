@@ -27,7 +27,6 @@ const styles = {
     flexDirection: 'column' as const,
     gap: '8px',
     position: 'relative' as const,
-    // width: '100%',
   },
 
   label: {
