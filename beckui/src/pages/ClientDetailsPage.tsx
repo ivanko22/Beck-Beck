@@ -16,7 +16,6 @@ export interface ClientDetailsPageProps {
   clientName?: string;
   style?: React.CSSProperties;
   pageActionsState?: 'save' | 'saved' | 'edit';
-  disabledButton: boolean;
 
   formData?: {
     insuranceCompany?: string;

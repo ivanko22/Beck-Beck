@@ -42,7 +42,7 @@ export const PageActions: React.FC<PageActionsProps> = ({
           size="medium"
           customSize="200px"
           primary
-          disabled={type === 'save'}
+          disabled={false}
           label={saveLabel}
           onClick={onSave}
         />
