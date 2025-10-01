@@ -15,7 +15,7 @@ export interface ClientDetailsPageProps {
   caseNumber?: string;
   clientName?: string;
   style?: React.CSSProperties;
-  saved?: boolean;
+  pageActionsState?: 'save' | 'saved' | 'edit';
   disabledButton: boolean;
 
   formData?: {
@@ -176,10 +176,9 @@ const L = {
 export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
   caseNumber,
   clientName,
-  saved,
   style,
   formData,
-  disabledButton,
+  pageActionsState = 'save',
 }) => {
   const insuranceCompanies = [
     { label: 'State Farm' },
@@ -189,7 +188,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
     { label: 'Farmers' },
   ];
 
-  const isFilled = saved && clientName;
+  const isFilled = pageActionsState === 'saved' && clientName;
 
   return (
     <div style={{ ...L.shell, ...style }}>
@@ -514,8 +513,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
 
               <div style={{ ...{marginTop: -25}}}>
                 <PageActions
-                  saved={saved}
-                  disabledButton={disabledButton}
+                  type={pageActionsState}
                   onSave={() => {console.log('save')}}
                   onCancel={() => {console.log('cancel')}}
                 />  
