@@ -190,11 +190,9 @@ export const Input: React.FC<InputProps> = ({
       {`
         input::placeholder {
           color: var(--middle-grey);
-          opacity: 1;
         }
         textarea::placeholder {
           color: var(--middle-grey);
-          opacity: 1;
         }
       `}
       </style>
