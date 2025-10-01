@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AvaIcon, DropdownIcon, SignOutIcon } from '../icons';
 import { UserDropdownItem } from './DropdownItem';
+import { Typography } from '../typography/Typography';
 
 export type MenuState = 'default' | 'hover' | 'selected';
 export interface MenuItem {
@@ -14,6 +15,7 @@ interface UserDropdownProps {
   state?: 'default' | 'hover' | 'selected';
   value: string;
   label?: string;
+  leftLabel?: boolean;
   disabled?: boolean;
   noBorder?: boolean;
   isOpen?: boolean;
@@ -30,6 +32,7 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
   state,
   value,
   label,
+  leftLabel,
   disabled = false,
   noBorder = false,
   isOpen,
@@ -47,13 +50,6 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
   const [hasSelected, setHasSelected] = React.useState(false);
 
   const effectiveState: MenuState = state ?? (hasSelected ? "selected" : "default");
-
-  React.useEffect(() => {
-    setDropdownValue(value);
-    if (value && value.trim() !== "" && value !== "Select User") {
-      setHasSelected(true);
-    }
-  }, [value]);
 
   const setOpen = (nextState: boolean) => {
     if (!controlled) setInternalOpen(nextState);
@@ -87,7 +83,9 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
     fontSize: 18,
     fontWeight: 500,
     cursor: disabled ? 'not-allowed' : 'pointer',
-    color: (disabled) ? 'var(--dark-grey)' : (hover ? 'var(--light-grey)' : 'var(--primary-color)'),
+    color: 
+      (disabled) ? 'var(--dark-grey)' : (hover ? 'var(--light-grey)' : 
+      (effectiveState === 'selected' ? 'var(--dark-grey)' : 'var(--primary-color)')),
     ...(noBorder ? { border: 'none' } : { border: '1px solid var(--light-grey)', borderRadius: '2px' }),
     padding: '0 16px',
 
@@ -108,7 +106,6 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
     backgroundColor: 'var(--primary-color)',
     border: '1px solid var(--primary-color-hover)',
     borderRadius: 6,
-    boxShadow: '0 6px 18px rgba(0,0,0,0.18)',
     zIndex: 10,
     overflow: 'hidden',
   };
@@ -123,7 +120,6 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
     backgroundColor: 'var(--white)',
     border: '1px solid var(--light-grey)',
     borderRadius: 6,
-    boxShadow: '0 6px 18px rgba(0,0,0,0.18)',
     zIndex: 10,
     overflow: 'hidden',
     marginTop: '-55px',
@@ -132,9 +128,22 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
     color: 'var(--middle-grey)',
   };
 
-  const labelStyle: React.CSSProperties = {
+  const dropdownValueStyle: React.CSSProperties = {
     fontWeight: effectiveState === "selected" ? 500 : 400,
     color: effectiveState === "selected" ? "var(--dark-grey)" : "var(--middle-grey)",
+  };
+
+  const labelStyle: React.CSSProperties = {
+    fontWeight: 400,
+    color: 'var(--middle-grey)',
+    paddingLeft: '16px',
+    paddingBottom: '8px',
+  };
+
+  const leftLabelWrapper: React.CSSProperties = {
+    position: 'relative',
+    right: '164px',
+    bottom: '-34px',
   };
 
   const dropdownContainer: React.CSSProperties = {
@@ -188,20 +197,19 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
       <div>
         {type === 'BaseDropdown' && (
           <>
-            {label && effectiveState === 'selected' && (
-              <div style={{
-                fontSize: '14px',
-                fontWeight: 400,
-                color: disabled ? 'var(--middle-grey)' : 'var(--dark-grey)',
-                marginBottom: '8px',
-                paddingLeft: '16px',
-              }}>
+            {effectiveState === 'selected' && !leftLabel && (
+              <div style={labelStyle}>
                 {label}
+              </div>
+            )}
+            {leftLabel && (
+              <div style={leftLabelWrapper}>
+                <Typography variant="leftLabel">{label}</Typography>
               </div>
             )}
 
           <div style={BaseDropdownContainer} onClick={disabled ? undefined : toggle} aria-expanded={open} role="button">
-            <span style={labelStyle}>{dropdownValue}</span>
+            <span style={dropdownValueStyle}>{dropdownValue}</span>
 
             {!noBorder && (
               <DropdownIcon 

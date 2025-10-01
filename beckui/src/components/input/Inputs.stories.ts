@@ -111,6 +111,17 @@ export const WithLabel: Story = {
   },
 };
 
+export const WithLeftLabel: Story = {
+  args: {
+    placeholder: 'Input with left label',
+    label: 'Input with left label',
+    value: 'Input with label',
+    size: 'large',
+    leftLabel: true,
+    showForgotPassword: false,
+  },
+};
+
 export const NoBorder: Story = {
   args: {
     value: 'Read-only input',

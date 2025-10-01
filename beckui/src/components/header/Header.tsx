@@ -17,6 +17,9 @@ const styles = {
     alignItems: "flex-start",
     justifyContent: "space-between",
     width: "100%",
+    borderBottom: "1px solid var(--light-grey)",
+    paddingBottom: "10px",
+    marginBottom: "20px",
   } as React.CSSProperties,
 
   left: {

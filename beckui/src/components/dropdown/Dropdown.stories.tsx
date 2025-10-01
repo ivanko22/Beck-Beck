@@ -67,17 +67,28 @@ const baseMenu: MenuItem[] = [
 
 const baseMenuHovered: MenuItem[] = [
   { label: 'Dropdown Item 1' },
-  { label: 'Dropdown Item 2', state: 'hover' }, // OK now
+  { label: 'Dropdown Item 2', state: 'hover' },
   { label: 'Dropdown Item 3' },
 ];
 
 export const Default: Story = {
-  args: {
-    type: 'BaseDropdown',
-    value: 'Base Dropdown',
-    state: 'default',
-    menuItems: baseMenu,
-    onSelect: (item) => console.log('Clicked:', item),
+  render: () => {
+    const [baseDropdownValue, setBaseDropdownValue] = React.useState('Select');
+    const [baseDropdownState, setBaseDropdownState] = React.useState<'default' | 'hover' | 'selected'>('default');
+    
+    return (
+      <BaseDropdown
+        type="BaseDropdown"
+        menuItems={baseMenu}
+        value={baseDropdownValue}
+        state={baseDropdownState}
+        label="Insurance Company"
+        onSelect={(item) => {
+          setBaseDropdownValue(item);
+          setBaseDropdownState('selected');
+        }}
+      />
+    );
   },
   decorators: [withPageWrapper],
 };
@@ -108,6 +119,7 @@ export const Selected: Story = {
     value: 'Base Dropdown',
     isOpen: false,
     state: 'selected',
+    label: 'Insurance Company',
     menuItems: baseMenuHovered,
   },
   decorators: [withPageWrapper],
