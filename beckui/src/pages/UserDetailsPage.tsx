@@ -18,8 +18,6 @@ export type UserDetailsPageProps = {
   roles?: { label: string }[];
   noBorder?: boolean;
 
-  saved?: boolean;
-
   defaultUser?: string;
   defaultRole?: string;
   defaultFirstLast?: string;
@@ -28,7 +26,7 @@ export type UserDetailsPageProps = {
   defaultStillWorking?: boolean;
   defaultTeamFiles?: Partial<TeamAccess>;
 
-  disabledButton?: boolean;
+  pageActionsState?: 'save' | 'saved' | 'edit';
 
   onSave?: (data: {
     user: string;
@@ -100,7 +98,6 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
   roles = [{ label: 'Admin' }, { label: 'Paralegal' }, { label: 'Attorney' }],
 
   noBorder = false,
-  saved = false,
   defaultUser,
   defaultRole,
   defaultFirstLast = '',
@@ -108,8 +105,7 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
   defaultPassword = '',
   defaultStillWorking = false,
   defaultTeamFiles = {},
-  disabledButton,
-
+  pageActionsState = 'save',
   onSave,
   onCancel,
   style,
@@ -127,7 +123,6 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
     litigation: !!defaultTeamFiles.litigation,
     settlement: !!defaultTeamFiles.settlement,
   });
-
 
   const toggleFile = (key: keyof TeamAccess, next: boolean) =>
     setTeamFiles((p) => ({ ...p, [key]: next }));
@@ -180,7 +175,7 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
             placeholder="First Last Name" 
             value={firstLast} 
             onChange={(e) => setFirstLast(e.target.value)}
-            noBorder={saved}
+            noBorder={pageActionsState === 'saved'}
           />
 
           <div style={L.row}>
@@ -188,7 +183,7 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
               label="Still Working Here"
               checked={stillWorking}
               onChange={setStillWorking}
-              disabled={saved}
+              disabled={pageActionsState === 'saved'}
             />
           </div>
 
@@ -197,7 +192,7 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
             placeholder="Email" 
             value={email} 
             onChange={(e) => setEmail(e.target.value)}
-            noBorder={saved}
+            noBorder={pageActionsState === 'saved'}
           />
 
           <Input
@@ -206,7 +201,7 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            noBorder={saved}
+            noBorder={pageActionsState === 'saved'}
           />
         </div>
 
@@ -217,25 +212,25 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
             label="Intake & Case Review"
             checked={teamFiles.intake}
             onChange={(n) => toggleFile('intake', n)}
-            disabled={saved}
+            disabled={pageActionsState === 'saved'}
           />
           <Checkbox
             label="Medical Records & Liens"
             checked={teamFiles.medical}
             onChange={(n) => toggleFile('medical', n)}
-            disabled={saved}
+            disabled={pageActionsState === 'saved'}
           />
           <Checkbox
             label="Litigation Support"
             checked={teamFiles.litigation}
             onChange={(n) => toggleFile('litigation', n)}
-            disabled={saved}
+            disabled={pageActionsState === 'saved'}
           />
           <Checkbox
             label="Settlement & Negotiations"
             checked={teamFiles.settlement}
             onChange={(n) => toggleFile('settlement', n)}
-            disabled={saved}
+            disabled={pageActionsState === 'saved'}
           />
         </div>
 
@@ -244,13 +239,12 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
             label="Select All"
             checked={Object.values(teamFiles).every(Boolean)}
             onChange={selectAll}
-            disabled={saved}
+            disabled={pageActionsState === 'saved'}
           />
         </div>
 
         <PageActions
-          saved={saved}
-          disabledButton={disabledButton}
+          type={pageActionsState}
           onSave={() => {
             onSave?.({
               user: selectedUser,

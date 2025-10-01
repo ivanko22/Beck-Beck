@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { PageActions } from './PageActions';
 
@@ -20,36 +19,24 @@ const meta: Meta<typeof PageActions> = {
 export default meta;
 type Story = StoryObj<typeof PageActions>;
 
-export const EditMode: Story = {
+export const Default: Story = {
   args: {
-    saved: false,
-    disabledButton: false,
+    type: 'save',
     saveLabel: 'Save',
-    cancelLabel: 'Cancel',
   },
 };
 
-export const EditModeDisabled: Story = {
+export const Save: Story = {
   args: {
-    saved: false,
-    disabledButton: true,
+    type: 'edit',
     saveLabel: 'Save',
-    cancelLabel: 'Cancel',
   },
 };
 
-export const SavedMode: Story = {
+export const Saved: Story = {
   args: {
-    saved: true,
+    type: 'saved',
     editLabel: 'Edit',
-    removeLabel: 'Remove',
   },
 };
 
-export const CustomLabels: Story = {
-  args: {
-    saved: false,
-    saveLabel: 'Save Changes',
-    cancelLabel: 'Discard',
-  },
-};

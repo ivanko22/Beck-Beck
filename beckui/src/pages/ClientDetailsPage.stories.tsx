@@ -16,9 +16,9 @@ const meta: Meta<typeof ClientDetailsPage> = {
       control: 'text',
       description: 'Client name to display in header',
     },
-    saved: {
+    pageActionsState: {
       control: 'select',
-      options: [true, false],
+      options: ['save', 'saved', 'edit'],
       description: 'State of the form',
     },
   },
@@ -31,7 +31,8 @@ export const Empty: Story = {
   args: {
     caseNumber: 'Case #2025-0003',
     clientName: '',
-    saved: false,
+    pageActionsState: 'save',
+    disabledButton: true,
     formData: {
       insuranceCompany: '',
       insuranceAddress: '',
@@ -70,11 +71,11 @@ export const Empty: Story = {
   },
 };
 
-export const Adding: Story = {
+export const Filled: Story = {
   args: {
     caseNumber: 'Case #2025-0004',
     clientName: 'Jane Doe',
-    saved: false,
+    pageActionsState: 'edit',
     formData: {
       insuranceCompany: 'Progressive',
       insuranceAddress: '456 Oak Ave, Chicago, IL 60601',
@@ -117,7 +118,7 @@ export const Adding: Story = {
     args: {
       caseNumber: 'Case #2025-0004',
       clientName: 'Jane Doe',
-      saved: true,
+      pageActionsState: 'saved',
       formData: {
         insuranceCompany: 'Progressive',
         insuranceAddress: '456 Oak Ave, Chicago, IL 60601',
