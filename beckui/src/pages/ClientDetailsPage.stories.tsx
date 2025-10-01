@@ -32,6 +32,7 @@ export const Empty: Story = {
     caseNumber: 'Case #2025-0003',
     clientName: '',
     saved: false,
+    disabledButton: true,
     formData: {
       insuranceCompany: '',
       insuranceAddress: '',
