@@ -11,6 +11,7 @@ interface InputProps {
   defaultValue?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   label?: string;
+  leftLabel?: boolean;
   className?: string;
   name?: string;
   showForgotPassword?: boolean;
@@ -30,11 +31,16 @@ const styles = {
   },
 
   label: {
-    fontFamily: 'var(--font-family-base)',
     fontSize: '14px',
     fontWeight: 400,
     lineHeight: 1.2,
     padding: '0px 0px 5px 17px',
+    color: 'var(--dark-grey)',
+  },
+
+  leftLabel: {
+    fontSize: '16px',
+    fontWeight: 500,
     color: 'var(--dark-grey)',
   },
 
@@ -46,7 +52,7 @@ const styles = {
     padding: '0 12px',
     fontSize: '16px',
     transition: 'all 0.2s ease',
-    backgroundColor: '#fff',
+    backgroundColor: 'var(--white)',
     color: 'var(--dark-grey)',
     boxSizing: 'border-box' as const,
     position: 'relative' as const,
@@ -114,7 +120,7 @@ const styles = {
     
     large: {
       height: '46px',
-      width: '264px',
+      width: '272px',
       fontSize: '18px',
       padding: '3px 0px 0px 16px',
     },
@@ -136,6 +142,7 @@ export const Input: React.FC<InputProps> = ({
   name,
   showForgotPassword = false,
   noBorder = false,
+  leftLabel = false,
   customSize,
   ...props
 }) => {
@@ -174,10 +181,28 @@ export const Input: React.FC<InputProps> = ({
   };
 
   return (
-    <div style={styles.wrapper}>
-      {label && String(currentValue).trim() !== '' && (
+    <div style={{
+      ...styles.wrapper,
+      ...(leftLabel && { flexDirection: 'row', alignItems: 'center', gap: '12px' })
+    }}>
+
+      <style>
+      {`
+        input::placeholder {
+          color: var(--middle-grey);
+          opacity: 1;
+        }
+        textarea::placeholder {
+          color: var(--middle-grey);
+          opacity: 1;
+        }
+      `}
+      </style>
+      
+      {label && (leftLabel || String(currentValue).trim() !== '') && (
         <label style={{
           ...styles.label,
+          ...(leftLabel && { ...styles.leftLabel }),
           ...(error && { color: 'var(--warning)' })
         }}>
           {label}

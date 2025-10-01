@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface TypographyProps {
-  variant?: 'title' | 'subtitle' ;
+  variant?: 'title' | 'subtitle' | 'sectionTitle';
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
@@ -23,6 +23,12 @@ const styles: Record<NonNullable<TypographyProps['variant']>, React.CSSPropertie
     color: 'var(--middle-grey)',
     alignItems: 'center',
     textAlign: 'center',
+  },
+  sectionTitle: {
+    fontSize: '26px',
+    fontWeight: 500,
+    color: 'var(--dark-grey)',
+    margin: 0,
   },
 };
 

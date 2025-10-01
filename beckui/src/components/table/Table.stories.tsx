@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React, { useState } from "react";
 import { TableHeader } from "./TableHeader";
+import { ClientDetailsTableHeader } from "./ClientDetailsTableHeader";
 import { TemplateRowItem } from "../row/insurance/TemplateLibTableRow";
-import { InsuranceRow } from "../row/insurance/InsuranceRow";
 import { defaultRows, TemplateRow } from "../table/Types";
+import { PlusIcon } from "../icons";
 
 const meta: Meta = {
   title: "Components/Table",
@@ -52,9 +53,6 @@ export const TemplateLibrayTable: Story = {
   render: () => <TablePreview />,
 };
 
-
-
-
 export const TableHeaderWithActiveColumn: Story = {
     render: () => {
         return(
@@ -64,3 +62,17 @@ export const TableHeaderWithActiveColumn: Story = {
         )
     }
 }
+
+export const ClientDetailsTableHeaderStory: Story = {
+  render: () => {
+    return(
+      <div style={{width: "1000px"}}>
+        <ClientDetailsTableHeader 
+          title="Client Insurance Company #1"
+          buttonLabel="Add Another Client Insurance Co Section"
+          buttonIcon={<PlusIcon size={16} />}
+        />
+      </div>
+    )
+  }
+};
