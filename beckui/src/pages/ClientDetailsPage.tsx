@@ -75,7 +75,6 @@ const L = {
   grid: {
     display: 'grid',
     gridTemplateColumns: '45% 55%',
-    gap: 20,
     marginTop: 40,
     marginBottom: 20,
   } as React.CSSProperties,
@@ -94,7 +93,6 @@ const L = {
     flexDirection: 'column' as const,
     alignItems: 'flex-start',
     paddingTop: '178px',
-    gap: 20,
     marginBottom: 20,
     paddingLeft: 30,
   } as React.CSSProperties,
@@ -122,7 +120,7 @@ const L = {
     flexDirection: 'column' as const,
     gap: 12,
     marginTop: 16,
-    marginBottom: 16,
+    // marginBottom: 16,
   } as React.CSSProperties,
 
   radioRow: {
@@ -143,24 +141,24 @@ const L = {
     display: 'flex',
     flexDirection: 'column' as const,
     alignItems: 'flex-start',
-    gap: 12,
+    gap: 10,
     marginTop: 16,
-    marginBottom: 16,
+    // marginBottom: 16,
     border: '1px solid var(--light-grey)',
     borderRadius: '6px',
-    padding: '14px 10px 14px 24px',
+    padding: '18px 10px 18px 24px',
   } as React.CSSProperties,
 
   checkboxGroupRow: {
     display: 'flex',
     alignItems: 'center',
     gap: 28,
-    marginTop: 16,
-    marginBottom: 16,
+    marginBottom: 12,
   } as React.CSSProperties,
 
   checkboxGroupBorder: {
     display: 'flex',
+    marginTop: 12,
     flexDirection: 'row' as const,
     gap: 28,
   } as React.CSSProperties,
@@ -379,7 +377,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
      
             </div>
 
-            <div style={{...L.controlGroup, ...{paddingTop: 38, marginLeft: '-21px'}}}>
+            <div style={{...L.controlGroup, ...{paddingTop: 73, marginLeft: '-21px'}}}>
               <div style={L.radioRow}>
                 <Button
                   icon={<EmailIcon size={22}/>}
@@ -398,7 +396,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
               </div>
             </div>
 
-            <div style={{...L.controlGroup, ...{paddingTop: 230, marginLeft: '-21px'}}}>
+            <div style={{...L.controlGroup, ...{paddingTop: 254, marginLeft: '-21px'}}}>
               <div style={{...L.checkboxGroupBorder}}>
                 <div style={{display: 'flex', alignItems: 'flex-start', paddingTop: 32}}>
                   <Button
@@ -457,9 +455,41 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
                     />
                   </div>
                 </div>
-
               </div>
 
+            </div>
+
+            <div style={{...L.controlGroup, ...{marginTop: 53, marginLeft: '-21px'}}}>
+              <div style={L.radioRow}>
+                <Button
+                  icon={<EmailIcon size={22}/>}
+                  iconPosition="left"
+                  size="medium"
+                  label="Email MedPay Adjuster"
+                  onClick={() => {console.log('email medpay adjuster')}}
+                />
+
+                <Button
+                  icon={<EmailIcon size={22}/>}
+                  iconPosition="left"
+                  size="medium"
+                  label="Email: is There MP or UIM?"
+                  onClick={() => {console.log('email is there mp or uim')}}
+                />
+
+              </div>
+            </div>
+
+            <div style={{...L.controlGroup, ...{marginTop: 11, marginLeft: '-21px'}}}>
+              <div style={L.radioRow}>
+                <Button
+                  icon={<EmailIcon size={22}/>}
+                  iconPosition="left"
+                  size="medium"
+                  label="MedPay Adjuster Fax"
+                  onClick={() => {console.log('medpay adjuster fax')}}
+                />
+              </div>
             </div>
 
           </div>
