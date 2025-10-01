@@ -99,6 +99,8 @@ export const Empty: Story = {
         um: false,
         excess: false,
       },
+      medPayLimit: 'none',
+      medPayLimitOther: '',
     },
   },
 };
@@ -133,6 +135,44 @@ export const PartialData: Story = {
         um: false,
         excess: false,
       },
+      medPayLimit: '10k',
+      medPayLimitOther: '',
+    },
+  },
+};
+
+export const WithMedPayOther: Story = {
+  args: {
+    caseNumber: 'Case #2025-0005',
+    clientName: 'Bob Johnson',
+    state: 'edit',
+    formData: {
+      insuranceCompany: 'Geico',
+      insuranceAddress: '789 Pine St, Denver, CO 80202',
+      clientName: 'Bob Johnson',
+      policyHolderName: 'Bob Johnson',
+      claimNumber: 'GEICO-2025-111222',
+      policyNumber: 'POL-333444555',
+      mainInsPhone: '(303) 555-0123',
+      hasOwnPolicy: true,
+      demandLetterSent: true,
+      biAdjusterName: 'Tom Davis',
+      biAdjusterPhone: '(303) 555-0456',
+      biAdjusterFax: '(303) 555-0457',
+      biAdjusterEmail: 'tom.davis@geico.com',
+      medPayAdjusterName: 'Amy Lee',
+      medPayAdjusterPhone: '(303) 555-0789',
+      medPayAdjusterEmail: 'amy.lee@geico.com',
+      medPayAdjusterFax: '(303) 555-0790',
+      emailOptions: {
+        liability: true,
+        medpay: true,
+        uim: true,
+        um: false,
+        excess: true,
+      },
+      medPayLimit: 'other',
+      medPayLimitOther: '$15,000',
     },
   },
 };

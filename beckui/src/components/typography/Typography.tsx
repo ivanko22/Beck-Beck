@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface TypographyProps {
-  variant?: 'title' | 'subtitle' | 'sectionTitle';
+  variant?: 'title' | 'subtitle' | 'sectionTitle' | 'leftLabel';
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
@@ -29,6 +29,11 @@ const styles: Record<NonNullable<TypographyProps['variant']>, React.CSSPropertie
     fontWeight: 500,
     color: 'var(--dark-grey)',
     margin: 0,
+  },
+  leftLabel: {
+    fontSize: '16px',
+    fontWeight: 500,
+    color: 'var(--dark-grey)',
   },
 };
 

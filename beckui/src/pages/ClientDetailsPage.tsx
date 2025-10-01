@@ -8,6 +8,7 @@ import { Radio } from '../components/radiobutton/Radiobutton';
 import { Button } from '../components/button/Button';
 import { ClientDetailsTableHeader } from '../components/table/ClientDetailsTableHeader';
 import { PlusIcon, EmailIcon } from '../components/icons/index';
+import { Typography } from '../components/typography/Typography';
 
 export interface ClientDetailsPageProps {
   caseNumber?: string;
@@ -39,6 +40,16 @@ export interface ClientDetailsPageProps {
       um?: boolean;
       excess?: boolean;
     };
+    medPayLimit?: 'none' | '1k' | '5k' | '10k' | '2500' | '25k' | 'other';
+    medPayLimitOther?: string;
+    liabilityLimitsPerPerson?: string;
+    uimLimitsPerPerson?: string;
+    umLimitsPerPerson?: string;
+    vehiclesOnPolicy?: string;
+    totalUmStackedLimits?: string;
+    umbrellaSecondaryLiabilityPolicy?: string;
+    excessLiabilityCoverage?: string;
+    notes?: string;
   };
 }
 
@@ -76,7 +87,6 @@ const L = {
     display: 'grid',
     gridTemplateColumns: '45% 55%',
     marginTop: 40,
-    marginBottom: 20,
   } as React.CSSProperties,
 
   leftColumn: {
@@ -85,7 +95,6 @@ const L = {
     flexDirection: 'column' as const,
     alignItems: 'flex-end',
     gap: 30,
-    marginBottom: 20,
   } as React.CSSProperties,
 
   rightColumn: {
@@ -93,7 +102,6 @@ const L = {
     flexDirection: 'column' as const,
     alignItems: 'flex-start',
     paddingTop: '178px',
-    marginBottom: 20,
     paddingLeft: 30,
   } as React.CSSProperties,
 
@@ -143,10 +151,9 @@ const L = {
     alignItems: 'flex-start',
     gap: 10,
     marginTop: 16,
-    // marginBottom: 16,
     border: '1px solid var(--light-grey)',
     borderRadius: '6px',
-    padding: '18px 10px 18px 24px',
+    padding: '25px 10px 12px 25px',
   } as React.CSSProperties,
 
   checkboxGroupRow: {
@@ -221,7 +228,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
             <Input
               leftLabel={true}
               label="Insurance Company Address"
-              placeholder="Insurance Company Address"
+              placeholder=""
               value={formData?.insuranceAddress || ''}
               onChange={() => {}}
               noBorder={isFilled ? true : undefined}
@@ -230,7 +237,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
             <Input
               leftLabel={true}
               label="Our Client's Name"
-              placeholder="Our Client's Name"
+              placeholder=""
               value={formData?.clientName || ''}
               onChange={() => {}}
               noBorder={isFilled ? true : undefined}
@@ -239,7 +246,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
             <Input
               leftLabel={true}
               label="Policy Holder Name"
-              placeholder="Policy Holder Name"
+              placeholder=""
               value={formData?.policyHolderName || ''}
               onChange={() => {}}
               noBorder={isFilled ? true : undefined}
@@ -248,7 +255,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
             <Input
               leftLabel={true}
               label="Claim #"
-              placeholder="Claim #"
+              placeholder=""
               value={formData?.claimNumber || ''}
               onChange={() => {}}
               noBorder={isFilled ? true : undefined}
@@ -257,7 +264,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
             <Input
               leftLabel={true}
               label="Policy Number"
-              placeholder="Policy Number"
+              placeholder=""
               value={formData?.policyNumber || ''}
               onChange={() => {}}
               noBorder={isFilled ? true : undefined}
@@ -266,7 +273,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
             <Input
               leftLabel={true}
               label="Main Ins. Phone"
-              placeholder="Main Ins. Phone"
+              placeholder=""
               value={formData?.mainInsPhone || ''}
               onChange={() => {}}
               noBorder={isFilled ? true : undefined}
@@ -275,7 +282,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
             <Input
               leftLabel={true}
               label="BI Adjuster Name"
-              placeholder="BI Adjuster Name"
+              placeholder=""
               value={formData?.biAdjusterName || ''}
               onChange={() => {}}
               noBorder={isFilled ? true : undefined}
@@ -284,7 +291,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
             <Input
               leftLabel={true}
               label="BI Adjuster Phone"
-              placeholder="BI Adjuster Phone"
+              placeholder=""
               value={formData?.biAdjusterPhone || ''}
               onChange={() => {}}
               noBorder={isFilled ? true : undefined}
@@ -293,7 +300,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
             <Input
               leftLabel={true}
               label="BI Adjuster Fax"
-              placeholder="BI Adjuster Fax"
+              placeholder=""
               value={formData?.biAdjusterFax || ''}
               onChange={() => {}}
               noBorder={isFilled ? true : undefined}
@@ -302,7 +309,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
             <Input
               leftLabel={true}
               label="BI Adjuster Email"
-              placeholder="BI Adjuster Email"
+              placeholder=""
               value={formData?.biAdjusterEmail || ''}
               onChange={() => {}}
               noBorder={isFilled ? true : undefined}
@@ -311,7 +318,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
             <Input
               leftLabel={true}
               label="MedPay Adjuster Name"
-              placeholder="MedPay Adjuster Name"
+              placeholder=""
               value={formData?.medPayAdjusterName || ''}
               onChange={() => {}}
               noBorder={isFilled ? true : undefined}
@@ -320,7 +327,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
             <Input
               leftLabel={true}
               label="MedPay Adjuster Phone"
-              placeholder="MedPay Adjuster Phone"
+              placeholder=""
               value={formData?.medPayAdjusterPhone || ''}
               onChange={() => {}}
               noBorder={isFilled ? true : undefined}
@@ -329,7 +336,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
             <Input
               leftLabel={true}
               label="MedPay Adjuster Email"
-              placeholder="MedPay Adjuster Email"
+              placeholder=""
               value={formData?.medPayAdjusterEmail || ''}
               onChange={() => {}}
               noBorder={isFilled ? true : undefined}
@@ -338,11 +345,171 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
             <Input
               leftLabel={true}
               label="MedPay Adjuster Fax"
-              placeholder="MedPay Adjuster Fax"
+              placeholder=""
               value={formData?.medPayAdjusterFax || ''}
               onChange={() => {}}
               noBorder={isFilled ? true : undefined}
             />
+
+            {/* medpay limits section */}
+            <div style={{...{display: 'flex', position: 'relative', left: '580px', minWidth: '980px', flexDirection: 'column', alignItems: 'center', width: '100%'}}}>
+              <div style={L.radioRow}>
+                <Typography variant="leftLabel">MedPay Limits</Typography>
+                
+                <div style={L.checkboxGroupBorder}>
+                  <div style={{display: 'flex', flexDirection: 'column', gap: 8}}>
+                    <Radio
+                      label="None"
+                      checked={formData?.medPayLimit === 'none' || false}
+                      onChange={() => {}}
+                      disabled={isFilled ? true : undefined}
+                    />
+                    <Radio
+                      label="$5k"
+                      checked={formData?.medPayLimit === '5k' || false}
+                      onChange={() => {}}
+                      disabled={isFilled ? true : undefined}
+                    />
+                  </div>
+                  
+                  <div style={{display: 'flex', flexDirection: 'column', gap: 8}}>
+                    <Radio
+                      label="$1K"
+                      checked={formData?.medPayLimit === '1k' || false}
+                      onChange={() => {}}
+                      disabled={isFilled ? true : undefined}
+                    />
+                    <Radio
+                      label="$10K"
+                      checked={formData?.medPayLimit === '10k' || false}
+                      onChange={() => {}}
+                      disabled={isFilled ? true : undefined}
+                    />
+                  </div>
+                  
+                  <div style={{display: 'flex', flexDirection: 'column', gap: 8}}>
+                    <Radio
+                      label="$2,500"
+                      checked={formData?.medPayLimit === '2500' || false}
+                      onChange={() => {}}
+                      disabled={isFilled ? true : undefined}
+                    />
+                    <Radio
+                      label="$25K"
+                      checked={formData?.medPayLimit === '25k' || false}
+                      onChange={() => {}}
+                      disabled={isFilled ? true : undefined}
+                    />
+                  </div>
+                  
+                  <div style={{display: 'flex', flexDirection: 'column', gap: 8}}>
+                    <div style={{display: 'flex', alignItems: 'center', gap: 8}}>
+                      <Radio
+                        label="Other"
+                        checked={formData?.medPayLimit === 'other' || false}
+                        onChange={() => {}}
+                        disabled={isFilled ? true : undefined}
+                      />
+                      <Input
+                        placeholder="If other, please specify"
+                        value={formData?.medPayLimitOther || ''}
+                        onChange={() => {}}
+                        size="large"
+                        customSize={{ width: '440px' }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <Input
+              leftLabel={true}
+              label="LIABILITY POLICY LIMITS PER PERSON"
+              placeholder=""
+              value={formData?.liabilityLimitsPerPerson || ''}
+              onChange={() => {}}
+              noBorder={isFilled ? true : undefined}
+            />
+
+            <Input
+              leftLabel={true}
+              label="UIM LIMITS PER PERSON"
+              placeholder=""
+              value={formData?.uimLimitsPerPerson || ''}
+              onChange={() => {}}
+              noBorder={isFilled ? true : undefined}
+            />
+
+            <Input
+              leftLabel={true}
+              label="UM LIMITS PER PERSON"
+              placeholder=""
+              value={formData?.umLimitsPerPerson || ''}
+              onChange={() => {}}
+              noBorder={isFilled ? true : undefined}
+            />
+
+            <Input
+              leftLabel={true}
+              label="Vehicles on Policy (For UM Only)"
+              placeholder=""
+              value={formData?.vehiclesOnPolicy || ''}
+              onChange={() => {}}
+              noBorder={isFilled ? true : undefined}
+            />
+
+            <Input
+              leftLabel={true}
+              label="Total UM Stacked Limits"
+              placeholder=""
+              value={formData?.totalUmStackedLimits || ''}
+              onChange={() => {}}
+              noBorder={isFilled ? true : undefined}
+            />
+
+            <Input
+              leftLabel={true}
+              label="UMBRELLA/SECONDARY LIABILITY POLICY?"
+              placeholder=""
+              value={formData?.umbrellaSecondaryLiabilityPolicy || ''}
+              onChange={() => {}}
+              noBorder={isFilled ? true : undefined}
+            />
+
+            <div style={{...L.controlGroup, ...{marginTop: -20}}}>
+              <div style={L.radioRow}>
+                <Button
+                  icon={<EmailIcon size={22}/>}
+                  iconPosition="left"
+                  size="medium"
+                  label="Email Adjuster: Is There Umbrella / Excess Liability Coverage? "
+                  onClick={() => {console.log('email adjuster: is there umbrella / excess liability coverage?')}}
+                />
+              </div>
+            </div>
+
+            <div style={{...L.controlGroup, ...{position: 'relative', left: 590, marginTop: -20}}}>
+              <Input
+                label="Notes"
+                inputType="textarea"
+                customSize={{ width: '1100px', height: '100px' }}
+                placeholder="Notes"
+                value={formData?.notes || ''}
+                onChange={() => {}}
+                noBorder={isFilled ? true : undefined}
+              />
+
+            <div style={{...L.radioRow, ...{justifyContent: 'flex-start', width: '580px', marginLeft: -13}}}>
+              <Button
+                icon={<PlusIcon size={16}/>}
+                iconPosition="left"
+                size="medium"
+                label="Add Another Client Insurance Co Section"
+                onClick={() => {console.log('add another client insurance co section')}}
+              />
+            </div>
+            </div>
             
           </div>
 
@@ -492,8 +659,58 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
               </div>
             </div>
 
-          </div>
+            <div style={{...L.controlGroup, ...{paddingTop: 193}}}>
+              <div style={L.radioRow}>
+                <Checkbox
+                    label="Adjuster will not disclose limits"
+                    checked={formData?.demandLetterSent || false}
+                    onChange={() => {}}
+                    disabled={isFilled ? true : undefined}
+                />
+              </div>
+            </div>
 
+            <div style={{...L.controlGroup, ...{paddingTop: 20}}}>
+              <div style={L.radioRow}>
+                <Checkbox
+                    label="Adjuster will not disclose limits"
+                    checked={formData?.demandLetterSent || false}
+                    onChange={() => {}}
+                    disabled={isFilled ? true : undefined}
+                />
+              </div>
+            </div>
+
+            <div style={{...L.controlGroup, ...{paddingTop: 20}}}>
+              <div style={L.radioRow}>
+                <Checkbox
+                    label="Adjuster will not disclose limits"
+                    checked={formData?.demandLetterSent || false}
+                    onChange={() => {}}
+                    disabled={isFilled ? true : undefined}
+                />
+              </div>
+            </div>
+
+            <div style={{...L.controlGroup, ...{paddingTop: 92}}}>
+              <div style={L.radioRow}>
+                <Checkbox
+                    label="Injuries not large enough"
+                    checked={formData?.demandLetterSent || false}
+                    onChange={() => {}}
+                    disabled={isFilled ? true : undefined}
+                />
+       
+                <Checkbox
+                    label="Adjuster will not disclose limits"
+                    checked={formData?.demandLetterSent || false}
+                    onChange={() => {}}
+                    disabled={isFilled ? true : undefined}
+                />
+              </div>
+            </div>
+
+          </div>
         </div>
  
       </div>
