@@ -9,6 +9,7 @@ export interface PageActionsProps {
   onEdit?: () => void;
   onRemove?: () => void;
   saveLabel?: string;
+  cancelLabel?: string;
   editLabel?: string;
   removeLabel?: string;
   style?: React.CSSProperties;
@@ -30,6 +31,7 @@ export const PageActions: React.FC<PageActionsProps> = ({
   onEdit,
   onRemove,
   saveLabel = 'Save',
+  cancelLabel = 'Cancel',
   editLabel = 'Edit',
   removeLabel = 'Remove',
   style,
@@ -50,7 +52,7 @@ export const PageActions: React.FC<PageActionsProps> = ({
           type="reset" 
           size="medium"
           customSize="140px" 
-          label={'Cancel'} 
+          label={cancelLabel} 
           onClick={onCancel} 
         />
       </div>
