@@ -17,11 +17,20 @@ const meta: Meta<typeof Header> = {
 export default meta;
 type Story = StoryObj<typeof Header>;
 
-export const Default: Story = {
+export const UserDetails: Story = {
   args: {
     section: "User Details",
     current: "Cooper Jane",
     subtitle: "Here you can manage internal user",
     width: "1000px",
+  },
+};
+
+export const ClientDetails: Story = {
+  args: {
+    section: "Client Details",
+    current: "Case #2025-0001",
+    width: "1200px",
+    type: "clientDetails",
   },
 };
