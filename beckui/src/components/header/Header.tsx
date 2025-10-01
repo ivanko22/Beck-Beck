@@ -1,10 +1,12 @@
 import React from "react";
 import { Breadcrumbs } from "../breadcrumbs/Breadcrumbs";
-import { CloseIcon } from "../icons";
+import { CloseIcon, PlusIcon, EmailIcon } from "../icons";
+import { Button } from "../button/Button";
 
 export interface HeaderProps {
   section: string;
-  current: string;
+  current?: string;
+  type?: 'default' | 'clientDetails';
   subtitle?: string;
   onClose?: () => void;
   style?: React.CSSProperties;
@@ -35,7 +37,13 @@ const styles = {
 
   close: {
     cursor: "pointer",
+    position: "relative",
+    top: 16,
     color: "var(--middle-grey)",
+  } as React.CSSProperties,
+
+  buttonsWrapper: {
+    display: "flex",
   } as React.CSSProperties,
 };
 
@@ -43,6 +51,7 @@ export const Header: React.FC<HeaderProps> = ({
   section,
   current,
   subtitle,
+  type = 'default',
   onClose,
   style,
   width,
@@ -53,7 +62,24 @@ export const Header: React.FC<HeaderProps> = ({
         <Breadcrumbs section={section} current={current} />
         {subtitle && <span style={styles.subtitle}>{subtitle}</span>}
       </div>
+      
+      {type === 'clientDetails' && (
+        <div style={styles.buttonsWrapper}>
+          <Button 
+            icon={<PlusIcon size={20} />}
+            iconPosition="left"
+            size="medium"
+            label="Jump to Auto Insurance" 
+          />
 
+          <Button 
+            icon={<EmailIcon size={20} />}
+            iconPosition="left"
+            size="medium"
+            label="Sent Message" 
+          />
+        </div>
+      )}
       {onClose && (
         <div style={styles.close} onClick={onClose}>
           <CloseIcon size={20} />

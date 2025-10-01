@@ -9,12 +9,13 @@ import { Button } from '../components/button/Button';
 import { ClientDetailsTableHeader } from '../components/table/ClientDetailsTableHeader';
 import { PlusIcon, EmailIcon } from '../components/icons/index';
 import { Typography } from '../components/typography/Typography';
+import { PageActions } from '../components/page-actions/PageActions';
 
 export interface ClientDetailsPageProps {
   caseNumber?: string;
   clientName?: string;
   style?: React.CSSProperties;
-  state?: 'adding' | 'edit' | 'save' | 'saved';
+  saved?: boolean;
   formData?: {
     insuranceCompany?: string;
     insuranceAddress?: string;
@@ -94,14 +95,14 @@ const L = {
     minWidth: '530px',
     flexDirection: 'column' as const,
     alignItems: 'flex-end',
-    gap: 30,
+    gap: 32,
   } as React.CSSProperties,
 
   rightColumn: {
     display: 'flex',
     flexDirection: 'column' as const,
     alignItems: 'flex-start',
-    paddingTop: '202px',
+    paddingTop: '206px',
     paddingLeft: 30,
   } as React.CSSProperties,
 
@@ -127,7 +128,7 @@ const L = {
     alignItems: 'flex-start',
     flexDirection: 'column' as const,
     gap: 12,
-    marginTop: 16,
+    // marginTop: 16,
     // marginBottom: 16,
   } as React.CSSProperties,
 
@@ -173,9 +174,9 @@ const L = {
 };
 
 export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
-  caseNumber = 'Case #2025-0001',
-  clientName = '',
-  state = 'saved',
+  caseNumber,
+  clientName,
+  saved,
   style,
   formData,
 }) => {
@@ -187,7 +188,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
     { label: 'Farmers' },
   ];
 
-  const isFilled = state === 'saved' && clientName;
+  const isFilled = saved && clientName;
 
   return (
     <div style={{ ...L.shell, ...style }}>
@@ -200,7 +201,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
         <Header
           section={`Client Details`}
           current={caseNumber}
-          subtitle=""
+          type="clientDetails"
           onClose={() => {}}
         />
 
@@ -498,18 +499,26 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
                 placeholder="Notes"
                 value={formData?.notes || ''}
                 onChange={() => {}}
-                noBorder={isFilled ? true : undefined}
               />
 
-            <div style={{...L.radioRow, ...{justifyContent: 'flex-start', width: '580px', marginLeft: -13}}}>
-              <Button
-                icon={<PlusIcon size={16}/>}
-                iconPosition="left"
-                size="medium"
-                label="Add Another Client Insurance Co Section"
-                onClick={() => {console.log('add another client insurance co section')}}
-              />
-            </div>
+              <div style={{...L.radioRow, ...{justifyContent: 'flex-start', width: '580px', marginLeft: -13}}}>
+                <Button
+                  icon={<PlusIcon size={16}/>}
+                  iconPosition="left"
+                  size="medium"
+                  label="Add Another Client Insurance Co Section"
+                  onClick={() => {console.log('add another client insurance co section')}}
+                />
+              </div>
+
+              <div style={{ ...{marginTop: -25}}}>
+                <PageActions
+                  saved={saved}
+                  onSave={() => {console.log('save')}}
+                  onCancel={() => {console.log('cancel')}}
+                />  
+              </div>
+
             </div>
             
           </div>
@@ -521,7 +530,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
               <div style={L.radioRow}>
                 <Radio
                   label="Yes"
-                  checked={!formData?.hasOwnPolicy || false}
+                  checked={formData?.hasOwnPolicy}
                   onChange={() => {}}
                   disabled={isFilled ? true : undefined}
                 />
@@ -545,7 +554,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
      
             </div>
 
-            <div style={{...L.controlGroup, ...{paddingTop: 73, marginLeft: '-21px'}}}>
+            <div style={{...L.controlGroup, ...{paddingTop: 114, marginLeft: '-21px'}}}>
               <div style={L.radioRow}>
                 <Button
                   icon={<EmailIcon size={22}/>}
@@ -564,7 +573,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
               </div>
             </div>
 
-            <div style={{...L.controlGroup, ...{paddingTop: 254, marginLeft: '-21px'}}}>
+            <div style={{...L.controlGroup, ...{paddingTop: 286, marginLeft: '-21px'}}}>
               <div style={{...L.checkboxGroupBorder}}>
                 <div style={{display: 'flex', alignItems: 'flex-start', paddingTop: 32}}>
                   <Button
@@ -627,7 +636,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
 
             </div>
 
-            <div style={{...L.controlGroup, ...{marginTop: 53, marginLeft: '-21px'}}}>
+            <div style={{...L.controlGroup, ...{marginTop: 61, marginLeft: '-21px'}}}>
               <div style={L.radioRow}>
                 <Button
                   icon={<EmailIcon size={22}/>}
@@ -648,7 +657,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
               </div>
             </div>
 
-            <div style={{...L.controlGroup, ...{marginTop: 11, marginLeft: '-21px'}}}>
+            <div style={{...L.controlGroup, ...{marginTop: 21, marginLeft: '-21px'}}}>
               <div style={L.radioRow}>
                 <Button
                   icon={<EmailIcon size={22}/>}
@@ -660,7 +669,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
               </div>
             </div>
 
-            <div style={{...L.controlGroup, ...{paddingTop: 193}}}>
+            <div style={{...L.controlGroup, ...{paddingTop: 217}}}>
               <div style={L.radioRow}>
                 <Checkbox
                     label="Adjuster will not disclose limits"
@@ -671,7 +680,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
               </div>
             </div>
 
-            <div style={{...L.controlGroup, ...{paddingTop: 20}}}>
+            <div style={{...L.controlGroup, ...{paddingTop: 38}}}>
               <div style={L.radioRow}>
                 <Checkbox
                     label="Adjuster will not disclose limits"
@@ -682,7 +691,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
               </div>
             </div>
 
-            <div style={{...L.controlGroup, ...{paddingTop: 20}}}>
+            <div style={{...L.controlGroup, ...{paddingTop: 38}}}>
               <div style={L.radioRow}>
                 <Checkbox
                     label="Adjuster will not disclose limits"
@@ -693,7 +702,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
               </div>
             </div>
 
-            <div style={{...L.controlGroup, ...{paddingTop: 92}}}>
+            <div style={{...L.controlGroup, ...{paddingTop: 114}}}>
               <div style={L.radioRow}>
                 <Checkbox
                     label="Injuries not large enough"
@@ -710,12 +719,10 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
                 />
               </div>
             </div>
-
           </div>
         </div>
- 
+
       </div>
     </div>
   );
 };
-

@@ -5,6 +5,7 @@ interface ButtonProps {
   backgroundColor?: string | null;
   color?: string | null;
   size?: 'small' | 'medium' | 'large' ;
+  customSize?: string;
   label: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
@@ -48,7 +49,6 @@ const styles = {
     backgroundColor: 'var(--white)',
     color: 'var(--middle-grey)',
     fontWeight: 500,
-    // width: '100%',
   },
 
   secondaryHover: {
@@ -66,9 +66,8 @@ const styles = {
   },
 
   medium: {
-    padding: '15px 20px',
+    height: '48px',
     fontSize: '16px',
-    // width: '210px',
   },
 
   large: {
@@ -110,6 +109,7 @@ export const Button: React.FC<ButtonProps> = ({
   size = 'large',
   backgroundColor = null,
   color = null,
+  customSize,
   label,
   onClick,
   className = '',
@@ -130,6 +130,7 @@ export const Button: React.FC<ButtonProps> = ({
     ...(primary && isHovered && styles.primaryHover),
     ...(!primary && isHovered && styles.secondaryHover),
     ...(disabled && (primary ? styles.primaryDisabled : styles.secondaryDisabled)),
+    ...(customSize && { width: customSize }),
   };
 
   const renderContent = () => {

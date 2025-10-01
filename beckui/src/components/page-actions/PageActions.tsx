@@ -44,6 +44,7 @@ export const PageActions: React.FC<PageActionsProps> = ({
         <Button
           type="submit"
           size="medium"
+          customSize="200px"
           primary
           disabled={disabledButton}
           label={saveLabel}
@@ -51,7 +52,8 @@ export const PageActions: React.FC<PageActionsProps> = ({
         />
         <Button 
           type="reset" 
-          size="medium" 
+          size="medium"
+          customSize="140px" 
           label={cancelLabel} 
           onClick={onCancel} 
         />
