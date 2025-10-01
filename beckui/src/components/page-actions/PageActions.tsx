@@ -36,10 +36,31 @@ export const PageActions: React.FC<PageActionsProps> = ({
   removeLabel = 'Remove',
   style,
 }) => {
-  if (type === 'save' || type === 'edit') {
+  if (type === 'save') {
     return (
       <div style={{ ...L.actions, ...style }}>
         <Button
+          type="submit"
+          size="medium"
+          customSize="200px"
+          primary
+          disabled={true}
+          label={saveLabel}
+          onClick={onSave}
+        />
+        <Button 
+          type="reset" 
+          size="medium"
+          customSize="140px" 
+          label={cancelLabel} 
+          onClick={onCancel} 
+        />
+      </div>
+    );
+  } else if (type === 'edit') {
+    return (
+      <div style={{ ...L.actions, ...style }}>
+         <Button
           type="submit"
           size="medium"
           customSize="200px"
