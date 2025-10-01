@@ -27,48 +27,6 @@ const meta: Meta<typeof ClientDetailsPage> = {
 export default meta;
 type Story = StoryObj<typeof ClientDetailsPage>;
 
-// export const Default: Story = {
-//   args: {
-//     caseNumber: 'Case #2025-0001',
-//     clientName: '',
-//     state: 'saved',
-//   },
-// };
-
-// export const FilledState: Story = {
-//   args: {
-//     caseNumber: 'Case #2025-0002',
-//     clientName: 'John Smith',
-//     state: 'saved',
-//     formData: {
-//       insuranceCompany: 'State Farm',
-//       insuranceAddress: '123 Main St, Kansas City, MO 64101',
-//       clientName: 'John Smith',
-//       policyHolderName: 'John Smith',
-//       claimNumber: 'SF-2025-001234',
-//       policyNumber: 'POL-789456123',
-//       mainInsPhone: '(816) 555-0123',
-//       hasOwnPolicy: true,
-//       demandLetterSent: true,
-//       biAdjusterName: 'Mike Johnson',
-//       biAdjusterPhone: '(816) 555-0456',
-//       biAdjusterFax: '(816) 555-0457',
-//       biAdjusterEmail: 'mike.johnson@statefarm.com',
-//       medPayAdjusterName: 'Sarah Wilson',
-//       medPayAdjusterPhone: '(816) 555-0789',
-//       medPayAdjusterEmail: 'sarah.wilson@statefarm.com',
-//       medPayAdjusterFax: '(816) 555-0790',
-//       emailOptions: {
-//         liability: true,
-//         medpay: false,
-//         uim: false,
-//         um: false,
-//         excess: false,
-//       },
-//     },
-//   },
-// };
-
 export const Empty: Story = {
   args: {
     caseNumber: 'Case #2025-0003',
@@ -105,7 +63,7 @@ export const Empty: Story = {
   },
 };
 
-export const PartialData: Story = {
+export const Adding: Story = {
   args: {
     caseNumber: 'Case #2025-0004',
     clientName: 'Jane Doe',
@@ -116,18 +74,18 @@ export const PartialData: Story = {
       clientName: 'Jane Doe',
       policyHolderName: 'Jane Doe',
       claimNumber: 'PROG-2025-567890',
-      policyNumber: '',
+      policyNumber: 'RS-5589-7745',
       mainInsPhone: '(312) 555-0987',
       hasOwnPolicy: false,
       demandLetterSent: false,
       biAdjusterName: 'Lisa Brown',
       biAdjusterPhone: '(312) 555-0543',
-      biAdjusterFax: '',
+      biAdjusterFax: '(312) 555-7722',
       biAdjusterEmail: 'lisa.brown@progressive.com',
-      medPayAdjusterName: '',
-      medPayAdjusterPhone: '',
-      medPayAdjusterEmail: '',
-      medPayAdjusterFax: '',
+      medPayAdjusterName: 'Michael Smith',
+      medPayAdjusterPhone: '(312) 555-7721',
+      medPayAdjusterEmail: 'sarah.johnson@medpay.com',
+      medPayAdjusterFax: '(312) 555-7721',
       emailOptions: {
         liability: true,
         medpay: true,
@@ -140,40 +98,3 @@ export const PartialData: Story = {
     },
   },
 };
-
-export const WithMedPayOther: Story = {
-  args: {
-    caseNumber: 'Case #2025-0005',
-    clientName: 'Bob Johnson',
-    state: 'edit',
-    formData: {
-      insuranceCompany: 'Geico',
-      insuranceAddress: '789 Pine St, Denver, CO 80202',
-      clientName: 'Bob Johnson',
-      policyHolderName: 'Bob Johnson',
-      claimNumber: 'GEICO-2025-111222',
-      policyNumber: 'POL-333444555',
-      mainInsPhone: '(303) 555-0123',
-      hasOwnPolicy: true,
-      demandLetterSent: true,
-      biAdjusterName: 'Tom Davis',
-      biAdjusterPhone: '(303) 555-0456',
-      biAdjusterFax: '(303) 555-0457',
-      biAdjusterEmail: 'tom.davis@geico.com',
-      medPayAdjusterName: 'Amy Lee',
-      medPayAdjusterPhone: '(303) 555-0789',
-      medPayAdjusterEmail: 'amy.lee@geico.com',
-      medPayAdjusterFax: '(303) 555-0790',
-      emailOptions: {
-        liability: true,
-        medpay: true,
-        uim: true,
-        um: false,
-        excess: true,
-      },
-      medPayLimit: 'other',
-      medPayLimitOther: '$15,000',
-    },
-  },
-};
-

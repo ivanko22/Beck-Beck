@@ -101,7 +101,7 @@ const L = {
     display: 'flex',
     flexDirection: 'column' as const,
     alignItems: 'flex-start',
-    paddingTop: '178px',
+    paddingTop: '202px',
     paddingLeft: 30,
   } as React.CSSProperties,
 
@@ -215,6 +215,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
           <div style={L.leftColumn}>
             <BaseDropdown
               label="Insurance Company"
+              leftLabel={true}
               noBorder={isFilled ? true : undefined}
               disabled={isFilled ? true : undefined}
               type="BaseDropdown"
