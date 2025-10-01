@@ -14,6 +14,7 @@ export type TemplateRow = {
     saved?: boolean;
     textareaText?: string;
     disabled?: boolean;
+    pageActionsState?: 'save' | 'saved' | 'edit';
   };
   
   export const defaultRows: TemplateRow[] = [

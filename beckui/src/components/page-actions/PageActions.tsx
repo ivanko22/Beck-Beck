@@ -3,8 +3,7 @@ import { Button } from '../button/Button';
 import { Footer } from '../footer/Footer';
 
 export interface PageActionsProps {
-  saved?: boolean;
-  disabledButton?: boolean;
+  type: 'save' | 'saved' | 'edit';
   onSave?: () => void;
   onCancel?: () => void;
   onEdit?: () => void;
@@ -26,8 +25,7 @@ const L = {
 };
 
 export const PageActions: React.FC<PageActionsProps> = ({
-  saved = false,
-  disabledButton = false,
+  type,
   onSave,
   onCancel,
   onEdit,
@@ -38,7 +36,7 @@ export const PageActions: React.FC<PageActionsProps> = ({
   removeLabel = 'Remove',
   style,
 }) => {
-  if (!saved) {
+  if (type === 'save' || type === 'edit') {
     return (
       <div style={{ ...L.actions, ...style }}>
         <Button
@@ -46,7 +44,7 @@ export const PageActions: React.FC<PageActionsProps> = ({
           size="medium"
           customSize="200px"
           primary
-          disabled={disabledButton}
+          disabled={false}
           label={saveLabel}
           onClick={onSave}
         />

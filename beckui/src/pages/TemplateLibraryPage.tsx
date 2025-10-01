@@ -42,8 +42,7 @@ export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({
     rows, 
     onSave, 
     onCancel, 
-    disabledButton, 
-    saved = false, 
+    pageActionsState = 'save', 
     textareaText = '',
 }) => {
   const seeded = useMemo(
@@ -89,8 +88,8 @@ export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({
               <TemplateRowItem
                 key={row.id}
                 row={row}
-                disabled={saved}
-                saved={saved}
+                disabled={pageActionsState === 'saved'}
+                saved={pageActionsState === 'saved'}
                 onChange={(next) => setData(prev => prev.map(r => (r.id === next.id ? next : r)))}
               />
             ))}
@@ -102,7 +101,7 @@ export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({
           placeholder="Send Medical Records Request to Provider"
           label="Send Medical Records Request to Provider"
           value={textareaText}
-          disabled={saved}
+          disabled={pageActionsState === 'save'}
           customSize={{
             width: '100%',
             height: '100px',
@@ -110,8 +109,7 @@ export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({
         />
 
         <PageActions
-          saved={saved}
-          disabledButton={disabledButton}
+          type={pageActionsState}
           onSave={() => onSave?.(data)}
           onCancel={onCancel}
           onEdit={() => console.log('Edit templates')}

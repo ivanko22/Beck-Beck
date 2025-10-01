@@ -24,13 +24,13 @@ type Story = StoryObj<typeof TemplateLibraryPage>;
 
 export const Empty: Story = {
   args: {
-    disabledButton: true,
+    pageActionsState: 'save',
   },
 };
 
-
 export const WithSomeSelections: Story = {
   args: {
+    pageActionsState: 'edit',
     rows,
     textareaText,
   },
@@ -39,7 +39,7 @@ export const WithSomeSelections: Story = {
 export const Saved: Story = {
   args: {
     rows,
-    disabledButton: true,
+    pageActionsState: 'saved',
     saved: true,
     textareaText,
     disabled: true,

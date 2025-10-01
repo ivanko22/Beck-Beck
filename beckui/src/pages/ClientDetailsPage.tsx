@@ -15,7 +15,8 @@ export interface ClientDetailsPageProps {
   caseNumber?: string;
   clientName?: string;
   style?: React.CSSProperties;
-  saved?: boolean;
+  pageActionsState?: 'save' | 'saved' | 'edit';
+
   formData?: {
     insuranceCompany?: string;
     insuranceAddress?: string;
@@ -128,8 +129,6 @@ const L = {
     alignItems: 'flex-start',
     flexDirection: 'column' as const,
     gap: 12,
-    // marginTop: 16,
-    // marginBottom: 16,
   } as React.CSSProperties,
 
   radioRow: {
@@ -176,9 +175,9 @@ const L = {
 export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
   caseNumber,
   clientName,
-  saved,
   style,
   formData,
+  pageActionsState = 'save',
 }) => {
   const insuranceCompanies = [
     { label: 'State Farm' },
@@ -188,7 +187,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
     { label: 'Farmers' },
   ];
 
-  const isFilled = saved && clientName;
+  const isFilled = pageActionsState === 'saved' && clientName;
 
   return (
     <div style={{ ...L.shell, ...style }}>
@@ -214,72 +213,72 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
 
         <div style={L.grid}>
           <div style={L.leftColumn}>
-            <BaseDropdown
-              label="Insurance Company"
+          <BaseDropdown
+            label="Insurance Company"
               leftLabel={true}
-              noBorder={isFilled ? true : undefined}
-              disabled={isFilled ? true : undefined}
-              type="BaseDropdown"
+            noBorder={isFilled ? true : undefined}
+            disabled={isFilled ? true : undefined}
+            type="BaseDropdown"
               state={formData?.insuranceCompany ? 'selected' : 'default'}
               value={formData?.insuranceCompany || 'Select Insurance Company'}
-              menuItems={insuranceCompanies}
-              onSelect={() => {}}
+            menuItems={insuranceCompanies}
+            onSelect={() => {}}
               style={{ width: '238px' }}
-            />
+          />
 
-            <Input
+          <Input
               leftLabel={true}
-              label="Insurance Company Address"
+            label="Insurance Company Address"
               placeholder=""
               value={formData?.insuranceAddress || ''}
-              onChange={() => {}}
-              noBorder={isFilled ? true : undefined}
-            />
+            onChange={() => {}}
+            noBorder={isFilled ? true : undefined}
+          />
 
-            <Input
+          <Input
               leftLabel={true}
-              label="Our Client's Name"
+            label="Our Client's Name"
               placeholder=""
               value={formData?.clientName || ''}
-              onChange={() => {}}
-              noBorder={isFilled ? true : undefined}
-            />
+            onChange={() => {}}
+            noBorder={isFilled ? true : undefined}
+          />
 
-            <Input
+          <Input
               leftLabel={true}
-              label="Policy Holder Name"
+            label="Policy Holder Name"
               placeholder=""
               value={formData?.policyHolderName || ''}
-              onChange={() => {}}
-              noBorder={isFilled ? true : undefined}
-            />
+            onChange={() => {}}
+            noBorder={isFilled ? true : undefined}
+          />
 
-            <Input
+          <Input
               leftLabel={true}
-              label="Claim #"
+            label="Claim #"
               placeholder=""
               value={formData?.claimNumber || ''}
-              onChange={() => {}}
-              noBorder={isFilled ? true : undefined}
-            />
+            onChange={() => {}}
+            noBorder={isFilled ? true : undefined}
+          />
 
-            <Input
+          <Input
               leftLabel={true}
-              label="Policy Number"
+            label="Policy Number"
               placeholder=""
               value={formData?.policyNumber || ''}
-              onChange={() => {}}
-              noBorder={isFilled ? true : undefined}
-            />
+            onChange={() => {}}
+            noBorder={isFilled ? true : undefined}
+          />
 
-            <Input
+          <Input
               leftLabel={true}
-              label="Main Ins. Phone"
+            label="Main Ins. Phone"
               placeholder=""
               value={formData?.mainInsPhone || ''}
-              onChange={() => {}}
-              noBorder={isFilled ? true : undefined}
-            />
+            onChange={() => {}}
+            noBorder={isFilled ? true : undefined}
+          />
 
             <Input
               leftLabel={true}
@@ -304,36 +303,36 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
               label="BI Adjuster Fax"
               placeholder=""
               value={formData?.biAdjusterFax || ''}
-              onChange={() => {}}
+            onChange={() => {}}
               noBorder={isFilled ? true : undefined}
-            />
+          />
 
-            <Input
+          <Input
               leftLabel={true}
               label="BI Adjuster Email"
               placeholder=""
               value={formData?.biAdjusterEmail || ''}
-              onChange={() => {}}
-              noBorder={isFilled ? true : undefined}
-            />
+            onChange={() => {}}
+            noBorder={isFilled ? true : undefined}
+          />
 
-            <Input
+          <Input
               leftLabel={true}
               label="MedPay Adjuster Name"
               placeholder=""
               value={formData?.medPayAdjusterName || ''}
-              onChange={() => {}}
-              noBorder={isFilled ? true : undefined}
-            />
+            onChange={() => {}}
+            noBorder={isFilled ? true : undefined}
+          />
 
-            <Input
+          <Input
               leftLabel={true}
               label="MedPay Adjuster Phone"
               placeholder=""
               value={formData?.medPayAdjusterPhone || ''}
-              onChange={() => {}}
-              noBorder={isFilled ? true : undefined}
-            />
+            onChange={() => {}}
+            noBorder={isFilled ? true : undefined}
+          />
 
             <Input
               leftLabel={true}
@@ -403,7 +402,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
                       disabled={isFilled ? true : undefined}
                     />
                   </div>
-                  
+
                   <div style={{display: 'flex', flexDirection: 'column', gap: 8}}>
                     <div style={{display: 'flex', alignItems: 'center', gap: 8}}>
                       <Radio
@@ -423,25 +422,25 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
                   </div>
                 </div>
               </div>
-            </div>
+        </div>
 
-            <Input
+          <Input
               leftLabel={true}
               label="LIABILITY POLICY LIMITS PER PERSON"
               placeholder=""
               value={formData?.liabilityLimitsPerPerson || ''}
-              onChange={() => {}}
-              noBorder={isFilled ? true : undefined}
-            />
+            onChange={() => {}}
+            noBorder={isFilled ? true : undefined}
+          />
 
-            <Input
+          <Input
               leftLabel={true}
               label="UIM LIMITS PER PERSON"
               placeholder=""
               value={formData?.uimLimitsPerPerson || ''}
-              onChange={() => {}}
-              noBorder={isFilled ? true : undefined}
-            />
+            onChange={() => {}}
+            noBorder={isFilled ? true : undefined}
+          />
 
             <Input
               leftLabel={true}
@@ -513,7 +512,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
 
               <div style={{ ...{marginTop: -25}}}>
                 <PageActions
-                  saved={saved}
+                  type={pageActionsState}
                   onSave={() => {console.log('save')}}
                   onCancel={() => {console.log('cancel')}}
                 />  
