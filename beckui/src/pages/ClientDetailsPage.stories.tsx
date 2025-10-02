@@ -27,131 +27,208 @@ const meta: Meta<typeof ClientDetailsPage> = {
 export default meta;
 type Story = StoryObj<typeof ClientDetailsPage>;
 
-export const Empty: Story = {
-  args: {
-    caseNumber: 'Case #2025-0003',
-    clientName: '',
-    pageActionsState: 'save',
-    formData: {
-      insuranceCompany: '',
-      insuranceAddress: '',
-      clientName: '',
-      policyHolderName: '',
-      claimNumber: '',
-      policyNumber: '',
-      mainInsPhone: '',
-      hasOwnPolicy: false,
-      demandLetterSent: false,
-      biAdjusterName: '',
-      biAdjusterPhone: '',
-      biAdjusterFax: '',
-      biAdjusterEmail: '',
-      medPayAdjusterName: '',
-      medPayAdjusterPhone: '',
-      medPayAdjusterEmail: '',
-      medPayAdjusterFax: '',
-      liabilityLimitsPerPerson: '',
-      uimLimitsPerPerson: '',
-      umLimitsPerPerson: '',
-      vehiclesOnPolicy: '',
-      totalUmStackedLimits: '',
-      umbrellaSecondaryLiabilityPolicy: '',
-      notes: '',
-      emailOptions: {
-        liability: false,
-        medpay: false,
-        uim: false,
-        um: false,
-        excess: false,
-      },
-      medPayLimit: 'none',
-      medPayLimitOther: '',
-    },
+const singleInsuranceSectionEmptyData = {
+  sectionTitle: "Client Insurance Company #1",
+  formData: {
+    insuranceCompany: '',
+    insuranceAddress: '',
   },
+  clientName: '',
+  policyHolderName: '',
+  claimNumber: '',
+  policyNumber: '',
+  mainInsPhone: '',
+  hasOwnPolicy: false,
+  demandLetterSent: false,
+  biAdjusterName: '',
+  biAdjusterPhone: '',
+  biAdjusterFax: '',
+  biAdjusterEmail: '',
+  medPayAdjusterName: '',
+  medPayAdjusterPhone: '',
+  medPayAdjusterEmail: '',
+  medPayAdjusterFax: '',
+  liabilityLimitsPerPerson: '',
+  uimLimitsPerPerson: '',
+  umLimitsPerPerson: '',
+  vehiclesOnPolicy: '',
+  totalUmStackedLimits: '',
+  umbrellaSecondaryLiabilityPolicy: '',
+  notes: '',
+  emailOptions: {
+    liability: false,
+    medpay: false,
+    uim: false,
+    um: false,
+    excess: false
+  },
+  medPayLimit: '',
+  medPayLimitOther: '',
+  excessLiabilityCoverage: ''
 };
 
-export const Filled: Story = {
-  args: {
-    caseNumber: 'Case #2025-0004',
-    clientName: 'Jane Doe',
-    pageActionsState: 'edit',
+const insuranceSectionData = [
+  {
+    sectionTitle: "Client Insurance Company #1",
     formData: {
-      insuranceCompany: 'Progressive',
-      insuranceAddress: '456 Oak Ave, Chicago, IL 60601',
-      clientName: 'Jane Doe',
-      policyHolderName: 'Jane Doe',
-      claimNumber: 'PROG-2025-567890',
-      policyNumber: 'RS-5589-7745',
-      mainInsPhone: '(312) 555-0987',
-      hasOwnPolicy: false,
+      insuranceCompany: 'State Farm',
+      insuranceAddress: '123 Main St',
+      clientName: 'John Doe',
+      policyHolderName: 'John Doe',
+      claimNumber: 'SF-2025-001',
+      policyNumber: 'POL-001',
+      mainInsPhone: '555-0123',
+      hasOwnPolicy: true,
       demandLetterSent: false,
-      biAdjusterName: 'Lisa Brown',
-      biAdjusterPhone: '(312) 555-0543',
-      biAdjusterFax: '(312) 555-7722',
-      biAdjusterEmail: 'lisa.brown@progressive.com',
-      medPayAdjusterName: 'Michael Smith',
-      medPayAdjusterPhone: '(312) 555-7721',
-      medPayAdjusterEmail: 'sarah.johnson@medpay.com',
-      medPayAdjusterFax: '(312) 555-7721',
-      liabilityLimitsPerPerson: '$50,000',
-      uimLimitsPerPerson: '$500,000',
-      umLimitsPerPerson: '$1,000,000',
-      vehiclesOnPolicy: '1',
-      totalUmStackedLimits: '$1,000,000',
+      biAdjusterName: 'Jane Smith',
+      biAdjusterPhone: '555-0124',
+      biAdjusterFax: '555-0125',
+      biAdjusterEmail: 'jane.smith@statefarm.com',
+      medPayAdjusterName: 'Bob Johnson',
+      medPayAdjusterPhone: '555-0126',
+      medPayAdjusterEmail: 'bob.johnson@statefarm.com',
+      medPayAdjusterFax: '555-0127',
+      liabilityLimitsPerPerson: '100000',
+      uimLimitsPerPerson: '50000',
+      umLimitsPerPerson: '50000',
+      vehiclesOnPolicy: '2',
+      totalUmStackedLimits: '100000',
       umbrellaSecondaryLiabilityPolicy: 'No',
-      notes: 'The adjuster has confirmed that Uninsured Motorist (UM) stacking is applicable for both vehicles listed under the policy, meaning the coverage limits can be combined to increase the total available protection in the event of a claim. In addition, the adjuster verified that the $1,000,000 umbrella policy is active and will extend to bodily injury claims, providing an additional layer of coverage above the standard policy limits. This ensures that, in the case of a serious accident, there is both expanded UM coverage and substantial excess liability protection to address potential damages.',
+      notes: 'Primary insurance company',
       emailOptions: {
         liability: true,
         medpay: true,
         uim: false,
         um: false,
-        excess: false,
+        excess: false
+      },
+      medPayLimit: '5k',
+      medPayLimitOther: '',
+      excessLiabilityCoverage: 'No'
+    }
+  },
+  {
+    sectionTitle: "Client Insurance Company #2",
+    formData: {
+      insuranceCompany: 'Allstate',
+      insuranceAddress: '456 Oak Ave',
+      clientName: 'John Doe',
+      policyHolderName: 'John Doe',
+      claimNumber: 'ALL-2025-002',
+      policyNumber: 'POL-002',
+      mainInsPhone: '555-0223',
+      hasOwnPolicy: false,
+      demandLetterSent: true,
+      biAdjusterName: 'Mike Wilson',
+      biAdjusterPhone: '555-0224',
+      biAdjusterFax: '555-0225',
+      biAdjusterEmail: 'mike.wilson@allstate.com',
+      medPayAdjusterName: 'Sarah Davis',
+      medPayAdjusterPhone: '555-0226',
+      medPayAdjusterEmail: 'sarah.davis@allstate.com',
+      medPayAdjusterFax: '555-0227',
+      liabilityLimitsPerPerson: '250000',
+      uimLimitsPerPerson: '100000',
+      umLimitsPerPerson: '100000',
+      vehiclesOnPolicy: '1',
+      totalUmStackedLimits: '200000',
+      umbrellaSecondaryLiabilityPolicy: 'Yes',
+      notes: 'Secondary insurance company',
+      emailOptions: {
+        liability: true,
+        medpay: false,
+        uim: true,
+        um: true,
+        excess: true
       },
       medPayLimit: '10k',
       medPayLimitOther: '',
-    },
+      excessLiabilityCoverage: 'Yes'
+    }
+  },
+  {
+    sectionTitle: "Client Insurance Company #3",
+    formData: {
+      insuranceCompany: 'Progressive',
+      insuranceAddress: '789 Pine St',
+      clientName: 'John Doe',
+      policyHolderName: 'John Doe',
+      claimNumber: 'PROG-2025-003',
+      policyNumber: 'POL-003',
+      mainInsPhone: '555-0323',
+      hasOwnPolicy: false,
+      demandLetterSent: false,
+      biAdjusterName: 'Lisa Brown',
+      biAdjusterPhone: '555-0324',
+      biAdjusterFax: '555-0325',
+      biAdjusterEmail: 'lisa.brown@progressive.com',
+      medPayAdjusterName: 'Tom Green',
+      medPayAdjusterPhone: '555-0326',
+      medPayAdjusterEmail: 'tom.green@progressive.com',
+      medPayAdjusterFax: '555-0327',
+      liabilityLimitsPerPerson: '500000',
+      uimLimitsPerPerson: '250000',
+      umLimitsPerPerson: '250000',
+      vehiclesOnPolicy: '3',
+      totalUmStackedLimits: '500000',
+      umbrellaSecondaryLiabilityPolicy: 'Yes',
+      notes: 'Tertiary insurance company',
+      emailOptions: {
+        liability: false,
+        medpay: true,
+        uim: true,
+        um: true,
+        excess: true
+      },
+      medPayLimit: '25k',
+      medPayLimitOther: '',
+      excessLiabilityCoverage: 'Yes'
+    }
+  }
+];
+
+export const Empty: Story = {
+  args: {
+    caseNumber: 'Case #2025-0003',
+    clientName: '',
+    pageActionsState: 'save',
+    insuranceSections: [singleInsuranceSectionEmptyData],
   },
 };
 
-  export const Saved: Story = {
-    args: {
-      caseNumber: 'Case #2025-0004',
-      clientName: 'Jane Doe',
-      pageActionsState: 'saved',
-      formData: {
-        insuranceCompany: 'Progressive',
-        insuranceAddress: '456 Oak Ave, Chicago, IL 60601',
-        clientName: 'Jane Doe',
-        policyHolderName: 'Jane Doe',
-        claimNumber: 'PROG-2025-567890',
-        policyNumber: 'RS-5589-7745',
-        mainInsPhone: '(312) 555-0987',
-        hasOwnPolicy: false,
-        demandLetterSent: false,
-        biAdjusterName: 'Lisa Brown',
-        biAdjusterPhone: '(312) 555-0543',
-        biAdjusterFax: '(312) 555-7722',
-        biAdjusterEmail: 'lisa.brown@progressive.com',
-        medPayAdjusterName: 'Michael Smith',
-        medPayAdjusterPhone: '(312) 555-7721',
-        medPayAdjusterEmail: 'sarah.johnson@medpay.com',
-        medPayAdjusterFax: '(312) 555-7721',
-        liabilityLimitsPerPerson: '$50,000',
-        uimLimitsPerPerson: '$500,000',
-        umLimitsPerPerson: '$1,000,000',
-        vehiclesOnPolicy: '1',
-        totalUmStackedLimits: '$1,000,000',
-        umbrellaSecondaryLiabilityPolicy: 'No',
-        notes: 'The adjuster has confirmed that Uninsured Motorist (UM) stacking is applicable for both vehicles listed under the policy, meaning the coverage limits can be combined to increase the total available protection in the event of a claim. In addition, the adjuster verified that the $1,000,000 umbrella policy is active and will extend to bodily injury claims, providing an additional layer of coverage above the standard policy limits. This ensures that, in the case of a serious accident, there is both expanded UM coverage and substantial excess liability protection to address potential damages.',
-        emailOptions: {
-          liability: true,
-          medpay: true,
-          uim: false,
-          um: false,
-          excess: false,
-        },
-        medPayLimit: '10k',
-        medPayLimitOther: '',
-      },
-    },
-  };
+export const Adding: Story = {
+  args: {
+    caseNumber: 'Case #2025-0003',
+    clientName: 'John Doe',
+    pageActionsState: 'save',
+    insuranceSections: [insuranceSectionData[0]],
+  },
+};
+
+
+export const TwoForms: Story = {
+  args: {
+    caseNumber: 'Case #2025-0003',
+    clientName: 'John Doe',
+    pageActionsState: 'save',
+    insuranceSections: insuranceSectionData.slice(0, 2),
+  },
+};
+
+export const Filled: Story = {
+  args: {
+    caseNumber: 'Case #2025-0003',
+    clientName: 'John Doe',
+    pageActionsState: 'saved',
+    insuranceSections: insuranceSectionData,
+  },
+};
+
+export const Edit: Story = {
+  args: {
+    caseNumber: 'Case #2025-0003',
+    clientName: 'John Doe',
+    pageActionsState: 'edit',
+    insuranceSections: insuranceSectionData,
+  },
+};

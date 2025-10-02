@@ -5,9 +5,8 @@ interface IconProps extends Omit<BaseIconProps, 'children' | 'viewBox'> {}
 
 export const EditIcon: React.FC<IconProps> = ({ 
   size = 20, 
-  color = 'currentColor',
+  color,
   hoverColor,
-  className = '',
   style = {},
   onMouseEnter,
   onMouseLeave
@@ -17,7 +16,6 @@ export const EditIcon: React.FC<IconProps> = ({
       size={size}
       color={color}
       hoverColor={hoverColor}
-      className={className}
       style={style}
       viewBox="0 0 31 31"
       onMouseEnter={onMouseEnter}
