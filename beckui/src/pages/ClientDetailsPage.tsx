@@ -40,12 +40,14 @@ interface ClientDetailsPageProps {
   style?: React.CSSProperties;
   pageActionsState?: 'save' | 'saved' | 'edit';
   insuranceSections?: InsuranceSection[];
+  relativeInsuranceSections?: InsuranceSection[];
 }
 
 export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
   caseNumber,
   clientName,
   insuranceSections = [],
+  relativeInsuranceSections = [],
   pageActionsState = 'save',
 }) => {
 
@@ -67,6 +69,21 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
         <div style={L.mainContent}>
           {insuranceSections.map((section, index) => (
             <ClientInsuranceRelativeSection
+              type="insurance"
+              key={index}
+              caseNumber={caseNumber}
+              clientName={clientName}
+              pageActionsState={pageActionsState}
+              formData={section.formData}
+              sectionTitle={section.sectionTitle}
+            />
+          ))}
+        </div>
+
+        <div style={L.mainContent}>
+          {relativeInsuranceSections.map((section, index) => (
+            <ClientInsuranceRelativeSection
+              type="relative"
               key={index}
               caseNumber={caseNumber}
               clientName={clientName}

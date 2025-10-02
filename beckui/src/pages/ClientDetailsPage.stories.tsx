@@ -27,6 +27,159 @@ const meta: Meta<typeof ClientDetailsPage> = {
 export default meta;
 type Story = StoryObj<typeof ClientDetailsPage>;
 
+interface ResidentRelativeInsuranceFormData {
+  noResidentRelativeInsCo?: boolean;
+  injuriesLargeEnoughToUseResRelUIM?: 'Maybe' | 'Yes' | 'No' | '';
+  insuranceCompany?: string;
+  insuranceAddress?: string;
+  clientName?: string;
+  policyHolderNameResRel?: string;
+  policyHolderName?: string;
+  claimNumber?: string;
+  policyNumber?: string;
+  mainInsPhone?: string;
+  hasOwnPolicy?: boolean;
+  demandLetterSent?: boolean;
+  emailDemandLetter?: boolean;
+
+  biAdjusterName?: string;
+  biAdjusterPhone?: string;
+  biAdjusterFax?: string;
+  biAdjusterEmail?: string;
+  emailOptions?: {
+    liability?: boolean;
+    medpay?: boolean;
+    uim?: boolean;
+    um?: boolean;
+    excessUmbrella?: boolean;
+  };
+  emailLetterOfRepresentationLienLetter?: boolean;
+
+  medPayAdjusterName?: string;
+  medPayAdjusterPhone?: string;
+  medPayAdjusterEmail?: string;
+  medPayAdjusterFax?: string;
+  emailMedPayAdjuster?: boolean;
+  emailIsThereMPorUIM?: boolean;
+  emailMedPayDemand?: boolean;
+
+  medPayLimits?: 'None' | '$1K' | '$2,500' | '$5k' | '$10K' | '$25K' | 'Other' | '';
+  medPayLimitsOtherSpecify?: string;
+  uimLimitsPerPerson?: string;
+  uimAdjusterWillNotDiscloseLimits?: boolean;
+  umLimitsPerPerson?: string;
+  umAdjusterWillNotDiscloseLimits?: boolean;
+  vehiclesOnPolicyForUMOnly?: number | null;
+  totalUMStackedLimits?: string;
+  umbrellaSecondaryLiabilityPolicy?: 'Yes' | 'No' | '';
+  emailAdjusterIsThereUmbrellaUIM?: boolean;
+  injuriesNotLargeEnough?: boolean;
+  umbrellaAdjusterWillNotDiscloseLimits?: boolean;
+}
+
+const residentRelativeInsuranceCoData: ResidentRelativeInsuranceFormData = {
+  noResidentRelativeInsCo: false,
+  injuriesLargeEnoughToUseResRelUIM: 'Yes',
+  insuranceCompany: 'State Farm Insurance',
+  insuranceAddress: '123 Main St, Springfield, IL 62701',
+  clientName: 'Jane Doe',
+  policyHolderNameResRel: 'John Doe Sr.',
+  policyHolderName: 'SF-2025-00981',
+  hasOwnPolicy: true,
+  claimNumber: 'SF-2025-00981',
+  emailDemandLetter: false,
+  demandLetterSent: false,
+  policyNumber: 'RS-5589-7745',
+  mainInsPhone: '(312) 555-2190',
+
+  biAdjusterName: 'Sarah Johnson',
+  biAdjusterPhone: '(312) 555-4812',
+  biAdjusterFax: '(312) 555-7722',
+  biAdjusterEmail: 'sarah.johnson@statefarm.com',
+  emailOptions: {
+    liability: false,
+    medpay: false,
+    uim: false,
+    um: false,
+    excessUmbrella: false,
+  },
+  emailLetterOfRepresentationLienLetter: false,
+
+  medPayAdjusterName: 'Michael Smith',
+  medPayAdjusterPhone: '(312) 555-7721',
+  medPayAdjusterEmail: 'michael.smith@statefarm.com',
+  medPayAdjusterFax: '(312) 555-7722',
+  emailMedPayAdjuster: false,
+  emailIsThereMPorUIM: false,
+  emailMedPayDemand: false,
+
+  medPayLimits: '$5k',
+  medPayLimitsOtherSpecify: '',
+  uimLimitsPerPerson: '100000',
+  uimAdjusterWillNotDiscloseLimits: false,
+  umLimitsPerPerson: '100000',
+  umAdjusterWillNotDiscloseLimits: false,
+  vehiclesOnPolicyForUMOnly: 2,
+  totalUMStackedLimits: '200000',
+  umbrellaSecondaryLiabilityPolicy: 'Yes',
+  emailAdjusterIsThereUmbrellaUIM: false,
+  injuriesNotLargeEnough: false,
+  umbrellaAdjusterWillNotDiscloseLimits: false,
+};
+
+const emptyResidentRelativeInsuranceCoData = {
+  sectionTitle: "Resident Relative Ins. Co #1",
+  formData: {
+    noResidentRelativeInsCo: false,
+    injuriesLargeEnoughToUseResRelUIM: '',
+    insuranceCompany: '',
+    insuranceAddress: '',
+    clientName: '',
+    policyHolderNameResRel: '',
+    policyHolderName: '',
+    hasOwnPolicy: false,
+    claimNumber: '',
+    emailDemandLetter: false,
+    demandLetterSent: false,
+    policyNumber: '',
+    mainInsPhone: '',
+
+    biAdjusterName: '',
+    biAdjusterPhone: '',
+    biAdjusterFax: '',
+    biAdjusterEmail: '',
+    emailOptions: {
+      liability: false,
+      medpay: false,
+      uim: false,
+      um: false,
+      excessUmbrella: false,
+    },
+    emailLetterOfRepresentationLienLetter: false,
+
+    medPayAdjusterName: '',
+    medPayAdjusterPhone: '',
+    medPayAdjusterEmail: '',
+    medPayAdjusterFax: '',
+    emailMedPayAdjuster: false,
+    emailIsThereMPorUIM: false,
+    emailMedPayDemand: false,
+
+    medPayLimits: '',
+    medPayLimitsOtherSpecify: '',
+    uimLimitsPerPerson: '',
+    uimAdjusterWillNotDiscloseLimits: false,
+    umLimitsPerPerson: '',
+    umAdjusterWillNotDiscloseLimits: false,
+    vehiclesOnPolicyForUMOnly: null,
+    totalUMStackedLimits: '',
+    umbrellaSecondaryLiabilityPolicy: '',
+    emailAdjusterIsThereUmbrellaUIM: false,
+    injuriesNotLargeEnough: false,
+    umbrellaAdjusterWillNotDiscloseLimits: false,
+  }
+};
+
 const singleInsuranceSectionEmptyData = {
   sectionTitle: "Client Insurance Company #1",
   formData: {
@@ -193,6 +346,7 @@ export const Empty: Story = {
     clientName: '',
     pageActionsState: 'save',
     insuranceSections: [singleInsuranceSectionEmptyData],
+    relativeInsuranceSections: [emptyResidentRelativeInsuranceCoData],
   },
 };
 

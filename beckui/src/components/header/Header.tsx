@@ -23,7 +23,6 @@ const styles = {
     height: "80px",
     backgroundColor: "var(--white)",
     borderBottom: "1px solid var(--light-grey)",
-    paddingBottom: "10px",
     marginBottom: "20px",
     paddingLeft: "30px",
     paddingRight: "30px",

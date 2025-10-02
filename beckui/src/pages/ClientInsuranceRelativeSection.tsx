@@ -10,6 +10,7 @@ import { Typography } from '../components/typography/Typography';
 import { PageActions } from '../components/page-actions/PageActions';
 
 export interface ClientInsuranceRelativeSectionProps {
+  type: 'insurance' | 'relative';
   caseNumber?: string;
   clientName?: string;
   style?: React.CSSProperties;
@@ -167,10 +168,43 @@ const L = {
 
 };
 
+// Function to generate field configuration from form data
+const generateFieldConfig = (formData: any) => {
+  const fieldMappings = {
+    insuranceCompany: "Insurance Company",
+    insuranceAddress: "Insurance Company Address", 
+    clientName: "Our Client's Name",
+    policyHolderName: "Policy Holder Name",
+    claimNumber: "Claim #",
+    policyNumber: "Policy Number",
+    mainInsPhone: "Main Ins. Phone",
+    biAdjusterName: "BI Adjuster Name",
+    biAdjusterPhone: "BI Adjuster Phone",
+    biAdjusterFax: "BI Adjuster Fax",
+    biAdjusterEmail: "BI Adjuster Email",
+    medPayAdjusterName: "MedPay Adjuster Name",
+    medPayAdjusterPhone: "MedPay Adjuster Phone",
+    medPayAdjusterEmail: "MedPay Adjuster Email",
+    medPayAdjusterFax: "MedPay Adjuster Fax",
+    liabilityLimitsPerPerson: "LIABILITY POLICY LIMITS PER PERSON",
+    uimLimitsPerPerson: "UIM LIMITS PER PERSON",
+    umLimitsPerPerson: "UM LIMITS PER PERSON",
+    vehiclesOnPolicy: "Vehicles on Policy (For UM Only)",
+    totalUmStackedLimits: "Total UM Stacked Limits",
+    umbrellaSecondaryLiabilityPolicy: "UMBRELLA/SECONDARY LIABILITY POLICY?",
+  };
+
+  return Object.keys(fieldMappings).map(valueKey => ({
+    label: fieldMappings[valueKey as keyof typeof fieldMappings],
+    valueKey
+  }));
+};
+
 export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSectionProps> = ({
   formData,
   pageActionsState = 'save',
   sectionTitle,
+  type,
 }) => {
   const insuranceCompanies = [
     { label: 'State Farm' },
@@ -181,6 +215,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
   ];
 
   const isFilled = pageActionsState === 'saved';
+  const fieldConfig = generateFieldConfig(formData);
 
   return (
 
@@ -208,131 +243,17 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
               style={{ width: '238px' }}
           />
 
-          <Input
-            leftLabel={true}
-            label="Insurance Company Address"
-            placeholder=""
-            value={formData?.insuranceAddress || ''}
-            onChange={() => {}}
-            noBorder={isFilled ? true : undefined}
-          />
-
-          <Input
-            leftLabel={true}
-            label="Our Client's Name"
-            placeholder=""
-            value={formData?.clientName || ''}
-            onChange={() => {}}
-            noBorder={isFilled ? true : undefined}
-          />
-
-          <Input
-              leftLabel={true}
-            label="Policy Holder Name"
-              placeholder=""
-              value={formData?.policyHolderName || ''}
-            onChange={() => {}}
-            noBorder={isFilled ? true : undefined}
-          />
-
-          <Input
-              leftLabel={true}
-            label="Claim #"
-              placeholder=""
-              value={formData?.claimNumber || ''}
-            onChange={() => {}}
-            noBorder={isFilled ? true : undefined}
-          />
-
-          <Input
-              leftLabel={true}
-            label="Policy Number"
-              placeholder=""
-              value={formData?.policyNumber || ''}
-            onChange={() => {}}
-            noBorder={isFilled ? true : undefined}
-          />
-
-          <Input
-              leftLabel={true}
-            label="Main Ins. Phone"
-              placeholder=""
-              value={formData?.mainInsPhone || ''}
-            onChange={() => {}}
-            noBorder={isFilled ? true : undefined}
-          />
-
+          {fieldConfig.map(({ label, valueKey }) => (
             <Input
+              key={valueKey}
               leftLabel={true}
-              label="BI Adjuster Name"
+              label={label}
               placeholder=""
-              value={formData?.biAdjusterName || ''}
+              value={(formData as any)?.[valueKey] || ''}
               onChange={() => {}}
               noBorder={isFilled ? true : undefined}
             />
-
-            <Input
-              leftLabel={true}
-              label="BI Adjuster Phone"
-              placeholder=""
-              value={formData?.biAdjusterPhone || ''}
-              onChange={() => {}}
-              noBorder={isFilled ? true : undefined}
-            />
-
-            <Input
-              leftLabel={true}
-              label="BI Adjuster Fax"
-              placeholder=""
-              value={formData?.biAdjusterFax || ''}
-            onChange={() => {}}
-              noBorder={isFilled ? true : undefined}
-          />
-
-          <Input
-              leftLabel={true}
-              label="BI Adjuster Email"
-              placeholder=""
-              value={formData?.biAdjusterEmail || ''}
-            onChange={() => {}}
-            noBorder={isFilled ? true : undefined}
-          />
-
-          <Input
-              leftLabel={true}
-              label="MedPay Adjuster Name"
-              placeholder=""
-              value={formData?.medPayAdjusterName || ''}
-            onChange={() => {}}
-            noBorder={isFilled ? true : undefined}
-          />
-
-          <Input
-              leftLabel={true}
-              label="MedPay Adjuster Phone"
-              placeholder=""
-              value={formData?.medPayAdjusterPhone || ''}
-            onChange={() => {}}
-            noBorder={isFilled ? true : undefined}
-          />
-
-            <Input
-              leftLabel={true}
-              label="MedPay Adjuster Email"
-              placeholder=""
-              value={formData?.medPayAdjusterEmail || ''}
-              onChange={() => {}}
-              noBorder={isFilled ? true : undefined}
-            />
-
-            <Input
-              leftLabel={true}
-              label="MedPay Adjuster Fax"
-              placeholder=""
-              value={formData?.medPayAdjusterFax || ''}
-              onChange={() => {}}
-              noBorder={isFilled ? true : undefined}
-            />
+          ))}
 
             {/* medpay limits section */}
             <div style={{...{display: 'flex', position: 'relative', left: '580px', minWidth: '980px', flexDirection: 'column', alignItems: 'center', width: '100%'}}}>
@@ -403,62 +324,20 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
                     </div>
                   </div>
                 </div>
-              </div>
+            </div>
         </div>
 
-          <Input
-              leftLabel={true}
-              label="LIABILITY POLICY LIMITS PER PERSON"
-              placeholder=""
-              value={formData?.liabilityLimitsPerPerson || ''}
-            onChange={() => {}}
-            noBorder={isFilled ? true : undefined}
-          />
-
-          <Input
-              leftLabel={true}
-              label="UIM LIMITS PER PERSON"
-              placeholder=""
-              value={formData?.uimLimitsPerPerson || ''}
-            onChange={() => {}}
-            noBorder={isFilled ? true : undefined}
-          />
-
+          {fieldConfig.slice(14).map(({ label, valueKey }) => (
             <Input
+              key={valueKey}
               leftLabel={true}
-              label="UM LIMITS PER PERSON"
+              label={label}
               placeholder=""
-              value={formData?.umLimitsPerPerson || ''}
+              value={(formData as any)?.[valueKey] || ''}
               onChange={() => {}}
               noBorder={isFilled ? true : undefined}
             />
-
-            <Input
-              leftLabel={true}
-              label="Vehicles on Policy (For UM Only)"
-              placeholder=""
-              value={formData?.vehiclesOnPolicy || ''}
-              onChange={() => {}}
-              noBorder={isFilled ? true : undefined}
-            />
-
-            <Input
-              leftLabel={true}
-              label="Total UM Stacked Limits"
-              placeholder=""
-              value={formData?.totalUmStackedLimits || ''}
-              onChange={() => {}}
-              noBorder={isFilled ? true : undefined}
-            />
-
-            <Input
-              leftLabel={true}
-              label="UMBRELLA/SECONDARY LIABILITY POLICY?"
-              placeholder=""
-              value={formData?.umbrellaSecondaryLiabilityPolicy || ''}
-              onChange={() => {}}
-              noBorder={isFilled ? true : undefined}
-            />
+          ))}
 
             <div style={{...L.controlGroup, ...{marginTop: -20}}}>
               <div style={L.radioRow}>
