@@ -4,7 +4,6 @@ export interface BaseIconProps {
   size?: number;
   color?: string;
   hoverColor?: string;
-  className?: string;
   style?: React.CSSProperties;
   children: React.ReactNode;
   viewBox?: string;
@@ -16,7 +15,6 @@ export const BaseIcon: React.FC<BaseIconProps> = ({
   size = 20,
   color,
   hoverColor,
-  className = '',
   style = {},
   children,
   viewBox = '0 0 24 24',
@@ -45,7 +43,6 @@ export const BaseIcon: React.FC<BaseIconProps> = ({
       viewBox={viewBox}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
       style={{
         display: 'block',
         flexShrink: 0,

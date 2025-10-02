@@ -9,19 +9,25 @@ export interface HeaderProps {
   type?: 'default' | 'clientDetails';
   subtitle?: string;
   onClose?: () => void;
-  style?: React.CSSProperties;
   width?: string;
 }
 
 const styles = {
   container: {
     display: "flex",
-    alignItems: "flex-start",
+    position: "fixed",
+    zIndex: 100,
+    alignItems: "center",
     justifyContent: "space-between",
-    width: "100%",
+    width: "calc(100vw - 300px)",
+    height: "80px",
+    backgroundColor: "var(--white)",
     borderBottom: "1px solid var(--light-grey)",
     paddingBottom: "10px",
     marginBottom: "20px",
+    paddingLeft: "30px",
+    paddingRight: "30px",
+    boxSizing: "border-box",
   } as React.CSSProperties,
 
   left: {
@@ -36,10 +42,9 @@ const styles = {
   } as React.CSSProperties,
 
   close: {
-    cursor: "pointer",
-    position: "relative",
-    top: 16,
-    color: "var(--middle-grey)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   } as React.CSSProperties,
 
   buttonsWrapper: {
@@ -53,11 +58,10 @@ export const Header: React.FC<HeaderProps> = ({
   subtitle,
   type = 'default',
   onClose,
-  style,
   width,
 }) => {
   return (
-    <div style={{ ...styles.container, ...(width && { width }), ...style }}>
+    <div style={{ ...styles.container, ...(width && { width }) }}>
       <div style={styles.left}>
         <Breadcrumbs section={section} current={current} />
         {subtitle && <span style={styles.subtitle}>{subtitle}</span>}
@@ -82,7 +86,7 @@ export const Header: React.FC<HeaderProps> = ({
       )}
       {onClose && (
         <div style={styles.close} onClick={onClose}>
-          <CloseIcon size={20} />
+          <CloseIcon size={20} color="var(--middle-grey)" hoverColor="var(--secondary-color-hover)" />
         </div>
       )}
     </div>
