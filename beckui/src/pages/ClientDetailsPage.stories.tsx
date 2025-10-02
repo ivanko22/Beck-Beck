@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ClientDetailsPage } from './ClientDetailsPage';
 
 const meta: Meta<typeof ClientDetailsPage> = {
-  title: 'Pages/ClientDetailsPage',
+  title: 'Pages/Client Details',
   component: ClientDetailsPage,
   parameters: {
     layout: 'fullscreen',
@@ -346,7 +346,7 @@ const insuranceSectionData = [
   }
 ];
 
-export const Empty: Story = {
+export const AutoInsuranceEmpty: Story = {
   args: {
     caseNumber: 'Case #2025-0003',
     clientName: '',
@@ -356,7 +356,7 @@ export const Empty: Story = {
   },
 };
 
-export const Adding: Story = {
+export const AutoInsuranceEdit: Story = {
   args: {
     caseNumber: 'Case #2025-0003',
     clientName: 'John Doe',
@@ -366,7 +366,7 @@ export const Adding: Story = {
   },
 };
 
-export const TwoForms: Story = {
+export const AutoInsuranceTwoForms: Story = {
   args: {
     caseNumber: 'Case #2025-0003',
     clientName: 'John Doe',
@@ -376,7 +376,7 @@ export const TwoForms: Story = {
   },
 };
 
-export const Saved: Story = {
+export const AutoInsuranceSaved: Story = {
   args: {
     caseNumber: 'Case #2025-0003',
     clientName: 'John Doe',
@@ -385,11 +385,3 @@ export const Saved: Story = {
   },
 };
 
-export const Edit: Story = {
-  args: {
-    caseNumber: 'Case #2025-0003',
-    clientName: 'John Doe',
-    pageActionsState: 'edit',
-    insuranceSections: insuranceSectionData,
-  },
-};

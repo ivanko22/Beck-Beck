@@ -10,6 +10,7 @@ export interface HeaderProps {
   subtitle?: string;
   onClose?: () => void;
   width?: string;
+  isFixed?: boolean;
 }
 
 const styles = {
@@ -58,9 +59,16 @@ export const Header: React.FC<HeaderProps> = ({
   type = 'default',
   onClose,
   width,
+  isFixed = true,
 }) => {
+  const containerStyle = {
+    ...styles.container,
+    ...(width && { width }),
+    ...(isFixed ? {} : { position: 'relative' as const })
+  };
+
   return (
-    <div style={{ ...styles.container, ...(width && { width }) }}>
+    <div style={containerStyle}>
       <div style={styles.left}>
         <Breadcrumbs section={section} current={current} />
         {subtitle && <span style={styles.subtitle}>{subtitle}</span>}

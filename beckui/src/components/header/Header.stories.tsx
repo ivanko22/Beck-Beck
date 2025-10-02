@@ -23,6 +23,7 @@ export const UserDetails: Story = {
     current: "Cooper Jane",
     subtitle: "Here you can manage internal user",
     width: "1000px",
+    isFixed: false,
   },
 };
 
@@ -32,5 +33,6 @@ export const ClientDetails: Story = {
     current: "Case #2025-0001",
     width: "1200px",
     type: "clientDetails",
+    isFixed: false,
   },
 };
