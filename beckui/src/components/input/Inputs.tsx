@@ -20,6 +20,12 @@ interface InputProps {
     width?: string;
     height?: string;
   };
+  coloredLabel?: {
+    parts: Array<{
+      text: string;
+      color: string;
+    }>;
+  };
 }
 
 const styles = {
@@ -144,6 +150,7 @@ export const Input: React.FC<InputProps> = ({
   noBorder = false,
   leftLabel = false,
   customSize,
+  coloredLabel,
   ...props
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -183,7 +190,7 @@ export const Input: React.FC<InputProps> = ({
   return (
     <div style={{
       ...styles.wrapper,
-      ...(leftLabel && { flexDirection: 'row', alignItems: 'center', gap: '12px' })
+      ...(leftLabel && { flexDirection: 'row', alignItems: 'center', gap: '20px' })
     }}>
 
       <style>
@@ -203,7 +210,17 @@ export const Input: React.FC<InputProps> = ({
           ...(leftLabel && { ...styles.leftLabel }),
           ...(error && { color: 'var(--warning)' })
         }}>
-          {label}
+          {coloredLabel ? (
+            <>
+              {coloredLabel.parts.map((part, index) => (
+                <span key={index} style={{ color: part.color }}>
+                  {part.text}
+                </span>
+              ))}
+            </>
+          ) : (
+            label
+          )}
         </label>
       )}
 

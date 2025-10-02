@@ -80,7 +80,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
           ))}
         </div>
 
-        <div style={L.mainContent}>
+        <div style={{...L.mainContent, ...{marginTop: '0px'}}}>
           {relativeInsuranceSections.map((section, index) => (
             <ClientInsuranceRelativeSection
               type="relative"

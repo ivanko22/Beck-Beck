@@ -57,20 +57,10 @@ export interface ClientInsuranceRelativeSectionProps {
 }
 
 const L = {
-  shell: {
-    display: 'block',
-    fontFamily: 'var(--font-family-base)',
-    color: 'var(--primary-color)',
-    height: '100vh',
-    background: '#fff',
-  } as React.CSSProperties,
-
   main: {
     display: 'flex',
     width: '100%',
-    height: '100vh',
     flexDirection: 'column',
-    overflow: 'auto',
   } as React.CSSProperties,
 
   sectionTitle: {
@@ -99,7 +89,6 @@ const L = {
     display: 'flex',
     flexDirection: 'column' as const,
     alignItems: 'flex-start',
-    paddingTop: '206px',
     paddingLeft: 30,
   } as React.CSSProperties,
 
@@ -109,15 +98,6 @@ const L = {
     gap: 12,
     marginTop: 8,
     marginBottom: 8,
-  } as React.CSSProperties,
-
-  checkboxRow: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: 20,
-    marginTop: 12,
-    marginBottom: 12,
-    flexWrap: 'wrap' as const,
   } as React.CSSProperties,
 
   controlGroup: {
@@ -168,10 +148,8 @@ const L = {
 
 };
 
-// Function to generate field configuration from form data
 const generateFieldConfig = (formData: any) => {
   const fieldMappings = {
-    insuranceCompany: "Insurance Company",
     insuranceAddress: "Insurance Company Address", 
     clientName: "Our Client's Name",
     policyHolderName: "Policy Holder Name",
@@ -186,6 +164,7 @@ const generateFieldConfig = (formData: any) => {
     medPayAdjusterPhone: "MedPay Adjuster Phone",
     medPayAdjusterEmail: "MedPay Adjuster Email",
     medPayAdjusterFax: "MedPay Adjuster Fax",
+
     liabilityLimitsPerPerson: "LIABILITY POLICY LIMITS PER PERSON",
     uimLimitsPerPerson: "UIM LIMITS PER PERSON",
     umLimitsPerPerson: "UM LIMITS PER PERSON",
@@ -220,40 +199,81 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
   return (
 
       <div style={L.main}>
-
         <ClientDetailsTableHeader
+          type={type}
           title={sectionTitle}
-          buttonLabel="Add Another Client Insurance Co Section"
+          buttonLabel={type === 'insurance' ? 'Add Another Client Insurance Co Section' : 'Add Another Client Relative Insurance Co Section'}
           buttonIcon={<PlusIcon size={16}/>}
           onButtonClick={() => {}}
         />
 
         <div style={L.grid}>
           <div style={L.leftColumn}>
-          <BaseDropdown
-            label="Insurance Company"
-              leftLabel={true}
-            noBorder={isFilled ? true : undefined}
-            disabled={isFilled ? true : undefined}
-            type="BaseDropdown"
-              state={formData?.insuranceCompany ? 'selected' : 'default'}
-              value={formData?.insuranceCompany || 'Select Insurance Company'}
-            menuItems={insuranceCompanies}
-            onSelect={() => {}}
-              style={{ width: '238px' }}
-          />
 
-          {fieldConfig.map(({ label, valueKey }) => (
-            <Input
-              key={valueKey}
-              leftLabel={true}
-              label={label}
-              placeholder=""
-              value={(formData as any)?.[valueKey] || ''}
-              onChange={() => {}}
-              noBorder={isFilled ? true : undefined}
-            />
-          ))}
+            {type === 'relative' && (
+              <>
+                <div style={{...{display: 'flex', position: 'relative', left: '124px', flexDirection: 'column', alignItems: 'center', width: '100%', paddingTop: '30px'}}}>
+                  <div style={{display: 'flex', gap: 40}}>
+                    <Typography variant="leftLabel">
+                      Are Injuries Large Enough to<br/> Use Res Rel UIM?
+                    </Typography>
+                    
+                    <div style={{display: 'flex'}}>
+                      <div style={{display: 'flex', gap: 20}}>
+                        <Radio
+                          label="Maybe"
+                          checked={formData?.medPayLimit === 'none' || false}
+                          onChange={() => {}}
+                          disabled={isFilled ? true : undefined}
+                        />
+                        <Radio
+                          label="Yes"
+                          checked={formData?.medPayLimit === '5k' || false}
+                          onChange={() => {}}
+                          disabled={isFilled ? true : undefined}
+                        />
+                        <Radio
+                          label="No"
+                          checked={formData?.medPayLimit === '10k' || false}
+                          onChange={() => {}}
+                          disabled={isFilled ? true : undefined}
+                        />
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+
+            <div style={{display: 'flex', marginTop: -30}}>
+              <BaseDropdown
+                label="Insurance Company"
+                leftLabel={true}
+                noBorder={isFilled ? true : undefined}
+                disabled={isFilled ? true : undefined}
+                type="BaseDropdown"
+                state={formData?.insuranceCompany ? 'selected' : 'default'}
+                value={formData?.insuranceCompany || 'Select Insurance Company'}
+                menuItems={insuranceCompanies}
+                onSelect={() => {}}
+                style={{ width: '238px' }}
+              />
+            </div>
+
+            {fieldConfig
+              .slice(0, -6)
+              .map(({ label, valueKey }) => (
+                <Input
+                  key={valueKey}
+                  leftLabel={true}
+                  label={label}
+                  placeholder=""
+                  value={(formData as any)?.[valueKey] || ''}
+                  onChange={() => {}}
+                  noBorder={isFilled ? true : undefined}
+                />
+            ))}
 
             {/* medpay limits section */}
             <div style={{...{display: 'flex', position: 'relative', left: '580px', minWidth: '980px', flexDirection: 'column', alignItems: 'center', width: '100%'}}}>
@@ -327,17 +347,46 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
             </div>
         </div>
 
-          {fieldConfig.slice(14).map(({ label, valueKey }) => (
-            <Input
-              key={valueKey}
-              leftLabel={true}
-              label={label}
-              placeholder=""
-              value={(formData as any)?.[valueKey] || ''}
-              onChange={() => {}}
-              noBorder={isFilled ? true : undefined}
-            />
-          ))}
+
+          {type === 'insurance' && (
+              <Input
+                label="LIABILITY POLICY LIMITS PER PERSON"
+                leftLabel={true}
+                placeholder=""
+                value={formData?.liabilityLimitsPerPerson || ''}
+                onChange={() => {}}
+                noBorder={isFilled ? true : undefined}
+              />
+          )}
+
+           {fieldConfig.slice(15).map(({ label, valueKey }) => {
+             const coloredLabel = valueKey === 'uimLimitsPerPerson' ? {
+               parts: [
+                 { text: 'UIM', color: 'var(--warning)' },
+                 { text: ' LIMITS', color: 'var(--dark-grey)' },
+                 { text: ' PER PERSON', color: 'var(--warning)' }
+               ]
+             } : valueKey === 'umLimitsPerPerson' ? {
+               parts: [
+                 { text: 'UM', color: 'var(--success)' },
+                 { text: ' LIMITS ', color: 'var(--dark-grey)' },
+                 { text: ' PER PERSON', color: 'var(--warning)' }
+               ]
+             } : undefined;
+
+             return (
+               <Input
+                 key={valueKey}
+                 leftLabel={true}
+                 label={label}
+                 coloredLabel={coloredLabel}
+                 placeholder=""
+                 value={(formData as any)?.[valueKey] || ''}
+                 onChange={() => {}}
+                 noBorder={isFilled ? true : undefined}
+               />
+             );
+           })}
 
             <div style={{...L.controlGroup, ...{marginTop: -20}}}>
               <div style={L.radioRow}>
@@ -345,7 +394,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
                   icon={<EmailIcon size={22}/>}
                   iconPosition="left"
                   size="medium"
-                  label="Email Adjuster: Is There Umbrella / Excess Liability Coverage? "
+                  label={type === 'insurance' ? 'Email Adjuster: Is There Umbrella / Excess Liability Coverage? ' : 'Email Adjuster: Is There MP or UIM? '}
                   onClick={() => {console.log('email adjuster: is there umbrella / excess liability coverage?')}}
                 />
               </div>
@@ -366,7 +415,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
                   icon={<PlusIcon size={16}/>}
                   iconPosition="left"
                   size="medium"
-                  label="Add Another Client Insurance Co Section"
+                  label={type === 'insurance' ? 'Add Another Client Insurance Co Section' : 'Add Another Client Relative Insurance Co Section'}
                   onClick={() => {console.log('add another client insurance co section')}}
                 />
               </div>
@@ -383,7 +432,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
             
           </div>
 
-          <div style={L.rightColumn}>
+          <div style={{...L.rightColumn, paddingTop: type === 'insurance' ? 190 : 286}}>
             <div style={L.controlGroup}>
               <span style={L.radioTitle}>Does Client Have Own Policy?</span>
               
@@ -414,7 +463,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
      
             </div>
 
-            <div style={{...L.controlGroup, ...{paddingTop: 114, marginLeft: '-21px'}}}>
+            <div style={{...L.controlGroup, ...{paddingTop: type === 'insurance' ? 100 : 76, marginLeft: '-21px'}}}>
               <div style={L.radioRow}>
                 <Button
                   icon={<EmailIcon size={22}/>}
@@ -433,7 +482,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
               </div>
             </div>
 
-            <div style={{...L.controlGroup, ...{paddingTop: 286, marginLeft: '-21px'}}}>
+            <div style={{...L.controlGroup, ...{paddingTop: type === 'insurance' ? 286 : 325, marginLeft: '-21px'}}}>
               <div style={{...L.checkboxGroupBorder}}>
                 <div style={{display: 'flex', alignItems: 'flex-start', paddingTop: 32}}>
                   <Button
@@ -529,7 +578,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
               </div>
             </div>
 
-            <div style={{...L.controlGroup, ...{paddingTop: 217}}}>
+            <div style={{...L.controlGroup, ...{paddingTop: type === 'insurance' ? 217 : 136}}}>
               <div style={L.radioRow}>
                 <Checkbox
                     label="Adjuster will not disclose limits"
@@ -550,19 +599,21 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
                 />
               </div>
             </div>
+        
+            {type === 'insurance' && (
+                <div style={{...L.controlGroup, ...{paddingTop: 38}}}>
+                  <div style={L.radioRow}>
+                    <Checkbox
+                        label="Adjuster will not disclose limits"
+                        checked={formData?.demandLetterSent || false}
+                        onChange={() => {}}
+                        disabled={isFilled ? true : undefined}
+                    />
+                  </div>
+                </div>
+              )}
 
-            <div style={{...L.controlGroup, ...{paddingTop: 38}}}>
-              <div style={L.radioRow}>
-                <Checkbox
-                    label="Adjuster will not disclose limits"
-                    checked={formData?.demandLetterSent || false}
-                    onChange={() => {}}
-                    disabled={isFilled ? true : undefined}
-                />
-              </div>
-            </div>
-
-            <div style={{...L.controlGroup, ...{paddingTop: 114}}}>
+            <div style={{...L.controlGroup, ...{paddingTop: type === 'insurance' ? 114 : 194}}}>
               <div style={L.radioRow}>
                 <Checkbox
                     label="Injuries not large enough"

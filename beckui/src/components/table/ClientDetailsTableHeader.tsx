@@ -1,8 +1,10 @@
 import React from 'react';
 import { Typography } from '../typography/Typography';
 import { Button } from '../button/Button';
+import { Checkbox } from '../checkbox/Checkbox';
 
 export interface ClientDetailsTableHeaderProps {
+  type?: 'insurance' | 'relative';
   title: string;
   buttonLabel: string;
   buttonIcon?: React.ReactNode;
@@ -38,6 +40,7 @@ export const ClientDetailsTableHeader: React.FC<ClientDetailsTableHeaderProps> =
   buttonIcon,
   onButtonClick,
   style,
+  type,
 }) => {
   return (
     <div style={{ ...styles.container, ...style }}>
@@ -47,17 +50,29 @@ export const ClientDetailsTableHeader: React.FC<ClientDetailsTableHeaderProps> =
         >
           {title}
         </Typography>
+
+        <div style={{position: 'relative',top: '60px',right: '302px'}}>
+          {type === 'relative' && (
+            <Checkbox
+              label='No Resident Relative Ins. Co'
+              checked={false}
+              onChange={() => {}}
+            />
+          )}
+        </div>
+ 
       </div>
       
-      <div style={styles.buttonContainer}>
+        <div style={styles.buttonContainer}>
         <Button
           label={buttonLabel}
           size="medium"
           icon={buttonIcon}
           iconPosition="left"
           onClick={onButtonClick}
-        />
-      </div>
+          />
+        </div>
+
     </div>
   );
 };

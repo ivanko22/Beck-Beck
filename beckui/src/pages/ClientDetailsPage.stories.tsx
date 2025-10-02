@@ -28,56 +28,61 @@ export default meta;
 type Story = StoryObj<typeof ClientDetailsPage>;
 
 interface ResidentRelativeInsuranceFormData {
-  noResidentRelativeInsCo?: boolean;
-  injuriesLargeEnoughToUseResRelUIM?: 'Maybe' | 'Yes' | 'No' | '';
-  insuranceCompany?: string;
-  insuranceAddress?: string;
-  clientName?: string;
-  policyHolderNameResRel?: string;
-  policyHolderName?: string;
-  claimNumber?: string;
-  policyNumber?: string;
-  mainInsPhone?: string;
-  hasOwnPolicy?: boolean;
-  demandLetterSent?: boolean;
-  emailDemandLetter?: boolean;
+  sectionTitle: string;
+  formData: {
+    noResidentRelativeInsCo?: boolean;
+    injuriesLargeEnoughToUseResRelUIM?: 'Maybe' | 'Yes' | 'No' | '';
+    insuranceCompany?: string;
+    insuranceAddress?: string;
+    clientName?: string;
+    policyHolderNameResRel?: string;
+    policyHolderName?: string;
+    claimNumber?: string;
+    policyNumber?: string;
+    mainInsPhone?: string;
+    hasOwnPolicy?: boolean;
+    demandLetterSent?: boolean;
+    emailDemandLetter?: boolean;
 
-  biAdjusterName?: string;
-  biAdjusterPhone?: string;
-  biAdjusterFax?: string;
-  biAdjusterEmail?: string;
-  emailOptions?: {
-    liability?: boolean;
-    medpay?: boolean;
-    uim?: boolean;
-    um?: boolean;
-    excessUmbrella?: boolean;
+    biAdjusterName?: string;
+    biAdjusterPhone?: string;
+    biAdjusterFax?: string;
+    biAdjusterEmail?: string;
+    emailOptions?: {
+      liability?: boolean;
+      medpay?: boolean;
+      uim?: boolean;
+      um?: boolean;
+      excessUmbrella?: boolean;
+    };
+    emailLetterOfRepresentationLienLetter?: boolean;
+
+    medPayAdjusterName?: string;
+    medPayAdjusterPhone?: string;
+    medPayAdjusterEmail?: string;
+    medPayAdjusterFax?: string;
+    emailMedPayAdjuster?: boolean;
+    emailIsThereMPorUIM?: boolean;
+    emailMedPayDemand?: boolean;
+
+    medPayLimits?: 'None' | '$1K' | '$2,500' | '$5k' | '$10K' | '$25K' | 'Other' | '';
+    medPayLimitsOtherSpecify?: string;
+    uimLimitsPerPerson?: string;
+    uimAdjusterWillNotDiscloseLimits?: boolean;
+    umLimitsPerPerson?: string;
+    umAdjusterWillNotDiscloseLimits?: boolean;
+    vehiclesOnPolicyForUMOnly?: number | null;
+    totalUMStackedLimits?: string;
+    umbrellaSecondaryLiabilityPolicy?: 'Yes' | 'No' | '';
+    emailAdjusterIsThereUmbrellaUIM?: boolean;
+    injuriesNotLargeEnough?: boolean;
+    umbrellaAdjusterWillNotDiscloseLimits?: boolean;
   };
-  emailLetterOfRepresentationLienLetter?: boolean;
-
-  medPayAdjusterName?: string;
-  medPayAdjusterPhone?: string;
-  medPayAdjusterEmail?: string;
-  medPayAdjusterFax?: string;
-  emailMedPayAdjuster?: boolean;
-  emailIsThereMPorUIM?: boolean;
-  emailMedPayDemand?: boolean;
-
-  medPayLimits?: 'None' | '$1K' | '$2,500' | '$5k' | '$10K' | '$25K' | 'Other' | '';
-  medPayLimitsOtherSpecify?: string;
-  uimLimitsPerPerson?: string;
-  uimAdjusterWillNotDiscloseLimits?: boolean;
-  umLimitsPerPerson?: string;
-  umAdjusterWillNotDiscloseLimits?: boolean;
-  vehiclesOnPolicyForUMOnly?: number | null;
-  totalUMStackedLimits?: string;
-  umbrellaSecondaryLiabilityPolicy?: 'Yes' | 'No' | '';
-  emailAdjusterIsThereUmbrellaUIM?: boolean;
-  injuriesNotLargeEnough?: boolean;
-  umbrellaAdjusterWillNotDiscloseLimits?: boolean;
 }
 
 const residentRelativeInsuranceCoData: ResidentRelativeInsuranceFormData = {
+  sectionTitle: "Resident Relative Ins. Co #1",
+  formData: {
   noResidentRelativeInsCo: false,
   injuriesLargeEnoughToUseResRelUIM: 'Yes',
   insuranceCompany: 'State Farm Insurance',
@@ -125,6 +130,7 @@ const residentRelativeInsuranceCoData: ResidentRelativeInsuranceFormData = {
   emailAdjusterIsThereUmbrellaUIM: false,
   injuriesNotLargeEnough: false,
   umbrellaAdjusterWillNotDiscloseLimits: false,
+  }
 };
 
 const emptyResidentRelativeInsuranceCoData = {
@@ -354,22 +360,23 @@ export const Adding: Story = {
   args: {
     caseNumber: 'Case #2025-0003',
     clientName: 'John Doe',
-    pageActionsState: 'save',
+    pageActionsState: 'edit',
     insuranceSections: [insuranceSectionData[0]],
+    relativeInsuranceSections: [residentRelativeInsuranceCoData],
   },
 };
-
 
 export const TwoForms: Story = {
   args: {
     caseNumber: 'Case #2025-0003',
     clientName: 'John Doe',
-    pageActionsState: 'save',
+    pageActionsState: 'edit',
     insuranceSections: insuranceSectionData.slice(0, 2),
+    relativeInsuranceSections: [residentRelativeInsuranceCoData],
   },
 };
 
-export const Filled: Story = {
+export const Saved: Story = {
   args: {
     caseNumber: 'Case #2025-0003',
     clientName: 'John Doe',

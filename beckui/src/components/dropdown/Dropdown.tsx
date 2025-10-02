@@ -142,7 +142,7 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
 
   const leftLabelWrapper: React.CSSProperties = {
     position: 'relative',
-    right: '164px',
+    right: '167px',
     bottom: '-34px',
   };
 

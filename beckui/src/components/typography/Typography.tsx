@@ -33,6 +33,7 @@ const styles: Record<NonNullable<TypographyProps['variant']>, React.CSSPropertie
   leftLabel: {
     fontSize: '16px',
     fontWeight: 500,
+    textAlign: 'right',
     color: 'var(--dark-grey)',
   },
 };
