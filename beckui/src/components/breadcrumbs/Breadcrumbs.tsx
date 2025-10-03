@@ -5,16 +5,19 @@ export interface BreadcrumbsProps {
   current?: string;
   href?: string;
   onSectionClick?: () => void;
-  style?: React.CSSProperties;
 }
 
 const styles: Record<string, React.CSSProperties> = {
+  nav: {
+    paddingTop: "6px",
+    display: "flex", 
+    alignItems: "center"
+  },
   section: {
     fontSize: '28px',
     fontWeight: 500,
     color: "var(--primary-color)",
     textDecoration: "none",
-    paddingBottom: "6px",
     cursor: "pointer",
   },
 
@@ -34,10 +37,9 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   section,
   current,
   href,
-  style,
 }) => {
   return (
-    <nav style={{ display: "flex", alignItems: "center", ...style }}>
+    <nav style={{ ...styles.nav }}>
       <span style={styles.section}>{section}</span>
 
       {current && (

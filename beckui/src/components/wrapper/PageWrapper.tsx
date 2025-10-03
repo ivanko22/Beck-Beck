@@ -1,13 +1,22 @@
 import React from 'react';
 
 interface PageWrapperProps {
+  type?: 'contentWrapper' | 'content';
   background?: 'white' | 'gray' | 'darkBlue' | 'custom';
   customBackgroundColor?: string;
   padding?: string;
   center?: boolean;
   children?: React.ReactNode;
   style?: React.CSSProperties;
-}
+};
+
+const contentWrapperStyle: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '20px',
+  marginTop: '80px',
+  padding: '28px 32px',
+};
 
 const backgroundMap: Record<string, string> = {
   white: '#ffffff',
@@ -16,6 +25,7 @@ const backgroundMap: Record<string, string> = {
 };
 
 export const PageWrapper: React.FC<PageWrapperProps> = ({
+  type,
   background = 'white',
   customBackgroundColor,
   padding = 0,
@@ -39,7 +49,7 @@ export const PageWrapper: React.FC<PageWrapperProps> = ({
 
   return (
     <div
-      style={wrapperStyle}
+      style={type === 'contentWrapper' ? contentWrapperStyle : wrapperStyle}
     >
         {children}
     </div>

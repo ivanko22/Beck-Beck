@@ -250,8 +250,8 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
               <BaseDropdown
                 label="Insurance Company"
                 leftLabel={true}
-                noBorder={isFilled ? true : undefined}
-                disabled={isFilled ? true : undefined}
+                // noBorder={isFilled ? true : undefined}
+                disabled={pageActionsState === 'saved'}
                 type="BaseDropdown"
                 state={formData?.insuranceCompany ? 'selected' : 'default'}
                 value={formData?.insuranceCompany || 'Select Insurance Company'}
@@ -271,7 +271,8 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
                   placeholder=""
                   value={(formData as any)?.[valueKey] || ''}
                   onChange={() => {}}
-                  noBorder={isFilled ? true : undefined}
+                  // noBorder={isFilled ? true : undefined}
+                  disabled={pageActionsState === 'saved'}
                 />
             ))}
 
@@ -340,6 +341,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
                         onChange={() => {}}
                         size="large"
                         customSize={{ width: '440px' }}
+                        disabled={pageActionsState === 'saved'}
                       />
                     </div>
                   </div>
@@ -355,7 +357,8 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
                 placeholder=""
                 value={formData?.liabilityLimitsPerPerson || ''}
                 onChange={() => {}}
-                noBorder={isFilled ? true : undefined}
+                // noBorder={isFilled ? true : undefined}
+                disabled={pageActionsState === 'saved'}
               />
           )}
 
@@ -383,7 +386,8 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
                  placeholder=""
                  value={(formData as any)?.[valueKey] || ''}
                  onChange={() => {}}
-                 noBorder={isFilled ? true : undefined}
+                //  noBorder={isFilled ? true : undefined}
+                disabled={pageActionsState === 'saved'}
                />
              );
            })}

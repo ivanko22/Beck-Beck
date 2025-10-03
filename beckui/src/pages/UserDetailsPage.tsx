@@ -5,6 +5,7 @@ import { BaseDropdown } from '../components/dropdown/Dropdown';
 import { Input } from '../components/input/Inputs';
 import { Checkbox } from '../components/checkbox/Checkbox';
 import { PageActions } from '../components/page-actions/PageActions';
+import { PageWrapper } from '../components/wrapper/PageWrapper';
 
 type TeamAccess = {
   intake: boolean;
@@ -55,10 +56,7 @@ const L = {
     width: 'calc(100vw - 300px)',
     height: '100vh',
     flexDirection: 'column',
-    padding: '28px 32px',
     marginLeft: 300,
-    flex: 1,
-    minWidth: 0,
     boxSizing: 'border-box',
     overflow: 'auto',
   } as React.CSSProperties,
@@ -145,120 +143,128 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
           onClose={() => onCancel?.()}
         />
 
-        <div style={L.sectionTitle}>User Information</div>
+        <PageWrapper type="contentWrapper">
 
-        <div style={L.grid}>
-          <BaseDropdown
-            label="User"
-            noBorder={noBorder}
-            disabled={noBorder}
-            type="BaseDropdown"
-            state={selectedUser === 'Select User' ? 'default' : 'selected'}
-            value={selectedUser}
-            menuItems={users}
-            onSelect={(label) => setSelectedUser(label)}
-          />
+          <div style={L.sectionTitle}>User Information</div>
 
-          <BaseDropdown
-            label="User Role"
-            noBorder={noBorder}
-            disabled={noBorder}
-            type="BaseDropdown"
-            state={selectedRole === 'Select User Role' ? 'default' : 'selected'}            
-            value={selectedRole}
-            menuItems={roles}
-            onSelect={(label) => setSelectedRole(label)}
-          />
+          <div style={L.grid}>
+            <BaseDropdown
+              label="User"
+              // noBorder={noBorder}
+              disabled={noBorder}
+              type="BaseDropdown"
+              state={selectedUser === 'Select User' ? 'default' : 'selected'}
+              value={selectedUser}
+              menuItems={users}
+              onSelect={(label) => setSelectedUser(label)}
+            />
 
-          <Input
-            label="First Last Name"
-            placeholder="First Last Name" 
-            value={firstLast} 
-            onChange={(e) => setFirstLast(e.target.value)}
-            noBorder={pageActionsState === 'saved'}
-          />
+            <BaseDropdown
+              label="User Role"
+              // noBorder={noBorder}
+              disabled={noBorder}
+              type="BaseDropdown"
+              state={selectedRole === 'Select User Role' ? 'default' : 'selected'}            
+              value={selectedRole}
+              menuItems={roles}
+              onSelect={(label) => setSelectedRole(label)}
+            />
 
-          <div style={L.row}>
-            <Checkbox
-              label="Still Working Here"
-              checked={stillWorking}
-              onChange={setStillWorking}
+            <Input
+              label="First Last Name"
+              placeholder="First Last Name" 
+              value={firstLast} 
+              onChange={(e) => setFirstLast(e.target.value)}
+              // noBorder={pageActionsState === 'saved'}
+              disabled={pageActionsState === 'saved'}
+            />
+
+            <div style={L.row}>
+              <Checkbox
+                label="Still Working Here"
+                checked={stillWorking}
+                onChange={setStillWorking}
+                disabled={pageActionsState === 'saved'}
+
+              />
+            </div>
+
+            <Input 
+              label="Email"
+              placeholder="Email" 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)}
+              // noBorder={pageActionsState === 'saved'}
+              disabled={pageActionsState === 'saved'}
+            />
+
+            <Input
+              label="Password"
+              inputType="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              //noBorder={pageActionsState === 'saved'}
               disabled={pageActionsState === 'saved'}
             />
           </div>
 
-          <Input 
-            label="Email"
-            placeholder="Email" 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)}
-            noBorder={pageActionsState === 'saved'}
+          <div style={L.sectionTitle}>Access to Team Files</div>
+
+          <div style={{ ...L.row, flexWrap: 'wrap', gap: 28 }}>
+            <Checkbox
+              label="Intake & Case Review"
+              checked={teamFiles.intake}
+              onChange={(n) => toggleFile('intake', n)}
+              disabled={pageActionsState === 'saved'}
+            />
+            <Checkbox
+              label="Medical Records & Liens"
+              checked={teamFiles.medical}
+              onChange={(n) => toggleFile('medical', n)}
+              disabled={pageActionsState === 'saved'}
+            />
+            <Checkbox
+              label="Litigation Support"
+              checked={teamFiles.litigation}
+              onChange={(n) => toggleFile('litigation', n)}
+              disabled={pageActionsState === 'saved'}
+            />
+            <Checkbox
+              label="Settlement & Negotiations"
+              checked={teamFiles.settlement}
+              onChange={(n) => toggleFile('settlement', n)}
+              disabled={pageActionsState === 'saved'}
+            />
+          </div>
+
+          <div style={{ ...L.row, marginTop: 12 }}>
+            <Checkbox
+              label="Select All"
+              checked={Object.values(teamFiles).every(Boolean)}
+              onChange={selectAll}
+              disabled={pageActionsState === 'saved'}
+            />
+          </div>
+
+          <PageActions
+            type={pageActionsState}
+            onSave={() => {
+              onSave?.({
+                user: selectedUser,
+                role: selectedRole,
+                firstLast,
+                email,
+                stillWorking,
+                teamFiles,
+              });
+            }}
+            onCancel={onCancel}
+            onEdit={() => console.log('Edit user')}
+            onRemove={() => console.log('Remove user')}
           />
 
-          <Input
-            label="Password"
-            inputType="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            noBorder={pageActionsState === 'saved'}
-          />
-        </div>
-
-        <div style={L.sectionTitle}>Access to Team Files</div>
-
-        <div style={{ ...L.row, flexWrap: 'wrap', gap: 28 }}>
-          <Checkbox
-            label="Intake & Case Review"
-            checked={teamFiles.intake}
-            onChange={(n) => toggleFile('intake', n)}
-            disabled={pageActionsState === 'saved'}
-          />
-          <Checkbox
-            label="Medical Records & Liens"
-            checked={teamFiles.medical}
-            onChange={(n) => toggleFile('medical', n)}
-            disabled={pageActionsState === 'saved'}
-          />
-          <Checkbox
-            label="Litigation Support"
-            checked={teamFiles.litigation}
-            onChange={(n) => toggleFile('litigation', n)}
-            disabled={pageActionsState === 'saved'}
-          />
-          <Checkbox
-            label="Settlement & Negotiations"
-            checked={teamFiles.settlement}
-            onChange={(n) => toggleFile('settlement', n)}
-            disabled={pageActionsState === 'saved'}
-          />
-        </div>
-
-        <div style={{ ...L.row, marginTop: 12 }}>
-          <Checkbox
-            label="Select All"
-            checked={Object.values(teamFiles).every(Boolean)}
-            onChange={selectAll}
-            disabled={pageActionsState === 'saved'}
-          />
-        </div>
-
-        <PageActions
-          type={pageActionsState}
-          onSave={() => {
-            onSave?.({
-              user: selectedUser,
-              role: selectedRole,
-              firstLast,
-              email,
-              stillWorking,
-              teamFiles,
-            });
-          }}
-          onCancel={onCancel}
-          onEdit={() => console.log('Edit user')}
-          onRemove={() => console.log('Remove user')}
-        />
+        </PageWrapper>
       </div>
     </div>
   );

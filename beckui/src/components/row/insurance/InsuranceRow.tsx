@@ -50,6 +50,7 @@ export const InsuranceRow: React.FC<InsuranceRowProps> = (props) => {
           onChange={(e) => onCompanyNameChange?.(e.target.value)} 
           placeholder="Enter company name" 
           active={state === 'adding' || state === 'edit'}
+          disabled={state === 'saved'}
         />
 
         <Input 
@@ -57,6 +58,7 @@ export const InsuranceRow: React.FC<InsuranceRowProps> = (props) => {
           customSize={{ width: '100%' }} 
           onChange={(e) => onMailAddressChange?.(e.target.value)} 
           placeholder="Enter mail address" 
+          disabled={state === 'saved'}
         />
 
         <Input 
@@ -64,6 +66,7 @@ export const InsuranceRow: React.FC<InsuranceRowProps> = (props) => {
           customSize={{ width: '100%' }}        
           onChange={(e) => onFaxChange?.(e.target.value)}        
           placeholder="Enter fax" 
+          disabled={state === 'saved'}
         />
 
         <Input 
@@ -71,6 +74,7 @@ export const InsuranceRow: React.FC<InsuranceRowProps> = (props) => {
           customSize={{ width: '100%' }}      
           onChange={(e) => onEmailChange?.(e.target.value)}      
           placeholder="Enter email" 
+          disabled={state === 'saved'}
         />
 
         { (
@@ -89,7 +93,7 @@ export const InsuranceRow: React.FC<InsuranceRowProps> = (props) => {
         
         <div style={{ paddingLeft: '26px' }}>
           <PageActions 
-            disabledButton={state === 'edit' || state === 'adding'} 
+            type={state === 'edit' || state === 'adding' ? 'edit' : 'save'}
           />
         </div>
         }

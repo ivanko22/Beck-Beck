@@ -33,11 +33,10 @@ const styles = {
   left: {
     display: "flex",
     flexDirection: "column",
-    gap: "4px",
   } as React.CSSProperties,
 
   subtitle: {
-    fontSize: "16px",
+    fontSize: "15px",
     color: "var(--middle-grey)",
   } as React.CSSProperties,
 
