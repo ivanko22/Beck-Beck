@@ -5,6 +5,7 @@ import { InsuranceRow } from '../components/row/insurance/InsuranceRow';
 import { TableHeader } from '../components/table/TableHeader';
 import { Button } from '../components/button/Button';
 import { PlusIcon } from '../components/icons/index';
+import { PageWrapper } from '../components/wrapper/PageWrapper';
 
 export interface InsuranceCompany {
   id: number;
@@ -35,10 +36,7 @@ const L = {
     width: 'calc(100vw - 300px)',
     height: '100vh',
     flexDirection: 'column',
-    padding: '28px 32px',
     marginLeft: 300,
-    flex: 1,
-    minWidth: 0,
     boxSizing: 'border-box',
     overflow: 'auto',
   } as React.CSSProperties,
@@ -67,40 +65,43 @@ export const AutoInsuranceCompanies: React.FC<AutoInsuranceCompaniesProps> = ({
           current=""
         />
 
-        <TableHeader
-          columns={[{
-            label: 'Company Name', 
-            style: { marginLeft: '17px' }}, 
-            { label: 'Mail Address', style: { marginLeft: '17px' }}, 
-            { label: 'Fax', style: { marginLeft: '17px' }}, 
-            { label: 'Email', style: { marginLeft: '17px' }}, 
-          ]}
-          template="2.7fr 2.5fr 1fr 2fr 40px"
-          activeColumn={0}
-          noBorder={true}
-        />
-
-        {companies.map((company) => (
-          <InsuranceRow
-            key={company.id}
-            companyName={company.companyName}
-            mailAddress={company.mailAddress}
-            fax={company.fax}
-            email={company.email}
-            state={company.state}
+        <PageWrapper type="contentWrapper">
+          <TableHeader
+            columns={[{
+              label: 'Company Name', 
+              style: { marginLeft: '17px'}}, 
+              { label: 'Mail Address', style: { marginLeft: '17px' }}, 
+              { label: 'Fax', style: { marginLeft: '17px' }}, 
+              { label: 'Email', style: { marginLeft: '17px' }}, 
+            ]}
+            template="2.7fr 2.5fr 1fr 2fr 40px"
+            activeColumn={0}
+            noBorder={true}
           />
-        ))}
 
-      {state === 'saved' &&
-        <Button
-          label="Add Insurance Company"
-          size='small'
-          color='var(--middle-grey)'
-          icon= {<PlusIcon size={22}/>}
-          iconPosition= 'left'
-          onClick={() => {}}
-        />}
-      </div>
+          {companies.map((company) => (
+            <InsuranceRow
+              key={company.id}
+              companyName={company.companyName}
+              mailAddress={company.mailAddress}
+              fax={company.fax}
+              email={company.email}
+              state={company.state}
+            />
+          ))}
+
+          {state === 'saved' &&
+            <Button
+              label="Add Insurance Company"
+              size='small'
+              color='var(--middle-grey)'
+              icon= {<PlusIcon size={22}/>}
+              iconPosition= 'left'
+              onClick={() => {}}
+            />}
+          </PageWrapper>
+
+        </div>
       
     </div>
   );

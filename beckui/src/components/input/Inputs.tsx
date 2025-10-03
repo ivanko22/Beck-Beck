@@ -52,7 +52,7 @@ const styles = {
 
   input: {
     fontFamily: 'var(--font-family-base)',
-    fontWeight: 400,
+    fontWeight: 500,
     border: '1px solid var(--light-grey)',
     borderRadius: '2px',
     padding: '0 12px',
@@ -75,7 +75,7 @@ const styles = {
   },
 
   inputDisabled: {
-    color: 'var(--middle-grey)',
+    color: 'var(--dark-grey)',
     cursor: 'not-allowed',
     borderColor: 'var(--light-grey)',
   },
@@ -180,7 +180,6 @@ export const Input: React.FC<InputProps> = ({
     ...(error && styles.inputError),
     ...(disabled && styles.inputDisabled),
     ...(noBorder && styles.inputNoBorder),
-    ...(String(currentValue).trim() !== '' && { fontWeight: 400 }),
     ...(customSize && {
       ...(customSize.width && { width: customSize.width }),
       ...(customSize.height && { height: customSize.height }),

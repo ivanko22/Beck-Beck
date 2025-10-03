@@ -7,7 +7,8 @@ import { TemplateRowItem } from '../components/row/insurance/TemplateLibTableRow
 import { TemplateRow, TemplateLibraryProps, defaultRows } from '../components/table/Types';
 import { PageActions } from '../components/page-actions/PageActions';
 import { Input } from '../components/input/Inputs';
-
+import { Spacer } from '../components/spacer/Spacer';
+import { PageWrapper } from '../components/wrapper/PageWrapper';
 const L = {
   shell: {
     display: 'block',
@@ -22,10 +23,7 @@ const L = {
     width: 'calc(100vw - 300px)',
     height: '100vh',
     flexDirection: 'column',
-    padding: '28px 32px',
     marginLeft: 300,
-    flex: 1,
-    minWidth: 0,
     boxSizing: 'border-box',
     overflow: 'auto',
   } as React.CSSProperties,
@@ -56,7 +54,8 @@ export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({
   const [data, setData] = useState<TemplateRow[]>(seeded);
 
   return (
-    <div style={L.shell}>
+    // <div style={L.shell}>
+    <PageWrapper background="white">  
       <Navigation
         userEmail="ivankordonets@gmail.com"
         dropdownMenuItems={[{ label: 'Profile' }, { label: 'Settings' }, { label: 'Sign out' }]}
@@ -71,52 +70,54 @@ export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({
           onClose={() => onCancel?.()}
         />
 
-        <table style={L.table}>
-          <TableHeader
-            template="4fr 1fr 1fr 1fr"
+        <PageWrapper type="contentWrapper">
+          <table style={L.table}>
+            <TableHeader
+              template="4fr 1fr 1fr 1fr"
 
-            columns={[
-              {label: "Email / Fax Template Name"},
-              {label: "Email", style: { left: "6px" }},
-              {label: "Text", style: { left: "6px" }}, 
-              { label: "PDF for eFax / Mail", style: { right: "36px" } }
-            ]}
+              columns={[
+                {label: "Email / Fax Template Name"},
+                {label: "Email", style: { left: "6px" }},
+                {label: "Text", style: { left: "6px" }}, 
+                { label: "PDF for eFax / Mail", style: { right: "36px" } }
+              ]}
+            />
+
+            <tbody>
+              {data.map(row => (
+                <TemplateRowItem
+                  key={row.id}
+                  row={row}
+                  disabled={pageActionsState === 'saved'}
+                  saved={pageActionsState === 'saved'}
+                  onChange={(next) => setData(prev => prev.map(r => (r.id === next.id ? next : r)))}
+                />
+              ))}
+            </tbody>
+          </table>
+
+          <Input
+            inputType="textarea"
+            placeholder="Send Medical Records Request to Provider"
+            label="Send Medical Records Request to Provider"
+            value={textareaText}
+            disabled={pageActionsState === 'save'}
+            customSize={{
+              width: '100%',
+              height: '100px',
+            }}
           />
 
-          <tbody>
-            {data.map(row => (
-              <TemplateRowItem
-                key={row.id}
-                row={row}
-                disabled={pageActionsState === 'saved'}
-                saved={pageActionsState === 'saved'}
-                onChange={(next) => setData(prev => prev.map(r => (r.id === next.id ? next : r)))}
-              />
-            ))}
-          </tbody>
-        </table>
-
-        <Input
-          inputType="textarea"
-          placeholder="Send Medical Records Request to Provider"
-          label="Send Medical Records Request to Provider"
-          value={textareaText}
-          disabled={pageActionsState === 'save'}
-          customSize={{
-            width: '100%',
-            height: '100px',
-          }}
-        />
-
-        <PageActions
-          type={pageActionsState}
-          onSave={() => onSave?.(data)}
-          onCancel={onCancel}
-          onEdit={() => console.log('Edit templates')}
-          onRemove={() => console.log('Remove templates')}
-        />
+          <PageActions
+            type={pageActionsState}
+            onSave={() => onSave?.(data)}
+            onCancel={onCancel}
+            onEdit={() => console.log('Edit templates')}
+            onRemove={() => console.log('Remove templates')}
+          />
+        </PageWrapper>
         
       </div>
-    </div>
+    </PageWrapper>
   );
 };
