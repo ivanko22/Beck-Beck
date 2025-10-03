@@ -250,7 +250,6 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
               <BaseDropdown
                 label="Insurance Company"
                 leftLabel={true}
-                // noBorder={isFilled ? true : undefined}
                 disabled={pageActionsState === 'saved'}
                 type="BaseDropdown"
                 state={formData?.insuranceCompany ? 'selected' : 'default'}
@@ -271,12 +270,10 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
                   placeholder=""
                   value={(formData as any)?.[valueKey] || ''}
                   onChange={() => {}}
-                  // noBorder={isFilled ? true : undefined}
                   disabled={pageActionsState === 'saved'}
                 />
             ))}
 
-            {/* medpay limits section */}
             <div style={{...{display: 'flex', position: 'relative', left: '580px', minWidth: '980px', flexDirection: 'column', alignItems: 'center', width: '100%'}}}>
               <div style={L.radioRow}>
                 <Typography variant="leftLabel">MedPay Limits</Typography>
@@ -357,7 +354,6 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
                 placeholder=""
                 value={formData?.liabilityLimitsPerPerson || ''}
                 onChange={() => {}}
-                // noBorder={isFilled ? true : undefined}
                 disabled={pageActionsState === 'saved'}
               />
           )}
@@ -379,15 +375,14 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
 
              return (
                <Input
-                 key={valueKey}
-                 leftLabel={true}
-                 label={label}
-                 coloredLabel={coloredLabel}
-                 placeholder=""
-                 value={(formData as any)?.[valueKey] || ''}
-                 onChange={() => {}}
-                //  noBorder={isFilled ? true : undefined}
-                disabled={pageActionsState === 'saved'}
+                  key={valueKey}
+                  leftLabel={true}
+                  label={label}
+                  coloredLabel={coloredLabel}
+                  placeholder=""
+                  value={(formData as any)?.[valueKey] || ''}
+                  onChange={() => {}}
+                  disabled={pageActionsState === 'saved'}
                />
              );
            })}

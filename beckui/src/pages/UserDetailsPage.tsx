@@ -150,7 +150,6 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
           <div style={L.grid}>
             <BaseDropdown
               label="User"
-              // noBorder={noBorder}
               disabled={noBorder}
               type="BaseDropdown"
               state={selectedUser === 'Select User' ? 'default' : 'selected'}
@@ -161,7 +160,6 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
 
             <BaseDropdown
               label="User Role"
-              // noBorder={noBorder}
               disabled={noBorder}
               type="BaseDropdown"
               state={selectedRole === 'Select User Role' ? 'default' : 'selected'}            
@@ -175,7 +173,6 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
               placeholder="First Last Name" 
               value={firstLast} 
               onChange={(e) => setFirstLast(e.target.value)}
-              // noBorder={pageActionsState === 'saved'}
               disabled={pageActionsState === 'saved'}
             />
 
@@ -194,7 +191,6 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
               placeholder="Email" 
               value={email} 
               onChange={(e) => setEmail(e.target.value)}
-              // noBorder={pageActionsState === 'saved'}
               disabled={pageActionsState === 'saved'}
             />
 
@@ -204,7 +200,6 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              //noBorder={pageActionsState === 'saved'}
               disabled={pageActionsState === 'saved'}
             />
           </div>
