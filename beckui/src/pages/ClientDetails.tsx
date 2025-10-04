@@ -10,23 +10,11 @@ import { BaseDropdown } from '../components/dropdown/Dropdown';
 import { Checkbox } from '../components/checkbox/Checkbox';
 import { Radio } from '../components/radiobutton/Radiobutton';
 import { ClientDetailsTableHeader } from '../components/table/ClientDetailsTableHeader';
-import { Spacer } from '../components/spacer/Spacer';
+import { PoliceIcon } from '../components/icons/PoliceIcon';
+import { EmailIcon } from '../components/icons/EmailIcon';
+import { Button } from '../components/button/Button';
 
 const L = {
-  // shell: {
-  //   display: 'block',
-  //   color: 'var(--primary-color)',
-  //   background: '#fff',
-  // } as React.CSSProperties,
-
-  // main: {
-  //   display: 'flex',
-  //   width: 'calc(100vw - 300px)',
-  //   flexDirection: 'column',
-  //   marginLeft: 300,
-  //   boxSizing: 'border-box',
-  // } as React.CSSProperties,
-
   caseOverviewCard: {
     display: 'flex',
     flexDirection: 'row',
@@ -92,6 +80,13 @@ const L = {
     paddingBottom: 10,
   } as React.CSSProperties,
 
+  InputsMedicalRow: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    gap: '40px',
+  } as React.CSSProperties,
+
   InputsRadioRow: {
     display: 'flex',
     height: '60px',
@@ -115,6 +110,16 @@ interface ClientDetailsPageProps {
   pageActionsState?: 'save' | 'saved' | 'edit';
   insuranceSections?: InsuranceSection[];
   relativeInsuranceSections?: InsuranceSection[];
+  formData?: {
+    ongoingTreatment?: boolean;
+    treatmentCompleted?: boolean;
+    emergencyRoomVisit?: boolean;
+    vehicleAmbulance1?: boolean;
+    vehicleAmbulance2?: boolean;
+    helicopterAirAmbulance1?: boolean;
+    helicopterAirAmbulance2?: boolean;
+    [key: string]: any;
+  };
 }
 
 export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
@@ -122,6 +127,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
   clientName,
   insuranceSections = [],
   pageActionsState = 'save',
+  formData = {},
 }) => {
 
   const progressPercent = 5.6;
@@ -143,6 +149,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
 
         <Wrapper type="contentWrapper">
 
+          {/* Case overview */}
           <Typography variant="leftLabel" style={{ textAlign: 'left' }}>Case Overview</Typography>
           <Card style={L.caseOverviewCard}>
             <div style={L.caseOverviewLeftSide}>
@@ -217,7 +224,10 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
             </div>
           </Card>
 
-          <Typography style={{ textAlign: 'left' }} variant="leftLabel">Client Information</Typography>
+          {/* Client Information */}
+          <Typography style={{ textAlign: 'left' }} variant="leftLabel">
+            Client Information
+          </Typography>
 
           <div style={{ ...L.InputsRow, width: 'auto' }}>
             <BaseDropdown
@@ -336,7 +346,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
               <Input
                 placeholder="Other Clients in Crash"
                 size="large"
-                customSize={{ width: '430px' }}
+                customSize={{ width: '440px' }}
               />
 
               <div style={{ marginTop: '30px', width: '440px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -437,57 +447,125 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
               inputType="textarea"
               placeholder="Case Plan"
               size="large"
-              customSize={{ width: '600px', height: '120px' }}
+              customSize={{ width: '560px', height: '120px' }}
             />
           </div>
 
-          <Typography variant="leftLabel" style={{ textAlign: 'left' }}>Medical & Treatment</Typography>
-          
+          {/* Medical & Treatment */}
           <ClientDetailsTableHeader
             type="medical"
             title="Medical & Treatment"
             buttonLabel={['Order Police Report', 'Email AIC to Contact Client']}
-            buttonIcon={['police', 'email']}
+            buttonIcon={[<PoliceIcon size={24} />, <EmailIcon size={20} />]}
           />
+          
+          <Card style={{ marginTop: '0px', gap: '36px', paddingBottom: '36px' }}>
+            <Typography variant="titleSmall" style={{ marginBottom: '-16px' }}>
+              Current Status
+            </Typography>
 
-          <Card style={L.caseOverviewCard}>
+            <div style={{ ...L.InputsMedicalRow }}>
+              <Checkbox
+                label="Ongoing Treatment"
+                checked={formData?.ongoingTreatment || false}
+                onChange={() => {}}
+              />
+              <Checkbox
+                label="Treatment Completed"
+                checked={formData?.treatmentCompleted || false}
+                onChange={() => {}}
+              />
+              <Checkbox
+                label="Emergency Room Visit"
+                checked={formData?.emergencyRoomVisit || false}
+                onChange={() => {}}
+              />
+              <Checkbox
+                label="Vehicle Ambulance 1"
+                checked={formData?.vehicleAmbulance1 || false}
+                onChange={() => {}}
+              />
+            </div>
 
-            <div style={{ ...L.InputsRow, width: '100%', padding: '0 20px' }}>
-              <Input
-                placeholder="Incident Date"
-                size="large"
-                customSize={{ width: '150px' }}
+            <div style={{ ...L.InputsMedicalRow}}>
+              <Checkbox
+                label="Vehicle Ambulance 2"
+                checked={formData?.vehicleAmbulance2 || false}
+                onChange={() => {}}
+              />
+              <Checkbox
+                label="Helicopter Air Ambulance - 1"
+                checked={formData?.helicopterAirAmbulance1 || false}
+                onChange={() => {}}
+              />
+              <Checkbox
+                label="Helicopter Air Ambulance - 2"
+                checked={formData?.helicopterAirAmbulance2 || false}
+                onChange={() => {}}
+              />
+            </div>
+
+            <div style={ { ...L.InputsMedicalRow, alignItems: 'flex-end' }}>
+              <BaseDropdown
+                type="BaseDropdown"
+                label="Police Department"
+                value="Missouri Highway Patrol"
+                state='selected'
+                menuItems={[
+                  { label: 'Missouri Highway Patrol' },
+                  { label: 'Illinois State Police' },
+                  { label: 'California Highway Patrol' },
+                ]}
+                onSelect={(item) => {
+                  console.log(item);
+                }}
               />
 
               <Input
-                placeholder="Medical Bills"
+                placeholder="Accident Location"
                 size="large"
-                customSize={{ width: '170px' }}
+                customSize={{ width: '400px' }}
               />
 
-              <Input
-                placeholder="Total Liability PP"
-                size="large"
-                customSize={{ width: '170px' }}
-              />
-              
-              <Input
-                placeholder="Total UM PP"
-                size="large"
-                customSize={{ width: '170px' }}
+              <div style={{ display: 'flex', gap: '20px', paddingBottom: '10px', }}>
+                <Checkbox
+                  label="No Police Report Taken"
+                  checked={formData?.noPoliceReportTaken || false}
+                  onChange={() => {}}
+                />
+                <Checkbox
+                  label="Waiting on Information to Order PR"
+                  checked={formData?.waitingOnInformationToOrderPR || false}
+                  onChange={() => {}}
+                />
+              </div>
+
+            </div>
+
+            <div style={ { ...L.InputsMedicalRow, alignItems: 'center', width: '100%', marginTop: '-10px' }}>
+              <BaseDropdown
+                type="BaseDropdown"
+                value="Select Treatment Needs"
+                label="Select Treatment Needs"
+                menuItems={[
+                  { label: 'Ambulance' },
+                  { label: 'Emergency Room' },
+                  { label: 'Surgery' },
+                ]}
+                onSelect={(item) => {
+                  console.log(item);
+                }}
               />
 
-              <Input
-                placeholder="Total UM Policy"
-                size="large"
-                customSize={{ width: '170px' }}
-              />
-
-              <Input
-                placeholder="Client Phone"
-                size="large"
-                customSize={{ width: '170px' }}
-              />
+               <div style={{ marginTop: '33px', marginLeft: '-15px' }}>
+                 <Button
+                   label="Email AIC to Contact Client"
+                   icon={<EmailIcon size={20} />}
+                   iconPosition="left"
+                   onClick={() => {}}
+                   size="medium"
+                 />
+               </div>
             </div>
           </Card>
 

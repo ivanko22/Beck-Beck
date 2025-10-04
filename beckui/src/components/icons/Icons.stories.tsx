@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { PageWrapper } from '../wrapper/PageWrapper';
+import { Wrapper } from '../wrapper/PageWrapper';
 
 import {
   ClientDetailIcon,
@@ -21,6 +21,7 @@ import {
   ArrowIcon,
   SearchIcon,
   PlusIcon,
+  PoliceIcon,
 
 } from './index';
 
@@ -203,6 +204,14 @@ export const Plus: Story = {
   render: (args) => <PlusIcon {...args} />,
 };
 
+export const Police: Story = {
+  args: {
+    size: 24,
+    color: '#000000',
+  },
+  render: (args) => <PoliceIcon {...args} />,
+};
+
 export const IconShowcase: Story = {
   parameters: {
     docs: {
@@ -351,7 +360,7 @@ export const NavigationStates: Story = {
     ];
 
     return (
-      <PageWrapper background='darkBlue'>
+      <Wrapper background='darkBlue'>
 
         <h2 style={{ marginBottom: '20px', color: 'var(--middle-grey)' }}>Navigation States</h2>
         
@@ -384,7 +393,7 @@ export const NavigationStates: Story = {
             </div>
           </div>
         ))}
-      </PageWrapper>
+      </Wrapper>
     );
   },
 };

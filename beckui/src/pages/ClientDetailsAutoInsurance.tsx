@@ -13,7 +13,6 @@ const L = {
     marginTop: '80px',
     padding: '28px 32px',
   } as React.CSSProperties,
-
 };
 
 interface InsuranceSection {

@@ -17,3 +17,4 @@ export { ArrowIcon } from './Arrow';
 export { RemoveIcon } from './Remove';
 export { EditIcon } from './Edit';
 export { PlusIcon } from './Plus';
+export { PoliceIcon } from './PoliceIcon';

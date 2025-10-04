@@ -20,7 +20,6 @@ const styles = {
     paddingTop: '20px',
     marginBottom: 20,
     paddingBottom: '4px',
-    borderBottom: '1px solid var(--light-grey)',
   } as React.CSSProperties,
   
   titleContainer: {
@@ -43,10 +42,15 @@ export const ClientDetailsTableHeader: React.FC<ClientDetailsTableHeaderProps> =
   type,
 }) => {
   return (
-    <div style={{ ...styles.container, ...style }}>
+    <div style={{ 
+      ...styles.container, 
+      ...style,
+      borderBottom: type === 'medical' ? 'none' : '1px solid var(--light-grey)',
+      marginBottom: type === 'medical' ? '-10px' : '20px',
+    }}>
       <div style={styles.titleContainer}>
         <Typography 
-          variant="sectionTitle" 
+          variant={type === 'medical' ? 'leftLabel' : 'sectionTitle'} 
         >
           {title}
         </Typography>
