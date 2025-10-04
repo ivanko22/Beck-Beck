@@ -8,6 +8,8 @@ import { ClientDetailsTableHeader } from '../components/table/ClientDetailsTable
 import { PlusIcon, EmailIcon } from '../components/icons/index';
 import { Typography } from '../components/typography/Typography';
 import { PageActions } from '../components/page-actions/PageActions';
+import { Card } from '../components/card/Card';
+import { Wrapper } from '../components/wrapper/PageWrapper';
 
 export interface ClientInsuranceRelativeSectionProps {
   type: 'insurance' | 'relative';
@@ -57,12 +59,6 @@ export interface ClientInsuranceRelativeSectionProps {
 }
 
 const L = {
-  main: {
-    display: 'flex',
-    width: '100%',
-    flexDirection: 'column',
-  } as React.CSSProperties,
-
   sectionTitle: {
     color: 'var(--middle-grey)',
     fontSize: 16,
@@ -121,17 +117,6 @@ const L = {
     color: 'var(--dark-grey)',
   } as React.CSSProperties,
 
-  checkboxGroup: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    alignItems: 'flex-start',
-    gap: 10,
-    marginTop: 16,
-    border: '1px solid var(--light-grey)',
-    borderRadius: '6px',
-    padding: '25px 10px 12px 25px',
-  } as React.CSSProperties,
-
   checkboxGroupRow: {
     display: 'flex',
     alignItems: 'center',
@@ -148,7 +133,7 @@ const L = {
 
 };
 
-const generateFieldConfig = (formData: any) => {
+const generateFieldConfig = () => {
   const fieldMappings = {
     insuranceAddress: "Insurance Company Address", 
     clientName: "Our Client's Name",
@@ -194,16 +179,16 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
   ];
 
   const isFilled = pageActionsState === 'saved';
-  const fieldConfig = generateFieldConfig(formData);
+  const fieldConfig = generateFieldConfig();
 
   return (
 
-      <div style={L.main}>
+      <Wrapper type="contentWrapper">
         <ClientDetailsTableHeader
           type={type}
           title={sectionTitle}
-          buttonLabel={type === 'insurance' ? 'Add Another Client Insurance Co Section' : 'Add Another Client Relative Insurance Co Section'}
-          buttonIcon={<PlusIcon size={16}/>}
+          buttonLabel={['Add Another Client Insurance Co Section']}
+          buttonIcon={[<PlusIcon size={16}/>]}
           onButtonClick={() => {}}
         />
 
@@ -493,7 +478,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
                   />
                 </div>
 
-                <div style={L.checkboxGroup}>
+                <Card>
                   <div style={L.checkboxGroupRow}>
                     <Checkbox
                       label="Liability"
@@ -539,7 +524,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
                       onClick={() => {console.log('email demand letter')}}
                     />
                   </div>
-                </div>
+                </Card>
               </div>
 
             </div>
@@ -632,7 +617,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
           </div>
         </div>
 
-      </div>
+      </Wrapper>
    
   );
 };

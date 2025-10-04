@@ -69,8 +69,8 @@ export const ClientDetailsTableHeaderStory: Story = {
       <div style={{width: "1000px"}}>
         <ClientDetailsTableHeader 
           title="Client Insurance Company #1"
-          buttonLabel="Add Another Client Insurance Co Section"
-          buttonIcon={<PlusIcon size={16} />}
+          buttonLabel={["Add Another Client Insurance Co Section"]}
+          buttonIcon={[<PlusIcon size={16} />]}
         />
       </div>
     )

@@ -4,10 +4,10 @@ import { Button } from '../button/Button';
 import { Checkbox } from '../checkbox/Checkbox';
 
 export interface ClientDetailsTableHeaderProps {
-  type?: 'insurance' | 'relative';
+  type?: 'insurance' | 'relative' | 'medical';
   title: string;
-  buttonLabel: string;
-  buttonIcon?: React.ReactNode;
+  buttonLabel: string[];
+  buttonIcon?: React.ReactNode[];
   onButtonClick?: () => void;
   style?: React.CSSProperties;
 };
@@ -63,15 +63,18 @@ export const ClientDetailsTableHeader: React.FC<ClientDetailsTableHeaderProps> =
  
       </div>
       
-        <div style={styles.buttonContainer}>
-        <Button
-          label={buttonLabel}
-          size="medium"
-          icon={buttonIcon}
-          iconPosition="left"
-          onClick={onButtonClick}
+      <div style={styles.buttonContainer}>
+        {buttonLabel.map((label, index) => (
+          <Button
+            key={index}
+            label={label}
+            icon={buttonIcon?.[index]}
+            iconPosition="left"
+            onClick={onButtonClick}
+            size="medium"
           />
-        </div>
+        ))}
+      </div>
 
     </div>
   );

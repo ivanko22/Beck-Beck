@@ -24,7 +24,6 @@ const styles = {
     gridTemplateColumns: '2.5fr 2.5fr 1fr 2fr 40px',
     columnGap: 24,
     alignItems: 'center',
-    padding: '16px 0',
     paddingLeft: '26px',
   } as const,
   
@@ -77,21 +76,21 @@ export const InsuranceRow: React.FC<InsuranceRowProps> = (props) => {
           disabled={state === 'saved'}
         />
 
-        { (
-          state !== 'adding' && state !== 'edit' && state !== 'save') && 
-          <EditIcon 
-            size={28} 
-            color="var(--middle-grey)" 
-            hoverColor="var(--secondary-color-hover)" 
-          />
+        {(state !== 'adding' && state !== 'edit' && state !== 'save') && 
+          <div style={{ paddingTop: '34px' }}>
+            <EditIcon 
+              size={28} 
+              color="var(--middle-grey)" 
+                hoverColor="var(--secondary-color-hover)" 
+              />
+          </div>
         }
      
     </div>
 
-      {(
-        state === 'adding' || state === 'edit' || state === 'save') && 
+      {(state === 'adding' || state === 'edit' || state === 'save') && 
         
-        <div style={{ paddingLeft: '26px' }}>
+        <div style={{ paddingLeft: '26px', paddingTop: '18px' }}>
           <PageActions 
             type={state === 'edit' || state === 'adding' ? 'edit' : 'save'}
           />

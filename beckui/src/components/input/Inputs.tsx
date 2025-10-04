@@ -29,9 +29,11 @@ interface InputProps {
 }
 
 const styles = {
-  wrapper: {
+  container: {
     display: 'flex',
+    minHeight: '80px',
     flexDirection: 'column' as const,
+    justifyContent: 'flex-end',
     gap: '8px',
     position: 'relative' as const,
   },
@@ -125,7 +127,7 @@ const styles = {
     },
     
     large: {
-      height: '46px',
+      height: '48px',
       width: '272px',
       fontSize: '18px',
       padding: '3px 0px 0px 16px',
@@ -184,11 +186,12 @@ export const Input: React.FC<InputProps> = ({
       ...(customSize.width && { width: customSize.width }),
       ...(customSize.height && { height: customSize.height }),
     }),
+    ...(String(currentValue).trim() === '' && { fontWeight: 400 }),
   };
 
   return (
     <div style={{
-      ...styles.wrapper,
+      ...styles.container,
       ...(leftLabel && { flexDirection: 'row', alignItems: 'center', gap: '20px' })
     }}>
 
@@ -236,7 +239,8 @@ export const Input: React.FC<InputProps> = ({
         onBlur={handleBlur}
         name={name}
         {...props}
-      />}
+      />
+      }
       
       {inputType === "password" && showForgotPassword && (
         <a 
@@ -262,7 +266,7 @@ export const Input: React.FC<InputProps> = ({
         <textarea
           style={{
             ...inputStyle,
-            padding: '12px',
+            padding: '12px', marginTop: '32px',
             resize: (disabled) ? 'none' : 'vertical',
             ...(customSize && {
               ...(customSize.width && { width: customSize.width }),

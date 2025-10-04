@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ClientDetailsPage } from './ClientDetailsPage';
+import { ClientDetailsPage } from './ClientDetailsAutoInsurance';
 
 const meta: Meta<typeof ClientDetailsPage> = {
-  title: 'Pages/Client Details',
+  title: 'Pages/Client/Auto Insurance',
   component: ClientDetailsPage,
   parameters: {
     layout: 'fullscreen',

@@ -22,7 +22,6 @@ const styles = {
     border: 0,
     borderRadius: '3em',
     fontWeight: 700,
-    lineHeight: 1,
     fontFamily: 'var(--font-family-base)',
     transition: 'all 0.2s ease',
   },

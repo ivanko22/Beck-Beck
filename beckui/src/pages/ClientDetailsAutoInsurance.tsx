@@ -2,22 +2,23 @@ import React from 'react';
 import { Header } from '../components/header/Header';
 import { Navigation } from '../components/navigation/Navigation';
 import { ClientInsuranceRelativeSection } from './ClientInsuranceRelativeSection';
+import { Wrapper } from '../components/wrapper/PageWrapper';
 
 const L = {
-  shell: {
-    display: 'block',
-    fontFamily: 'var(--font-family-base)',
-    color: 'var(--primary-color)',
-    background: '#fff',
-  } as React.CSSProperties,
+  // shell: {
+  //   display: 'block',
+  //   fontFamily: 'var(--font-family-base)',
+  //   color: 'var(--primary-color)',
+  //   background: '#fff',
+  // } as React.CSSProperties,
 
-  main: {
-    display: 'flex',
-    width: 'calc(100vw - 300px)',
-    flexDirection: 'column',
-    marginLeft: 300,
-    boxSizing: 'border-box',
-  } as React.CSSProperties,
+  // main: {
+  //   display: 'flex',
+  //   width: 'calc(100vw - 300px)',
+  //   flexDirection: 'column',
+  //   marginLeft: 300,
+  //   boxSizing: 'border-box',
+  // } as React.CSSProperties,
 
   mainContent: {
     display: 'flex',
@@ -52,13 +53,13 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
 }) => {
 
   return (
-    <div style={{ ...L.shell }}>
+    <Wrapper type="pageWrapper">
       <Navigation
         userEmail="ivankordonets@gmail.com"
         dropdownMenuItems={[{ label: 'Profile' }, { label: 'Settings' }, { label: 'Sign out' }]}
       />
 
-      <div style={L.main}>
+      <Wrapper type="contentWrapper">
         <Header
           section={`Client Details`}
           current={caseNumber}
@@ -94,8 +95,8 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
           ))}
         </div>
 
-      </div>
+      </Wrapper>
       
-    </div>
+    </Wrapper>
   );
 };

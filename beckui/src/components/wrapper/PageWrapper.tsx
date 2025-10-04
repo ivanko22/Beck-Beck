@@ -1,19 +1,32 @@
 import React from 'react';
 
-interface PageWrapperProps {
-  type?: 'contentWrapper' | 'content';
+interface WrapperProps {
+  type?: 'contentWrapper' | 'pageWrapper' | 'mainWrapper';
   background?: 'white' | 'gray' | 'darkBlue' | 'custom';
   customBackgroundColor?: string;
   padding?: string;
   center?: boolean;
   children?: React.ReactNode;
-  style?: React.CSSProperties;
+};
+
+const pageWrapperStyle: React.CSSProperties = {
+  display: 'block',
+};
+
+const mainWrapperStyle: React.CSSProperties = {
+    display: 'flex',
+    width: 'calc(100vw - 300px)',
+    height: '100vh',
+    flexDirection: 'column',
+    marginLeft: 300,
+    boxSizing: 'border-box',
+    overflow: 'auto',
 };
 
 const contentWrapperStyle: React.CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
-  gap: '20px',
+  gap: '10px',
   marginTop: '80px',
   padding: '28px 32px',
 };
@@ -24,14 +37,13 @@ const backgroundMap: Record<string, string> = {
   darkBlue: 'var(--primary-color)',
 };
 
-export const PageWrapper: React.FC<PageWrapperProps> = ({
+export const Wrapper: React.FC<WrapperProps> = ({
   type,
   background = 'white',
   customBackgroundColor,
   padding = 0,
   center = true,
   children,
-  style,
 }) => {
   const backgroundColor = background === 'custom' ? customBackgroundColor : backgroundMap[background];
 
@@ -44,14 +56,25 @@ export const PageWrapper: React.FC<PageWrapperProps> = ({
     alignItems: center ? 'center' : undefined,
     width: '100vw',
     height: '100vh',
-    ...style,
   };
 
   return (
-    <div
-      style={type === 'contentWrapper' ? contentWrapperStyle : wrapperStyle}
-    >
+    type === 'pageWrapper' ? (
+      <div style={pageWrapperStyle}>
         {children}
-    </div>
+      </div>
+    ) : type === 'contentWrapper' ? (
+      <div style={contentWrapperStyle}>
+        {children}
+      </div>
+    ) : type === 'mainWrapper' ? (
+      <div style={mainWrapperStyle}>
+        {children}
+      </div>
+    ) : (
+      <div style={wrapperStyle}>
+        {children}
+      </div>
+    )
   );
 };

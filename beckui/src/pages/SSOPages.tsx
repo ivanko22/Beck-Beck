@@ -4,7 +4,7 @@ import { Input } from '../components/input/Inputs';
 import { Button } from '../components/button/Button';
 import { Typography } from '../components/typography/Typography';
 import { Link } from '../components/link/Link';
-import { PageWrapper } from '../components/wrapper/PageWrapper';
+import { Wrapper } from '../components/wrapper/PageWrapper';
 
 export interface AuthFormProps {
     type: 'signIn' | 'signUp' | 'resetPass' | 'checkEmail' ;
@@ -48,7 +48,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
 }) => {
   return (
 
-    <PageWrapper background='darkBlue'>
+    <Wrapper background='darkBlue'>
          {type === "signIn" && (
             <div style={style.formLogoWrapper} >
                 <Logo style={{ paddingBottom: '80px' }} />
@@ -213,6 +213,6 @@ export const AuthForm: React.FC<AuthFormProps> = ({
             </div>
         )}
 
-    </PageWrapper>
+    </Wrapper>
   );
 };
