@@ -27,13 +27,13 @@ export const AutoInsuranceCompanies: React.FC<AutoInsuranceCompaniesProps> = ({
   state = 'saved',
 }) => {
   return (
-    <Wrapper type="mainWrapper">
+    <Wrapper type="pageWrapper">
       <Navigation
         userEmail="ivankordonets@gmail.com"
         dropdownMenuItems={[{ label: 'Profile' }, { label: 'Settings' }, { label: 'Sign out' }]}
       />
 
-      <Wrapper type="pageWrapper">
+      <Wrapper type="mainWrapper">
         <Header
           section="Auto Insurance Companies"
           current=""

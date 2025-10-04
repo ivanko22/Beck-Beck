@@ -24,6 +24,7 @@ export const Spacer: React.FC<SpacerProps> = ({
 
   const spacerStyle: React.CSSProperties = {
     ...(horizontal ? { width: spacerSize } : { height: spacerSize }),
+    flexShrink: 0,
   };
 
   return <div style={spacerStyle} />;

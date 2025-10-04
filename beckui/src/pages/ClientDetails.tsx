@@ -10,6 +10,7 @@ import { BaseDropdown } from '../components/dropdown/Dropdown';
 import { Checkbox } from '../components/checkbox/Checkbox';
 import { Radio } from '../components/radiobutton/Radiobutton';
 import { ClientDetailsTableHeader } from '../components/table/ClientDetailsTableHeader';
+import { Spacer } from '../components/spacer/Spacer';
 
 const L = {
   // shell: {
@@ -18,13 +19,13 @@ const L = {
   //   background: '#fff',
   // } as React.CSSProperties,
 
-  main: {
-    display: 'flex',
-    width: 'calc(100vw - 300px)',
-    flexDirection: 'column',
-    marginLeft: 300,
-    boxSizing: 'border-box',
-  } as React.CSSProperties,
+  // main: {
+  //   display: 'flex',
+  //   width: 'calc(100vw - 300px)',
+  //   flexDirection: 'column',
+  //   marginLeft: 300,
+  //   boxSizing: 'border-box',
+  // } as React.CSSProperties,
 
   caseOverviewCard: {
     display: 'flex',
@@ -133,7 +134,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
         dropdownMenuItems={[{ label: 'Profile' }, { label: 'Settings' }, { label: 'Sign out' }]}
       />
 
-      <div style={L.main}>
+      <Wrapper type="mainWrapper">
         <Header
           section={`Client Details`}
           current={caseNumber}
@@ -492,21 +493,19 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
 
         </Wrapper>
 
-        <Wrapper type="contentWrapper">
-          {insuranceSections.map((section, index) => (
-            <ClientInsuranceRelativeSection
-              type="insurance"
-              key={index}
-              caseNumber={caseNumber}
-              clientName={clientName}
-              pageActionsState={pageActionsState}
-              formData={section.formData}
-              sectionTitle={section.sectionTitle}
-            />
-          ))}
-        </Wrapper>
+        {insuranceSections.map((section, index) => (
+          <ClientInsuranceRelativeSection
+            type="insurance"
+            key={index}
+            caseNumber={caseNumber}
+            clientName={clientName}
+            pageActionsState={pageActionsState}
+            formData={section.formData}
+            sectionTitle={section.sectionTitle}
+          />
+        ))}
 
-      </div>
+      </Wrapper>
     </Wrapper>
   );
 };

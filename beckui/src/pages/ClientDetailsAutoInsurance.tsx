@@ -3,23 +3,9 @@ import { Header } from '../components/header/Header';
 import { Navigation } from '../components/navigation/Navigation';
 import { ClientInsuranceRelativeSection } from './ClientInsuranceRelativeSection';
 import { Wrapper } from '../components/wrapper/PageWrapper';
+import { Spacer } from '../components/spacer/Spacer';
 
 const L = {
-  // shell: {
-  //   display: 'block',
-  //   fontFamily: 'var(--font-family-base)',
-  //   color: 'var(--primary-color)',
-  //   background: '#fff',
-  // } as React.CSSProperties,
-
-  // main: {
-  //   display: 'flex',
-  //   width: 'calc(100vw - 300px)',
-  //   flexDirection: 'column',
-  //   marginLeft: 300,
-  //   boxSizing: 'border-box',
-  // } as React.CSSProperties,
-
   mainContent: {
     display: 'flex',
     flexDirection: 'column',
@@ -59,7 +45,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
         dropdownMenuItems={[{ label: 'Profile' }, { label: 'Settings' }, { label: 'Sign out' }]}
       />
 
-      <Wrapper type="contentWrapper">
+      <Wrapper type="mainWrapper">
         <Header
           section={`Client Details`}
           current={caseNumber}
@@ -67,7 +53,9 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
           onClose={() => {}}
         />
 
-        <div style={L.mainContent}>
+        <Spacer customSize={50} />
+
+        <div style={{...L.mainContent, ...{marginTop: '0px'}}}>
           {insuranceSections.map((section, index) => (
             <ClientInsuranceRelativeSection
               type="insurance"

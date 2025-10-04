@@ -7,6 +7,7 @@ interface WrapperProps {
   padding?: string;
   center?: boolean;
   children?: React.ReactNode;
+  style?: React.CSSProperties;
 };
 
 const pageWrapperStyle: React.CSSProperties = {
@@ -44,6 +45,7 @@ export const Wrapper: React.FC<WrapperProps> = ({
   padding = 0,
   center = true,
   children,
+  style,
 }) => {
   const backgroundColor = background === 'custom' ? customBackgroundColor : backgroundMap[background];
 
@@ -56,19 +58,20 @@ export const Wrapper: React.FC<WrapperProps> = ({
     alignItems: center ? 'center' : undefined,
     width: '100vw',
     height: '100vh',
+    ...style,
   };
 
   return (
     type === 'pageWrapper' ? (
-      <div style={pageWrapperStyle}>
+      <div style={{...pageWrapperStyle, ...style}}>
         {children}
       </div>
     ) : type === 'contentWrapper' ? (
-      <div style={contentWrapperStyle}>
+      <div style={{...contentWrapperStyle, ...style}}>
         {children}
       </div>
     ) : type === 'mainWrapper' ? (
-      <div style={mainWrapperStyle}>
+      <div style={{...mainWrapperStyle, ...style}}>
         {children}
       </div>
     ) : (

@@ -183,7 +183,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
 
   return (
 
-      <Wrapper type="contentWrapper">
+      <Wrapper type="contentWrapper" style={{marginTop: '0px'}}>
         <ClientDetailsTableHeader
           type={type}
           title={sectionTitle}
