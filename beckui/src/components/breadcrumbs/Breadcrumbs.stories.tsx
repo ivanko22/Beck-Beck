@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import { Breadcrumbs } from "./Breadcrumbs";
-import { PageWrapper } from "../wrapper/PageWrapper";
+import { Wrapper } from "../wrapper/PageWrapper";
 
 const meta: Meta<typeof Breadcrumbs> = {
   title: "Components/Breadcrumbs",
@@ -35,9 +35,9 @@ export default meta;
 type Story = StoryObj<typeof Breadcrumbs>;
 
 const withPageWrapper = (StoryFn: () => React.ReactNode) => (
-  <PageWrapper background="white" style={{ padding: "32px" }}>
+  <Wrapper background="white" style={{ padding: "32px" }}>
     {StoryFn()}
-  </PageWrapper>
+  </Wrapper>
 );
 
 export const Default: Story = {

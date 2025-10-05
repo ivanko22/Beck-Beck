@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { BaseDropdown } from './Dropdown';
-import { PageWrapper } from '../wrapper/PageWrapper';
-import type { MenuItem } from './Dropdown'; 
+import { Wrapper } from '../wrapper/PageWrapper';
+
+type MenuItem = { label: string; icon?: React.ComponentType<any>; state?: 'default' | 'hover' | 'selected' };
 
 const meta: Meta<typeof BaseDropdown> = {
   title: 'Components/Dropdown/BaseDropdown',
@@ -14,9 +15,9 @@ const meta: Meta<typeof BaseDropdown> = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <PageWrapper background="white">
+      <Wrapper background="white">
         <Story />
-      </PageWrapper>
+      </Wrapper>
     ),
   ],
 
@@ -54,9 +55,9 @@ export default meta;
 type Story = StoryObj<typeof BaseDropdown>;
 
 const withPageWrapper = (StoryFn: () => React.ReactNode) => (
-  <PageWrapper background="white">
+  <Wrapper background="white">
     {StoryFn()}
-  </PageWrapper>
+  </Wrapper>
 );
 
 const baseMenu: MenuItem[] = [

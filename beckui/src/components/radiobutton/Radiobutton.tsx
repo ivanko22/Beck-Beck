@@ -7,7 +7,6 @@ export type RadioProps = {
   disabled?: boolean;
   onChange?: (checked: boolean) => void;
   id?: string;
-  style?: React.CSSProperties;
 };
 
 const styles = {
@@ -52,7 +51,6 @@ export const Radio: React.FC<RadioProps> = ({
   disabled,
   onChange,
   id,
-  style,
 }) => {
 
   const [hover, setHover] = useState(false);

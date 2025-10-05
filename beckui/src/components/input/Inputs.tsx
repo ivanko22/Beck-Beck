@@ -4,6 +4,7 @@ interface InputProps {
   size?: 'small' | 'medium' | 'large';
   placeholder?: string;
   disabled?: boolean;
+  showLabel?: boolean;
   active?: boolean;
   error?: boolean | string;
   inputType?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'textarea';
@@ -26,12 +27,15 @@ interface InputProps {
       color: string;
     }>;
   };
+  style?: React.CSSProperties;
 }
 
 const styles = {
-  wrapper: {
+  container: {
     display: 'flex',
+    minHeight: '80px',
     flexDirection: 'column' as const,
+    justifyContent: 'flex-end',
     gap: '8px',
     position: 'relative' as const,
   },
@@ -125,7 +129,7 @@ const styles = {
     },
     
     large: {
-      height: '46px',
+      height: '48px',
       width: '272px',
       fontSize: '18px',
       padding: '3px 0px 0px 16px',
@@ -144,6 +148,7 @@ export const Input: React.FC<InputProps> = ({
   defaultValue,
   onChange,
   label,
+  showLabel = false,
   className = '',
   name,
   showForgotPassword = false,
@@ -151,6 +156,7 @@ export const Input: React.FC<InputProps> = ({
   leftLabel = false,
   customSize,
   coloredLabel,
+  style,
   ...props
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -184,12 +190,14 @@ export const Input: React.FC<InputProps> = ({
       ...(customSize.width && { width: customSize.width }),
       ...(customSize.height && { height: customSize.height }),
     }),
+    ...(String(currentValue).trim() === '' && { fontWeight: 400 }),
   };
 
   return (
     <div style={{
-      ...styles.wrapper,
-      ...(leftLabel && { flexDirection: 'row', alignItems: 'center', gap: '20px' })
+      ...styles.container,
+      ...(leftLabel && { flexDirection: 'row', alignItems: 'center', gap: '20px' }),
+      ...style
     }}>
 
       <style>
@@ -203,7 +211,7 @@ export const Input: React.FC<InputProps> = ({
       `}
       </style>
       
-      {label && (leftLabel || String(currentValue).trim() !== '') && (
+      {label && (showLabel || leftLabel || String(currentValue).trim() !== '') && (
         <label style={{
           ...styles.label,
           ...(leftLabel && { ...styles.leftLabel }),
@@ -236,7 +244,8 @@ export const Input: React.FC<InputProps> = ({
         onBlur={handleBlur}
         name={name}
         {...props}
-      />}
+      />
+      }
       
       {inputType === "password" && showForgotPassword && (
         <a 

@@ -19,13 +19,12 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
     gridTemplateColumns: template,
     columnGap: 24,
     alignItems: 'center',
-    padding: '8px 0',
     borderBottom: noBorder ? 'none' : '1px solid var(--light-grey)',
     color: 'var(--middle-grey)',
     fontSize: 14,
     fontWeight: 400,
     position: 'relative',
-    top: noBorder ? '12px' : 'none',
+    top: noBorder ? '30px' : 'none',
   };
 
   return (

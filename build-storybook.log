@@ -1,0 +1,82 @@
+
+> beck-beck@1.0.0 build-storybook
+> cd beckui && npm run build-storybook --output-dir=/var/folders/89/n98pm0r56q747rbyb151t87w0000gn/T/chromatic--17071-qmI9pVMIlGFO
+
+
+> beckui@0.0.0 build-storybook
+> storybook build
+
+[1mstorybook v9.1.8
+[22m
+info => Cleaning outputDir: [36mstorybook-static[39m
+info => Loading presets
+info => Building manager..
+info => Building preview..
+info => Copying static files: [36msrc/assets[39m at [36mstorybook-static[39m
+info Using tsconfig paths for react-docgen
+info Using tsconfig paths for react-docgen
+[36mvite v7.1.7 [32mbuilding for production...[36m[39m
+transforming...
+[32m✓[39m 156 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mstorybook-static/[22m[32miframe.html                                        [39m[1m[2m   18.14 kB[22m[1m[22m[2m │ gzip:   5.13 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[32mlogoWhite-C7YpNyaN.png                      [39m[1m[2m   42.37 kB[22m[1m[22m
+[2mstorybook-static/[22m[2massets/[22m[35miframe-Cdq8zrSi.css                         [39m[1m[2m    1.15 kB[22m[1m[22m[2m │ gzip:   0.58 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mLogo.stories-CbCXG6mZ.js                    [39m[1m[2m    0.43 kB[22m[1m[22m[2m │ gzip:   0.29 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mindex-BJIKjLiW.js                           [39m[1m[2m    0.46 kB[22m[1m[22m[2m │ gzip:   0.30 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mLink.stories-MXEImwm2.js                    [39m[1m[2m    0.60 kB[22m[1m[22m[2m │ gzip:   0.37 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mFooter.stories-DzkSGDfm.js                  [39m[1m[2m    0.73 kB[22m[1m[22m[2m │ gzip:   0.41 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mjsx-runtime-D_zvdyIk.js                     [39m[1m[2m    0.73 kB[22m[1m[22m[2m │ gzip:   0.46 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mLogo-B5N4vfGN.js                            [39m[1m[2m    0.88 kB[22m[1m[22m[2m │ gzip:   0.52 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mBreadcrumbs-D2aLNGnf.js                     [39m[1m[2m    1.05 kB[22m[1m[22m[2m │ gzip:   0.51 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mpreload-helper-PPVm8Dsz.js                  [39m[1m[2m    1.23 kB[22m[1m[22m[2m │ gzip:   0.71 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mPageActions.stories-DPjymI-r.js             [39m[1m[2m    1.24 kB[22m[1m[22m[2m │ gzip:   0.52 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mNavigation.stories-qo6o2ioy.js              [39m[1m[2m    1.26 kB[22m[1m[22m[2m │ gzip:   0.65 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mTableHeader-D_0XCtET.js                     [39m[1m[2m    1.38 kB[22m[1m[22m[2m │ gzip:   0.71 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mTypography-BKo1G4xl.js                      [39m[1m[2m    1.40 kB[22m[1m[22m[2m │ gzip:   0.61 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mFooter-DJzMmTQW.js                          [39m[1m[2m    1.43 kB[22m[1m[22m[2m │ gzip:   0.63 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mBreadcrumbs.stories-BJoXJBIL.js             [39m[1m[2m    1.47 kB[22m[1m[22m[2m │ gzip:   0.65 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mPageWrapper.stories-CiYhPOCR.js             [39m[1m[2m    1.50 kB[22m[1m[22m[2m │ gzip:   0.50 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mHeader.stories-Npvaajao.js                  [39m[1m[2m    1.52 kB[22m[1m[22m[2m │ gzip:   0.65 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mRadiobutton-CML_j9jR.js                     [39m[1m[2m    1.55 kB[22m[1m[22m[2m │ gzip:   0.72 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mPageWrapper-DLz_HIhu.js                     [39m[1m[2m    1.59 kB[22m[1m[22m[2m │ gzip:   0.65 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mLink-DSlyR6TZ.js                            [39m[1m[2m    1.61 kB[22m[1m[22m[2m │ gzip:   0.80 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mTypography.stories-Dor56oJa.js              [39m[1m[2m    1.67 kB[22m[1m[22m[2m │ gzip:   0.57 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mCheckbox-36OpKwsE.js                        [39m[1m[2m    1.67 kB[22m[1m[22m[2m │ gzip:   0.73 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mClientDetailsTableHeader-DU4GCrO5.js        [39m[1m[2m    1.71 kB[22m[1m[22m[2m │ gzip:   0.78 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mSearchBox.stories-Bwkpy9fw.js               [39m[1m[2m    1.75 kB[22m[1m[22m[2m │ gzip:   0.68 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mCheckbox.stories-BAD4KBRj.js                [39m[1m[2m    1.78 kB[22m[1m[22m[2m │ gzip:   0.63 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mButton.stories-BJrPblej.js                  [39m[1m[2m    2.04 kB[22m[1m[22m[2m │ gzip:   0.71 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mHeader-C2iZ7ctN.js                          [39m[1m[2m    2.21 kB[22m[1m[22m[2m │ gzip:   0.96 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mRadiobutton.stories-CBHmFtep.js             [39m[1m[2m    2.25 kB[22m[1m[22m[2m │ gzip:   0.78 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mPageActions-C2lSaBeS.js                     [39m[1m[2m    2.27 kB[22m[1m[22m[2m │ gzip:   0.72 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mTable.stories-Dw6_514y.js                   [39m[1m[2m    2.32 kB[22m[1m[22m[2m │ gzip:   0.99 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mSearchBox-CRM0q30p.js                       [39m[1m[2m    2.39 kB[22m[1m[22m[2m │ gzip:   1.04 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mUserDropdown.stories-ab2q1CRx.js            [39m[1m[2m    2.43 kB[22m[1m[22m[2m │ gzip:   0.92 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mTypes-3IzQJyPm.js                           [39m[1m[2m    2.85 kB[22m[1m[22m[2m │ gzip:   1.00 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mRow.stories-B1lNEr_V.js                     [39m[1m[2m    3.10 kB[22m[1m[22m[2m │ gzip:   0.93 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mInsuranceRow-DnShLeqI.js                    [39m[1m[2m    3.14 kB[22m[1m[22m[2m │ gzip:   0.89 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mButton-Ce-uzUeN.js                          [39m[1m[2m    3.89 kB[22m[1m[22m[2m │ gzip:   1.29 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mNavigation-DpMyKK66.js                      [39m[1m[2m    4.35 kB[22m[1m[22m[2m │ gzip:   1.62 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mAutoInsuranceCompanies.stories-D2CXKx6A.js  [39m[1m[2m    4.37 kB[22m[1m[22m[2m │ gzip:   1.73 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mDropdown.stories-99JHipLE.js                [39m[1m[2m    4.77 kB[22m[1m[22m[2m │ gzip:   1.30 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mInputs-w-EsgpWk.js                          [39m[1m[2m    6.34 kB[22m[1m[22m[2m │ gzip:   1.98 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mSSO.stories-rQhU0PZi.js                     [39m[1m[2m    6.65 kB[22m[1m[22m[2m │ gzip:   2.03 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mTemplateLibrary.stories-BJwNArer.js         [39m[1m[2m    6.66 kB[22m[1m[22m[2m │ gzip:   2.21 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mSpacer.stories-CsJE32g9.js                  [39m[1m[2m    6.90 kB[22m[1m[22m[2m │ gzip:   1.53 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mInputs.stories-kRlbpELQ.js                  [39m[1m[2m    7.02 kB[22m[1m[22m[2m │ gzip:   1.47 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mDropdown-Cgt433F6.js                        [39m[1m[2m    7.25 kB[22m[1m[22m[2m │ gzip:   2.12 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mUserDetails.stories-CNWusNzZ.js             [39m[1m[2m   10.13 kB[22m[1m[22m[2m │ gzip:   2.80 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mIcons.stories-DprISnO9.js                   [39m[1m[2m   17.53 kB[22m[1m[22m[2m │ gzip:   3.57 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mClientDetailsPage.stories-DyMSTiX7.js       [39m[1m[2m   25.97 kB[22m[1m[22m[2m │ gzip:   5.45 kB[22m
+[2mstorybook-static/[22m[36mvite-inject-mocker-entry.js                        [39m[1m[2m   28.76 kB[22m[1m[22m[2m │ gzip:  10.00 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mColor-AVL7NMMY-D53_I0YT.js                  [39m[1m[2m   29.21 kB[22m[1m[22m[2m │ gzip:  11.05 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mmatchers-7Z3WT2CE-CcSi9QFY.js               [39m[1m[2m   29.66 kB[22m[1m[22m[2m │ gzip:  10.29 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mPlus-CqdcavgF.js                            [39m[1m[2m   34.43 kB[22m[1m[22m[2m │ gzip:  10.71 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mreact-18-BomNhHaT.js                        [39m[1m[2m  178.53 kB[22m[1m[22m[2m │ gzip:  56.32 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36maxe-5WI4x-uW.js                             [39m[1m[33m  572.29 kB[39m[22m[2m │ gzip: 158.02 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mDocsRenderer-PQXLIZUC-_ii5EIBF.js           [39m[1m[33m  658.00 kB[39m[22m[2m │ gzip: 216.91 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36miframe-BMOaeU5Q.js                          [39m[1m[33m1,239.45 kB[39m[22m[2m │ gzip: 344.04 kB[22m
+[32m✓ built in 4.04s[39m
+info => Output directory: /Volumes/work/Beck-Beck/beckui/storybook-static

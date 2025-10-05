@@ -1,36 +1,35 @@
-import React from 'react';
-import { PageWrapper } from './PageWrapper';
+import { Wrapper } from './PageWrapper';
 
 export default {
   title: 'Components/PageWrapper',
-  component: PageWrapper,
+  component: Wrapper,
 };
 
 export const White = () => (
-  <PageWrapper 
+  <Wrapper 
     background="white" 
     center
   />
 );
 
 export const DarkBlue = () => (
-  <PageWrapper 
+  <Wrapper 
     background="darkBlue" 
     center
   />
 );
 
 export const GrayBackground = () => (
-  <PageWrapper 
+  <Wrapper 
     background="gray" 
     center
   />
 );
 
 export const CustomBackground = () => (
-  <PageWrapper 
+  <Wrapper 
     background="custom" 
-    customBackgroundColor='red'
+    customBackgroundColor='black'
     center
   />
 );

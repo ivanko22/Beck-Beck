@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { PageWrapper } from '../wrapper/PageWrapper';
+import { Wrapper } from '../wrapper/PageWrapper';
 
 import {
   ClientDetailIcon,
@@ -21,6 +21,8 @@ import {
   ArrowIcon,
   SearchIcon,
   PlusIcon,
+  PoliceIcon,
+  LetterIcon,
 
 } from './index';
 
@@ -97,6 +99,14 @@ export const Email: Story = {
     color: '#000000',
   },
   render: (args) => <EmailIcon {...args} />,
+};
+
+export const Letter: Story = {
+  args: {
+    size: 22,
+    color: '#000000',
+  },
+  render: (args) => <LetterIcon {...args} />,
 };
 
 export const Clipboard: Story = {
@@ -203,6 +213,14 @@ export const Plus: Story = {
   render: (args) => <PlusIcon {...args} />,
 };
 
+export const Police: Story = {
+  args: {
+    size: 24,
+    color: '#000000',
+  },
+  render: (args) => <PoliceIcon {...args} />,
+};
+
 export const IconShowcase: Story = {
   parameters: {
     docs: {
@@ -220,6 +238,7 @@ export const IconShowcase: Story = {
       { name: 'Car', component: CarIcon },
       { name: 'Book', component: BookIcon },
       { name: 'Email', component: EmailIcon },
+      { name: 'Letter', component: LetterIcon },
       { name: 'Clipboard', component: ClipboardIcon },
       { name: 'Check', component: CheckIcon },
       { name: 'Handshake', component: HandshakeIcon },
@@ -351,7 +370,7 @@ export const NavigationStates: Story = {
     ];
 
     return (
-      <PageWrapper background='darkBlue'>
+      <Wrapper background='darkBlue'>
 
         <h2 style={{ marginBottom: '20px', color: 'var(--middle-grey)' }}>Navigation States</h2>
         
@@ -384,7 +403,7 @@ export const NavigationStates: Story = {
             </div>
           </div>
         ))}
-      </PageWrapper>
+      </Wrapper>
     );
   },
 };

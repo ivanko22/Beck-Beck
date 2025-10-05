@@ -22,7 +22,7 @@ const AuthFormWrapper: React.FC<
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState<string | undefined>();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     if (error) setError(undefined);

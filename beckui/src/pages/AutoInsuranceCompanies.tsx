@@ -5,7 +5,7 @@ import { InsuranceRow } from '../components/row/insurance/InsuranceRow';
 import { TableHeader } from '../components/table/TableHeader';
 import { Button } from '../components/button/Button';
 import { PlusIcon } from '../components/icons/index';
-import { PageWrapper } from '../components/wrapper/PageWrapper';
+import { Wrapper } from '../components/wrapper/PageWrapper';
 
 export interface InsuranceCompany {
   id: number;
@@ -22,50 +22,24 @@ export interface AutoInsuranceCompaniesProps {
   state?: 'adding' | 'edit' | 'save' | 'saved';
 }
 
-const L = {
-  shell: {
-    display: 'block',
-    fontFamily: 'var(--font-family-base)',
-    color: 'var(--primary-color)',
-    height: '100vh',
-    background: '#fff',
-  } as React.CSSProperties,
-
-  main: {
-    display: 'flex',
-    width: 'calc(100vw - 300px)',
-    height: '100vh',
-    flexDirection: 'column',
-    marginLeft: 300,
-    boxSizing: 'border-box',
-    overflow: 'auto',
-  } as React.CSSProperties,
-
-  table: {
-    borderCollapse: 'collapse' as const,
-    marginTop: 8,
-    marginBottom: 40,
-  },
-};
-
 export const AutoInsuranceCompanies: React.FC<AutoInsuranceCompaniesProps> = ({
   companies = [],
   state = 'saved',
 }) => {
   return (
-    <div style={L.shell}>
+    <Wrapper type="pageWrapper">
       <Navigation
         userEmail="ivankordonets@gmail.com"
         dropdownMenuItems={[{ label: 'Profile' }, { label: 'Settings' }, { label: 'Sign out' }]}
       />
 
-      <div style={L.main}>
+      <Wrapper type="mainWrapper">
         <Header
           section="Auto Insurance Companies"
           current=""
         />
 
-        <PageWrapper type="contentWrapper">
+        <Wrapper type="contentWrapper">
           <TableHeader
             columns={[{
               label: 'Company Name', 
@@ -91,18 +65,22 @@ export const AutoInsuranceCompanies: React.FC<AutoInsuranceCompaniesProps> = ({
           ))}
 
           {state === 'saved' &&
-            <Button
-              label="Add Insurance Company"
-              size='small'
-              color='var(--middle-grey)'
-              icon= {<PlusIcon size={22}/>}
-              iconPosition= 'left'
-              onClick={() => {}}
-            />}
-          </PageWrapper>
+            <div style={{ paddingTop: '12px', paddingLeft: '26px' }}>  
+                <Button
+                  label="Add Insurance Company"
+                  size='small'
+                  color='var(--middle-grey)'
+                  icon= {<PlusIcon size={22}/>}
+                  iconPosition= 'left'
+                  onClick={() => {}}
+                />         
+              </div>
+            }
+          
+          </Wrapper>
 
-        </div>
+        </Wrapper>
       
-    </div>
+    </Wrapper>
   );
 };

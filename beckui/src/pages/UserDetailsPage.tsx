@@ -5,7 +5,7 @@ import { BaseDropdown } from '../components/dropdown/Dropdown';
 import { Input } from '../components/input/Inputs';
 import { Checkbox } from '../components/checkbox/Checkbox';
 import { PageActions } from '../components/page-actions/PageActions';
-import { PageWrapper } from '../components/wrapper/PageWrapper';
+import { Wrapper } from '../components/wrapper/PageWrapper';
 
 type TeamAccess = {
   intake: boolean;
@@ -65,8 +65,8 @@ const L = {
     color: 'var(--middle-grey)',
     fontSize: 16,
     fontWeight: 500,
-    marginTop: 32,
-    marginBottom: 32,
+    marginTop: 18,
+    marginBottom: 20,
   } as React.CSSProperties,
 
   grid: {
@@ -143,7 +143,7 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
           onClose={() => onCancel?.()}
         />
 
-        <PageWrapper type="contentWrapper">
+        <Wrapper type="contentWrapper">
 
           <div style={L.sectionTitle}>User Information</div>
 
@@ -259,7 +259,7 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
             onRemove={() => console.log('Remove user')}
           />
 
-        </PageWrapper>
+        </Wrapper>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { SearchBox } from './SearchBox';
 
-import { PageWrapper } from '../wrapper/PageWrapper';
+import { Wrapper } from '../wrapper/PageWrapper';
 
 const meta: Meta<typeof SearchBox> = {
   title: 'Components/SearchBox',
@@ -32,7 +32,7 @@ export default meta;
 type Story = StoryObj<typeof SearchBox>;
 
 const withPageWrapper = (StoryFn: () => React.ReactNode) => (
-  <PageWrapper background="darkBlue">{StoryFn()}</PageWrapper>
+  <Wrapper background="darkBlue">{StoryFn()}</Wrapper>
 );
 
 export const Default: Story = {
