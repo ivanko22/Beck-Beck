@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface WrapperProps {
-  type?: 'contentWrapper' | 'pageWrapper' | 'mainWrapper';
+  type?: 'contentWrapper' | 'pageWrapper' | 'mainWrapper' | 'pageWrapperContentRow' | 'pageWrapperContentColumn';
   background?: 'white' | 'gray' | 'darkBlue' | 'custom';
   customBackgroundColor?: string;
   padding?: string;
@@ -14,14 +14,24 @@ const pageWrapperStyle: React.CSSProperties = {
   display: 'block',
 };
 
+const pageWrapperContentRow: React.CSSProperties = {
+  display: 'flex',
+};
+
+const pageWrapperContentColumn: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '10px',
+};
+
 const mainWrapperStyle: React.CSSProperties = {
-    display: 'flex',
-    width: 'calc(100vw - 300px)',
-    height: '100vh',
-    flexDirection: 'column',
-    marginLeft: 300,
-    boxSizing: 'border-box',
-    overflow: 'auto',
+  display: 'flex',
+  width: 'calc(100vw - 300px)',
+  height: '100vh',
+  flexDirection: 'column',
+  marginLeft: 300,
+  boxSizing: 'border-box',
+  overflow: 'auto',
 };
 
 const contentWrapperStyle: React.CSSProperties = {
@@ -72,6 +82,14 @@ export const Wrapper: React.FC<WrapperProps> = ({
       </div>
     ) : type === 'mainWrapper' ? (
       <div style={{...mainWrapperStyle, ...style}}>
+        {children}
+      </div>
+    ) : type === 'pageWrapperContentRow' ? (
+      <div style={{...pageWrapperContentRow, ...style}}>
+        {children}
+      </div>
+    ) : type === 'pageWrapperContentColumn' ? (
+      <div style={{...pageWrapperContentColumn, ...style}}>
         {children}
       </div>
     ) : (

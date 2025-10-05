@@ -27,6 +27,7 @@ interface InputProps {
       color: string;
     }>;
   };
+  style?: React.CSSProperties;
 }
 
 const styles = {
@@ -155,6 +156,7 @@ export const Input: React.FC<InputProps> = ({
   leftLabel = false,
   customSize,
   coloredLabel,
+  style,
   ...props
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -194,7 +196,8 @@ export const Input: React.FC<InputProps> = ({
   return (
     <div style={{
       ...styles.container,
-      ...(leftLabel && { flexDirection: 'row', alignItems: 'center', gap: '20px' })
+      ...(leftLabel && { flexDirection: 'row', alignItems: 'center', gap: '20px' }),
+      ...style
     }}>
 
       <style>
@@ -268,7 +271,7 @@ export const Input: React.FC<InputProps> = ({
         <textarea
           style={{
             ...inputStyle,
-            padding: '12px', marginTop: '32px',
+            padding: '12px',
             resize: (disabled) ? 'none' : 'vertical',
             ...(customSize && {
               ...(customSize.width && { width: customSize.width }),

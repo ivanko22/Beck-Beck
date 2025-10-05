@@ -299,6 +299,7 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
           value={formData?.casePlan || ''}
           size="large"
           customSize={{ width: '560px', height: '120px' }}
+          style={{ marginTop: '32px' }}
         />
       </div>
     </>

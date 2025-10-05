@@ -15,7 +15,7 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column' as const,
-    gap: '18px',
+    gap: '23px',
   },
 
   label: {

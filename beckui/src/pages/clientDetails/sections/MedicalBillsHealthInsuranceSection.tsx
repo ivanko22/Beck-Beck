@@ -1,13 +1,15 @@
 import React from 'react';
 import { ClientDetailsTableHeader } from '../../../components/table/ClientDetailsTableHeader';
-import { Card } from '../../../components/card/Card';
 import { Typography } from '../../../components/typography/Typography';
 import { Input } from '../../../components/input/Inputs';
 import { BaseDropdown } from '../../../components/dropdown/Dropdown';
 import { Checkbox } from '../../../components/checkbox/Checkbox';
-import { Radio } from '../../../components/radiobutton/Radiobutton';
 import { Button } from '../../../components/button/Button';
 import { LetterIcon, EmailIcon } from '../../../components/icons';
+import { Toggle } from '../../../components/toggle/Toggle';
+import { Spacer } from '../../../components/spacer/Spacer';
+import { Border } from '../../../components/border/Border';
+import { Wrapper } from '../../../components/wrapper/PageWrapper';
 
 const L = {
   inputsRow: {
@@ -19,18 +21,6 @@ const L = {
   } as React.CSSProperties,
 
   checkboxGroup: {
-    display: 'flex',
-    gap: '24px',
-    marginBottom: '16px',
-  } as React.CSSProperties,
-
-  toggleGroup: {
-    display: 'flex',
-    gap: '24px',
-    marginBottom: '16px',
-  } as React.CSSProperties,
-
-  communicationGroup: {
     display: 'flex',
     gap: '24px',
     marginBottom: '16px',
@@ -74,7 +64,6 @@ interface MedicalBillsHealthInsuranceSectionProps {
 export const MedicalBillsHealthInsuranceSection: React.FC<MedicalBillsHealthInsuranceSectionProps> = ({ formData = {} }) => {
   return (
     <>
-
       <ClientDetailsTableHeader
           type="medical"
           title="Medical Bills & Health Insurance"
@@ -84,57 +73,57 @@ export const MedicalBillsHealthInsuranceSection: React.FC<MedicalBillsHealthInsu
       />
       
       <div style={{ marginTop: '0px', gap: '36px', paddingBottom: '36px', paddingTop: '20px' }}>
-
         <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '97px', marginBottom: '-21px', paddingLeft: '12px' }}>
-                <Typography variant="titleSmall">
-                    Estimated <br/> Medical Bills
-                </Typography>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '97px', marginBottom: '-21px', paddingLeft: '12px' }}>
+              <Typography variant="titleSmall">
+                  Estimated <br/> Medical Bills
+              </Typography>
+              
+              <Typography variant="titleSmall" style={{}}>
+                  Insurance Type
+              </Typography>
+          </div>
+
+          <div style={{...L.checkboxGroup, gap: '40px'}}>
+              <Input
+                  label="Estimated Medical Bills"
+                  placeholder=""
+                  value={formData?.estimatedMedicalBills || ''}
+                  size="large"
+                  customSize={{ width: '110px' }}
+              />
+
+              <div style={{ display: 'flex', gap: '36px', paddingTop: '26px' }}>
+                  <Checkbox
+                      label="None"
+                      checked={formData?.insuranceType?.medicaid || false}
+                      onChange={() => {}}
+                  />
+                  <Checkbox
+                      label="Medicaid"
+                      checked={formData?.insuranceType?.medicaid || false}
+                      onChange={() => {}}
+                  />
+
+                  <Checkbox
+                      label="Medicare"
+                      checked={formData?.insuranceType?.medicare || false}
+                      onChange={() => {}}
+                  />
+
+                  <Checkbox
+                      label="Tricare"
+                      checked={formData?.insuranceType?.tricare || false}
+                      onChange={() => {}}
+                  />
+
+                  <Checkbox
+                      label="Private"
+                      checked={formData?.insuranceType?.private || false}
+                      onChange={() => {}}
+                  />
+              </div>
                 
-                <Typography variant="titleSmall" style={{}}>
-                    Insurance Type
-                </Typography>
-            </div>
-
-            <div style={{...L.checkboxGroup, gap: '40px'}}>
-                <Input
-                    label="Estimated Medical Bills"
-                    placeholder=""
-                    value={formData?.estimatedMedicalBills || ''}
-                    size="large"
-                    customSize={{ width: '110px' }}
-                />
-
-                <div style={{ display: 'flex', gap: '36px', paddingTop: '26px' }}>
-                    <Checkbox
-                        label="None"
-                        checked={formData?.insuranceType?.medicaid || false}
-                        onChange={() => {}}
-                    />
-                    <Checkbox
-                        label="Medicaid"
-                        checked={formData?.insuranceType?.medicaid || false}
-                        onChange={() => {}}
-                    />
-
-                    <Checkbox
-                        label="Medicare"
-                        checked={formData?.insuranceType?.medicare || false}
-                        onChange={() => {}}
-                    />
-
-                    <Checkbox
-                        label="Tricare"
-                        checked={formData?.insuranceType?.tricare || false}
-                        onChange={() => {}}
-                    />
-
-                    <Checkbox
-                        label="Private"
-                        checked={formData?.insuranceType?.private || false}
-                        onChange={() => {}}
-                    />
-                </div>
                 <Input
                   placeholder="Private Insurance Name"
                   value={formData?.otherInsuranceType || ''}
@@ -142,181 +131,163 @@ export const MedicalBillsHealthInsuranceSection: React.FC<MedicalBillsHealthInsu
                   customSize={{ width: '300px' }}
                 />
             </div>
-        </div>
+          </div>
+                    
+          <ClientDetailsTableHeader
+            type="medical"
+            borderBottom={true}
+            title="Wage Loss Details"
+            buttonLabel={['Sent the Big Package', 'Send Wage Loss Email']}
+            buttonIcon={[<LetterIcon size={22} />, <EmailIcon size={20} />]}
+          />
 
-        {/* Wage Loss Details */}
-
-        <ClientDetailsTableHeader
-          type="medical"
-          borderBottom={true}
-          title="Wage Loss Details"
-          buttonLabel={['Sent the Big Package', 'Send Wage Loss Email']}
-          buttonIcon={[<LetterIcon size={22} />, <EmailIcon size={20} />]}
-        />
-
-
-      <div>
-
-        <div style={L.toggleGroup}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span>Wage Loss</span>
-            <Radio
-              label="Yes"
+          <div style={{...L.checkboxGroup, gap: '40px', marginTop: '40px'}}>
+            <Toggle
+              label="Wage Loss"
               checked={formData?.wageLoss === 'Yes'}
               onChange={() => {}}
             />
-            <Radio
-              label="No"
-              checked={formData?.wageLoss === 'No'}
+
+            <Input
+              label="Missed Days"
+              showLabel={true}
+              placeholder=""
+              value={formData?.estimatedMedicalBills || ''}
+              size="large"
+              customSize={{ width: '118px' }}
+            />
+
+            <Input
+              label="Total Missed Days"
+              showLabel={true}
+              placeholder=""
+              value={formData?.estimatedMedicalBills || ''}
+              size="large"
+              customSize={{ width: '144px' }}
+            />
+
+            <Input
+              label="Hours Worked / Days"
+              showLabel={true}
+              placeholder=""
+              value={formData?.estimatedMedicalBills || ''}
+              size="large"
+              customSize={{ width: '165px' }}
+            />
+
+            <Input
+              label="Total Wage Loss"
+              showLabel={true}
+              placeholder=""
+              value={formData?.estimatedMedicalBills || ''}
+              size="large"
+              customSize={{ width: '144px' }}
+            />
+
+            <Toggle
+              label="Paid for Missed Time?"
+              checked={formData?.wageLoss === 'Yes'}
+              onChange={() => {}}
+            />
+
+            <Toggle
+              label="Contact Employer"
+              checked={formData?.wageLoss === 'Yes'}
               onChange={() => {}}
             />
           </div>
-        </div>
 
-        <div style={{ ...L.inputsRow }}>
-          <Input
-            placeholder="DD"
-            value={formData?.missedDays || ''}
-            size="large"
-            customSize={{ width: '100px' }}
-          />
-          <Input
-            placeholder="DD"
-            value={formData?.totalMissedDays || ''}
-            size="large"
-            customSize={{ width: '100px' }}
-          />
-          <Input
-            placeholder="DD / DD"
-            value={formData?.hoursWorkedDays || ''}
-            size="large"
-            customSize={{ width: '120px' }}
-          />
-          <Input
-            placeholder="$"
-            value={formData?.totalWageLoss || ''}
-            size="large"
-            customSize={{ width: '150px' }}
-          />
-        </div>
+          <Spacer customSize={40} />
 
-        <div style={L.toggleGroup}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span>Paid for Missed Time?</span>
-            <Radio
-              label="Yes"
-              checked={formData?.paidForMissedTime === 'Yes'}
-              onChange={() => {}}
+          <div style={{ ...L.inputsRow }}>
+            <Input
+              placeholder="Employer Name"
+              value={formData?.employerName || ''}
+              size="large"
+              customSize={{ width: '250px' }}
             />
-            <Radio
-              label="No"
-              checked={formData?.paidForMissedTime === 'No'}
-              onChange={() => {}}
+            
+            <Input
+              placeholder="Employer City"
+              value={formData?.employerCity || ''}
+              size="large"
+              customSize={{ width: '160px' }}
             />
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span>Contact Employer</span>
-            <Radio
-              label="Ok"
-              checked={formData?.contactEmployer === 'Ok'}
-              onChange={() => {}}
+            
+            <BaseDropdown
+              type="BaseDropdown"
+              value={formData?.employerState || "Missouri"}
+              label="State"
+              state='selected'
+              width="120px"
+              menuItems={[
+                { label: 'Missouri' },
+                { label: 'Illinois' },
+                { label: 'California' },
+              ]}
+              onSelect={(item) => {
+                console.log(item);
+              }}
             />
-            <Radio
-              label="Not Ok"
-              checked={formData?.contactEmployer === 'Not Ok'}
-              onChange={() => {}}
+            <Input
+              placeholder="Zip Code"
+              value={formData?.employerZipCode || ''}
+              size="large"
+              customSize={{ width: '108px' }}
+            />
+            <Input
+              placeholder="Employer Email"
+              value={formData?.employerEmail || ''}
+              size="large"
+              customSize={{ width: '360px' }}
             />
           </div>
-        </div>
-      </div>
 
-      {/* Employer Information */}
-      <div>
-        <Typography variant="leftLabel" style={{ marginBottom: '12px' }}>
-          Employer Information
-        </Typography>
-        <div style={{ ...L.inputsRow }}>
-          <Input
-            placeholder="Employer Name"
-            value={formData?.employerName || ''}
-            size="large"
-            customSize={{ width: '200px' }}
-          />
-          <Input
-            placeholder="Employer City"
-            value={formData?.employerCity || ''}
-            size="large"
-            customSize={{ width: '150px' }}
-          />
-          <BaseDropdown
-            type="BaseDropdown"
-            value={formData?.employerState || "Missouri"}
-            state='selected'
-            width="120px"
-            menuItems={[
-              { label: 'Missouri' },
-              { label: 'Illinois' },
-              { label: 'California' },
-            ]}
-            onSelect={(item) => {
-              console.log(item);
-            }}
-          />
-          <Input
-            placeholder="Zip Code"
-            value={formData?.employerZipCode || ''}
-            size="large"
-            customSize={{ width: '100px' }}
-          />
-          <Input
-            placeholder="Employer Email"
-            value={formData?.employerEmail || ''}
-            size="large"
-            customSize={{ width: '200px' }}
-          />
-        </div>
-      </div>
+          <Spacer customSize={30} />
+          <Border />
 
-      {/* Other Innocent Injured Parties */}
-      <Input
-        label="Other Innocent Injured Parties"
-        inputType="textarea"
-        placeholder=""
-        value={formData?.otherInnocentInjuredParties || ''}
-        size="large"
-        customSize={{ width: '100%', height: '80px' }}
-      />
+          <Wrapper type="pageWrapperContentRow" style={{ gap: '40px', marginTop: '40px'}}>
+            <Input
+              label="Other Innocent Injured Parties"
+              inputType="textarea"
+              placeholder="Other Innocent Injured Parties"
+              value={formData?.otherInnocentInjuredParties || ''}
+              size="large"
+              customSize={{ width: '500px', height: '100px' }}
+            />
 
-      {/* Send Big Package */}
-      <div>
-        <Typography variant="leftLabel" style={{ marginBottom: '12px' }}>
-          Send Big Package
-        </Typography>
-        <div style={L.communicationGroup}>
-          <Checkbox
-            label="Text"
-            checked={formData?.sendBigPackage?.text || false}
-            onChange={() => {}}
-          />
-          <Checkbox
-            label="Email"
-            checked={formData?.sendBigPackage?.email || false}
-            onChange={() => {}}
-          />
-          <Checkbox
-            label="Snail Mail"
-            checked={formData?.sendBigPackage?.snailMail || false}
-            onChange={() => {}}
-          />
-        </div>
-        <Button
-          label="Sent the Big Package"
-          icon={<EmailIcon size={16} />}
-          iconPosition="left"
-          onClick={() => {}}
-          size="medium"
-        />
-      </div>
+            <Wrapper type="pageWrapperContentColumn">
+              <Typography variant="titleSmall" style={{ marginBottom: '12px' }}>Send Big Package</Typography>
+              
+              <div style={{...L.checkboxGroup, gap: '40px'}}>
+                <Checkbox
+                    label="Text"
+                    checked={formData?.sendBigPackage?.text || false}
+                    onChange={() => {}}
+                  />
+
+                  <Checkbox
+                    label="Email"
+                    checked={formData?.sendBigPackage?.email || false}
+                    onChange={() => {}}
+                  />
+
+                  <Checkbox
+                    label="Snail Mail"
+                    checked={formData?.sendBigPackage?.snailMail || false}
+                    onChange={() => {}}
+                  />
+              </div>
+
+              <Button
+                label="Sent the Big Package"
+                icon={<LetterIcon size={22} />}
+                iconPosition="left"
+                onClick={() => {}}
+                size="medium"
+              />
+            </Wrapper>
+          </Wrapper>
       </div>
     </>
   );
