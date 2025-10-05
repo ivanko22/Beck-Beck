@@ -4,6 +4,7 @@ export { MedicalIcon } from './MedicalIcon';
 export { CarIcon } from './CarIcon';
 export { BookIcon } from './BookIcon';
 export { EmailIcon } from './EmailIcon';
+export { LetterIcon } from './LetterIcon';
 export { ClipboardIcon } from './ClipboardIcon';
 export { CheckIcon } from './CheckIcon';
 export { HandshakeIcon } from './HandshakeIcon';

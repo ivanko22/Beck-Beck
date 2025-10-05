@@ -22,6 +22,7 @@ import {
   SearchIcon,
   PlusIcon,
   PoliceIcon,
+  LetterIcon,
 
 } from './index';
 
@@ -98,6 +99,14 @@ export const Email: Story = {
     color: '#000000',
   },
   render: (args) => <EmailIcon {...args} />,
+};
+
+export const Letter: Story = {
+  args: {
+    size: 22,
+    color: '#000000',
+  },
+  render: (args) => <LetterIcon {...args} />,
 };
 
 export const Clipboard: Story = {
@@ -229,6 +238,7 @@ export const IconShowcase: Story = {
       { name: 'Car', component: CarIcon },
       { name: 'Book', component: BookIcon },
       { name: 'Email', component: EmailIcon },
+      { name: 'Letter', component: LetterIcon },
       { name: 'Clipboard', component: ClipboardIcon },
       { name: 'Check', component: CheckIcon },
       { name: 'Handshake', component: HandshakeIcon },

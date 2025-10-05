@@ -6,9 +6,11 @@ import { Checkbox } from '../checkbox/Checkbox';
 export interface ClientDetailsTableHeaderProps {
   type?: 'insurance' | 'relative' | 'medical';
   title: string;
+  smallSectionTitle?: string;
   buttonLabel: string[];
   buttonIcon?: React.ReactNode[];
   onButtonClick?: () => void;
+  borderBottom?: boolean;
   style?: React.CSSProperties;
 };
 
@@ -24,7 +26,8 @@ const styles = {
   
   titleContainer: {
     display: 'flex',
-    alignItems: 'center',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
   } as React.CSSProperties,
   
   buttonContainer: {
@@ -35,23 +38,34 @@ const styles = {
 
 export const ClientDetailsTableHeader: React.FC<ClientDetailsTableHeaderProps> = ({
   title,
+  smallSectionTitle,
   buttonLabel,
   buttonIcon,
   onButtonClick,
+  borderBottom = true,
   style,
   type,
 }) => {
   return (
+    <>
+    <div style={{ position: 'relative', top: '22px'}}>
+          {type === 'medical' && (
+            <Typography variant="sectionTitleSmall">
+              {smallSectionTitle}
+            </Typography>
+          )}
+        </div>
+    
+
     <div style={{ 
       ...styles.container, 
       ...style,
-      borderBottom: type === 'medical' ? 'none' : '1px solid var(--light-grey)',
+      borderBottom: borderBottom ? '1px solid var(--light-grey)' : 'none',
       marginBottom: type === 'medical' ? '-10px' : '20px',
     }}>
       <div style={styles.titleContainer}>
-        <Typography 
-          variant={type === 'medical' ? 'leftLabel' : 'sectionTitle'} 
-        >
+
+        <Typography variant={type === 'medical' ? 'leftLabel' : 'sectionTitle'} >
           {title}
         </Typography>
 
@@ -81,5 +95,6 @@ export const ClientDetailsTableHeader: React.FC<ClientDetailsTableHeaderProps> =
       </div>
 
     </div>
+    </>
   );
 };

@@ -2,77 +2,13 @@ import React from 'react';
 import { Header } from '../components/header/Header';
 import { Navigation } from '../components/navigation/Navigation';
 import { ClientInsuranceRelativeSection } from './ClientInsuranceRelativeSection';
-import { Typography } from '../components/typography/Typography';
+import { MedicalTreatmentSection } from './clientDetails/sections/MedicalTreatmentSection';
+import { ClientInformationSection } from './clientDetails/sections/ClientInformationSection';
+import { CaseOverviewSection } from './clientDetails/sections/CaseOverviewSection';
+import { MedicalBillsHealthInsuranceSection } from './clientDetails/sections/MedicalBillsHealthInsuranceSection';
 import { Wrapper } from '../components/wrapper/PageWrapper';
-import { Card } from '../components/card/Card';
-import { Input } from '../components/input/Inputs';
-import { BaseDropdown } from '../components/dropdown/Dropdown';
-import { Checkbox } from '../components/checkbox/Checkbox';
-import { Radio } from '../components/radiobutton/Radiobutton';
-import { ClientDetailsTableHeader } from '../components/table/ClientDetailsTableHeader';
-import { PoliceIcon } from '../components/icons/PoliceIcon';
-import { EmailIcon } from '../components/icons/EmailIcon';
-import { Button } from '../components/button/Button';
 
 const L = {
-  caseOverviewCard: {
-    display: 'flex',
-    flexDirection: 'row',
-    height: '90px',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    gap: 24,
-    marginTop: 0,
-    marginBottom: 20,
-  } as React.CSSProperties,
-
-  caseOverviewLeftSide: {
-    display: 'flex',
-    width: 170,
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-  } as React.CSSProperties,
-
-  caseOverviewTitleGroup: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 4,
-  } as React.CSSProperties,
-
-  casePhaseText: {
-    fontSize: 14,
-    fontWeight: 400,
-    color: 'var(--dark-grey)',
-  } as React.CSSProperties,
-
-  caseOverviewProgressRow: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: 12,
-    width: '100%',
-  } as React.CSSProperties,
-
-  caseOverviewProgressTrack: {
-    flex: 1,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: 'var(--light-grey)',
-    overflow: 'hidden',
-  } as React.CSSProperties,
-
-  caseOverviewProgressFill: {
-    height: '100%',
-    backgroundColor: 'var(--secondary-color)',
-    borderRadius: 4,
-    transition: 'width 0.3s ease',
-  } as React.CSSProperties,
-
-  caseOverviewProgressValue: {
-    fontSize: 16,
-    fontWeight: 600,
-    color: 'var(--primary-color)',
-  } as React.CSSProperties,
-
   InputsRow: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -118,6 +54,34 @@ interface ClientDetailsPageProps {
     vehicleAmbulance2?: boolean;
     helicopterAirAmbulance1?: boolean;
     helicopterAirAmbulance2?: boolean;
+    // Medical Bills & Health Insurance
+    estimatedMedicalBills?: string;
+    insuranceType?: {
+      none?: boolean;
+      medicaid?: boolean;
+      medicare?: boolean;
+      tricare?: boolean;
+      private?: boolean;
+    };
+    otherInsuranceType?: string;
+    wageLoss?: 'Yes' | 'No';
+    missedDays?: string;
+    totalMissedDays?: string;
+    hoursWorkedDays?: string;
+    totalWageLoss?: string;
+    paidForMissedTime?: 'Yes' | 'No';
+    contactEmployer?: 'Ok' | 'Not Ok';
+    employerName?: string;
+    employerCity?: string;
+    employerState?: string;
+    employerZipCode?: string;
+    employerEmail?: string;
+    otherInnocentInjuredParties?: string;
+    sendBigPackage?: {
+      text?: boolean;
+      email?: boolean;
+      snailMail?: boolean;
+    };
     [key: string]: any;
   };
 }
@@ -131,7 +95,6 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
 }) => {
 
   const progressPercent = 5.6;
-  const progressWidth = `${progressPercent}%`;
 
   return (
     <Wrapper type="pageWrapper">
@@ -149,425 +112,11 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
 
         <Wrapper type="contentWrapper">
 
-          {/* Case overview */}
-          <Typography variant="leftLabel" style={{ textAlign: 'left' }}>Case Overview</Typography>
-          <Card style={L.caseOverviewCard}>
-            <div style={L.caseOverviewLeftSide}>
-              
-              <div style={L.caseOverviewTitleGroup}>
-                <span style={L.casePhaseText}>Case Phase <b>1</b> of <b>18</b></span>
-              </div>
-              
-              <div style={{ marginTop: '-26px' }}>
-                <BaseDropdown 
-                  disabled={false} 
-                  type="BaseDropdown" 
-                  value="File Setup" 
-                  noBorder={true}
-                  state='selected'
-                  onSelect={(item) => {
-                    console.log(item);
-                  }}
-                  menuItems={[
-                    { label: 'File Setup' },
-                    { label: 'File Setup 2' },
-                    { label: 'File Setup 3' },
-                  ]}
-                />
-              </div>
-
-              <div style={L.caseOverviewProgressRow}>
-                <div style={L.caseOverviewProgressTrack}>
-                  <div style={{ ...L.caseOverviewProgressFill, width: progressWidth }} />
-                </div>
-                <span style={L.caseOverviewProgressValue}>{progressPercent}%</span>
-              </div>
-
-            </div>
-
-            <div style={{ ...L.InputsRow, width: '100%', padding: '0 20px' }}>
-              <Input
-                placeholder="Incident Date"
-                size="large"
-                customSize={{ width: '150px' }}
-              />
-
-              <Input
-                placeholder="Medical Bills"
-                size="large"
-                customSize={{ width: '170px' }}
-              />
-
-              <Input
-                placeholder="Total Liability PP"
-                size="large"
-                customSize={{ width: '170px' }}
-              />
-              
-              <Input
-                placeholder="Total UM PP"
-                size="large"
-                customSize={{ width: '170px' }}
-              />
-
-              <Input
-                placeholder="Total UM Policy"
-                size="large"
-                customSize={{ width: '170px' }}
-              />
-
-              <Input
-                placeholder="Client Phone"
-                size="large"
-                customSize={{ width: '170px' }}
-              />
-            </div>
-          </Card>
-
-          {/* Client Information */}
-          <Typography style={{ textAlign: 'left' }} variant="leftLabel">
-            Client Information
-          </Typography>
-
-          <div style={{ ...L.InputsRow, width: 'auto' }}>
-            <BaseDropdown
-              type="BaseDropdown"
-              value="Assigned to Team"
-              label="Assigned to Team"
-              menuItems={[
-                { label: 'Team 1' },
-                { label: 'Team 2' },
-                { label: 'Team 3' },
-              ]}
-              onSelect={(item) => {
-                console.log(item);
-              }}
-            />
-
-            <BaseDropdown
-              type="BaseDropdown"
-              value="Referred Firm"
-              label="Referred Firm"
-              menuItems={[
-                { label: 'Firm 1' },
-                { label: 'Firm 2' },
-                { label: 'Firm 3' },
-              ]}
-              onSelect={(item) => {
-                console.log(item);
-              }}
-            />
-
-            <Input
-              placeholder="First Last Name"
-              size="large"
-              customSize={{ width: '270px' }}
-            />
-
-            <Input
-              placeholder="Email"
-              size="large"
-              customSize={{ width: '300px' }}
-            />
-
-            <BaseDropdown
-              type="BaseDropdown"
-              value="Phone"
-              state='selected'
-              label="Best Contact"
-              menuItems={[
-                { label: 'Phone' },
-                { label: 'Email' },
-                { label: 'Text' },
-              ]}
-              onSelect={(item) => {
-                console.log(item);
-              }}
-            />
-                
-          </div>
-
-          <div style={{ ...L.InputsRow, width: 'auto' }}>
-            <Input
-              placeholder="Address"
-              size="large"
-              customSize={{ width: '400px' }}
-            />
-
-            <BaseDropdown
-              type="BaseDropdown"
-              value="MO"
-              state='selected'
-              label="State"
-              width='74px'
-              menuItems={[
-                { label: 'MO' },
-                { label: 'IL' },
-                { label: 'CA' },
-              ]}
-              onSelect={(item) => {
-                console.log(item);
-              }}
-            />
-
-            <Input
-              placeholder="City"
-              size="large"
-              customSize={{ width: '240px' }}
-            />
-
-            <Input
-              placeholder="Zip"
-              size="large"
-              customSize={{ width: '120px' }}
-            />
-            
-            <Input
-              placeholder="DOB"
-              size="large"
-              customSize={{ width: '140px' }}
-            />
-
-            <Input
-              placeholder="SSN"
-              size="large"
-              customSize={{ width: '160px' }}
-            />
-
-            <Input
-              placeholder="DOL (Crash Date)"
-              size="large"
-              customSize={{ width: '182px' }}
-            />     
-          </div>
-
-          <div style={{ ...L.InputsRow, width: 'auto' }}>
-            <div style={{  }}>
-              <Input
-                placeholder="Other Clients in Crash"
-                size="large"
-                customSize={{ width: '440px' }}
-              />
-
-              <div style={{ marginTop: '30px', width: '440px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                <Checkbox
-                  label="Do NOT Send Automated Texts re: Medical Providers"
-              />
-
-            <div style={{ ...L.InputsRadioRow  }}>
-              <Input
-                placeholder="Phone 1"
-                size="large"
-                customSize={{ width: '160px' }}
-              />
-
-              <div style={{ display: 'flex', gap: '40px', paddingTop: '30px' }}>
-                <Radio
-                  label="Client Phone"
-                  checked={true}
-                  onChange={() => {}}
-                />
-                <Radio
-                  label="Other"
-                  checked={false}
-                  onChange={() => {}}
-                />
-              </div>
-
-              <Input
-                placeholder="Other Phone 1"
-                size="large"
-                customSize={{ width: '160px' }}
-              />
-            </div>
-
-            <div style={{ ...L.InputsRadioRow  }}>
-              <Input
-                placeholder="Phone 1"
-                size="large"
-                customSize={{ width: '160px' }}
-              />
-
-              <div style={{ display: 'flex', gap: '40px', paddingTop: '30px' }}>
-                <Radio
-                  label="Client Phone"
-                  checked={true}
-                  onChange={() => {}}
-                />
-                <Radio
-                  label="Other"
-                  checked={false}
-                  onChange={() => {}}
-                />
-              </div>
-
-              <Input
-                placeholder="Other Phone 1"
-                size="large"
-                customSize={{ width: '160px' }}
-              />
-            </div>
-
-            <div style={{ ...L.InputsRadioRow  }}>
-              <Input
-                placeholder="Phone 1"
-                size="large"
-                customSize={{ width: '160px' }}
-              />
-
-              <div style={{ display: 'flex', gap: '40px', paddingTop: '30px' }}>
-                <Radio
-                  label="Client Phone"
-                  checked={true}
-                  onChange={() => {}}
-                />
-                <Radio
-                  label="Other"
-                  checked={false}
-                  onChange={() => {}}
-                />
-              </div>
-
-              <Input
-                placeholder="Other Phone 1"
-                size="large"
-                customSize={{ width: '160px' }}
-              />
-            </div>
-          </div>
-        
-          </div>
-            <Input
-              placeholder="Parent Name (if a minor/disabled child)"
-              size="large"
-              customSize={{ width: '400px' }}
-            />
-
-            <Input
-              inputType="textarea"
-              placeholder="Case Plan"
-              size="large"
-              customSize={{ width: '560px', height: '120px' }}
-            />
-          </div>
-
-          {/* Medical & Treatment */}
-          <ClientDetailsTableHeader
-            type="medical"
-            title="Medical & Treatment"
-            buttonLabel={['Order Police Report', 'Email AIC to Contact Client']}
-            buttonIcon={[<PoliceIcon size={24} />, <EmailIcon size={20} />]}
-          />
+          <CaseOverviewSection formData={formData} progressPercent={progressPercent} />
+          <ClientInformationSection formData={formData} />
+          <MedicalTreatmentSection formData={formData} />
           
-          <Card style={{ marginTop: '0px', gap: '36px', paddingBottom: '36px' }}>
-            <Typography variant="titleSmall" style={{ marginBottom: '-16px' }}>
-              Current Status
-            </Typography>
-
-            <div style={{ ...L.InputsMedicalRow }}>
-              <Checkbox
-                label="Ongoing Treatment"
-                checked={formData?.ongoingTreatment || false}
-                onChange={() => {}}
-              />
-              <Checkbox
-                label="Treatment Completed"
-                checked={formData?.treatmentCompleted || false}
-                onChange={() => {}}
-              />
-              <Checkbox
-                label="Emergency Room Visit"
-                checked={formData?.emergencyRoomVisit || false}
-                onChange={() => {}}
-              />
-              <Checkbox
-                label="Vehicle Ambulance 1"
-                checked={formData?.vehicleAmbulance1 || false}
-                onChange={() => {}}
-              />
-            </div>
-
-            <div style={{ ...L.InputsMedicalRow}}>
-              <Checkbox
-                label="Vehicle Ambulance 2"
-                checked={formData?.vehicleAmbulance2 || false}
-                onChange={() => {}}
-              />
-              <Checkbox
-                label="Helicopter Air Ambulance - 1"
-                checked={formData?.helicopterAirAmbulance1 || false}
-                onChange={() => {}}
-              />
-              <Checkbox
-                label="Helicopter Air Ambulance - 2"
-                checked={formData?.helicopterAirAmbulance2 || false}
-                onChange={() => {}}
-              />
-            </div>
-
-            <div style={ { ...L.InputsMedicalRow, alignItems: 'flex-end' }}>
-              <BaseDropdown
-                type="BaseDropdown"
-                label="Police Department"
-                value="Missouri Highway Patrol"
-                state='selected'
-                menuItems={[
-                  { label: 'Missouri Highway Patrol' },
-                  { label: 'Illinois State Police' },
-                  { label: 'California Highway Patrol' },
-                ]}
-                onSelect={(item) => {
-                  console.log(item);
-                }}
-              />
-
-              <Input
-                placeholder="Accident Location"
-                size="large"
-                customSize={{ width: '400px' }}
-              />
-
-              <div style={{ display: 'flex', gap: '20px', paddingBottom: '10px', }}>
-                <Checkbox
-                  label="No Police Report Taken"
-                  checked={formData?.noPoliceReportTaken || false}
-                  onChange={() => {}}
-                />
-                <Checkbox
-                  label="Waiting on Information to Order PR"
-                  checked={formData?.waitingOnInformationToOrderPR || false}
-                  onChange={() => {}}
-                />
-              </div>
-
-            </div>
-
-            <div style={ { ...L.InputsMedicalRow, alignItems: 'center', width: '100%', marginTop: '-10px' }}>
-              <BaseDropdown
-                type="BaseDropdown"
-                value="Select Treatment Needs"
-                label="Select Treatment Needs"
-                menuItems={[
-                  { label: 'Ambulance' },
-                  { label: 'Emergency Room' },
-                  { label: 'Surgery' },
-                ]}
-                onSelect={(item) => {
-                  console.log(item);
-                }}
-              />
-
-               <div style={{ marginTop: '33px', marginLeft: '-15px' }}>
-                 <Button
-                   label="Email AIC to Contact Client"
-                   icon={<EmailIcon size={20} />}
-                   iconPosition="left"
-                   onClick={() => {}}
-                   size="medium"
-                 />
-               </div>
-            </div>
-          </Card>
+          <MedicalBillsHealthInsuranceSection formData={formData} />
 
         </Wrapper>
 

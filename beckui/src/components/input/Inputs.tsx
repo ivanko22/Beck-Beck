@@ -4,6 +4,7 @@ interface InputProps {
   size?: 'small' | 'medium' | 'large';
   placeholder?: string;
   disabled?: boolean;
+  showLabel?: boolean;
   active?: boolean;
   error?: boolean | string;
   inputType?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'textarea';
@@ -146,6 +147,7 @@ export const Input: React.FC<InputProps> = ({
   defaultValue,
   onChange,
   label,
+  showLabel = false,
   className = '',
   name,
   showForgotPassword = false,
@@ -206,7 +208,7 @@ export const Input: React.FC<InputProps> = ({
       `}
       </style>
       
-      {label && (leftLabel || String(currentValue).trim() !== '') && (
+      {label && (showLabel || leftLabel || String(currentValue).trim() !== '') && (
         <label style={{
           ...styles.label,
           ...(leftLabel && { ...styles.leftLabel }),
