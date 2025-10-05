@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { BaseDropdown } from './Dropdown';
-import { PageWrapper } from '../wrapper/PageWrapper';
+import { Wrapper } from '../wrapper/PageWrapper';
 import { SignOutIcon } from '../icons';
 
 const meta: Meta<typeof BaseDropdown> = {
@@ -14,12 +14,12 @@ const meta: Meta<typeof BaseDropdown> = {
   tags: ['autodocs'],
   decorators: [
     (Story, ctx) => (
-      <PageWrapper
+      <Wrapper
         background="darkBlue"
         style={ctx.viewMode === 'docs' ? { width: '1000px' } : undefined}
       >
         <Story />
-      </PageWrapper>
+      </Wrapper>
     ),
   ],
 
@@ -56,9 +56,9 @@ export default meta;
 type Story = StoryObj<typeof BaseDropdown>;
 
 const withPageWrapper = (StoryFn: () => React.ReactNode) => (
-  <PageWrapper background="darkBlue">
+  <Wrapper background="darkBlue">
     {StoryFn()}
-  </PageWrapper>
+  </Wrapper>
 );
 
 const baseMenu = [

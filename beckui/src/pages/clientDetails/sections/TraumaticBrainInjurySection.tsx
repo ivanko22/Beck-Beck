@@ -5,7 +5,6 @@ import { Button } from '../../../components/button/Button';
 import { EmailIcon } from '../../../components/icons';
 import { Wrapper } from '../../../components/wrapper/PageWrapper';
 import { Border } from '../../../components/border/Border';
-import { Footer } from '../../../components/footer/Footer';
 
 interface TraumaticBrainInjurySectionProps {
   formData?: {
