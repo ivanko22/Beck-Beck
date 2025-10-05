@@ -8,7 +8,7 @@ import { TemplateRow, TemplateLibraryProps, defaultRows } from '../components/ta
 import { PageActions } from '../components/page-actions/PageActions';
 import { Input } from '../components/input/Inputs';
 import { Spacer } from '../components/spacer/Spacer';
-import { PageWrapper } from '../components/wrapper/PageWrapper';
+import { Wrapper } from '../components/wrapper/PageWrapper';
 const L = {
   shell: {
     display: 'block',
@@ -55,7 +55,7 @@ export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({
 
   return (
     // <div style={L.shell}>
-    <PageWrapper background="white">  
+    <Wrapper background="white">  
       <Navigation
         userEmail="ivankordonets@gmail.com"
         dropdownMenuItems={[{ label: 'Profile' }, { label: 'Settings' }, { label: 'Sign out' }]}
@@ -70,7 +70,7 @@ export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({
           onClose={() => onCancel?.()}
         />
 
-        <PageWrapper type="contentWrapper">
+        <Wrapper type="contentWrapper">
           <table style={L.table}>
             <TableHeader
               template="4fr 1fr 1fr 1fr"
@@ -115,9 +115,9 @@ export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({
             onEdit={() => console.log('Edit templates')}
             onRemove={() => console.log('Remove templates')}
           />
-        </PageWrapper>
+        </Wrapper>
         
       </div>
-    </PageWrapper>
+    </Wrapper>
   );
 };
