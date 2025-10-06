@@ -55,7 +55,7 @@ interface liabilityInsuranceSections {
       medpay?: boolean;
       uim?: boolean;
       um?: boolean;
-      excessUmbrella?: boolean;
+      excess?: boolean;
     };
     emailLetterOfRepresentationLienLetter?: boolean;
 
@@ -67,14 +67,14 @@ interface liabilityInsuranceSections {
     emailIsThereMPorUIM?: boolean;
     emailMedPayDemand?: boolean;
 
-    medPayLimits?: 'None' | '$1K' | '$2,500' | '$5k' | '$10K' | '$25K' | 'Other' | '';
-    medPayLimitsOtherSpecify?: string;
+    medPayLimit?: 'none' | '1k' | '5k' | '10k' | '2500' | '25k' | 'other';
+    medPayLimitOther?: string;
     uimLimitsPerPerson?: string;
     uimAdjusterWillNotDiscloseLimits?: boolean;
     umLimitsPerPerson?: string;
     umAdjusterWillNotDiscloseLimits?: boolean;
-    vehiclesOnPolicyForUMOnly?: number | null;
-    totalUMStackedLimits?: string;
+    vehiclesOnPolicy?: string;
+    totalUmStackedLimits?: string;
     umbrellaSecondaryLiabilityPolicy?: 'Yes' | 'No' | '';
     emailAdjusterIsThereUmbrellaUIM?: boolean;
     injuriesNotLargeEnough?: boolean;
@@ -115,7 +115,6 @@ const filledFormData = {
   phone3Type: 'Home',
   doNotSendAutomatedTexts: false,
   
-  // Medical Treatment
   ongoingTreatment: true,
   treatmentCompleted: false,
   emergencyRoomVisit: true,
@@ -123,8 +122,10 @@ const filledFormData = {
   vehicleAmbulance2: false,
   helicopterAirAmbulance1: false,
   helicopterAirAmbulance2: false,
+  policeDepartment: 'Missouri Highway Patrol',
+  accidentLocation: 'Highway 65, Springfield, MO',
+  treatmentNeeds: 'Emergency Room',
   
-  // Medical Bills & Health Insurance
   estimatedMedicalBills: '25000',
   insuranceType: {
     none: false,
@@ -197,16 +198,16 @@ const liabilityInsuranceSectionsEmpty = [{
     
     driverPolicyHolderDifferent: 'No',
     demandLetterSent: false,
-    emailTypes: {
+    emailOptions: {
       liability: false,
       medpay: false,
       uim: false,
       um: false,
-      excessUmbrella: false
+      excess: false
     },
     
-    medPayLimits: '',
-    medPayLimitsOther: '',
+    medPayLimit: '',
+    medPayLimitOther: '',
     
     liabilityLimitsPerPerson: '',
     liabilityLimitsDisclosed: false,
@@ -216,8 +217,8 @@ const liabilityInsuranceSectionsEmpty = [{
     umLimitsDisclosed: false,
     
     vehiclesOnPolicy: '',
-    totalUMStackedLimits: '',
-    umbrellaSecondaryPolicy: 'None',
+    totalUmStackedLimits: '',
+    umbrellaSecondaryLiabilityPolicy: 'None',
     injuriesNotLargeEnough: false,
     umbrellaLimitsDisclosed: false,
     
@@ -252,16 +253,16 @@ const liabilityInsuranceSections = [
         
         driverPolicyHolderDifferent: 'No',
         demandLetterSent: false,
-        emailTypes: {
+        emailOptions: {
           liability: false,
           medpay: false,
           uim: false,
           um: false,
-          excessUmbrella: false
+          excess: false
         },
         
-        medPayLimits: '$25K',
-        medPayLimitsOther: '',
+        medPayLimit: '25k',
+        medPayLimitOther: '',
         
         liabilityLimitsPerPerson: '100000',
         liabilityLimitsDisclosed: false,
@@ -271,8 +272,8 @@ const liabilityInsuranceSections = [
         umLimitsDisclosed: false,
         
         vehiclesOnPolicy: '2',
-        totalUMStackedLimits: '100000',
-        umbrellaSecondaryPolicy: 'None',
+        totalUmStackedLimits: '100000',
+        umbrellaSecondaryLiabilityPolicy: 'None',
         injuriesNotLargeEnough: false,
         umbrellaLimitsDisclosed: false,
         

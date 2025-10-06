@@ -28,6 +28,9 @@ interface MedicalTreatmentSectionProps {
     helicopterAirAmbulance2?: boolean;
     noPoliceReportTaken?: boolean;
     waitingOnInformationToOrderPR?: boolean;
+    policeDepartment?: string;
+    accidentLocation?: string;
+    treatmentNeeds?: string;
     [key: string]: any;
   };
 }
@@ -92,8 +95,8 @@ export const MedicalTreatmentSection: React.FC<MedicalTreatmentSectionProps> = (
           <BaseDropdown
             type="BaseDropdown"
             label="Police Department"
-            value="Missouri Highway Patrol"
-            state='selected'
+            value={formData?.policeDepartment || 'Missouri Highway Patrol'}
+            state={formData?.policeDepartment ? 'selected' : 'default'}
             menuItems={[
               { label: 'Missouri Highway Patrol' },
               { label: 'Illinois State Police' },
@@ -106,6 +109,8 @@ export const MedicalTreatmentSection: React.FC<MedicalTreatmentSectionProps> = (
 
           <Input
             placeholder="Accident Location"
+            label="Accident Location"
+            value={formData?.accidentLocation || ''}
             size="large"
             customSize={{ width: '400px' }}
           />
@@ -128,7 +133,9 @@ export const MedicalTreatmentSection: React.FC<MedicalTreatmentSectionProps> = (
         <div style={ { ...L.InputsMedicalRow, alignItems: 'center', width: '100%', marginTop: '-10px' }}>
           <BaseDropdown
             type="BaseDropdown"
-            value="Select Treatment Needs"
+            label="Treatment Needs"
+            value={formData?.treatmentNeeds || 'Select Treatment Needs'}
+            state={formData?.treatmentNeeds ? 'selected' : 'default'}
             disabled={false}
             menuItems={[
               { label: 'Ambulance' },

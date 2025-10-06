@@ -63,6 +63,7 @@ export const CrashInjuryDetailsSection: React.FC<CrashInjuryDetailsSectionProps>
           <Input
             inputType="textarea"
             placeholder="Crash Injuries From Crash"
+            label="Crash Injuries From Crash"
             value={formData?.crashInjuries || ''}
             size="large"
             customSize={{ height: '120px', width: '100%' }}
@@ -72,6 +73,7 @@ export const CrashInjuryDetailsSection: React.FC<CrashInjuryDetailsSectionProps>
           <Input
             inputType="textarea"
             placeholder="Prior Injuries"
+            label="Prior Injuries"
             value={formData?.priorInjuries || ''}
             size="large"
             customSize={{ height: '120px', width: '100%' }}

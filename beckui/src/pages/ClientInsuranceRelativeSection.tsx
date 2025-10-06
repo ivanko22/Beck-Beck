@@ -135,7 +135,7 @@ const L = {
 const generateFieldConfig = (type: string) => {
   const fieldMappings = {
     insuranceAddress: "Insurance Company Address", 
-    clientName: type === 'liability' ? "Defendant Name" : "Our Client's Name",
+    [type === 'liability' ? 'defendantName' : 'clientName']: type === 'liability' ? "Defendant Name" : "Our Client's Name",
     policyHolderName: "Policy Holder Name",
     claimNumber: "Claim #",
     policyNumber: "Policy Number",
