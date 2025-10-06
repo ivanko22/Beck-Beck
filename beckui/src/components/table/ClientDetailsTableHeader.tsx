@@ -57,43 +57,31 @@ export const ClientDetailsTableHeader: React.FC<ClientDetailsTableHeaderProps> =
           </Typography>
         )}
       </div>
-    
+  
       <div style={{ 
-      ...styles.container, 
-      ...style,
-      borderBottom: borderBottom ? '1px solid var(--light-grey)' : 'none',
-      marginBottom: type === 'medical' ? '-10px' : '20px',
-    }}>
-      <div style={styles.titleContainer}>
+        ...styles.container, 
+        ...style,
+        borderBottom: borderBottom ? '1px solid var(--light-grey)' : 'none',
+        marginBottom: type === 'medical' ? '-10px' : '20px',
+      }}>
+        <div style={styles.titleContainer}>
           <Typography variant={type === 'medical' ? 'leftLabel' : 'sectionTitle'} >
             {title}
           </Typography>
-
-        {/* <div style={{position: 'relative', top: '60px', right: '-50px'}}>
-          {type === 'relative' && (
-            <Checkbox
-              label='No Resident Relative Ins. Co'
-              checked={false}
-              onChange={() => {}}
+        </div>
+        
+        <div style={styles.buttonContainer}>
+          {buttonLabel.map((label, index) => (
+            <Button
+              key={index}
+              label={label}
+              icon={buttonIcon?.[index]}
+              iconPosition="left"
+              onClick={onButtonClick}
+              size="medium"
             />
-          )}
-        </div> */}
- 
-      </div>
-      
-      <div style={styles.buttonContainer}>
-        {buttonLabel.map((label, index) => (
-          <Button
-            key={index}
-            label={label}
-            icon={buttonIcon?.[index]}
-            iconPosition="left"
-            onClick={onButtonClick}
-            size="medium"
-          />
-        ))}
-      </div>
-
+          ))}
+        </div>
       </div>
 
       <div style={{}}>
