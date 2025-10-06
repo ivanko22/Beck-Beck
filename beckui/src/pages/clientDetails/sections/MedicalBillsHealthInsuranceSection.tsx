@@ -126,6 +126,7 @@ export const MedicalBillsHealthInsuranceSection: React.FC<MedicalBillsHealthInsu
                 
                 <Input
                   placeholder="Private Insurance Name"
+                  label="Private Insurance Name"
                   value={formData?.otherInsuranceType || ''}
                   size="large"
                   customSize={{ width: '300px' }}
