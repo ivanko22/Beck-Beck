@@ -27,12 +27,63 @@ const meta: Meta<typeof ClientDetailsPage> = {
 export default meta;
 type Story = StoryObj<typeof ClientDetailsPage>;
 
-// Empty form data
 const emptyFormData = {};
 
-// Filled form data
+interface liabilityInsuranceSections {
+  sectionTitle: string;
+  formData: {
+    noResidentRelativeInsCo?: boolean;
+    injuriesLargeEnoughToUseResRelUIM?: 'Maybe' | 'Yes' | 'No' | '';
+    insuranceCompany?: string;
+    insuranceAddress?: string;
+    clientName?: string;
+    policyHolderNameResRel?: string;
+    policyHolderName?: string;
+    claimNumber?: string;
+    policyNumber?: string;
+    mainInsPhone?: string;
+    hasOwnPolicy?: boolean;
+    demandLetterSent?: boolean;
+    emailDemandLetter?: boolean;
+
+    biAdjusterName?: string;
+    biAdjusterPhone?: string;
+    biAdjusterFax?: string;
+    biAdjusterEmail?: string;
+    emailOptions?: {
+      liability?: boolean;
+      medpay?: boolean;
+      uim?: boolean;
+      um?: boolean;
+      excessUmbrella?: boolean;
+    };
+    emailLetterOfRepresentationLienLetter?: boolean;
+
+    medPayAdjusterName?: string;
+    medPayAdjusterPhone?: string;
+    medPayAdjusterEmail?: string;
+    medPayAdjusterFax?: string;
+    emailMedPayAdjuster?: boolean;
+    emailIsThereMPorUIM?: boolean;
+    emailMedPayDemand?: boolean;
+
+    medPayLimits?: 'None' | '$1K' | '$2,500' | '$5k' | '$10K' | '$25K' | 'Other' | '';
+    medPayLimitsOtherSpecify?: string;
+    uimLimitsPerPerson?: string;
+    uimAdjusterWillNotDiscloseLimits?: boolean;
+    umLimitsPerPerson?: string;
+    umAdjusterWillNotDiscloseLimits?: boolean;
+    vehiclesOnPolicyForUMOnly?: number | null;
+    totalUMStackedLimits?: string;
+    umbrellaSecondaryLiabilityPolicy?: 'Yes' | 'No' | '';
+    emailAdjusterIsThereUmbrellaUIM?: boolean;
+    injuriesNotLargeEnough?: boolean;
+    umbrellaAdjusterWillNotDiscloseLimits?: boolean;
+  };
+}
+
+
 const filledFormData = {
-  // Case Overview
   progressPercent: 75,
   incidentDate: '2024-12-15',
   medicalBills: '$25,000',
@@ -41,7 +92,6 @@ const filledFormData = {
   totalUMPolicy: '$100,000',
   clientPhone: '(417) 555-0123',
   
-  // Client Information
   assignedTeam: 'Team Alpha',
   referredFirm: 'Smith & Associates',
   firstName: 'John',
@@ -121,23 +171,132 @@ const filledFormData = {
   childSeizures: false
 };
 
+const liabilityInsuranceSectionsEmpty = [{
+  sectionTitle: 'Liability Insurance Co #1',
+  formData: {
+    insuranceCompany: 'State Farm Insurance',
+    noLiabilityUMCase: false,
+    wasClientInThisCar: 'No',
+    
+    insuranceCompanyAddress: '',
+    defendantName: '',
+    policyHolderName: '',
+    claimNumber: '',
+    policyNumber: '',
+    mainInsPhone: '',
+    
+    biAdjusterName: '',
+    biAdjusterPhone: '',
+    biAdjusterFax: '',
+    biAdjusterEmail: '',
+    
+    medPayAdjusterName: '',
+    medPayAdjusterPhone: '',
+    medPayAdjusterEmail: '',
+    medPayAdjusterFax: '',
+    
+    driverPolicyHolderDifferent: 'No',
+    demandLetterSent: false,
+    emailTypes: {
+      liability: false,
+      medpay: false,
+      uim: false,
+      um: false,
+      excessUmbrella: false
+    },
+    
+    medPayLimits: '',
+    medPayLimitsOther: '',
+    
+    liabilityLimitsPerPerson: '',
+    liabilityLimitsDisclosed: false,
+    uimLimitsPerPerson: '',
+    uimLimitsDisclosed: false,
+    umLimitsPerPerson: '',
+    umLimitsDisclosed: false,
+    
+    vehiclesOnPolicy: '',
+    totalUMStackedLimits: '',
+    umbrellaSecondaryPolicy: 'None',
+    injuriesNotLargeEnough: false,
+    umbrellaLimitsDisclosed: false,
+    
+    notes: ''
+  }
+}]
+
+const liabilityInsuranceSections = [
+    {
+      sectionTitle: 'Liability Insurance Co #1',
+      formData: {
+        insuranceCompany: 'State Farm Insurance',
+        noLiabilityUMCase: false,
+        wasClientInThisCar: 'No',
+        
+        insuranceAddress: '123 Main Street, Springfield, MO 65801',
+        defendantName: 'Jane Smith',
+        policyHolderName: 'Jane Smith',
+        claimNumber: 'SF-2025-001',
+        policyNumber: 'POL-123456',
+        mainInsPhone: '(417) 555-0123',
+        
+        biAdjusterName: 'Mike Johnson',
+        biAdjusterPhone: '(417) 555-0124',
+        biAdjusterFax: '(417) 555-0125',
+        biAdjusterEmail: 'mike.johnson@statefarm.com',
+        
+        medPayAdjusterName: 'Sarah Wilson',
+        medPayAdjusterPhone: '(417) 555-0126',
+        medPayAdjusterEmail: 'sarah.wilson@statefarm.com',
+        medPayAdjusterFax: '(417) 555-0127',
+        
+        driverPolicyHolderDifferent: 'No',
+        demandLetterSent: false,
+        emailTypes: {
+          liability: false,
+          medpay: false,
+          uim: false,
+          um: false,
+          excessUmbrella: false
+        },
+        
+        medPayLimits: '$25K',
+        medPayLimitsOther: '',
+        
+        liabilityLimitsPerPerson: '100000',
+        liabilityLimitsDisclosed: false,
+        uimLimitsPerPerson: '50000',
+        uimLimitsDisclosed: false,
+        umLimitsPerPerson: '50000',
+        umLimitsDisclosed: false,
+        
+        vehiclesOnPolicy: '2',
+        totalUMStackedLimits: '100000',
+        umbrellaSecondaryPolicy: 'None',
+        injuriesNotLargeEnough: false,
+        umbrellaLimitsDisclosed: false,
+        
+        notes: 'Primary liability insurance. Good coverage limits. Responsive adjuster.'
+      }
+    }
+  ]
 export const Empty: Story = {
   args: {
     caseNumber: 'Case #2025-0003',
     clientName: 'John Doe',
     pageActionsState: 'save',
     formData: emptyFormData,
-    relativeInsuranceSections: []
+    liabilityInsuranceSections: liabilityInsuranceSectionsEmpty,
   },
 };
 
-export const Filled: Story = {
+export const Saved: Story = {
   args: {
     caseNumber: 'Case #2025-0003',
     clientName: 'John Doe',
     pageActionsState: 'saved',
     formData: filledFormData,
-    relativeInsuranceSections: []
+    liabilityInsuranceSections: liabilityInsuranceSections
   },
 };
 
@@ -147,6 +306,6 @@ export const Edit: Story = {
     clientName: 'John Doe',
     pageActionsState: 'edit',
     formData: filledFormData,
-    relativeInsuranceSections: []
+    liabilityInsuranceSections: liabilityInsuranceSectionsEmpty,
   },
 };

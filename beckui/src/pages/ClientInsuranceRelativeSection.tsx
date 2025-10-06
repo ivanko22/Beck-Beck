@@ -12,7 +12,7 @@ import { Card } from '../components/card/Card';
 import { Wrapper } from '../components/wrapper/PageWrapper';
 
 export interface ClientInsuranceRelativeSectionProps {
-  type: 'insurance' | 'relative';
+  type: 'insurance' | 'relative' | 'liability';
   caseNumber?: string;
   clientName?: string;
   style?: React.CSSProperties;
@@ -78,7 +78,6 @@ const L = {
     minWidth: '530px',
     flexDirection: 'column' as const,
     alignItems: 'flex-end',
-    gap: 32,
   } as React.CSSProperties,
 
   rightColumn: {
@@ -133,10 +132,10 @@ const L = {
 
 };
 
-const generateFieldConfig = () => {
+const generateFieldConfig = (type: string) => {
   const fieldMappings = {
     insuranceAddress: "Insurance Company Address", 
-    clientName: "Our Client's Name",
+    clientName: type === 'liability' ? "Defendant Name" : "Our Client's Name",
     policyHolderName: "Policy Holder Name",
     claimNumber: "Claim #",
     policyNumber: "Policy Number",
@@ -179,7 +178,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
   ];
 
   const isFilled = pageActionsState === 'saved';
-  const fieldConfig = generateFieldConfig();
+  const fieldConfig = generateFieldConfig(type);
 
   return (
 
@@ -187,7 +186,11 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
         <ClientDetailsTableHeader
           type={type}
           title={sectionTitle}
-          buttonLabel={['Add Another Client Insurance Co Section']}
+          buttonLabel={[
+            type === 'insurance' ? 'Add Another Client Insurance Co Section' : 
+            type === 'relative' ? 'Add Another Client Relative Insurance Co Section' : 
+            'Add Another Liability Section'
+          ]}
           buttonIcon={[<PlusIcon size={16}/>]}
           onButtonClick={() => {}}
         />
@@ -195,22 +198,30 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
         <div style={L.grid}>
           <div style={L.leftColumn}>
 
-            {type === 'relative' && (
+            {(type === 'relative' || type === 'liability') && (
               <>
-                <div style={{...{display: 'flex', position: 'relative', left: '124px', flexDirection: 'column', alignItems: 'center', width: '100%', paddingTop: '30px'}}}>
+                <div style={{...{display: 'flex', position: 'relative', left: type === 'relative' ? '57px' : '38px', flexDirection: 'column', alignItems: 'center', width: '100%', paddingBottom: '30px'}}}>
                   <div style={{display: 'flex', gap: 40}}>
                     <Typography variant="leftLabel">
-                      Are Injuries Large Enough to<br/> Use Res Rel UIM?
+                      {type === 'relative' ? (
+                        <>
+                          Are Injuries Large Enough to<br/> Use Res Rel UIM?
+                        </>
+                      ) : type === 'liability' ? (
+                        'Was Client in This Car?'
+                      ) : ''}
                     </Typography>
                     
                     <div style={{display: 'flex'}}>
                       <div style={{display: 'flex', gap: 20}}>
-                        <Radio
-                          label="Maybe"
-                          checked={formData?.medPayLimit === 'none' || false}
-                          onChange={() => {}}
-                          disabled={isFilled ? true : undefined}
-                        />
+                        {type === 'relative' && (         
+                          <Radio
+                            label="Maybe"
+                            checked={formData?.medPayLimit === 'none' || false}
+                            onChange={() => {}}
+                            disabled={isFilled ? true : undefined}
+                          />
+                        )}
                         <Radio
                           label="Yes"
                           checked={formData?.medPayLimit === '5k' || false}
@@ -224,14 +235,13 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
                           disabled={isFilled ? true : undefined}
                         />
                       </div>
-
                     </div>
                   </div>
                 </div>
               </>
             )}
 
-            <div style={{display: 'flex', marginTop: -30}}>
+            <div style={{display: 'flex', marginTop: -30, paddingBottom: '18px'}}>
               <BaseDropdown
                 label="Insurance Company"
                 leftLabel={true}
@@ -241,7 +251,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
                 value={formData?.insuranceCompany || 'Select Insurance Company'}
                 menuItems={insuranceCompanies}
                 onSelect={() => {}}
-                style={{ width: '238px' }}
+                style={{ width: '238px', }}
               />
             </div>
 
@@ -324,6 +334,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
                         size="large"
                         customSize={{ width: '440px' }}
                         disabled={pageActionsState === 'saved'}
+                        style={{ top: -16, left: 20 }}
                       />
                     </div>
                   </div>
@@ -332,7 +343,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
         </div>
 
 
-          {type === 'insurance' && (
+          {type === 'insurance' || type === 'liability' && (
               <Input
                 label="LIABILITY POLICY LIMITS PER PERSON"
                 leftLabel={true}
@@ -372,7 +383,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
              );
            })}
 
-            <div style={{...L.controlGroup, ...{marginTop: -20}}}>
+            <div style={{...L.controlGroup }}>
               <div style={L.radioRow}>
                 <Button
                   icon={<EmailIcon size={22}/>}
@@ -384,7 +395,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
               </div>
             </div>
 
-            <div style={{...L.controlGroup, ...{position: 'relative', left: 590, marginTop: -20}}}>
+            <div style={{...L.controlGroup, ...{position: 'relative', left: 590, marginTop: 20}}}>
               <Input
                 label="Notes"
                 inputType="textarea"
@@ -399,25 +410,20 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
                   icon={<PlusIcon size={16}/>}
                   iconPosition="left"
                   size="medium"
-                  label={type === 'insurance' ? 'Add Another Client Insurance Co Section' : 'Add Another Client Relative Insurance Co Section'}
+                  label={
+                    type === 'insurance' ? 'Add Another Client Insurance Co Section' : 
+                    type === 'liability' ? 'Add Another Liability Section' : 'Add Another Client Relative Insurance Co Section'
+                  }
                   onClick={() => {console.log('add another client insurance co section')}}
                 />
-              </div>
-
-              <div style={{ ...{marginTop: -25}}}>
-                <PageActions
-                  type={pageActionsState}
-                  onSave={() => {console.log('save')}}
-                  onCancel={() => {console.log('cancel')}}
-                />  
               </div>
 
             </div>
             
           </div>
 
-          <div style={{...L.rightColumn, paddingTop: type === 'insurance' ? 190 : 286}}>
-            <div style={L.controlGroup}>
+          <div style={{...L.rightColumn, paddingTop: type === 'insurance' ? 208 : 286}}>
+            {type !== 'liability' && (<div style={L.controlGroup}>
               <span style={L.radioTitle}>Does Client Have Own Policy?</span>
               
               <div style={L.radioRow}>
@@ -444,10 +450,48 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
                   />
                 </div>
               </div>
-     
-            </div>
+            </div>)}
 
-            <div style={{...L.controlGroup, ...{paddingTop: type === 'insurance' ? 100 : 76, marginLeft: '-21px'}}}>
+            {type === 'liability' && (<div style={L.controlGroup}>
+              <div style={{...L.rightColumn, marginTop: -9}}>
+
+                <div style={L.radioRow}>
+
+                  <div style={{ marginLeft: '-11px', width: '444px' }}>
+                    <Button
+                      icon={<EmailIcon size={22}/>}
+                      iconPosition="left"
+                      size="medium"
+                      label="Send Email to Adjuster: Driver and Policy Holder are Different. Does Driver Have Their Own Policy?"
+                      onClick={() => {console.log('send email to adjuster: driver and policy holder are different. does driver have their own policy?')}}
+                    />
+                  </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+                  <Typography variant="leftLabel">Adjuster’s Answer</Typography>
+
+                  <div style={L.radioRow}>
+                    <Radio
+                      label="Yes"
+                      checked={formData?.hasOwnPolicy}
+                      onChange={() => {}}
+                      disabled={isFilled ? true : undefined}
+                    />
+                    <Radio
+                      label="No"
+                      checked={!formData?.hasOwnPolicy}
+                      onChange={() => {}}
+                      disabled={isFilled ? true : undefined}
+                    />
+                  </div>
+                </div>
+
+                </div>
+              </div>
+            </div>)}
+
+
+            <div style={{...L.controlGroup, ...{paddingTop: type === 'insurance' ? 100 : type === 'liability' ? 51 : 76, marginLeft: '-21px'}}}>
               <div style={L.radioRow}>
                 <Button
                   icon={<EmailIcon size={22}/>}
@@ -466,7 +510,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
               </div>
             </div>
 
-            <div style={{...L.controlGroup, ...{paddingTop: type === 'insurance' ? 286 : 325, marginLeft: '-21px'}}}>
+            <div style={{...L.controlGroup, ...{paddingTop: type === 'insurance' ? 298 : type === 'liability' ? 335 : 325, marginLeft: '-21px'}}}>
               <div style={{...L.checkboxGroupBorder}}>
                 <div style={{display: 'flex', alignItems: 'flex-start', paddingTop: 32}}>
                   <Button
@@ -529,7 +573,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
 
             </div>
 
-            <div style={{...L.controlGroup, ...{marginTop: 61, marginLeft: '-21px'}}}>
+            <div style={{...L.controlGroup, ...{marginTop: 54, marginLeft: '-21px'}}}>
               <div style={L.radioRow}>
                 <Button
                   icon={<EmailIcon size={22}/>}
@@ -584,7 +628,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
               </div>
             </div>
         
-            {type === 'insurance' && (
+            {type === 'insurance' || type === 'liability' && (
                 <div style={{...L.controlGroup, ...{paddingTop: 38}}}>
                   <div style={L.radioRow}>
                     <Checkbox
@@ -607,7 +651,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
                 />
        
                 <Checkbox
-                    label="Adjuster will not disclose limits"
+                    label={"Adjuster will not disclose limits"}
                     checked={formData?.demandLetterSent || false}
                     onChange={() => {}}
                     disabled={isFilled ? true : undefined}
@@ -616,6 +660,12 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
             </div>
           </div>
         </div>
+
+        <PageActions
+          type={pageActionsState}
+          onSave={() => {console.log('save')}}
+          onCancel={() => {console.log('cancel')}}
+        />  
 
       </Wrapper>
    

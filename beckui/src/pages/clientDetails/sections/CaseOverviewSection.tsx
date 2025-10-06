@@ -130,6 +130,7 @@ export const CaseOverviewSection: React.FC<CaseOverviewSectionProps> = ({
         <div style={{ ...L.InputsRow, width: '100%', padding: '0 20px' }}>
           <Input
             placeholder="Incident Date"
+            label="Incident Date"
             value={formData?.incidentDate || ''}
             size="large"
             customSize={{ width: '150px' }}
@@ -137,6 +138,7 @@ export const CaseOverviewSection: React.FC<CaseOverviewSectionProps> = ({
 
           <Input
             placeholder="Medical Bills"
+            label="Medical Bills"
             value={formData?.medicalBills || ''}
             size="large"
             customSize={{ width: '170px' }}
@@ -144,6 +146,7 @@ export const CaseOverviewSection: React.FC<CaseOverviewSectionProps> = ({
 
           <Input
             placeholder="Total Liability PP"
+            label="Total Liability PP"
             value={formData?.totalLiabilityPP || ''}
             size="large"
             customSize={{ width: '170px' }}
@@ -151,6 +154,7 @@ export const CaseOverviewSection: React.FC<CaseOverviewSectionProps> = ({
           
           <Input
             placeholder="Total UM PP"
+            label="Total UM PP"
             value={formData?.totalUMPP || ''}
             size="large"
             customSize={{ width: '170px' }}
@@ -158,6 +162,7 @@ export const CaseOverviewSection: React.FC<CaseOverviewSectionProps> = ({
 
           <Input
             placeholder="Total UM Policy"
+            label="Total UM Policy"
             value={formData?.totalUMPolicy || ''}
             size="large"
             customSize={{ width: '170px' }}
@@ -165,6 +170,7 @@ export const CaseOverviewSection: React.FC<CaseOverviewSectionProps> = ({
 
           <Input
             placeholder="Client Phone"
+            label="Client Phone"
             value={formData?.clientPhone || ''}
             size="large"
             customSize={{ width: '170px' }}
