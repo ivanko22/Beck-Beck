@@ -144,7 +144,7 @@ export const Button: React.FC<ButtonProps> = ({
         <div style={{ color: 'inherit', pointerEvents: 'none' as const }}>
           {icon}
         </div>
-        <span>{label}</span>
+        <span style={{ textAlign: 'left' }}>{label}</span>
       </div>
     );
   };

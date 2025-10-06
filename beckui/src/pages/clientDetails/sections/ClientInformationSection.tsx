@@ -93,6 +93,7 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
 
         <Input
           placeholder="First Last Name"
+          label="First Last Name"
           value={formData?.firstName || ''}
           size="large"
           customSize={{ width: '270px' }}
@@ -100,6 +101,7 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
 
         <Input
           placeholder="Email"
+          label="Email"
           value={formData?.email || ''}
           size="large"
           customSize={{ width: '300px' }}
@@ -124,6 +126,7 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
       <div style={{ ...L.InputsRow, width: 'auto' }}>
         <Input
           placeholder="Address"
+          label="Address"
           value={formData?.address || ''}
           size="large"
           customSize={{ width: '400px' }}
@@ -147,6 +150,7 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
 
         <Input
           placeholder="City"
+          label="City"
           value={formData?.city || ''}
           size="large"
           customSize={{ width: '240px' }}
@@ -154,6 +158,7 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
 
         <Input
           placeholder="Zip"
+          label="Zip"
           value={formData?.zipCode || ''}
           size="large"
           customSize={{ width: '120px' }}
@@ -161,6 +166,7 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
         
         <Input
           placeholder="DOB"
+          label="DOB"
           value={formData?.dob || ''}
           size="large"
           customSize={{ width: '140px' }}
@@ -168,6 +174,7 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
 
         <Input
           placeholder="SSN"
+          label="SSN"
           value={formData?.ssn || ''}
           size="large"
           customSize={{ width: '160px' }}
@@ -175,6 +182,7 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
 
         <Input
           placeholder="DOL (Crash Date)"
+          label="DOL (Crash Date)"
           value={formData?.crashDate || ''}
           size="large"
           customSize={{ width: '182px' }}
@@ -185,6 +193,7 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
         <div style={{  }}>
           <Input
             placeholder="Other Clients in Crash"
+            label="Other Clients in Crash"
             value={formData?.otherClientsInCrash || ''}
             size="large"
             customSize={{ width: '440px' }}
@@ -278,6 +287,7 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
 
               <Input
                 placeholder="Other Phone 3"
+                label="Other Phone 3"
                 value={formData?.otherPhone3 || ''}
                 size="large"
                 customSize={{ width: '160px' }}
@@ -288,6 +298,7 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
       
         <Input
           placeholder="Parent Name (if a minor/disabled child)"
+          label="Parent Name (if a minor/disabled child)"
           value={formData?.parentName || ''}
           size="large"
           customSize={{ width: '400px' }}
@@ -296,6 +307,7 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
         <Input
           inputType="textarea"
           placeholder="Case Plan"
+          label="Case Plan"
           value={formData?.casePlan || ''}
           size="large"
           customSize={{ width: '560px', height: '120px' }}

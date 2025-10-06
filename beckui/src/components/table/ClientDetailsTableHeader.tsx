@@ -2,9 +2,10 @@ import React from 'react';
 import { Typography } from '../typography/Typography';
 import { Button } from '../button/Button';
 import { Checkbox } from '../checkbox/Checkbox';
+import { Wrapper } from '../wrapper/PageWrapper';
 
 export interface ClientDetailsTableHeaderProps {
-  type?: 'insurance' | 'relative' | 'medical';
+  type?: 'insurance' | 'relative' | 'medical' | 'liability';
   title: string;
   smallSectionTitle?: string;
   buttonLabel: string[];
@@ -48,28 +49,27 @@ export const ClientDetailsTableHeader: React.FC<ClientDetailsTableHeaderProps> =
 }) => {
   return (
     <>
-    <div style={{ position: 'relative', top: '22px'}}>
-          {type === 'medical' && (
-            <Typography variant="sectionTitleSmall">
-              {smallSectionTitle}
-            </Typography>
-          )}
-        </div>
+    <Wrapper type="pageWrapper">
+      <div style={{ position: 'relative', top: '22px'}}>
+        {type === 'medical' && (
+          <Typography variant="sectionTitleSmall">
+            {smallSectionTitle}
+          </Typography>
+        )}
+      </div>
     
-
-    <div style={{ 
+      <div style={{ 
       ...styles.container, 
       ...style,
       borderBottom: borderBottom ? '1px solid var(--light-grey)' : 'none',
       marginBottom: type === 'medical' ? '-10px' : '20px',
     }}>
       <div style={styles.titleContainer}>
+          <Typography variant={type === 'medical' ? 'leftLabel' : 'sectionTitle'} >
+            {title}
+          </Typography>
 
-        <Typography variant={type === 'medical' ? 'leftLabel' : 'sectionTitle'} >
-          {title}
-        </Typography>
-
-        <div style={{position: 'relative',top: '60px',right: '302px'}}>
+        {/* <div style={{position: 'relative', top: '60px', right: '-50px'}}>
           {type === 'relative' && (
             <Checkbox
               label='No Resident Relative Ins. Co'
@@ -77,7 +77,7 @@ export const ClientDetailsTableHeader: React.FC<ClientDetailsTableHeaderProps> =
               onChange={() => {}}
             />
           )}
-        </div>
+        </div> */}
  
       </div>
       
@@ -94,7 +94,20 @@ export const ClientDetailsTableHeader: React.FC<ClientDetailsTableHeaderProps> =
         ))}
       </div>
 
-    </div>
+      </div>
+
+      <div style={{}}>
+        {(type === 'relative' || type === 'liability') && (
+          <Checkbox
+            label={type === "relative" ? "No Resident Relative Ins. Co" : "No Liability Insurance Co"}
+            checked={false}
+            onChange={() => {}}
+          />
+        )}
+      </div>
+
+      </Wrapper>
     </>
   );
 };
+  

@@ -76,3 +76,19 @@ export const ClientDetailsTableHeaderStory: Story = {
     )
   }
 };
+
+export const ClientDetailsTableHeaderWithCheckboxStory: Story = {
+  render: () => {
+    return(
+      <div style={{width: "1000px"}}>
+        <ClientDetailsTableHeader 
+          type="relative"
+          title="Client Insurance Company #1"
+          buttonLabel={["Add Another Client Insurance Co Section"]}
+          buttonIcon={[<PlusIcon size={16} />]}
+          smallSectionTitle="Client Insurance Company #1"
+        />
+      </div>
+    )
+  }
+};

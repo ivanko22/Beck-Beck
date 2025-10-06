@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '../button/Button';
 import { Footer } from '../footer/Footer';
-
+import { Wrapper } from '../wrapper/PageWrapper';
 export interface PageActionsProps {
   type: 'save' | 'saved' | 'edit';
   onSave?: () => void;
@@ -12,17 +12,7 @@ export interface PageActionsProps {
   cancelLabel?: string;
   editLabel?: string;
   removeLabel?: string;
-  style?: React.CSSProperties;
 }
-
-const L = {
-  actions: {
-    display: 'flex',
-    gap: 12,
-    marginTop: 32,
-    justifyContent: 'flex-start',
-  } as React.CSSProperties,
-};
 
 export const PageActions: React.FC<PageActionsProps> = ({
   type,
@@ -34,11 +24,10 @@ export const PageActions: React.FC<PageActionsProps> = ({
   cancelLabel = 'Cancel',
   editLabel = 'Edit',
   removeLabel = 'Remove',
-  style,
 }) => {
   if (type === 'save') {
     return (
-      <div style={{ ...L.actions, ...style }}>
+      <Wrapper type="pageWrapperContentRow">
         <Button
           type="submit"
           size="medium"
@@ -55,12 +44,12 @@ export const PageActions: React.FC<PageActionsProps> = ({
           label={cancelLabel} 
           onClick={onCancel} 
         />
-      </div>
+      </Wrapper>
     );
   } else if (type === 'edit') {
     return (
-      <div style={{ ...L.actions, ...style }}>
-         <Button
+      <Wrapper type="pageWrapperContentRow">
+        <Button
           type="submit"
           size="medium"
           customSize="200px"
@@ -76,16 +65,20 @@ export const PageActions: React.FC<PageActionsProps> = ({
           label={cancelLabel} 
           onClick={onCancel} 
         />
-      </div>
+      </Wrapper>
     );
   }
 
   return (
-    <Footer
-      onEdit={onEdit}
-      onRemove={onRemove}
-      editLabel={editLabel}
-      removeLabel={removeLabel}
-    />
+    <>
+      <Footer
+        onEdit={onEdit}
+        onRemove={onRemove}
+        editLabel={editLabel}
+        removeLabel={removeLabel}
+        style={{ marginTop: '30px'}}
+      />
+    </>
+
   );
 };

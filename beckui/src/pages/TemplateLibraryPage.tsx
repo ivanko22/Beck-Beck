@@ -7,7 +7,6 @@ import { TemplateRowItem } from '../components/row/insurance/TemplateLibTableRow
 import { TemplateRow, TemplateLibraryProps, defaultRows } from '../components/table/Types';
 import { PageActions } from '../components/page-actions/PageActions';
 import { Input } from '../components/input/Inputs';
-import { Spacer } from '../components/spacer/Spacer';
 import { Wrapper } from '../components/wrapper/PageWrapper';
 const L = {
   shell: {
@@ -54,7 +53,6 @@ export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({
   const [data, setData] = useState<TemplateRow[]>(seeded);
 
   return (
-    // <div style={L.shell}>
     <Wrapper background="white">  
       <Navigation
         userEmail="ivankordonets@gmail.com"

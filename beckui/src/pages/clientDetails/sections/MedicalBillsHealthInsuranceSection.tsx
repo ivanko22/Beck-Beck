@@ -86,7 +86,7 @@ export const MedicalBillsHealthInsuranceSection: React.FC<MedicalBillsHealthInsu
 
           <div style={{...L.checkboxGroup, gap: '40px'}}>
               <Input
-                  label="Estimated Medical Bills"
+                  label=""
                   placeholder=""
                   value={formData?.estimatedMedicalBills || ''}
                   size="large"
@@ -202,6 +202,7 @@ export const MedicalBillsHealthInsuranceSection: React.FC<MedicalBillsHealthInsu
           <div style={{ ...L.inputsRow }}>
             <Input
               placeholder="Employer Name"
+              label="Employer Name"
               value={formData?.employerName || ''}
               size="large"
               customSize={{ width: '250px' }}
@@ -209,6 +210,7 @@ export const MedicalBillsHealthInsuranceSection: React.FC<MedicalBillsHealthInsu
             
             <Input
               placeholder="Employer City"
+              label="Employer City"
               value={formData?.employerCity || ''}
               size="large"
               customSize={{ width: '160px' }}
@@ -231,12 +233,14 @@ export const MedicalBillsHealthInsuranceSection: React.FC<MedicalBillsHealthInsu
             />
             <Input
               placeholder="Zip Code"
+              label="Zip Code"
               value={formData?.employerZipCode || ''}
               size="large"
               customSize={{ width: '108px' }}
             />
             <Input
               placeholder="Employer Email"
+              label="Employer Email"
               value={formData?.employerEmail || ''}
               size="large"
               customSize={{ width: '360px' }}

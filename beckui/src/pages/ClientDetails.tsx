@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header } from '../components/header/Header';
 import { Navigation } from '../components/navigation/Navigation';
-// import { ClientInsuranceRelativeSection } from './ClientInsuranceRelativeSection';
+import { ClientInsuranceRelativeSection } from './ClientInsuranceRelativeSection';
 import { MedicalTreatmentSection } from './clientDetails/sections/MedicalTreatmentSection';
 import { ClientInformationSection } from './clientDetails/sections/ClientInformationSection';
 import { CaseOverviewSection } from './clientDetails/sections/CaseOverviewSection';
@@ -10,6 +10,7 @@ import { Wrapper } from '../components/wrapper/PageWrapper';
 import { CrashInjuryDetailsSection } from './clientDetails/sections/CrashInjuryDetailsSection';
 import { TraumaticBrainInjurySection } from './clientDetails/sections/TraumaticBrainInjurySection';
 import { PageActions } from '../components/page-actions/PageActions';
+import { Footer } from '../components/footer/Footer';
 interface InsuranceSection {
   sectionTitle: string;
   formData: any;
@@ -18,7 +19,7 @@ interface ClientDetailsPageProps {
   caseNumber?: string;
   clientName?: string;
   pageActionsState?: 'save' | 'saved' | 'edit';
-  relativeInsuranceSections?: InsuranceSection[];
+  liabilityInsuranceSections?: InsuranceSection[];
   formData?: any;
 }
 
@@ -26,6 +27,8 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
   caseNumber,
   pageActionsState = 'save',
   formData = {},
+  clientName,
+  liabilityInsuranceSections = [],
 }) => {
 
   const progressPercent = 5.6;
@@ -58,19 +61,12 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
             onEdit={() => {}}
             onRemove={() => {}}
           />
+
         </Wrapper>
 
-        {/* <PageActions
-          type={pageActionsState}
-          onSave={() => {}}
-          onEdit={() => {}}
-          onRemove={() => {}}
-        /> */}
-
-        {/* in progress */
-        /* {LiabilityInsuranceSections.map((section, index) => (
+        {liabilityInsuranceSections.map((section, index) => (
             <ClientInsuranceRelativeSection
-              type="relative"
+              type="liability"
               key={index}
               caseNumber={caseNumber}
               clientName={clientName}
@@ -78,10 +74,9 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
               formData={section.formData}
               sectionTitle={section.sectionTitle}
             />
-          ))} */}
+          ))}
 
       </Wrapper>
-      
     </Wrapper>
   );
 };
