@@ -24,7 +24,7 @@ type Story = StoryObj<typeof TemplateLibraryPage>;
 
 export const Empty: Story = {
   args: {
-    pageActionsState: 'save',
+    pageActionsState: 'adding',
   },
 };
 

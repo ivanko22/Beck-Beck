@@ -29,7 +29,7 @@ export const Footer: React.FC<FooterProps> = ({
           size='medium'
           label={editLabel}
           onClick={() => onEdit?.()}
-          icon={<EditIcon size={32} />}
+          icon={<EditIcon size={26} />}
           iconPosition="left"
         />
 
@@ -38,7 +38,7 @@ export const Footer: React.FC<FooterProps> = ({
           size='medium'
           label={removeLabel}
           onClick={() => onRemove?.()}
-          icon={<RemoveIcon size={35}  />}
+          icon={<RemoveIcon size={24}  />}
           iconPosition="left"
         />
       </Wrapper>

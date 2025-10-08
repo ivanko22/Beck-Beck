@@ -8,38 +8,21 @@ import { TemplateRow, TemplateLibraryProps, defaultRows } from '../components/ta
 import { PageActions } from '../components/page-actions/PageActions';
 import { Input } from '../components/input/Inputs';
 import { Wrapper } from '../components/wrapper/PageWrapper';
+import { Spacer } from '../components/spacer/Spacer';
+
 const L = {
-  shell: {
-    display: 'block',
-    fontFamily: 'var(--font-family-base)',
-    color: 'var(--primary-color)',
-    height: '100vh',
-    background: '#fff',
-  } as React.CSSProperties,
-
-  main: {
-    display: 'flex',
-    width: 'calc(100vw - 300px)',
-    height: '100vh',
-    flexDirection: 'column',
-    marginLeft: 300,
-    boxSizing: 'border-box',
-    overflow: 'auto',
-  } as React.CSSProperties,
-
   table: {
     borderCollapse: 'collapse' as const,
     marginTop: 8,
     marginBottom: 40,
   },
-
 };
 
 export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({ 
     rows, 
     onSave, 
     onCancel, 
-    pageActionsState = 'save', 
+    pageActionsState, 
     textareaText = '',
 }) => {
   const seeded = useMemo(
@@ -59,7 +42,7 @@ export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({
         dropdownMenuItems={[{ label: 'Profile' }, { label: 'Settings' }, { label: 'Sign out' }]}
       />
 
-      <div style={L.main}>
+      <Wrapper type="mainWrapper">
         <Header
           section="Template Library"
 
@@ -106,8 +89,11 @@ export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({
             }}
           />
 
+          <Spacer customSize={20} />
+
           <PageActions
-            type={pageActionsState}
+            state={pageActionsState || 'save'}
+            type={'button'}
             onSave={() => onSave?.(data)}
             onCancel={onCancel}
             onEdit={() => console.log('Edit templates')}
@@ -115,7 +101,7 @@ export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({
           />
         </Wrapper>
         
-      </div>
+      </Wrapper>
     </Wrapper>
   );
 };

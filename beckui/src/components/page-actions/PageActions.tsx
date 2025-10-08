@@ -4,7 +4,7 @@ import { Footer } from '../footer/Footer';
 import { Wrapper } from '../wrapper/PageWrapper';
 import { CheckmarkIcon, CloseIcon, EditIcon, RemoveIcon } from '../icons';
 export interface PageActionsProps {
-  state: 'save' | 'saved' | 'edit';
+  state: 'save' | 'saved' | 'edit' | 'adding';
   type: 'button' | 'iconButton';
   noLabel?: boolean;
   onSave?: () => void;
@@ -29,7 +29,9 @@ export const PageActions: React.FC<PageActionsProps> = ({
   editLabel = 'Edit',
   removeLabel = 'Remove',
 }) => {
-  if (state === 'save' && type === 'button') {
+  console.log(state);
+
+  if (type === 'button') {
     return (
       <Wrapper type="pageWrapperContentRow">
         <Button
@@ -37,7 +39,7 @@ export const PageActions: React.FC<PageActionsProps> = ({
           size="medium"
           customSize="200px"
           primary
-          disabled={true}
+          disabled={state === 'adding'}
           label={saveLabel}
           onClick={onSave}
         />
@@ -50,27 +52,27 @@ export const PageActions: React.FC<PageActionsProps> = ({
         />
       </Wrapper>
     );
-  } else if (state === 'edit' && type === 'button') {
-    return (
-      <Wrapper type="pageWrapperContentRow">
-        <Button
-          type="submit"
-          size="medium"
-          customSize="200px"
-          primary
-          disabled={false}
-          label={saveLabel}
-          onClick={onSave}
-        />
-        <Button 
-          type="reset" 
-          size="medium"
-          customSize="140px" 
-          label={cancelLabel} 
-          onClick={onCancel} 
-        />
-      </Wrapper>
-    );
+  // } else if (state === 'edit' && type === 'button') {
+  //   return (
+  //     <Wrapper type="pageWrapperContentRow">
+  //       <Button
+  //         type="submit"
+  //         size="medium"
+  //         customSize="200px"
+  //         primary
+  //         disabled={false}
+  //         label={saveLabel}
+  //         onClick={onSave}
+  //       />
+  //       <Button 
+  //         type="reset" 
+  //         size="medium"
+  //         customSize="140px" 
+  //         label={cancelLabel} 
+  //         onClick={onCancel} 
+  //       />
+  //     </Wrapper>
+  //   );
   } else if (type === 'iconButton') {
     return (
       <Wrapper type="pageWrapperContentRow" style={{ alignItems: 'center' }}>
@@ -78,7 +80,7 @@ export const PageActions: React.FC<PageActionsProps> = ({
           label=""
           size="medium"
           onClick={() => {}}
-          icon={state === 'edit' ? <CloseIcon size={20} /> : <RemoveIcon size={33} />}
+          icon={state === 'edit' ? <CloseIcon size={20} /> : <RemoveIcon size={24} />}
           disabled={state === 'edit'}
         />
 
@@ -86,7 +88,7 @@ export const PageActions: React.FC<PageActionsProps> = ({
           label=""
           size="medium"
           onClick={() => {}}
-          icon={state == 'edit' ? <CheckmarkIcon size={20} /> : <EditIcon size={30} />}
+          icon={state == 'edit' ? <CheckmarkIcon size={20} /> : <EditIcon size={24} />}
           noLabel={state === 'edit'}
         />
       </Wrapper>

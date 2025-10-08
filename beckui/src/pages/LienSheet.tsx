@@ -197,10 +197,7 @@ export const LienSheetPage: React.FC<LienSheetPageProps> = ({
               )}
 
             </Wrapper>
-
         </Wrapper>
-
- 
       </Wrapper>
     </Wrapper>
   );
