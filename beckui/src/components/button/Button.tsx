@@ -11,6 +11,7 @@ interface ButtonProps {
   className?: string;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
+  noLabel?: boolean;
   icon?: React.ReactNode;
   iconPosition?: 'left' | 'right';
 }
@@ -30,6 +31,19 @@ const styles = {
     backgroundColor: 'var(--secondary-color)',
     color: 'white',
     fontWeight: 600,
+  },
+
+  noLabelButton: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: '40px',
+    backgroundColor: 'var(--secondary-color)',
+    height: '48px',
+    width: '48px',
+    color: 'var(--white)',
+    fontWeight: 600,
+    marginTop: '-10px',
   },
 
   primaryHover: {
@@ -106,6 +120,7 @@ const styles = {
 export const Button: React.FC<ButtonProps> = ({
   primary = false,
   size = 'large',
+  noLabel = false,
   backgroundColor = null,
   color = null,
   customSize,
@@ -136,6 +151,13 @@ export const Button: React.FC<ButtonProps> = ({
     if (!icon) {
       return label;
     }
+
+    if (noLabel === true) {
+      return(   
+        <div style={{...styles.noLabelButton}}>
+            {icon}
+        </div>)
+    } 
 
     const iconStyle = iconPosition === 'left' ? styles.iconLeft : styles.iconRight;
     

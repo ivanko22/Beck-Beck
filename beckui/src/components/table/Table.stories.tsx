@@ -5,6 +5,7 @@ import { ClientDetailsTableHeader } from "./ClientDetailsTableHeader";
 import { TemplateRowItem } from "../row/insurance/TemplateLibTableRow";
 import { defaultRows, TemplateRow } from "../table/Types";
 import { PlusIcon } from "../icons";
+import { LienTableRow } from "./LienTableRow";
 
 const meta: Meta = {
   title: "Components/Table",
@@ -90,5 +91,87 @@ export const ClientDetailsTableHeaderWithCheckboxStory: Story = {
         />
       </div>
     )
+  }
+};
+
+export const LienTableRowStory: Story = {
+  render: () => {
+    const sampleFormData = {
+      medicalProvider: 'StriveWell Insurance',
+      lienAmount: '5000',
+      finalBalance: '4500',
+      insurancePaid: '500',
+      notes: 'Initial lien amount',
+      accountNumber: 'ACC-001',
+      lienholderPhone: '(555) 123-4567',
+      lienholderEmail: 'contact@strivewell.com',
+      howToSend: 'email' as const,
+      productionRequestPercent: '10',
+      dateSent: '2024-01-15',
+      reducedToAmount: '4000',
+      state: 'rowEdit' as const,
+    };
+
+    return (
+      <div style={{ width: "100%", maxWidth: "1400px" }}>
+        <LienTableRow
+          state="edit"
+          type="iconButton"
+          formData={sampleFormData}
+          onDelete={() => console.log('Delete row')}
+          onSave={() => console.log('Save row')}
+          disabled={false}
+        />
+      </div>
+    );
+  }
+};
+
+export const LienTableRowEmptyStory: Story = {
+  render: () => {
+    return (
+      <div style={{ width: "100%", maxWidth: "1400px" }}>
+        <LienTableRow
+          state="edit"
+          type="iconButton"
+          formData={{}}
+          onDelete={() => console.log('Delete row')}
+          onSave={() => console.log('Save row')}
+          disabled={false}
+        />
+      </div>
+    );
+  }
+};
+
+export const LienTableRowDisabledStory: Story = {
+  render: () => {
+    const sampleFormData = {
+      medicalProvider: 'StriveWell Insurance',
+      lienAmount: '5000',
+      finalBalance: '4500',
+      insurancePaid: '500',
+      notes: 'Initial lien amount',
+      accountNumber: 'ACC-001',
+      lienholderPhone: '(555) 123-4567',
+      lienholderEmail: 'contact@strivewell.com',
+      howToSend: 'email' as const,
+      productionRequestPercent: '10',
+      dateSent: '2024-01-15',
+      reducedToAmount: '4000',
+    };
+
+    return (
+      <div style={{ width: "100%", maxWidth: "1400px" }}>
+        <LienTableRow
+          state="saved"
+          type="iconButton"
+          formData={sampleFormData}
+          onDelete={() => console.log('Delete row')}
+          onSave={() => console.log('Save row')}
+          disabled={true}
+        />
+      </div>
+    );
   }
 };

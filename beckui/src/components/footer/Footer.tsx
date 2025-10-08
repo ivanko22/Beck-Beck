@@ -20,13 +20,13 @@ export const Footer: React.FC<FooterProps> = ({
 }) => {
 
   return (
-    <Wrapper type="pageWrapperContentColumn" style={{ alignItems: 'center' }}>
+    <Wrapper type="pageWrapperContentColumn" style={{ alignItems: 'center', marginTop: '30px' }}>
       <Border />
 
       <Wrapper type="pageWrapperContentRow">
         <Button
           color='var(--middle-grey)'
-          size='small'
+          size='medium'
           label={editLabel}
           onClick={() => onEdit?.()}
           icon={<EditIcon size={32} />}
@@ -35,7 +35,7 @@ export const Footer: React.FC<FooterProps> = ({
 
         <Button
           color='var(--middle-grey)'
-          size='small'
+          size='medium'
           label={removeLabel}
           onClick={() => onRemove?.()}
           icon={<RemoveIcon size={35}  />}

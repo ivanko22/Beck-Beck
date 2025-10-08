@@ -6,6 +6,9 @@ type TableHeaderProps = {
   template?: string;
   activeColumn?: number;
   noBorder?: boolean;
+  useSpecificWidths?: boolean;
+  columnWidths?: string[];
+  style?: React.CSSProperties;
 };
 
 export const TableHeader: React.FC<TableHeaderProps> = ({
@@ -13,11 +16,15 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
   template = '2fr 2.5fr 1fr 2.5fr 40px',
   activeColumn = 0,
   noBorder = false,
+  useSpecificWidths = false,
+  columnWidths = [],
+  style,
 }) => {
   const container: React.CSSProperties = {
-    display: 'grid',
-    gridTemplateColumns: template,
-    columnGap: 24,
+    display: useSpecificWidths ? 'flex' : 'grid',
+    ...(useSpecificWidths ? {} : { gridTemplateColumns: template }),
+    columnGap: useSpecificWidths ? 0 : 24,
+    gap: useSpecificWidths ? '24px' : undefined,
     alignItems: 'center',
     borderBottom: noBorder ? 'none' : '1px solid var(--light-grey)',
     color: 'var(--middle-grey)',
@@ -28,7 +35,7 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
   };
 
   return (
-    <div style={container}>
+    <div style={{...container, ...style}}>
         {columns.map((column, i) => {
           const label = typeof column === 'string' ? column : column.label;
           const customStyle = typeof column === 'object' ? column.style : {};
@@ -42,6 +49,7 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
                 alignItems: 'center',
                 justifyContent: 'flex-start',
                 position: 'relative',
+                ...(useSpecificWidths && columnWidths[i] ? { width: columnWidths[i] } : {}),
                 ...customStyle
               }}
             >

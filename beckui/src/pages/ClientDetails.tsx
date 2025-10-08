@@ -56,7 +56,8 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
           <TraumaticBrainInjurySection formData={formData} />
 
           <PageActions
-            type={pageActionsState}
+            state={pageActionsState}
+            type={'button'}
             onSave={() => {}}
             onEdit={() => {}}
             onRemove={() => {}}
@@ -70,7 +71,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
               key={index}
               caseNumber={caseNumber}
               clientName={clientName}
-              pageActionsState={pageActionsState}
+              pageActionsState={'save'}
               formData={section.formData}
               sectionTitle={section.sectionTitle}
             />
