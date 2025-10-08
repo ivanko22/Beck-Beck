@@ -54,7 +54,7 @@ const emptyCompany: InsuranceCompany = {
   mailAddress: '',
   fax: '',
   email: '',
-  state: 'edit',
+  state: 'adding',
 };
 
 const NoCompaniesAdding: InsuranceCompany[] = [
@@ -101,6 +101,6 @@ export const Adding: Story = {
 export const Edit: Story = {
   args: {
     companies: defaultCompaniesEdit,
-    state: 'adding',
+    state: 'edit',
   },
 };

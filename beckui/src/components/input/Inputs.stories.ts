@@ -42,6 +42,7 @@ export const Default: Story = {
     placeholder: 'Enter text here...',
     label: 'Input Label',
     size: 'large',
+    showLabel: true,
   },
 };
 
@@ -79,6 +80,7 @@ export const Disabled: Story = {
     label: 'Disabled Input',
     disabled: true,
     size: 'large',
+    showLabel: true,
   },
 };
 
@@ -88,6 +90,7 @@ export const Password: Story = {
     placeholder: 'Enter your password',
     label: 'Password',
     size: 'large',
+    showLabel: true,
   },
 };
 
@@ -98,6 +101,7 @@ export const PasswordForgot: Story = {
     label: 'Password',
     size: 'large',
     showForgotPassword: true,
+    showLabel: true,
   },
 };
 
@@ -107,6 +111,7 @@ export const WithLabel: Story = {
     label: 'Input with label',
     value: 'Input with label',
     size: 'large',
+    showLabel: true,
     showForgotPassword: false,
   },
 };
@@ -119,6 +124,26 @@ export const WithLeftLabel: Story = {
     size: 'large',
     leftLabel: true,
     showForgotPassword: false,
+  },
+};
+
+
+export const DebugTest: Story = {
+  args: {
+    placeholder: 'Debug test',
+    label: 'Debug Label',
+    value: 'Debug Value',
+    size: 'large',
+  },
+};
+
+export const WithValueNoLabel: Story = {
+  args: {
+    placeholder: 'Input with value but no label',
+    label: 'This label should be hidden',
+    value: 'Input has value but label is hidden with showLabel={false}',
+    size: 'large',
+    showLabel: false,
   },
 };
 
@@ -140,6 +165,7 @@ export const Textarea: Story = {
       width: '1000px',
       height: '100px',
     },
+    showLabel: true,
   },
 };
 

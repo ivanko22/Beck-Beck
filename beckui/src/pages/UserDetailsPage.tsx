@@ -6,6 +6,8 @@ import { Input } from '../components/input/Inputs';
 import { Checkbox } from '../components/checkbox/Checkbox';
 import { PageActions } from '../components/page-actions/PageActions';
 import { Wrapper } from '../components/wrapper/PageWrapper';
+import { Spacer } from '../components/spacer/Spacer';
+import { Typography } from '../components/typography/Typography';
 
 type TeamAccess = {
   intake: boolean;
@@ -27,7 +29,7 @@ export type UserDetailsPageProps = {
   defaultStillWorking?: boolean;
   defaultTeamFiles?: Partial<TeamAccess>;
 
-  pageActionsState?: 'save' | 'saved' | 'edit';
+  pageActionsState?: 'save' | 'saved' | 'edit' | 'adding';
 
   onSave?: (data: {
     user: string;
@@ -43,24 +45,6 @@ export type UserDetailsPageProps = {
 };
 
 const L = {
-  shell: {
-    display: 'block',
-    fontFamily: 'var(--font-family-base)',
-    color: 'var(--primary-color)',
-    height: '100vh',
-    background: '#fff',
-  } as React.CSSProperties,
-
-  main: {
-    display: 'flex',
-    width: 'calc(100vw - 300px)',
-    height: '100vh',
-    flexDirection: 'column',
-    marginLeft: 300,
-    boxSizing: 'border-box',
-    overflow: 'auto',
-  } as React.CSSProperties,
-
   sectionTitle: {
     color: 'var(--middle-grey)',
     fontSize: 16,
@@ -106,7 +90,6 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
   pageActionsState = 'save',
   onSave,
   onCancel,
-  style,
 }) => {
   const [selectedUser, setSelectedUser] = useState<string>(defaultUser ?? 'Select User');  
   const [selectedRole, setSelectedRole] = useState<string>(defaultRole ?? 'Select User Role');
@@ -129,13 +112,13 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
     setTeamFiles({ intake: next, medical: next, litigation: next, settlement: next });
 
   return (
-    <div style={{ ...L.shell, ...style }}>
+    <Wrapper type="pageWrapper">
       <Navigation
         userEmail="ivankordonets@gmail.com"
         dropdownMenuItems={[{ label: 'Profile' }, { label: 'Settings' }, { label: 'Sign out' }]}
       />
 
-      <div style={L.main}>
+      <Wrapper type="mainWrapper">
         <Header
           section="User Details"
           current={selectedUser ?? ''}
@@ -145,7 +128,7 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
 
         <Wrapper type="contentWrapper">
 
-          <div style={L.sectionTitle}>User Information</div>
+          <Typography variant="leftLabel" style={{textAlign: 'left'}}>User Information</Typography>
 
           <div style={L.grid}>
             <BaseDropdown
@@ -242,8 +225,11 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
             />
           </div>
 
+          <Spacer customSize={20} />
+
           <PageActions
-            type={pageActionsState}
+            state={pageActionsState}
+            type={'button'}
             onSave={() => {
               onSave?.({
                 user: selectedUser,
@@ -260,7 +246,7 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
           />
 
         </Wrapper>
-      </div>
-    </div>
+      </Wrapper>
+    </Wrapper>
   );
 };

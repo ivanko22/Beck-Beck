@@ -92,7 +92,8 @@ export const InsuranceRow: React.FC<InsuranceRowProps> = (props) => {
         
         <div style={{ paddingLeft: '26px', paddingTop: '18px' }}>
           <PageActions 
-            type={state === 'edit' || state === 'adding' ? 'edit' : 'save'}
+            state={state === 'adding' ? 'adding' : state === 'edit' ? 'edit' : 'save'}
+            type={'button'}
           />
         </div>
         }

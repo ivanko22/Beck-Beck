@@ -2,8 +2,11 @@ import React from 'react';
 import { Button } from '../button/Button';
 import { Footer } from '../footer/Footer';
 import { Wrapper } from '../wrapper/PageWrapper';
+import { CheckmarkIcon, CloseIcon, EditIcon, RemoveIcon } from '../icons';
 export interface PageActionsProps {
-  type: 'save' | 'saved' | 'edit';
+  state: 'save' | 'saved' | 'edit' | 'adding';
+  type: 'button' | 'iconButton';
+  noLabel?: boolean;
   onSave?: () => void;
   onCancel?: () => void;
   onEdit?: () => void;
@@ -15,6 +18,7 @@ export interface PageActionsProps {
 }
 
 export const PageActions: React.FC<PageActionsProps> = ({
+  state,
   type,
   onSave,
   onCancel,
@@ -25,7 +29,21 @@ export const PageActions: React.FC<PageActionsProps> = ({
   editLabel = 'Edit',
   removeLabel = 'Remove',
 }) => {
-  if (type === 'save') {
+  console.log(state);
+
+  if (type === 'button') {
+    if (state === 'saved') {
+      return (
+        <Footer
+          onEdit={onEdit}
+          onRemove={onRemove}
+          editLabel={editLabel}
+          removeLabel={removeLabel}
+          style={{ marginTop: '30px'}}
+        />
+      );
+    }
+    
     return (
       <Wrapper type="pageWrapperContentRow">
         <Button
@@ -33,7 +51,7 @@ export const PageActions: React.FC<PageActionsProps> = ({
           size="medium"
           customSize="200px"
           primary
-          disabled={true}
+          disabled={state === 'adding'}
           label={saveLabel}
           onClick={onSave}
         />
@@ -46,28 +64,27 @@ export const PageActions: React.FC<PageActionsProps> = ({
         />
       </Wrapper>
     );
-  } else if (type === 'edit') {
+  } else if (type === 'iconButton') {
     return (
-      <Wrapper type="pageWrapperContentRow">
+      <Wrapper type="pageWrapperContentRow" style={{ alignItems: 'center' }}>
         <Button
-          type="submit"
+          label=""
           size="medium"
-          customSize="200px"
-          primary
-          disabled={false}
-          label={saveLabel}
-          onClick={onSave}
+          onClick={() => {}}
+          icon={state === 'edit' ? <CloseIcon size={20} /> : <RemoveIcon size={24} />}
+          disabled={state === 'edit'}
         />
-        <Button 
-          type="reset" 
+
+        <Button
+          label=""
           size="medium"
-          customSize="140px" 
-          label={cancelLabel} 
-          onClick={onCancel} 
+          onClick={() => {}}
+          icon={state == 'edit' ? <CheckmarkIcon size={20} /> : <EditIcon size={24} />}
+          noLabel={state === 'edit'}
         />
       </Wrapper>
     );
-  }
+  } 
 
   return (
     <>

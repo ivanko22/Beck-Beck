@@ -148,7 +148,7 @@ export const Input: React.FC<InputProps> = ({
   defaultValue,
   onChange,
   label,
-  showLabel = false,
+  showLabel,
   className = '',
   name,
   showForgotPassword = false,
@@ -211,7 +211,7 @@ export const Input: React.FC<InputProps> = ({
       `}
       </style>
       
-      {label && (showLabel || leftLabel || String(currentValue).trim() !== '') && (
+      {label && (showLabel === true || leftLabel === true || (showLabel !== false && String(currentValue).trim() !== '')) && (
         <label style={{
           ...styles.label,
           ...(leftLabel && { ...styles.leftLabel }),

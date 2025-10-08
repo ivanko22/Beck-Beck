@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface TypographyProps {
-  variant?: 'title' | 'subtitle' | 'sectionTitle' | 'leftLabel' | 'titleSmall' | 'sectionTitleSmall';
+  variant?: 'title' | 'subtitle' | 'sectionTitle' | 'leftLabel' | 'titleSmall' | 'sectionTitleSmall' | 'secondaryTitle';
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
@@ -46,6 +46,11 @@ const styles: Record<NonNullable<TypographyProps['variant']>, React.CSSPropertie
     fontSize: '14px',
     fontWeight: 500,
     color: 'var(--dark-grey)',
+  },
+  secondaryTitle: {
+    fontSize: '20px',
+    fontWeight: 600,
+    color: 'var(--primary-color)',
   },
 };
 

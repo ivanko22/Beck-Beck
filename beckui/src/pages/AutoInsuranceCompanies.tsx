@@ -19,7 +19,7 @@ export interface InsuranceCompany {
 export interface AutoInsuranceCompaniesProps {
   companies?: InsuranceCompany[];
   style?: React.CSSProperties;
-  state?: 'adding' | 'edit' | 'save' | 'saved';
+  state?: 'saved' | 'adding' | 'edit';
 }
 
 export const AutoInsuranceCompanies: React.FC<AutoInsuranceCompaniesProps> = ({
