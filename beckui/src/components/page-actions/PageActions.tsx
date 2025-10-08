@@ -32,6 +32,18 @@ export const PageActions: React.FC<PageActionsProps> = ({
   console.log(state);
 
   if (type === 'button') {
+    if (state === 'saved') {
+      return (
+        <Footer
+          onEdit={onEdit}
+          onRemove={onRemove}
+          editLabel={editLabel}
+          removeLabel={removeLabel}
+          style={{ marginTop: '30px'}}
+        />
+      );
+    }
+    
     return (
       <Wrapper type="pageWrapperContentRow">
         <Button
@@ -52,27 +64,6 @@ export const PageActions: React.FC<PageActionsProps> = ({
         />
       </Wrapper>
     );
-  // } else if (state === 'edit' && type === 'button') {
-  //   return (
-  //     <Wrapper type="pageWrapperContentRow">
-  //       <Button
-  //         type="submit"
-  //         size="medium"
-  //         customSize="200px"
-  //         primary
-  //         disabled={false}
-  //         label={saveLabel}
-  //         onClick={onSave}
-  //       />
-  //       <Button 
-  //         type="reset" 
-  //         size="medium"
-  //         customSize="140px" 
-  //         label={cancelLabel} 
-  //         onClick={onCancel} 
-  //       />
-  //     </Wrapper>
-  //   );
   } else if (type === 'iconButton') {
     return (
       <Wrapper type="pageWrapperContentRow" style={{ alignItems: 'center' }}>
