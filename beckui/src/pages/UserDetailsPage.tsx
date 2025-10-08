@@ -29,7 +29,7 @@ export type UserDetailsPageProps = {
   defaultStillWorking?: boolean;
   defaultTeamFiles?: Partial<TeamAccess>;
 
-  pageActionsState?: 'save' | 'saved' | 'edit';
+  pageActionsState?: 'save' | 'saved' | 'edit' | 'adding';
 
   onSave?: (data: {
     user: string;

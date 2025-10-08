@@ -12,7 +12,7 @@ type Story = StoryObj<typeof UserDetailsPage>;
 
 export const Empty: Story = {
   args: {
-    pageActionsState: 'save',
+    pageActionsState: 'adding',
     noBorder: false,
     defaultUser: 'Select User',
     defaultRole: 'Select User Role',
