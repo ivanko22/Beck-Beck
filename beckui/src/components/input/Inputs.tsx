@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { EditIcon } from '../icons';
+import { Wrapper } from '../wrapper/PageWrapper';
 
 interface InputProps {
   size?: 'small' | 'medium' | 'large';
@@ -28,6 +30,7 @@ interface InputProps {
     }>;
   };
   style?: React.CSSProperties;
+  icon?: React.ReactNode;
 }
 
 const styles = {
@@ -44,7 +47,7 @@ const styles = {
     fontSize: '14px',
     fontWeight: 400,
     lineHeight: 1.2,
-    padding: '0px 0px 5px 17px',
+    padding: '0px 0px 5px 16px',
     color: 'var(--dark-grey)',
   },
 
@@ -157,6 +160,7 @@ export const Input: React.FC<InputProps> = ({
   customSize,
   coloredLabel,
   style,
+  icon,
   ...props
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -231,20 +235,24 @@ export const Input: React.FC<InputProps> = ({
         </label>
       )}
 
-    {inputType !== 'textarea' && 
-      <input
-        type={inputType}
-        style={inputStyle}
-        placeholder={placeholder}
-        disabled={disabled || noBorder}
-        readOnly={noBorder}
-        value={currentValue}
-        onChange={handleChange}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        name={name}
-        {...props}
-      />
+      {inputType !== 'textarea' && 
+        <Wrapper type="pageWrapperContentRow" style={{ alignItems: 'center', gap: '11px' }}>
+          <input
+            type={inputType}
+            style={inputStyle}
+            placeholder={placeholder}
+            disabled={disabled || noBorder}
+            readOnly={noBorder}
+            value={currentValue}
+            onChange={handleChange}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            name={name}
+            {...props}
+          />
+
+          {icon && icon}
+        </Wrapper>
       }
       
       {inputType === "password" && showForgotPassword && (

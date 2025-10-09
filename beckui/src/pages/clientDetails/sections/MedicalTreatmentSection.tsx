@@ -1,5 +1,5 @@
 import React from 'react';
-import { ClientDetailsTableHeader } from '../../../components/table/ClientDetailsTableHeader';
+import { ClientDetailsTableHeader } from '../../../components/header/ClientDetailsTableHeader';
 import { Card } from '../../../components/card/Card';
 import { Typography } from '../../../components/typography/Typography';
 import { Checkbox } from '../../../components/checkbox/Checkbox';

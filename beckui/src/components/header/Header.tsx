@@ -7,6 +7,7 @@ export interface HeaderProps {
   section: string;
   current?: string;
   type?: 'default' | 'clientDetails';
+  showButtons?: boolean;
   subtitle?: string;
   onClose?: () => void;
   width?: string;
@@ -90,6 +91,7 @@ export const Header: React.FC<HeaderProps> = ({
           />
         </div>
       )}
+      
       {onClose && (
         <div style={styles.close} onClick={onClose}>
           <CloseIcon size={20} color="var(--middle-grey)" hoverColor="var(--secondary-color-hover)" />

@@ -7,8 +7,10 @@ import { Wrapper } from '../wrapper/PageWrapper';
 export interface ClientDetailsTableHeaderProps {
   type?: 'insurance' | 'relative' | 'medical' | 'liability';
   title: string;
+  subtitle?: string;
+  showButtons?: boolean;
   smallSectionTitle?: string;
-  buttonLabel: string[];
+  buttonLabel?: string[];
   buttonIcon?: React.ReactNode[];
   onButtonClick?: () => void;
   borderBottom?: boolean;
@@ -39,6 +41,7 @@ const styles = {
 
 export const ClientDetailsTableHeader: React.FC<ClientDetailsTableHeaderProps> = ({
   title,
+  subtitle,
   smallSectionTitle,
   buttonLabel,
   buttonIcon,
@@ -68,10 +71,15 @@ export const ClientDetailsTableHeader: React.FC<ClientDetailsTableHeaderProps> =
           <Typography variant={type === 'medical' ? 'leftLabel' : 'sectionTitle'} >
             {title}
           </Typography>
+          {subtitle && (
+            <Typography variant="subtitle" style={{marginTop: '-18px'}}>
+              {subtitle}
+            </Typography>
+          )}
         </div>
         
         <div style={styles.buttonContainer}>
-          {buttonLabel.map((label, index) => (
+          {buttonLabel?.map((label, index) => (
             <Button
               key={index}
               label={label}
@@ -84,7 +92,7 @@ export const ClientDetailsTableHeader: React.FC<ClientDetailsTableHeaderProps> =
         </div>
       </div>
 
-      <div style={{}}>
+      <div>
         {(type === 'relative' || type === 'liability') && (
           <Checkbox
             label={type === "relative" ? "No Resident Relative Ins. Co" : "No Liability Insurance Co"}

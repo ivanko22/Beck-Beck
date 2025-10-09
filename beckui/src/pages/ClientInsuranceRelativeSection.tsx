@@ -4,7 +4,7 @@ import { Input } from '../components/input/Inputs';
 import { Checkbox } from '../components/checkbox/Checkbox';
 import { Radio } from '../components/radiobutton/Radiobutton';
 import { Button } from '../components/button/Button';
-import { ClientDetailsTableHeader } from '../components/table/ClientDetailsTableHeader';
+import { ClientDetailsTableHeader } from '../components/header/ClientDetailsTableHeader';
 import { PlusIcon, EmailIcon } from '../components/icons/index';
 import { Typography } from '../components/typography/Typography';
 import { PageActions } from '../components/page-actions/PageActions';

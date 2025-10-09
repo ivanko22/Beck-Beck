@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Header } from "./Header";
+import { PlusIcon } from "../icons";
+import { ClientDetailsTableHeader } from "./ClientDetailsTableHeader";
 
 const meta: Meta<typeof Header> = {
   title: "Components/Header",
@@ -35,4 +37,34 @@ export const ClientDetails: Story = {
     type: "clientDetails",
     isFixed: false,
   },
+};
+
+export const ClientDetailsTableHeaderStory: Story = {
+  render: () => {
+    return(
+      <div style={{width: "1000px"}}>
+        <ClientDetailsTableHeader 
+          title="Client Insurance Company #1"
+          buttonLabel={["Add Another Client Insurance Co Section"]}
+          buttonIcon={[<PlusIcon size={16} />]}
+        />
+      </div>
+    )
+  }
+};
+
+export const ClientDetailsTableHeaderWithCheckboxStory: Story = {
+  render: () => {
+    return(
+      <div style={{width: "1000px"}}>
+        <ClientDetailsTableHeader 
+          type="relative"
+          title="Client Insurance Company #1"
+          buttonLabel={["Add Another Client Insurance Co Section"]}
+          buttonIcon={[<PlusIcon size={16} />]}
+          smallSectionTitle="Client Insurance Company #1"
+        />
+      </div>
+    )
+  }
 };

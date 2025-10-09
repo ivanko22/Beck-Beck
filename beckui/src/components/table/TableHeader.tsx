@@ -11,7 +11,7 @@ type TableHeaderProps = {
   style?: React.CSSProperties;
 };
 
-export const TableHeader: React.FC<TableHeaderProps> = ({
+export const  TableHeader: React.FC<TableHeaderProps> = ({
   columns,
   template = '2fr 2.5fr 1fr 2.5fr 40px',
   activeColumn = 0,

@@ -1,54 +1,83 @@
-import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Radio } from "./Radiobutton";
+import { RadioButtonGroup, RadioOption } from "./RadioButtonGroup";
 
-const meta: Meta<typeof Radio> = {
-  title: "Components/Radio",
-  component: Radio,
+const meta: Meta<typeof RadioButtonGroup> = {
+  title: "Components/RadioButtonGroup",
+  component: RadioButtonGroup,
   parameters: { layout: "centered" },
 };
 export default meta;
 
-type Story = StoryObj<typeof Radio>;
+type Story = StoryObj<typeof RadioButtonGroup>;
 
-export const Default: Story = {
-  args: { label: "Option A", name: "group1", checked: false },
-};
+const basicOptions: RadioOption[] = [
+  { label: "Option A", value: "option-a" },
+  { label: "Option B", value: "option-b" },
+  { label: "Option C", value: "option-c" },
+];
 
-export const Checked: Story = {
-  args: { label: "Option B", name: "group2", checked: true },
-};
+const yesNoOptions: RadioOption[] = [
+  { label: "Yes", value: "yes" },
+  { label: "No", value: "no" },
+];
 
-export const Disabled: Story = {
-  args: { label: "Disabled", name: "group3", disabled: true },
-};
+const yesNoMaybeOptions: RadioOption[] = [
+  { label: "Maybe", value: "maybe" },
+  { label: "Yes", value: "yes" },
+  { label: "No", value: "no" },
+];
 
-
-export const ThreeOptions: Story = {
-  render: () => {
-    const [selected, setSelected] = useState("option1");
-
-    return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-        <Radio
-          label="Option 1"
-          name="group1"
-          checked={selected === "option1"}
-          onChange={() => setSelected("option1")}
-        />
-        <Radio
-          label="Option 2"
-          name="group1"
-          checked={selected === "option2"}
-          onChange={() => setSelected("option2")}
-        />
-        <Radio
-          label="Option 3"
-          name="group1"
-          checked={selected === "option3"}
-          onChange={() => setSelected("option3")}
-        />
-      </div>
-    );
+export const BasicGroup: Story = {
+  args: {
+    title: "Basic Group",
+    name: "basic-group",
+    options: basicOptions,
+    defaultValue: "option-a",
   },
 };
+
+export const VerticalLayout: Story = {
+  args: {
+    title: "Vertical Layout",
+    name: "vertical-group",
+    options: basicOptions,
+    direction: "vertical",
+    defaultValue: "option-b",
+    gap: "12px",
+  },
+};
+
+export const WithDisabledOption: Story = {
+  args: {
+    title: "With Disabled Option",
+    name: "disabled-group",
+    options: [
+      { label: "Option A", value: "option-a" },
+      { label: "Option B", value: "option-b", disabled: true },
+      { label: "Option C", value: "option-c" },
+    ],
+    defaultValue: "option-a",
+  },
+};
+
+export const FullyDisabled: Story = {
+  args: {
+    title: "Fully Disabled",
+    name: "fully-disabled",
+    options: yesNoOptions,
+    disabled: true,
+    defaultValue: "yes",
+  },
+};
+
+export const ThreeOptionsExample: Story = {
+  args: {
+    title: "Three Options Example",
+    name: "three-options",
+    options: yesNoMaybeOptions,
+    direction: "horizontal",
+    gap: "30px",
+    defaultValue: "maybe",
+  },
+};
+
