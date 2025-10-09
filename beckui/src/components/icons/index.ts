@@ -18,6 +18,7 @@ export { AvaIcon } from './AvaIcon';
 export { DropdownIcon } from './DropdownIcon';
 export { SignOutIcon } from './SignOutIcon';
 export { ArrowIcon } from './Arrow';
+export { RightArrowIcon } from './RightArrow';
 export { RemoveIcon } from './Remove';
 export { EditIcon } from './Edit';
 export { PlusIcon } from './Plus';

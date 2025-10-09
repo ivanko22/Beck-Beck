@@ -1,5 +1,5 @@
 import React from 'react';
-import { ClientDetailsTableHeader } from '../../../components/table/ClientDetailsTableHeader';
+import { ClientDetailsTableHeader } from '../../../components/header/ClientDetailsTableHeader';
 import { Typography } from '../../../components/typography/Typography';
 import { Input } from '../../../components/input/Inputs';
 import { BaseDropdown } from '../../../components/dropdown/Dropdown';

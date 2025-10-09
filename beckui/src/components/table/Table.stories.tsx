@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React, { useState } from "react";
 import { TableHeader } from "./TableHeader";
-import { ClientDetailsTableHeader } from "./ClientDetailsTableHeader";
+import { ClientDetailsTableHeader } from "../header/ClientDetailsTableHeader";
 import { TemplateRowItem } from "../row/insurance/TemplateLibTableRow";
 import { defaultRows, TemplateRow } from "../table/Types";
 import { PlusIcon } from "../icons";
@@ -63,36 +63,6 @@ export const TableHeaderWithActiveColumn: Story = {
         )
     }
 }
-
-export const ClientDetailsTableHeaderStory: Story = {
-  render: () => {
-    return(
-      <div style={{width: "1000px"}}>
-        <ClientDetailsTableHeader 
-          title="Client Insurance Company #1"
-          buttonLabel={["Add Another Client Insurance Co Section"]}
-          buttonIcon={[<PlusIcon size={16} />]}
-        />
-      </div>
-    )
-  }
-};
-
-export const ClientDetailsTableHeaderWithCheckboxStory: Story = {
-  render: () => {
-    return(
-      <div style={{width: "1000px"}}>
-        <ClientDetailsTableHeader 
-          type="relative"
-          title="Client Insurance Company #1"
-          buttonLabel={["Add Another Client Insurance Co Section"]}
-          buttonIcon={[<PlusIcon size={16} />]}
-          smallSectionTitle="Client Insurance Company #1"
-        />
-      </div>
-    )
-  }
-};
 
 export const LienTableRowStory: Story = {
   render: () => {

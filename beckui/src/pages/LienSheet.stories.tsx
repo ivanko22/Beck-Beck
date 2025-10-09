@@ -83,6 +83,7 @@ const tableRowsData = [
     reducedToAmount: '$3,150',
     insuranceType: 'Medicare',
     isGenerated: false,
+    civilActionBill: '$500',
     state: 'saved'
   },
   {
@@ -100,6 +101,7 @@ const tableRowsData = [
     reducedToAmount: '',
     insuranceType: 'Private Health Insurance',
     isGenerated: false,
+    civilActionBill: '$300',
     state: 'saved'
   },
   {
@@ -117,6 +119,7 @@ const tableRowsData = [
     reducedToAmount: '$2,400',
     insuranceType: 'Medicare',
     isGenerated: false,
+    civilActionBill: '$400',
     state: 'saved'
   },
   {
@@ -134,6 +137,7 @@ const tableRowsData = [
     reducedToAmount: '',
     insuranceType: 'Tricare',
     isGenerated: false,
+    civilActionBill: '$200',
     state: 'saved'
   },
   {
@@ -151,6 +155,7 @@ const tableRowsData = [
     reducedToAmount: '$3,400',
     insuranceType: '',
     isGenerated: true,
+    civilActionBill: '$100',
     state: 'saved'
   },
 ];

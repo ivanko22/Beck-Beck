@@ -19,6 +19,7 @@ import {
   EditIcon,
   RemoveIcon,
   ArrowIcon,
+  RightArrowIcon,
   SearchIcon,
   PlusIcon,
   PoliceIcon,
@@ -197,6 +198,14 @@ export const Arrow: Story = {
   render: (args) => <ArrowIcon {...args} />,
 };
 
+export const RightArrow: Story = {
+  args: {
+    size: 24,
+    color: '#000000',
+  },
+  render: (args) => <RightArrowIcon {...args} />,
+};
+
 export const Search: Story = {
   args: {
     size: 24,
@@ -250,6 +259,7 @@ export const IconShowcase: Story = {
       { name: 'Edit', component: EditIcon },
       { name: 'Remove', component: RemoveIcon },
       { name: 'Arrow', component: ArrowIcon },
+      { name: 'RightArrow', component: RightArrowIcon },
       { name: 'Search', component: SearchIcon },
       { name: 'Plus', component: PlusIcon },  
     ];
