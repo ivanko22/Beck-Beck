@@ -54,7 +54,7 @@ export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({
         <Wrapper type="contentWrapper">
           <table style={L.table}>
             <TableHeader
-              template="4fr 1fr 1fr 1fr"
+              template="3.85fr 1.1fr 1fr 1fr"
 
               columns={[
                 {label: "Email / Fax Template Name"},

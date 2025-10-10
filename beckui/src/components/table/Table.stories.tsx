@@ -32,7 +32,7 @@ const TablePreview: React.FC = () => {
 
   return (
     <table style={{ borderCollapse: "collapse", width: "1000px" }}>
-      <TableHeader columns={columns} template="4fr 1fr 1fr 1fr"/>
+      <TableHeader columns={columns} template="3.8fr 1.2fr 1fr 1fr"/>
       <tbody>
         {data.map((row) => (
           <TemplateRowItem

@@ -30,6 +30,7 @@ export const  TableHeader: React.FC<TableHeaderProps> = ({
     color: 'var(--middle-grey)',
     fontSize: 14,
     fontWeight: 400,
+    paddingBottom: '12px',
     position: 'relative',
     width: '100%',
     top: noBorder ? '30px' : 'none',

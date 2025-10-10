@@ -23,10 +23,10 @@ export const SettlementCard: React.FC<SettlementCardProps> = ({
     <Wrapper type="pageWrapperContentColumn" style={{ gap: 0 }}>
         <Spacer customSize={20} />
         <Typography variant="title15" color="var(--middle-grey)" style={{ fontWeight: 400, paddingLeft: 25 }}>
-            Settlement Statement {formData?.id}
+            {formData?.settlementCard} {formData?.id}
         </Typography>
 
-        <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <Card style={{ height: '100%', width: 512, display: 'flex', flexDirection: 'column' }}>
 
             <Wrapper type="pageWrapperContentColumn" style={{ width: '100%', flex: 1, gap: 0 }}>
                 <Wrapper type="pageWrapperContentRow" style={{ gap: 10, alignItems: 'center', paddingBottom: 10 }}>
