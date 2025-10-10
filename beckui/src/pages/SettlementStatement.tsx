@@ -12,20 +12,21 @@ interface SettlementStatementPageProps {
   clientName?: string;
   claim?: string;
   pageActionsState?: 'save' | 'saved' | 'edit';
-  formData?: any;
   settlementCards?: any[];
+  hospitalCards?: any[];
 }
 
 export const SettlementStatementPage: React.FC<SettlementStatementPageProps> = ({
   caseNumber,
-  formData,
   settlementCards,
+  hospitalCards,
 }) => {
   return (
     <Wrapper type="pageWrapper">
       <Navigation
         userEmail="ivankordonets@gmail.com"
         dropdownMenuItems={[{ label: 'Profile' }, { label: 'Settings' }, { label: 'Sign out' }]}
+        activeItem="settlement-statement"
       />
 
       <Wrapper type="mainWrapper" style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
@@ -48,14 +49,23 @@ export const SettlementStatementPage: React.FC<SettlementStatementPageProps> = (
           <ActionCardsSection />
 
           <Wrapper type="pageWrapperContentRow" style={{ gap: 24 }}>
-            {(settlementCards || (formData ? [formData] : [])).map((item, index) => (        
+            {(settlementCards || []).map((item, index) => (        
               <SettlementCard 
                 key={index}
                 style={{ flex: 1 }} 
                 formData={item}
               />
             ))}
-      
+          </Wrapper>
+
+          <Wrapper type="pageWrapperContentRow" style={{ gap: 24, marginTop: 24 }}>
+            {(hospitalCards || []).map((item, index) => (        
+              <SettlementCard 
+                key={`hospital-${index}`}
+                style={{ flex: 1 }} 
+                formData={item}
+              />
+            ))}
           </Wrapper>
 
         </Wrapper>

@@ -77,6 +77,7 @@ export const LienSheetPage: React.FC<LienSheetPageProps> = ({
       <Navigation
         userEmail="ivankordonets@gmail.com"
         dropdownMenuItems={[{ label: 'Profile' }, { label: 'Settings' }, { label: 'Sign out' }]}
+        activeItem="lien"
       />
 
       <Wrapper type="mainWrapper">

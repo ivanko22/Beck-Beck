@@ -35,6 +35,7 @@ type Story = StoryObj<typeof SettlementStatementPage>;
 const settlementCardsData = [
   {
     id: 1,
+    settlementCard: 'Settlement',
     phone: '555-123-4567',
     dob: '01/22/1993',
     last4SSN: '8976',
@@ -118,6 +119,7 @@ const settlementCardsData = [
   },
   {
     id: 2,
+    settlementCard: 'Settlement',
     phone: '555-987-6543',
     dob: '05/15/1988',
     last4SSN: '4321',
@@ -201,6 +203,7 @@ const settlementCardsData = [
   },
   {
     id: 3,
+    settlementCard: 'Settlement',
     phone: '555-456-7890',
     dob: '09/12/1990',
     last4SSN: '5678',
@@ -284,11 +287,99 @@ const settlementCardsData = [
   }
 ];
 
+const hospitalCardsData = [
+  {
+    id: 1,
+    settlementCard: 'Hospital Lien Statute Reduction Settlement',
+    phone: '555-789-0123',
+    dob: '12/03/1985',
+    last4SSN: '9012',
+    crashDate: '08/22/25',
+    settlementAmount: '$14,700',
+    attorneyFees: '$5,178',
+    medicalBills: '$6,500',
+    netToClient: '',
+    // Header Information
+    insuranceCompanyName: 'Allstate Insurance',
+    claim: '#564586',
+    clientName: 'Maria Jennings',
+    // Medical Payments Settlement
+    medicalPaymentsSettlement1: '$1,200',
+    medicalPaymentsSettlement2: '$3,000',
+    medicalPaymentsSettlement3: '$10,500',
+    grossSettlement: '$14,700',
+    attorneyFeesPercent: '35.234%',
+    caseExpenses: '$2,897',
+    medicalRecordsBillsExpenses: '$1,564',
+    // Loan Information
+    loanCompanyName: 'Capital Funding Inc.',
+    // Loan Repayment
+    loanRepayment: [
+      {
+        name: 'Sunshine Dental Group',
+        amountPaid: '$2,200',
+        amountDue: '$300',
+        dontPay: true
+      },
+      {
+        name: 'Core Physical Therapy',
+        amountPaid: '$1,750',
+        amountDue: '$250',
+        dontPay: false
+      },
+      {
+        name: 'Midwest Ortho Group',
+        amountPaid: '$2,600',
+        amountDue: '$0',
+        dontPay: false
+      },
+      {
+        name: 'Harmony Chiro Center',
+        amountPaid: '$1,400',
+        amountDue: '$400',
+        dontPay: false
+      },
+      {
+        name: 'Vision Imaging Lab',
+        amountPaid: '$850',
+        amountDue: '$350',
+        dontPay: false
+      }
+    ],
+    // Lien Information
+    lienInformation: [
+      {
+        name: 'Metro Imaging Services',
+        amount: '$4,200'
+      },
+      {
+        name: 'Legacy Spine Institute',
+        amount: '$3,050'
+      },
+      {
+        name: 'Lakeview Rehab & Therapy',
+        amount: '$2,300'
+      },
+      {
+        name: 'Advanced Ortho Solutions',
+        amount: '$1,950'
+      },
+      {
+        name: 'Diagnostic Labs of Ohio',
+        amount: '$1,150'
+      }
+    ],
+    // Notes
+    notes: 'Reviewed all repayment items - client to cover remaining balances for Dentist Clinic and Physical Therapy Center. Imaging and Chiropractic dues pending confirmation. Lien sources added based on finalized invoices. Net to client calculated post-deductions. Awaiting adjuster update before final submission.',
+  }
+];
+
 export const MultipleSettlements: Story = {
   args: {
     caseNumber: 'Multiple Settlements',
     clientName: 'Multiple Clients',
     claim: 'Multiple Claims',
     settlementCards: settlementCardsData,
+    hospitalCards: hospitalCardsData,
   },
 };

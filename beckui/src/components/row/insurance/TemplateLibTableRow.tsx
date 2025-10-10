@@ -65,7 +65,7 @@ const L = {
 
 export const TemplateRowItem: React.FC<TemplateRowItemProps> = ({
   row,
-  disabled,
+  disabled = true,
   type,
   saved = false,
 }) => {
