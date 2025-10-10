@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { EditIcon } from '../icons';
 import { Wrapper } from '../wrapper/PageWrapper';
 
 interface InputProps {
@@ -45,16 +44,17 @@ const styles = {
 
   label: {
     fontSize: '14px',
+    paddingLeft: '16px',
+    paddingBottom: '8px',
     fontWeight: 400,
     lineHeight: 1.2,
-    padding: '0px 0px 5px 16px',
     color: 'var(--dark-grey)',
   },
 
   leftLabel: {
-    fontSize: '16px',
     fontWeight: 500,
     color: 'var(--dark-grey)',
+    textAlign: 'left' as const,
   },
 
   input: {
@@ -126,8 +126,8 @@ const styles = {
     },
 
     medium: {
-      height: '40px',
-      fontSize: '14px',
+      height: '38px',
+      fontSize: '16px',
       padding: '0 12px',
     },
     
@@ -218,7 +218,13 @@ export const Input: React.FC<InputProps> = ({
       {label && (showLabel === true || leftLabel === true || (showLabel !== false && String(currentValue).trim() !== '')) && (
         <label style={{
           ...styles.label,
-          ...(leftLabel && { ...styles.leftLabel }),
+          ...(leftLabel && { 
+            ...styles.leftLabel,
+            fontSize: size === 'large' ? '16px' : '14px',
+            padding: size === 'medium' ? '0px' : '0px 0px 5px 16px',
+            width: size === 'medium' ? '120px' : 'auto',
+
+          }),
           ...(error && { color: 'var(--warning)' })
         }}>
           {coloredLabel ? (

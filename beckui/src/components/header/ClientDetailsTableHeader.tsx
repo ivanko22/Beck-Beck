@@ -6,6 +6,7 @@ import { Wrapper } from '../wrapper/PageWrapper';
 
 export interface ClientDetailsTableHeaderProps {
   type?: 'insurance' | 'relative' | 'medical' | 'liability';
+  checkboxLabel?: string;
   title: string;
   subtitle?: string;
   showButtons?: boolean;
@@ -49,6 +50,7 @@ export const ClientDetailsTableHeader: React.FC<ClientDetailsTableHeaderProps> =
   borderBottom = true,
   style,
   type,
+  checkboxLabel,
 }) => {
   return (
     <>
@@ -95,7 +97,7 @@ export const ClientDetailsTableHeader: React.FC<ClientDetailsTableHeaderProps> =
       <div>
         {(type === 'relative' || type === 'liability') && (
           <Checkbox
-            label={type === "relative" ? "No Resident Relative Ins. Co" : "No Liability Insurance Co"}
+            label={checkboxLabel || (type === "relative" ? "No Resident Relative Ins. Co" : "No Liability Insurance Co")}
             checked={false}
             onChange={() => {}}
           />

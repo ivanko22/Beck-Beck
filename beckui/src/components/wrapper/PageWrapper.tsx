@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface WrapperProps {
-  type?: 'contentWrapper' | 'pageWrapper' | 'mainWrapper' | 'pageWrapperContentRow' | 'pageWrapperContentColumn';
+  type?: 'contentWrapper' | 'pageWrapper' | 'mainWrapper' | 'pageWrapperContentRow' | 'pageWrapperContentColumn' | 'fullWidth';
   background?: 'white' | 'gray' | 'darkBlue' | 'custom';
   customBackgroundColor?: string;
   padding?: string;
@@ -14,8 +14,13 @@ const pageWrapperStyle: React.CSSProperties = {
   display: 'block',
 };
 
+const fullWidth: Record<string, string> = {
+  width: '100%',
+};
+
 const pageWrapperContentRow: React.CSSProperties = {
   display: 'flex',
+  flexDirection: 'row',
 };
 
 const pageWrapperContentColumn: React.CSSProperties = {
@@ -44,18 +49,18 @@ const contentWrapperStyle: React.CSSProperties = {
 
 const backgroundMap: Record<string, string> = {
   white: '#ffffff',
-  gray: '#f5f5f5',
+  gray: 'var(--middle-grey)',
   darkBlue: 'var(--primary-color)',
 };
 
 export const Wrapper: React.FC<WrapperProps> = ({
-  type,
-  background = 'white',
-  customBackgroundColor,
-  padding = 0,
-  center = true,
-  children,
-  style,
+    type,
+    background = 'white',
+    customBackgroundColor,
+    padding = 0,
+    center = true,
+    children,
+    style,
 }) => {
   const backgroundColor = background === 'custom' ? customBackgroundColor : backgroundMap[background];
 
@@ -90,6 +95,10 @@ export const Wrapper: React.FC<WrapperProps> = ({
       </div>
     ) : type === 'pageWrapperContentColumn' ? (
       <div style={{...pageWrapperContentColumn, ...style}}>
+        {children}
+      </div>
+    ) : type === 'fullWidth' ? (
+      <div style={{...fullWidth, ...style}}>
         {children}
       </div>
     ) : (

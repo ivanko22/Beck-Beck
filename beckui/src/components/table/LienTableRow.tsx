@@ -2,7 +2,7 @@ import React from 'react';
 import { Input } from '../input/Inputs';
 import { Radio } from '../radiobutton/Radiobutton';
 import { Button } from '../button/Button';
-import { GenerateIcon, CheckmarkIcon } from '../icons';
+import { GenerateIcon, CheckmarkIcon, CloseIcon, RemoveIcon, EditIcon } from '../icons';
 import { Upload } from '../upload/Upload';
 import { Wrapper } from '../wrapper/PageWrapper';
 import { PageActions } from '../page-actions/PageActions';
@@ -272,7 +272,12 @@ export const LienTableRow: React.FC<LienTableRowProps> = ({
         style={{ width: '130px' }}
       />
 
-      <PageActions state={state || 'save'} type={'iconButton'} />
+      <PageActions 
+        state={state || 'save'} 
+        type={'iconButton'} 
+        leftIcon={state === 'save' ? <RemoveIcon size={20} /> : <CloseIcon size={20} />}
+        rightIcon={state === 'save' ? <EditIcon size={20} /> : <CheckmarkIcon size={20} />}
+      />
 
       </Wrapper>
 
@@ -280,7 +285,10 @@ export const LienTableRow: React.FC<LienTableRowProps> = ({
       {state !== 'saved' && (
         <>
           <Spacer size="md" customSize={20} />
-          <PageActions state={state || 'save'} type={'button'} />
+          <PageActions 
+            state={state || 'save'} 
+            type={'button'} 
+          />
         </>
       )}
     </Wrapper>
