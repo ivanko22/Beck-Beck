@@ -26,6 +26,7 @@ export const SettlementStatementPage: React.FC<SettlementStatementPageProps> = (
       <Navigation
         userEmail="ivankordonets@gmail.com"
         dropdownMenuItems={[{ label: 'Profile' }, { label: 'Settings' }, { label: 'Sign out' }]}
+        activeItem="settlement-statement"
       />
 
       <Wrapper type="mainWrapper" style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>

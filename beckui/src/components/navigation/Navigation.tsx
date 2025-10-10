@@ -35,6 +35,7 @@ interface NavigationProps {
   className?: string;
   customWidth?: string;
   dropdownMenuItems?: dropdownMenuItems[];
+  activeItem?: string;
 };
 
 const navigationItems: NavigationItem[] = [
@@ -82,11 +83,12 @@ export default styles;
 
 export const Navigation: React.FC<NavigationProps> = ({
   onItemClick, userEmail, dropdownMenuItems,
+  activeItem,
 }) => {
-  const [activeItem, setActiveItem] = useState<string>('client-detail');
+  const [activeMenuItem, setActiveMenuItem] = useState<string>(activeItem || 'client-detail');
 
   const handleItemClick = (itemId: string) => {
-    setActiveItem(itemId);
+    setActiveMenuItem(itemId);
     if (onItemClick) {
       onItemClick(itemId);
     }
@@ -104,7 +106,7 @@ export const Navigation: React.FC<NavigationProps> = ({
             key={item.id}
             icon={item.icon}
             label={item.label}
-            active={activeItem === item.id}
+            active={activeMenuItem === item.id}
             onClick={() => handleItemClick(item.id)}
           />
         ))}
