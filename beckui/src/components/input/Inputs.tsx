@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { EditIcon } from '../icons';
 import { Wrapper } from '../wrapper/PageWrapper';
 
 interface InputProps {
@@ -45,6 +44,8 @@ const styles = {
 
   label: {
     fontSize: '14px',
+    paddingLeft: '16px',
+    paddingBottom: '8px',
     fontWeight: 400,
     lineHeight: 1.2,
     color: 'var(--dark-grey)',
