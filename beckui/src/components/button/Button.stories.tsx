@@ -51,7 +51,7 @@ export const WithIconLeft = {
   args: {
     label: 'Remove',
     size: 'medium',
-    icon: <RemoveIcon size={35} color="currentColor" />,
+    icon: <RemoveIcon size={22} color="currentColor" />,
     iconPosition: 'left',
   },
 };

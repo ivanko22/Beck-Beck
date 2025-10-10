@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '../button/Button';
 import { Footer } from '../footer/Footer';
 import { Wrapper } from '../wrapper/PageWrapper';
-import { CheckmarkIcon, CloseIcon, EditIcon, RemoveIcon } from '../icons';
+import { EditIcon, RemoveIcon } from '../icons';
 export interface PageActionsProps {
   state: 'save' | 'saved' | 'edit' | 'adding';
   type: 'button' | 'iconButton';
@@ -13,8 +13,13 @@ export interface PageActionsProps {
   onRemove?: () => void;
   saveLabel?: string;
   cancelLabel?: string;
-  editLabel?: string;
-  removeLabel?: string;
+  leftLabel?: string;
+  rightLabel?: string;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+  cancelIcon?: React.ReactNode;
+  onLeftClick?: () => void;
+  onRightClick?: () => void;
 }
 
 export const PageActions: React.FC<PageActionsProps> = ({
@@ -26,20 +31,26 @@ export const PageActions: React.FC<PageActionsProps> = ({
   onRemove,
   saveLabel = 'Save',
   cancelLabel = 'Cancel',
-  editLabel = 'Edit',
-  removeLabel = 'Remove',
+  rightLabel = 'Edit',
+  leftLabel = 'Remove',
+  leftIcon = <RemoveIcon size={24} />,
+  rightIcon = <EditIcon size={24} />,
+  onLeftClick,
+  onRightClick,
 }) => {
-  console.log(state);
+  console.log(state, type);
 
   if (type === 'button') {
     if (state === 'saved') {
       return (
         <Footer
-          onEdit={onEdit}
-          onRemove={onRemove}
-          editLabel={editLabel}
-          removeLabel={removeLabel}
-          style={{ marginTop: '30px'}}
+          onEdit={onRightClick || onEdit}
+          onRemove={onLeftClick || onRemove}
+          leftLabel={leftLabel}
+          rightLabel={rightLabel}
+          leftIcon={leftIcon}
+          rightIcon={rightIcon}
+          style={{ marginTop: '30px' }}
         />
       );
     }
@@ -53,14 +64,16 @@ export const PageActions: React.FC<PageActionsProps> = ({
           primary
           disabled={state === 'adding'}
           label={saveLabel}
+          icon={''}
           onClick={onSave}
         />
         <Button 
           type="reset" 
           size="medium"
           customSize="140px" 
-          label={cancelLabel} 
-          onClick={onCancel} 
+          label={cancelLabel}
+          icon={''}
+          onClick={onCancel}
         />
       </Wrapper>
     );
@@ -71,15 +84,14 @@ export const PageActions: React.FC<PageActionsProps> = ({
           label=""
           size="medium"
           onClick={() => {}}
-          icon={state === 'edit' ? <CloseIcon size={20} /> : <RemoveIcon size={24} />}
-          disabled={state === 'edit'}
+          icon={leftIcon}
         />
 
         <Button
           label=""
           size="medium"
           onClick={() => {}}
-          icon={state == 'edit' ? <CheckmarkIcon size={20} /> : <EditIcon size={24} />}
+          icon={rightIcon}
           noLabel={state === 'edit'}
         />
       </Wrapper>
@@ -89,11 +101,13 @@ export const PageActions: React.FC<PageActionsProps> = ({
   return (
     <>
       <Footer
-        onEdit={onEdit}
-        onRemove={onRemove}
-        editLabel={editLabel}
-        removeLabel={removeLabel}
-        style={{ marginTop: '30px'}}
+        onEdit={onRightClick || onEdit}
+        onRemove={onLeftClick || onRemove}
+        leftLabel={leftLabel}
+        leftIcon={leftIcon}
+        rightIcon={rightIcon}
+        rightLabel={rightLabel}
+        style={{ marginTop: '30px' }}
       />
     </>
 

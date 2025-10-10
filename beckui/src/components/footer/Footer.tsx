@@ -7,16 +7,18 @@ import { Border } from '../border/Border';
 export interface FooterProps {
   onEdit?: () => void;
   onRemove?: () => void;
-  editLabel?: string;
-  removeLabel?: string;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+  leftLabel?: string;
+  rightLabel?: string;
   style?: React.CSSProperties;
 }
 
 export const Footer: React.FC<FooterProps> = ({
-  onEdit,
-  onRemove,
-  editLabel = 'Edit',
-  removeLabel = 'Remove',
+  leftIcon,
+  rightIcon,
+  leftLabel,
+  rightLabel,
 }) => {
 
   return (
@@ -25,20 +27,18 @@ export const Footer: React.FC<FooterProps> = ({
 
       <Wrapper type="pageWrapperContentRow">
         <Button
-          color='var(--middle-grey)'
           size='medium'
-          label={editLabel}
-          onClick={() => onEdit?.()}
-          icon={<EditIcon size={26} />}
+          label={leftLabel}
+          onClick={() => 'clicked'}
+          icon={leftIcon || <EditIcon size={26} />}
           iconPosition="left"
         />
 
         <Button
-          color='var(--middle-grey)'
           size='medium'
-          label={removeLabel}
-          onClick={() => onRemove?.()}
-          icon={<RemoveIcon size={24}  />}
+          label={rightLabel}
+          onClick={() => 'clicked'}
+          icon={rightIcon || <RemoveIcon size={24} />}
           iconPosition="left"
         />
       </Wrapper>

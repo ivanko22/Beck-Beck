@@ -24,6 +24,7 @@ import {
   PlusIcon,
   PoliceIcon,
   LetterIcon,
+  PrintIcon,
 
 } from './index';
 
@@ -230,6 +231,14 @@ export const Police: Story = {
   render: (args) => <PoliceIcon {...args} />,
 };
 
+export const Print: Story = {
+  args: {
+    size: 24,
+    color: '#000000',
+  },
+  render: (args) => <PrintIcon {...args} />,
+};
+
 export const IconShowcase: Story = {
   parameters: {
     docs: {
@@ -262,6 +271,8 @@ export const IconShowcase: Story = {
       { name: 'RightArrow', component: RightArrowIcon },
       { name: 'Search', component: SearchIcon },
       { name: 'Plus', component: PlusIcon },  
+      { name: 'Police', component: PoliceIcon },
+      { name: 'Print', component: PrintIcon },
     ];
 
     const colors = [

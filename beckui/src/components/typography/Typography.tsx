@@ -1,58 +1,31 @@
 import React from 'react';
 
 export interface TypographyProps {
-  variant?: 'title' | 'subtitle' | 'sectionTitle' | 'leftLabel' | 'titleSmall' | 'sectionTitleSmall' | 'secondaryTitle';
+  variant?: 'title' | 'subtitle' | 'sectionTitle' | 'leftLabel' | 'titleSmall' | 'sectionTitleSmall' | 'secondaryTitle' | 'title16' | 'title15' | 'title17';
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
   color?: string;
 }
 
-const styles: Record<NonNullable<TypographyProps['variant']>, React.CSSProperties> = {
-  title: {
-    fontSize: '28px',
-    fontWeight: 600,
-    color: 'var(--primary-color)',
-    lineHeight: 1.2,
-  },
-  subtitle: {
-    minWidth: '482px',
-    fontSize: '16px',
-    paddingTop: '20px',
-    fontWeight: 400,
-    color: 'var(--middle-grey)',
-    alignItems: 'center',
-    textAlign: 'left',
-  },
-  sectionTitle: {
-    fontSize: '26px',
-    fontWeight: 500,
-    color: 'var(--dark-grey)',
-    margin: 0,
-  },
-  sectionTitleSmall: {
-    fontSize: '18px',
-    fontWeight: 500,
-    color: 'var(--dark-grey)',
-    margin: 0,
-  },
-  leftLabel: {
-    fontSize: '16px',
-    fontWeight: 500,
-    textAlign: 'right',
-    color: 'var(--dark-grey)',
-  },
-  titleSmall: {
-    fontSize: '14px',
-    fontWeight: 500,
-    color: 'var(--dark-grey)',
-  },
-  secondaryTitle: {
-    fontSize: '20px',
-    fontWeight: 600,
-    color: 'var(--primary-color)',
-  },
+const base = {
+  default: { fontWeight: 500, color: 'var(--dark-grey)' },
+  primary: { color: 'var(--primary-color)' },
 };
+
+const styles = {
+  title:       { ...base.primary, fontSize: '28px', lineHeight: 1.2, fontWeight: 600 },
+  subtitle:    { ...base.primary, fontSize: '16px', paddingTop: '20px', fontWeight: 400, color: 'var(--middle-grey)', minWidth: '482px', textAlign: 'left', alignItems: 'center' },
+  sectionTitle:{ ...base.default, fontSize: '26px', margin: 0 },
+  sectionTitleSmall: { ...base.default, fontSize: '18px', margin: 0 },
+  leftLabel:   { ...base.default, fontSize: '16px', textAlign: 'right' },
+  secondaryTitle:{ ...base.primary, fontSize: '20px', fontWeight: 600 },
+  title16:     { ...base.default, fontSize: '16px' },
+  title17:     { ...base.default, fontSize: '17px' },
+  title15:     { ...base.default, fontSize: '15px' },
+  titleSmall:  { ...base.default, fontSize: '14px' },
+} as const;
+
 
 export const Typography: React.FC<TypographyProps> = ({
   variant = 'title',

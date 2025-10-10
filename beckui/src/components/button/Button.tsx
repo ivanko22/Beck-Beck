@@ -6,7 +6,7 @@ interface ButtonProps {
   color?: string | null;
   size?: 'small' | 'medium' | 'large' ;
   customSize?: string;
-  label: string;
+  label?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
   disabled?: boolean;
@@ -38,10 +38,10 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: '40px',
-    backgroundColor: 'var(--secondary-color)',
     height: '48px',
     width: '48px',
     color: 'var(--white)',
+    backgroundColor: 'var(--secondary-color)',
     fontWeight: 600,
     marginTop: '-10px',
   },
@@ -74,7 +74,6 @@ const styles = {
   },
 
   small: {
-    padding: '10px 16px',
     fontSize: '14px',
   },
 

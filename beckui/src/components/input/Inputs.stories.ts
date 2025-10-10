@@ -127,16 +127,6 @@ export const WithLeftLabel: Story = {
   },
 };
 
-
-export const DebugTest: Story = {
-  args: {
-    placeholder: 'Debug test',
-    label: 'Debug Label',
-    value: 'Debug Value',
-    size: 'large',
-  },
-};
-
 export const WithValueNoLabel: Story = {
   args: {
     placeholder: 'Input with value but no label',

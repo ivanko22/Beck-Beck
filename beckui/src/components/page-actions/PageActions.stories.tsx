@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { PageActions } from './PageActions';
+import { CheckmarkIcon, CloseIcon } from '../icons';
 
 const meta: Meta<typeof PageActions> = {
   title: 'Components/PageActions',
@@ -31,7 +32,6 @@ export const Saved: Story = {
   args: {
     state: 'saved',   
     type: 'button',
-    editLabel: 'Edit',
   },
 };
 
@@ -39,7 +39,8 @@ export const IconButtonSave: Story = {
   args: {
     state: 'edit',   
     type: 'iconButton',
-    editLabel: 'Edit',
+    leftIcon: <CloseIcon size={20} />,
+    rightIcon: <CheckmarkIcon size={20} />,
   },
 };
 
@@ -47,7 +48,6 @@ export const IconButtonEdit: Story = {
   args: {
     state: 'saved',   
     type: 'iconButton',
-    editLabel: 'Edit',
   },
 };
 
