@@ -17,24 +17,19 @@ import {
   ScaleIcon,
 } from '../icons';
 
-interface dropdownMenuItems {
-  label: string;
-  icon?: React.ComponentType<{ size?: number; color?: string }>;
-}
 interface NavigationItem {
   id: string;
   label: string;
   icon: React.ComponentType<{ size?: number; color?: string; className?: string }>;
   active?: boolean;
 };
-
 interface NavigationProps {
   userEmail: string;
   onItemClick?: (itemId: string) => void;
   onSearch?: (query: string) => void;
   className?: string;
   customWidth?: string;
-  dropdownMenuItems?: dropdownMenuItems[];
+  dropdownMenuItems?: [{ label: 'Profile' }, { label: 'Settings' }, { label: 'Sign out' }];
   activeItem?: string;
 };
 

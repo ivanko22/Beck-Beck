@@ -16,21 +16,9 @@ const meta: Meta<typeof Upload> = {
       control: 'text',
       description: 'Placeholder text (used when no files selected)',
     },
-    multiple: {
+    withBorder: {
       control: 'boolean',
-      description: 'Allow multiple file selection',
-    },
-    accept: {
-      control: 'text',
-      description: 'File types to accept (e.g., ".pdf,.doc,.docx")',
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'Disable the upload component',
-    },
-    onFileSelect: {
-      action: 'files selected',
-      description: 'Callback when files are selected',
+      description: 'Show upload area with dashed border',
     },
   },
 };
@@ -38,70 +26,23 @@ const meta: Meta<typeof Upload> = {
 export default meta;
 type Story = StoryObj<typeof Upload>;
 
-export const Default: Story = {
+export const NoBorder: Story = {
   args: {
     label: 'Drop files here to attach and add files',
-    onFileSelect: (files) => console.log('Files selected:', files),
+    withBorder: false,
+
   },
 };
 
-export const WithCustomLabel: Story = {
+export const WithBorder: Story = {
   args: {
-    label: 'Upload your documents here',
-    onFileSelect: (files) => console.log('Files selected:', files),
-  },
-};
-
-export const MultipleFiles: Story = {
-  args: {
-    label: 'Drop multiple files here',
-    multiple: true,
-    onFileSelect: (files) => console.log('Multiple files selected:', files),
-  },
-};
-
-export const SpecificFileTypes: Story = {
-  args: {
-    label: 'Upload PDF documents only',
-    accept: '.pdf',
-    onFileSelect: (files) => console.log('PDF files selected:', files),
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    label: 'Upload disabled',
-    disabled: true,
-    onFileSelect: (files) => console.log('Files selected:', files),
-  },
-};
-
-export const ImageFiles: Story = {
-  args: {
-    label: 'Upload images',
-    accept: 'image/*',
-    multiple: true,
-    onFileSelect: (files) => console.log('Image files selected:', files),
-  },
-};
-
-export const DocumentFiles: Story = {
-  args: {
-    label: 'Upload documents',
-    accept: '.pdf,.doc,.docx,.txt',
-    multiple: true,
-    onFileSelect: (files) => console.log('Document files selected:', files),
-  },
-};
-
-export const CustomStyling: Story = {
-  args: {
-    label: 'Custom styled upload area',
-    onFileSelect: (files) => console.log('Files selected:', files),
+    label: 'Click or drag files here to attach',
+    withBorder: true,
     style: {
-      minWidth: '300px',
-      minHeight: '80px',
-      justifyContent: 'center',
+      width: 512,
+      height: 100,
+      padding: '40px 20px',
     },
   },
 };
+

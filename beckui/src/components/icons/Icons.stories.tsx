@@ -25,6 +25,10 @@ import {
   PoliceIcon,
   LetterIcon,
   PrintIcon,
+  UploadIcon,
+  DownloadBillsIcon,
+  TagIcon,
+  AccordionIcon,
 
 } from './index';
 
@@ -239,6 +243,38 @@ export const Print: Story = {
   render: (args) => <PrintIcon {...args} />,
 };
 
+export const Upload: Story = {
+  args: {
+    size: 24,
+    color: '#000000',
+  },
+  render: (args) => <UploadIcon {...args} />,
+};
+
+export const DownloadBills: Story = {
+  args: {
+    size: 24,
+    color: '#000000',
+  },
+  render: (args) => <DownloadBillsIcon {...args} />,
+};
+
+export const Tag: Story = {
+  args: {
+    size: 24,
+    color: '#000000',
+  },
+  render: (args) => <TagIcon {...args} />,
+};
+
+export const Accordion: Story = {
+  args: {
+    size: 24,
+    color: '#000000',
+  },
+  render: (args) => <AccordionIcon {...args} />,
+};
+
 export const IconShowcase: Story = {
   parameters: {
     docs: {
@@ -273,6 +309,10 @@ export const IconShowcase: Story = {
       { name: 'Plus', component: PlusIcon },  
       { name: 'Police', component: PoliceIcon },
       { name: 'Print', component: PrintIcon },
+      { name: 'Upload', component: UploadIcon },
+      { name: 'DownloadBills', component: DownloadBillsIcon },
+      { name: 'Tag', component: TagIcon },
+      { name: 'Accordion', component: AccordionIcon },
     ];
 
     const colors = [

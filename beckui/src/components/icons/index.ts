@@ -24,3 +24,7 @@ export { EditIcon } from './Edit';
 export { PlusIcon } from './Plus';
 export { PoliceIcon } from './PoliceIcon';
 export { PrintIcon } from './PrintIcon';
+export { UploadIcon } from './UploadIcon';
+export { DownloadBillsIcon } from './DownloadBillsIcon';
+export { TagIcon } from './TagIcon';
+export { AccordionIcon } from './AccordionIcon';

@@ -23,7 +23,7 @@ interface TraumaticBrainInjurySectionProps {
 export const TraumaticBrainInjurySection: React.FC<TraumaticBrainInjurySectionProps> = ({ formData = {} }) => {
   return (
     <>
-      <Wrapper type="pageWrapperContentRow" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
+      <Wrapper type="row" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
         <Typography variant="leftLabel">
           Traumatic Brain Injury Symptoms
         </Typography>
@@ -37,7 +37,7 @@ export const TraumaticBrainInjurySection: React.FC<TraumaticBrainInjurySectionPr
       </Wrapper>
       
       <Wrapper type="pageWrapperContentColumn" style={{ marginTop: '20px', height: '245px' }}>
-        <Wrapper type="pageWrapperContentRow">
+        <Wrapper type="row">
           <Wrapper type="pageWrapperContentColumn" style={{flex: 1, gap: '30px', alignItems: 'center'}}>
             <Checkbox
               label="Adult Traumatic Brain Injury Symptoms?"
@@ -45,7 +45,7 @@ export const TraumaticBrainInjurySection: React.FC<TraumaticBrainInjurySectionPr
               onChange={() => {}}
             />
             {[1, 2, 3].map((rowIndex) => (
-              <Wrapper key={rowIndex} type="pageWrapperContentRow" style={{gap: '24px', paddingLeft: '78px'}}>
+              <Wrapper key={rowIndex} type="row" style={{gap: '24px', paddingLeft: '78px'}}>
                 <Checkbox
                   label="Headache"
                   checked={formData?.childHeadache || false}
@@ -72,7 +72,7 @@ export const TraumaticBrainInjurySection: React.FC<TraumaticBrainInjurySectionPr
               onChange={() => {}}
             />
             {[1, 2, 3].map((rowIndex) => (
-              <Wrapper key={rowIndex} type="pageWrapperContentRow" style={{gap: '24px', paddingLeft: '78px'}}>
+              <Wrapper key={rowIndex} type="row" style={{gap: '24px', paddingLeft: '78px'}}>
                 <Checkbox
                   label="Headache"
                   checked={formData?.childHeadache || false}
@@ -97,7 +97,7 @@ export const TraumaticBrainInjurySection: React.FC<TraumaticBrainInjurySectionPr
 
       <Border />
 
-      <Wrapper type="pageWrapperContentRow" style={{ justifyContent: 'center', alignItems: 'center' }}>
+      <Wrapper type="row" style={{ justifyContent: 'center', alignItems: 'center' }}>
         <Button
             label="Email Team to Do TBI Evaluation"
             icon={<EmailIcon size={22} />}

@@ -26,20 +26,19 @@ export const SettlementCard: React.FC<SettlementCardProps> = ({
             {formData?.settlementCard} {formData?.id}
         </Typography>
 
-        <Card style={{ height: '100%', width: 512, display: 'flex', flexDirection: 'column' }}>
-
+        <Card style={{ height: '100%', minWidth: 490, display: 'flex', flexDirection: 'column' }}>
             <Wrapper type="pageWrapperContentColumn" style={{ width: '100%', flex: 1, gap: 0 }}>
-                <Wrapper type="pageWrapperContentRow" style={{ gap: 10, alignItems: 'center', paddingBottom: 10 }}>
+                <Wrapper type="row" style={{ gap: 10, alignItems: 'center', paddingBottom: 10 }}>
                     <Typography variant="titleSmall" color="var(--middle-grey)" style={{ fontWeight: 400 }}>Insurance Company Name:</Typography>
                     <Typography variant="sectionTitleSmall">{ formData?.insuranceCompanyName }</Typography>
                 </Wrapper>
 
-                <Wrapper type="pageWrapperContentRow" style={{ gap: 10, alignItems: 'center', paddingBottom: 10 }}>
+                <Wrapper type="row" style={{ gap: 10, alignItems: 'center', paddingBottom: 10 }}>
                     <Typography variant="titleSmall" color="var(--middle-grey)" style={{ fontWeight: 400 }}>Claim:</Typography>
                     <Typography variant="sectionTitleSmall">{ formData?.claim }</Typography>
                 </Wrapper>
 
-                <Wrapper type="pageWrapperContentRow" style={{ gap: 10, alignItems: 'center', paddingBottom: 10 }}>
+                <Wrapper type="row" style={{ gap: 10, alignItems: 'center', paddingBottom: 10 }}>
                     <Typography variant="titleSmall" color="var(--middle-grey)" style={{ fontWeight: 400 }}>Client Name:</Typography>
                     <Typography variant="sectionTitleSmall">{ formData?.clientName }</Typography>
                 </Wrapper>
@@ -98,7 +97,7 @@ export const SettlementCard: React.FC<SettlementCardProps> = ({
 
                 <Spacer customSize={10} />
                 <Typography variant="title16">Loan Information</Typography>
-                <Wrapper type="pageWrapperContentRow" style={{ gap: 10, alignItems: 'center' }}>
+                <Wrapper type="row" style={{ gap: 10, alignItems: 'center' }}>
                     <Typography variant="titleSmall" color="var(--middle-grey)" style={{ fontWeight: 400 }}>Loan Company Name:</Typography>
                     <Typography variant="sectionTitleSmall">{ formData?.loanCompanyName }</Typography>
                 </Wrapper>
@@ -113,7 +112,7 @@ export const SettlementCard: React.FC<SettlementCardProps> = ({
                         template="2.5fr 1.5fr 1.5fr 1fr"
                     />
                     {formData?.loanRepayment?.map((item: any, index: number) => (       
-                        <TemplateRowItem type="loan" key={index} row={item} onChange={() => {}} />
+                        <TemplateRowItem type="loan" key={index} row={item} />
                     ))}
 
                     <Spacer customSize={20} />
@@ -125,21 +124,19 @@ export const SettlementCard: React.FC<SettlementCardProps> = ({
                         template="1.55fr 1fr"
                     />
                     {formData?.lienInformation?.map((item: any, index: number) => (       
-                        <TemplateRowItem type="lien" key={index} row={item} onChange={() => {}} />
-                        
+                        <TemplateRowItem type="lien" key={index} row={item} />
                     ))}
 
                     <div style={{
                         display: 'flex',
                         flexDirection: 'row',
-                        gap: 150,
                         alignItems: 'center', 
                         paddingLeft: '26px',
                         paddingTop: 5,
                         paddingBottom: 10,
                     }} >
-                        <Typography variant="title17" style={{ fontWeight: 600 }}>Net To Client:</Typography>
-                        <Typography variant="secondaryTitle">{formData?.netToClient || '$0'}</Typography>
+                        <Typography variant="title17" style={{ fontWeight: 600, width: 237 }}>Net To Client:</Typography>
+                        <Typography variant="secondaryTitle" style={{ textAlign: 'right', width: '100px' }}>{formData?.netToClient || '$0'}</Typography>
                     </div>
 
                     <Wrapper type="fullWidth" style={{ justifyContent: 'center' }}>

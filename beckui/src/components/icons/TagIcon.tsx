@@ -1,0 +1,28 @@
+import React from 'react';
+import { BaseIcon, BaseIconProps } from './BaseIcon';
+
+interface TagIconProps extends Omit<BaseIconProps, 'children' | 'viewBox'> {}
+
+export const TagIcon: React.FC<TagIconProps> = ({ 
+  size = 20, 
+  color,
+  hoverColor,
+  style = {},
+  onMouseEnter,
+  onMouseLeave
+}) => {
+  return (
+    <BaseIcon
+      size={size}
+      color={color}
+      hoverColor={hoverColor}
+      style={style}
+      viewBox="0 0 26 26"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      <path d="M22.1634 15.9601L15.618 9.41477C15.3399 9.13669 14.9628 8.98047 14.5695 8.98047H8.26404C7.44511 8.98047 6.78125 9.64433 6.78125 10.4633V16.7688C6.78125 17.162 6.93748 17.5392 7.21555 17.8172L13.7609 24.3626C14.3399 24.9416 15.2788 24.9417 15.8579 24.3626L22.1634 18.0571C22.7424 17.478 22.7424 16.5392 22.1634 15.9601ZM10.2411 13.9231C9.42216 13.9231 8.7583 13.2592 8.7583 12.4403C8.7583 11.6214 9.42216 10.9575 10.2411 10.9575C11.06 10.9575 11.7239 11.6214 11.7239 12.4403C11.7239 13.2592 11.06 13.9231 10.2411 13.9231ZM26.1175 18.0571L19.812 24.3626C19.2329 24.9416 18.2941 24.9416 17.715 24.3626L17.7039 24.3515L23.0808 18.9745C23.6059 18.4494 23.8951 17.7512 23.8951 17.0086C23.8951 16.266 23.6059 15.5678 23.0808 15.0427L17.0186 8.98047H18.5236C18.9169 8.98047 19.294 9.13669 19.5721 9.41477L26.1175 15.9601C26.6965 16.5392 26.6965 17.478 26.1175 18.0571Z" fill="currentColor"/>
+    </BaseIcon>
+  );
+};
+

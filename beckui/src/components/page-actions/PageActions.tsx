@@ -56,7 +56,7 @@ export const PageActions: React.FC<PageActionsProps> = ({
     }
     
     return (
-      <Wrapper type="pageWrapperContentRow">
+      <Wrapper type="row">
         <Button
           type="submit"
           size="medium"
@@ -79,7 +79,7 @@ export const PageActions: React.FC<PageActionsProps> = ({
     );
   } else if (type === 'iconButton') {
     return (
-      <Wrapper type="pageWrapperContentRow" style={{ alignItems: 'center' }}>
+      <Wrapper type="row" style={{ alignItems: 'center' }}>
         <Button
           label=""
           size="medium"

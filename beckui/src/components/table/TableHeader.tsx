@@ -2,13 +2,14 @@ import React from "react";
 import { ArrowIcon } from "../icons";
 
 type TableHeaderProps = {
-  columns: (string | { label: string; style?: React.CSSProperties })[];
+  columns: (string | { label: string; width?: string; style?: React.CSSProperties })[];
   template?: string;
   activeColumn?: number;
   noBorder?: boolean;
   useSpecificWidths?: boolean;
   columnWidths?: string[];
   style?: React.CSSProperties;
+  useSpaceBetween?: boolean;
 };
 
 export const  TableHeader: React.FC<TableHeaderProps> = ({
@@ -18,11 +19,13 @@ export const  TableHeader: React.FC<TableHeaderProps> = ({
   noBorder = false,
   useSpecificWidths = false,
   columnWidths = [],
+  useSpaceBetween = false,
   style,
 }) => {
   const container: React.CSSProperties = {
-    display: useSpecificWidths ? 'flex' : 'grid',
-    ...(useSpecificWidths ? {} : { gridTemplateColumns: template }),
+    display: useSpecificWidths || useSpaceBetween ? 'flex' : 'grid',
+    ...(useSpecificWidths || useSpaceBetween ? {} : { gridTemplateColumns: template }),
+    ...(useSpaceBetween ? { justifyContent: 'space-between' } : {}),
     columnGap: useSpecificWidths ? 0 : 24,
     gap: useSpecificWidths ? '24px' : undefined,
     alignItems: 'center',
@@ -33,6 +36,7 @@ export const  TableHeader: React.FC<TableHeaderProps> = ({
     paddingBottom: '12px',
     position: 'relative',
     width: '100%',
+    height: 40,
     top: noBorder ? '30px' : 'none',
   };
 
@@ -40,6 +44,7 @@ export const  TableHeader: React.FC<TableHeaderProps> = ({
     <div style={{...container, ...style}}>
         {columns.map((column, i) => {
           const label = typeof column === 'string' ? column : column.label;
+          const columnWidth = typeof column === 'object' && column.width ? column.width : undefined;
           const customStyle = typeof column === 'object' ? column.style : {};
           
           return (
@@ -52,13 +57,14 @@ export const  TableHeader: React.FC<TableHeaderProps> = ({
                 justifyContent: 'flex-start',
                 position: 'relative',
                 ...(useSpecificWidths && columnWidths[i] ? { width: columnWidths[i] } : {}),
+                ...(columnWidth ? { width: columnWidth } : {}),
                 ...customStyle
               }}
             >
               {i === activeColumn && (
-                <div style={{ marginLeft: '8px' }}>
+                <div style={{ marginLeft: '8px', paddingTop: '4px' }}>
                   <ArrowIcon 
-                    size={18} 
+                    size={28} 
                     color={"var(--secondary-color)"} 
                   />
                 </div>
