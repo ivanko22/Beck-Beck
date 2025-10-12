@@ -1,121 +1,105 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { AttachIcon } from '../icons';
+import { Wrapper } from '../wrapper/PageWrapper';
+import { Typography } from '../typography/Typography';
 
 interface UploadProps {
   label?: string;
   placeholder?: string;
-  onFileSelect?: (files: FileList) => void;
-  multiple?: boolean;
-  accept?: string;
-  disabled?: boolean;
+  withBorder?: boolean;
   style?: React.CSSProperties;
+  icon?: React.ReactNode;
+  vertical?: boolean;
 }
 
 export const Upload: React.FC<UploadProps> = ({
   label = "Drop files here to attach and add files",
-  placeholder = "Drop files here to attach and add files",
-  onFileSelect,
-  multiple = false,
-  accept,
-  disabled = false,
-  style,
+  style = {},
+  withBorder = false,
+  vertical = false,
 }) => {
-  const [isDragOver, setIsDragOver] = useState(false);
-  const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
-
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-    if (!disabled) {
-      setIsDragOver(true);
-    }
-  };
-
-  const handleDragLeave = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragOver(false);
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragOver(false);
-    
-    if (disabled) return;
-
-    const files = e.dataTransfer.files;
-    if (files.length > 0) {
-      setSelectedFiles(files);
-      onFileSelect?.(files);
-    }
-  };
-
-  const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (disabled) return;
-
-    const files = e.target.files;
-    if (files && files.length > 0) {
-      setSelectedFiles(files);
-      onFileSelect?.(files);
-    }
-  };
 
   const styles = {
-    uploadContainer: {
-      display: 'flex',
+    wrapper: {
+      gap: 8,
       alignItems: 'center',
-      gap: '8px',
+      justifyContent: 'center',
+      color: 'var(--middle-grey)',
     } as React.CSSProperties,
-    
-    icon: {
-      flexShrink: 0,
-    } as React.CSSProperties,
-    
-    text: {
-      color: isDragOver ? 'var(--secondary-color)' : 'var(--middle-grey)',
-      fontSize: '14px',
-      fontWeight: 500,
-      width: '128px',
-      userSelect: 'none' as const,
-    } as React.CSSProperties,
-    
     hiddenInput: {
       display: 'none',
     } as React.CSSProperties,
   };
 
-  const displayText = selectedFiles && selectedFiles.length > 0 
-    ? `${selectedFiles.length} file(s) selected`
-    : label;
-
   return (
-    <div
-      style={{ ...styles.uploadContainer, ...style }}
-      onDragOver={handleDragOver}
-      onDragLeave={handleDragLeave}
-      onDrop={handleDrop}
-      onClick={() => {
-        if (!disabled) {
-          document.getElementById('file-input')?.click();
-        }
-      }}
-    >
-      <AttachIcon 
-        size={26} 
-        color={isDragOver ? 'var(--secondary-color)' : 'var(--middle-grey)'}
-        style={styles.icon}
-      />
-      <span style={styles.text}>
-        {displayText}
-      </span>
+    <>
+      {!withBorder && (
+        <Wrapper type="row" style={{ ...styles.wrapper, ...style }}>
+          <AttachIcon 
+            size={30} 
+            color="var(--middle-grey)"
+          />
+          <Typography variant="title15">
+            {label}
+          </Typography>
+          
+          <input
+            id="file-input"
+            type="file"
+            style={styles.hiddenInput}
+          />
+        </Wrapper>
+      )}
+
+      {withBorder && !vertical && (
+        <Wrapper type="row" 
+          style={{ 
+            ...styles.wrapper,
+            border: '2px dashed var(--light-grey)',
+            borderRadius: '2px',
+            ...style,
+          }}>
+          <AttachIcon 
+            size={36} 
+            color="var(--middle-grey)"
+          />
+          <Typography variant="title16">
+            {label}
+          </Typography>
+          
+          <input
+            id="file-input"
+            type="file"
+            style={styles.hiddenInput}
+          />
+        </Wrapper>
+      )}
       
-      <input
-        id="file-input"
-        type="file"
-        multiple={multiple}
-        accept={accept}
-        onChange={handleFileInput}
-        disabled={disabled}
-        style={styles.hiddenInput}
-      />
-    </div>
+      {vertical && (
+        <>
+          <Wrapper type="pageWrapperContentColumn" 
+            style={{ 
+              ...styles.wrapper, 
+              ...style, 
+              height: 90,
+              width: 90,
+              gap: 0,
+              textAlign: 'center',
+              border: '2px dashed var(--light-grey)',
+              borderRadius: '2px',
+            }}
+          >
+            <AttachIcon size={26} color="var(--middle-grey)" />
+            <Typography color="var(--middle-grey)" variant="title12">{label}</Typography>
+          </Wrapper>
+
+          <input
+            id="file-input"
+            type="file"
+            style={styles.hiddenInput}
+          />
+        </>
+      )}
+    </>
   );
 };

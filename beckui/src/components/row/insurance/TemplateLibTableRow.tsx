@@ -4,13 +4,14 @@ import { Typography } from '../../typography/Typography';
 import { RemoveIcon } from '../../icons/Remove';
 import { Button } from '../../button/Button';
 import { Wrapper } from '../../wrapper/PageWrapper';
+import { UploadIcon } from '../../icons/index';
 
 export type TemplateRow = {
-    id: string;
-    name: string;
-    email: boolean;
-    text: boolean;
-    pdf: boolean;
+  id: string;
+  name: string;
+  email: boolean;
+  text: boolean;
+  pdf: boolean;
 };
 
 export type LoanRow = {
@@ -25,13 +26,38 @@ export type LienRow = {
   amount: string;
 };
 
-type TemplateRowItemProps = {
-  type?: string;
-  row: TemplateRow | LoanRow | LienRow;
+export type BillRow = {
+  name: string;
+  uploaded: string;
+};
+
+type BaseRowProps = {
   disabled?: boolean;
   saved?: boolean;
-  onChange: (next: TemplateRow) => void;
 };
+
+type TemplateRowProps = {
+  type?: 'template';
+  row: TemplateRow;
+  onChange?: (next: TemplateRow) => void;
+} & BaseRowProps;
+
+type LoanRowProps = {
+  type: 'loan';
+  row: LoanRow;
+} & BaseRowProps;
+
+type LienRowProps = {
+  type: 'lien';
+  row: LienRow;
+} & BaseRowProps;
+
+type BillRowProps = {
+  type: 'bill';
+  row: BillRow;
+} & BaseRowProps;
+
+type RowProps = TemplateRowProps | LoanRowProps | LienRowProps | BillRowProps;
 
 const L = {
   row: {
@@ -63,96 +89,113 @@ const L = {
   },
 };
 
-export const TemplateRowItem: React.FC<TemplateRowItemProps> = ({
-  row,
-  disabled = true,
-  type,
-  saved = false,
+const LoanRowComponent: React.FC<{ row: LoanRow; disabled?: boolean }> = ({ row, disabled = true }) => (
+  <div
+    style={{
+      ...L.row,
+      gridTemplateColumns: '2.5fr 1.5fr 1.5fr 1fr',
+      alignItems: 'center',
+      paddingLeft: '26px',
+      paddingBottom: 10,
+      width: 462,
+    }}
+    role="row"
+  >
+    <Typography variant="titleSmall">{row.name}</Typography>
+    <Typography variant="title15">{row.amountPaid}</Typography>
+    <Typography variant="title16" style={{ fontWeight: 600 }}>
+      {row.amountDue}
+    </Typography>
+    <Checkbox
+      checked={row.dontPay}
+      disabled={disabled}
+      aria-label={`${row.name} - Don't Pay`}
+    />
+  </div>
+);
+
+const LienRowComponent: React.FC<{ row: LienRow }> = ({ row }) => (
+  <div
+    style={{
+      ...L.row,
+      gridTemplateColumns: '5fr 2fr 1fr',
+      alignItems: 'center',
+      paddingLeft: '26px',
+      paddingBottom: 10,
+    }}
+    role="row"
+  >
+    <Typography variant="titleSmall">{row.name}</Typography>
+    <Typography variant="title16" style={{ fontWeight: 600 }}>
+      {row.amount}
+    </Typography>
+    <Wrapper type="row" style={{ height: 28, alignItems: 'center' }}>
+      <Button size="medium" icon={<RemoveIcon size={20} />} customSize="auto" />
+    </Wrapper>
+  </div>
+);
+
+const BillRowComponent: React.FC<{ row: BillRow }> = ({ row }) => (
+  <div
+    style={{
+      ...L.row,
+      gridTemplateColumns: '4fr 2.5fr 0.5fr 1fr',
+      alignItems: 'center',
+      paddingBottom: 10,
+    }}
+    role="row"
+  >
+    <Typography variant="title15">{row.name}</Typography>
+    <Typography variant="title15">{row.uploaded}</Typography>
+    <Button size="medium" icon={<RemoveIcon size={20} />} customSize="auto" />
+    <Button size="medium" icon={<UploadIcon size={20} />} customSize="auto" />
+  </div>
+);
+
+const TemplateRowComponent: React.FC<{ row: TemplateRow; disabled?: boolean; saved?: boolean }> = ({ 
+  row, 
+  disabled = true, 
+  saved = false 
 }) => {
+  const textStyle = saved ? { ...L.cellText, ...L.cellTextSaved } : L.cellText;
 
-  const textStyle = saved
-    ? { ...L.cellText, ...L.cellTextSaved }
-    : L.cellText;
-
-  if (type === 'loan') {
-    const loanRow = row as LoanRow;
-    return (
-      <div style={{
-          ...L.row, 
-          gridTemplateColumns: '2.5fr 1.5fr 1.5fr 1fr', 
-          alignItems: 'center', 
-          paddingLeft: '26px', 
-          paddingBottom: 10,
-          width: 462
-        }} 
-        role="row">
-        <Typography variant="titleSmall">{loanRow.name}</Typography>
-        <Typography variant="title15">{loanRow.amountPaid}</Typography>
-        <Typography variant="title16" style={{ fontWeight: 600 }}>{loanRow.amountDue}</Typography>
-        
-        <Checkbox
-          checked={loanRow.dontPay}
-          disabled={disabled}
-          aria-label={`${loanRow.name} - Don't Pay`}
-        />
-      </div>
-    );
-  }
-
-  if (type === 'lien') {
-    const lienRow = row as LienRow;
-    return (
-      <div style={{
-        ...L.row, 
-        gridTemplateColumns: '5fr 2fr 1fr', 
-        alignItems: 'center', 
-        paddingLeft: '26px', 
-        paddingBottom: 10,
-      }} 
-      role="row">
-      <Typography variant="titleSmall">{lienRow.name}</Typography>
-      <Typography variant="title16" style={{ fontWeight: 600 }}>{lienRow.amount}</Typography>
-      
-      <Wrapper type="pageWrapperContentRow" style={{ height: 28, alignItems: 'center' }}>
-        <Button 
-          size="medium"
-          icon={<RemoveIcon size={20} />} 
-          customSize={ 'auto' } 
-        />
-      </Wrapper>
-
-    </div>
-    );
-  }
-
-  const templateRow = row as TemplateRow;
   return (
     <div style={L.row} role="row">
       <div style={textStyle} role="gridcell">{row.name}</div>
-
       <div style={L.cellCheckbox} role="gridcell">
         <Checkbox
-          checked={templateRow.email}
+          checked={row.email}
           disabled={disabled}
-          aria-label={`${templateRow.name} - Email`}
+          aria-label={`${row.name} - Email`}
         />
       </div>
-
       <div style={L.cellCheckbox} role="gridcell">
         <Checkbox
-          checked={templateRow.text}
+          checked={row.text}
           disabled={disabled}
-          aria-label={`${templateRow.name} - Text`}
+          aria-label={`${row.name} - Text`}
         />
       </div>
-
       <div style={L.cellCheckbox} role="gridcell">
         <Checkbox
-          checked={templateRow.pdf}
+          checked={row.pdf}
           disabled={disabled}
-          aria-label={`${templateRow.name} - PDF for eFax / Mail`}
+          aria-label={`${row.name} - PDF for eFax / Mail`}
         />
       </div>
     </div>
   );
+};
+
+export const TemplateRowItem: React.FC<RowProps> = (props) => {
+  switch (props.type) {
+    case 'loan':
+      return <LoanRowComponent row={props.row} disabled={props.disabled} />;
+    case 'lien':
+      return <LienRowComponent row={props.row} />;
+    case 'bill':
+      return <BillRowComponent row={props.row} />;
+    default:
+      return <TemplateRowComponent row={props.row} disabled={props.disabled} saved={props.saved} />;
+  }
 };

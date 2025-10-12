@@ -88,12 +88,12 @@ export const LienSheetPage: React.FC<LienSheetPageProps> = ({
         />
 
         <Wrapper type="contentWrapper" style={{position: 'fixed', backgroundColor: 'var(--white)', zIndex: 100, width: '100%'}}>
-          <Wrapper type="pageWrapperContentRow">
+          <Wrapper type="row">
             <Typography variant="secondaryTitle" color="var(--primary-color)" style={{paddingRight: '30px'}}>
               {clientName}
             </Typography>
 
-            <Wrapper type="pageWrapperContentRow" style={{alignItems: 'center'}}>
+            <Wrapper type="row" style={{alignItems: 'center'}}>
               <Input
                 label="Phone"
                 value={formData?.phone}
@@ -144,7 +144,7 @@ export const LienSheetPage: React.FC<LienSheetPageProps> = ({
             </Wrapper>
           </Wrapper>
 
-          <Wrapper type="pageWrapperContentRow" style={{gap: '40px', padding: '30px 0px 20px 0px'}}>
+          <Wrapper type="row" style={{gap: '40px', padding: '30px 0px 20px 0px'}}>
             <Checkbox
               label="Medicaid"
               checked={formData?.insuranceType?.medicaid || false}
@@ -207,7 +207,7 @@ export const LienSheetPage: React.FC<LienSheetPageProps> = ({
 
                   <Spacer customSize={16} />
 
-                  <Wrapper type="pageWrapperContentRow" style={{gap: '16px'}}>
+                  <Wrapper type="row" style={{gap: '16px'}}>
                     <Spacer horizontal customSize={95} />
 
                     <Wrapper type="pageWrapperContentColumn" style={{ gap: '24px', alignItems: 'flex-end' }}>
@@ -222,14 +222,14 @@ export const LienSheetPage: React.FC<LienSheetPageProps> = ({
 
                     <Wrapper type="pageWrapperContentColumn" style={{ gap: '12px', alignItems: 'flex-end' }}>
                         <Typography variant="sectionTitleSmall" style={{ fontWeight: 'bold', color: 'var(--primary-color)'}}>
-                          {totalLiens}
+                          ${totalLiens}
                         </Typography>
                       <Typography variant="sectionTitle" color="var(--primary-color)">${civilActionBill}</Typography>
                     </Wrapper>
 
                     <Spacer horizontal customSize={40} />
 
-                    <Wrapper type="pageWrapperContentRow" style={{ gap: 30, alignItems: 'flex-end' }}>
+                    <Wrapper type="row" style={{ gap: 30, alignItems: 'flex-end' }}>
                       <Button
                         iconPosition="left"
                         label="Request Civil Action Payoff"
@@ -263,7 +263,7 @@ export const LienSheetPage: React.FC<LienSheetPageProps> = ({
                 title="Loans"
               />
 
-              <Wrapper type="pageWrapperContentRow" style={{ gap: '40px', paddingTop: '20px' }}>
+              <Wrapper type="row" style={{ gap: '40px', paddingTop: '20px' }}>
                 <BaseDropdown
                   type="BaseDropdown"
                   label="Loan Company"
@@ -280,7 +280,7 @@ export const LienSheetPage: React.FC<LienSheetPageProps> = ({
                   onSelect={() => {}}
                 />
 
-                <Wrapper type="pageWrapperContentRow" style={{ gap: '16px', alignItems: 'flex-end' }}>
+                <Wrapper type="row" style={{ gap: '16px', alignItems: 'flex-end' }}>
                   <Input
                     value="$2,212"
                     label="Loan Amount"
@@ -322,7 +322,7 @@ export const LienSheetPage: React.FC<LienSheetPageProps> = ({
                 subtitle="Generate and send reduction letters for all providers, grouped by insurance type. Choose delivery method below."
               />
 
-              <Wrapper type="pageWrapperContentRow" style={{ gap: '40px', paddingTop: '20px' }}>
+              <Wrapper type="row" style={{ gap: '40px', paddingTop: '20px' }}>
                 <RadioButtonGroup
                   title="How to Send"
                   name="how-to-send"

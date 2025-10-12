@@ -9,6 +9,8 @@ export interface HeaderProps {
   type?: 'default' | 'clientDetails';
   showButtons?: boolean;
   subtitle?: string;
+  rightButton?: boolean;
+  borderBottom?: boolean;
   onClose?: () => void;
   width?: string;
   isFixed?: boolean;
@@ -24,11 +26,14 @@ const styles = {
     width: "calc(100vw - 300px)",
     height: "80px",
     backgroundColor: "var(--white)",
-    borderBottom: "1px solid var(--light-grey)",
     marginBottom: "20px",
     paddingLeft: "30px",
     paddingRight: "30px",
     boxSizing: "border-box",
+  } as React.CSSProperties,
+
+  borderBottomStyle: {
+    borderBottom: "1px solid var(--light-grey)",
   } as React.CSSProperties,
 
   left: {
@@ -58,17 +63,19 @@ export const Header: React.FC<HeaderProps> = ({
   subtitle,
   type = 'default',
   onClose,
+  rightButton,
   width,
+  borderBottom = true,
   isFixed = true,
 }) => {
   const containerStyle = {
     ...styles.container,
     ...(width && { width }),
-    ...(isFixed ? {} : { position: 'relative' as const })
+    ...(isFixed ? {} : { position: 'relative' as const, zIndex: 0 })
   };
 
   return (
-    <div style={containerStyle}>
+    <div style={{...containerStyle, ...(borderBottom && styles.borderBottomStyle)}}>
       <div style={styles.left}>
         <Breadcrumbs section={section} current={current} />
         {subtitle && <span style={styles.subtitle}>{subtitle}</span>}
@@ -92,10 +99,16 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       )}
       
-      {onClose && (
+      {!rightButton ? (
         <div style={styles.close} onClick={onClose}>
           <CloseIcon size={20} color="var(--middle-grey)" hoverColor="var(--secondary-color-hover)" />
         </div>
+      ) : (
+        <Button
+          primary
+          size="medium"
+          label="New Medical Row"
+        />
       )}
     </div>
   );

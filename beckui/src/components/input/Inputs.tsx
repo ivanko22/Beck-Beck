@@ -242,7 +242,7 @@ export const Input: React.FC<InputProps> = ({
       )}
 
       {inputType !== 'textarea' && 
-        <Wrapper type="pageWrapperContentRow" style={{ alignItems: 'center', gap: '11px' }}>
+        <Wrapper type="row" style={{ alignItems: 'center', gap: '11px' }}>
           <input
             type={inputType}
             style={inputStyle}

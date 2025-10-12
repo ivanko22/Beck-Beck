@@ -29,7 +29,7 @@ interface CrashInjuryDetailsSectionProps {
 export const CrashInjuryDetailsSection: React.FC<CrashInjuryDetailsSectionProps> = ({ formData = {} }) => {
   return (
     <>
-    <Wrapper type="pageWrapperContentRow" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
+    <Wrapper type="row" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
       <Typography variant="leftLabel">
         Crash & Injury Details
       </Typography>
@@ -59,7 +59,7 @@ export const CrashInjuryDetailsSection: React.FC<CrashInjuryDetailsSectionProps>
 
         <Spacer customSize={40} />
 
-        <Wrapper type="pageWrapperContentRow">
+        <Wrapper type="row">
           <Input
             inputType="textarea"
             placeholder="Crash Injuries From Crash"

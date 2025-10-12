@@ -113,7 +113,7 @@ export const LienTableRow: React.FC<LienTableRowProps> = ({
           />
         )}
 
-      <Wrapper type="pageWrapperContentRow" style={styles.rowContentStyle}>
+      <Wrapper type="row" style={styles.rowContentStyle}>
         
         <Wrapper type="pageWrapperContentColumn" style={ { gap: 0 }}>
           {formData?.insuranceType && (
@@ -170,14 +170,13 @@ export const LienTableRow: React.FC<LienTableRowProps> = ({
           value={formData?.notes || ''}
           showLabel={false}
           disabled={disabled}
+          size='medium'
           customSize={{ width: '228px' }}
           noBorder={state === 'saved'}
         />
 
         <Upload
           label="Drop files here to attach and add files"
-          onFileSelect={(files) => console.log('Files selected:', files)}
-          disabled={disabled}
           style={{ width: '200px' }}
         />
 
@@ -267,8 +266,6 @@ export const LienTableRow: React.FC<LienTableRowProps> = ({
 
       <Upload
         label="Drop Redux Agreement"
-        onFileSelect={(files) => console.log('Files selected:', files)}
-        disabled={disabled}
         style={{ width: '130px' }}
       />
 

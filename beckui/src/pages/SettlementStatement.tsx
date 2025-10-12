@@ -39,7 +39,7 @@ export const SettlementStatementPage: React.FC<SettlementStatementPageProps> = (
         <Wrapper type="contentWrapper" style={{ marginTop: 60}}>
           <Spacer customSize={12} />
 
-          <Wrapper type="pageWrapperContentRow" style={{ paddingLeft: 20 }}>
+          <Wrapper type="row" style={{ paddingLeft: 20 }}>
             <Checkbox
               label="I have read and agree to the agreements"
               onChange={() => {}}
@@ -48,7 +48,7 @@ export const SettlementStatementPage: React.FC<SettlementStatementPageProps> = (
 
           <ActionCardsSection />
 
-          <Wrapper type="pageWrapperContentRow" style={{ gap: 24 }}>
+          <Wrapper type="row" style={{ gap: 24 }}>
             {(settlementCards || []).map((item, index) => (        
               <SettlementCard 
                 key={index}
@@ -58,7 +58,7 @@ export const SettlementStatementPage: React.FC<SettlementStatementPageProps> = (
             ))}
           </Wrapper>
 
-          <Wrapper type="pageWrapperContentRow" style={{ gap: 24, marginTop: 24 }}>
+          <Wrapper type="row" style={{ gap: 24, marginTop: 24 }}>
             {(hospitalCards || []).map((item, index) => (        
               <SettlementCard 
                 key={`hospital-${index}`}

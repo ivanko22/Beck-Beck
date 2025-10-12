@@ -251,7 +251,7 @@ export const MedicalBillsHealthInsuranceSection: React.FC<MedicalBillsHealthInsu
           <Spacer customSize={30} />
           <Border />
 
-          <Wrapper type="pageWrapperContentRow" style={{ gap: '40px', marginTop: '40px'}}>
+          <Wrapper type="row" style={{ gap: '40px', marginTop: '40px'}}>
             <Input
               label="Other Innocent Injured Parties"
               inputType="textarea"

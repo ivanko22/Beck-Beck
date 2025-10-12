@@ -28,14 +28,14 @@ export const ActionCardsSection: React.FC<ActionCardsSectionProps> = ({
   return (
       <Card>
 
-        <Wrapper type="pageWrapperContentRow" style={{width: '100%', justifyContent: 'space-around'}}>
+        <Wrapper type="row" style={{width: '100%', justifyContent: 'space-around'}}>
 
             <Wrapper type="pageWrapperContentColumn">                
                 <Typography variant="titleSmall" color="var(--middle-grey)">
                     Generate Reduction Letters
                 </Typography>
 
-                <Wrapper type="pageWrapperContentRow" style={{marginLeft: -18}}>
+                <Wrapper type="row" style={{marginLeft: -18}}>
                     <Button
                         label="Hospital Lien Statute Redux"
                         size="medium"
@@ -80,7 +80,7 @@ export const ActionCardsSection: React.FC<ActionCardsSectionProps> = ({
                     Loan Actions
                 </Typography>
 
-                <Wrapper type="pageWrapperContentRow" style={{marginLeft: -18}}>
+                <Wrapper type="row" style={{marginLeft: -18}}>
 
                     <Wrapper type="pageWrapperContentColumn">
                         <Button
@@ -113,7 +113,7 @@ export const ActionCardsSection: React.FC<ActionCardsSectionProps> = ({
                     Settlement Actions
                 </Typography>
 
-                <Wrapper type="pageWrapperContentRow" style={{marginLeft: -18}}>
+                <Wrapper type="row" style={{marginLeft: -18}}>
                     <Button
                         label="Apply Hospital Lien Statute & Generate Statement"
                         size="medium"
