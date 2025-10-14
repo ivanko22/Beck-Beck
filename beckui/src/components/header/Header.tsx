@@ -10,6 +10,7 @@ export interface HeaderProps {
   showButtons?: boolean;
   subtitle?: string;
   rightButton?: boolean;
+  rightButtonLabel?: string;
   borderBottom?: boolean;
   onClose?: () => void;
   width?: string;
@@ -64,6 +65,7 @@ export const Header: React.FC<HeaderProps> = ({
   type = 'default',
   onClose,
   rightButton,
+  rightButtonLabel,
   width,
   borderBottom = true,
   isFixed = true,
@@ -107,7 +109,7 @@ export const Header: React.FC<HeaderProps> = ({
         <Button
           primary
           size="medium"
-          label="New Medical Row"
+          label={rightButtonLabel}
         />
       )}
     </div>

@@ -261,7 +261,7 @@ export const MedicalBillsHealthInsuranceSection: React.FC<MedicalBillsHealthInsu
               customSize={{ width: '500px', height: '100px' }}
             />
 
-            <Wrapper type="pageWrapperContentColumn">
+            <Wrapper type="column">
               <Typography variant="titleSmall" style={{ marginBottom: '12px' }}>Send Big Package</Typography>
               
               <div style={{...L.checkboxGroup, gap: '40px'}}>

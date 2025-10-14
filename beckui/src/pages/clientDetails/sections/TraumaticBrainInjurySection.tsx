@@ -36,9 +36,9 @@ export const TraumaticBrainInjurySection: React.FC<TraumaticBrainInjurySectionPr
         />   
       </Wrapper>
       
-      <Wrapper type="pageWrapperContentColumn" style={{ marginTop: '20px', height: '245px' }}>
+      <Wrapper type="column" style={{ marginTop: '20px', height: '245px' }}>
         <Wrapper type="row">
-          <Wrapper type="pageWrapperContentColumn" style={{flex: 1, gap: '30px', alignItems: 'center'}}>
+          <Wrapper type="column" style={{flex: 1, gap: '30px', alignItems: 'center'}}>
             <Checkbox
               label="Adult Traumatic Brain Injury Symptoms?"
               checked={formData?.adultTBI || false}
@@ -65,7 +65,7 @@ export const TraumaticBrainInjurySection: React.FC<TraumaticBrainInjurySectionPr
             ))}
           </Wrapper>
 
-          <Wrapper type="pageWrapperContentColumn" style={{flex: 1, gap: '24px'}}>
+          <Wrapper type="column" style={{flex: 1, gap: '24px'}}>
             <Checkbox
               label="Child Traumatic Brain Injury Symptoms?"
               checked={formData?.childTBI || false}

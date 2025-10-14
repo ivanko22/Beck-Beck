@@ -10,7 +10,7 @@ import { Border } from '../border/Border';
 
 export interface RowMedAuthData {
   id: string;
-  state: 'saved' | 'edit';
+  state: 'saved' | 'edit' | 'adding';
   orderRecordsDate: string;
   orderBillsDate: string;
   providerName: string;
@@ -41,7 +41,7 @@ export const RowMedAuth: React.FC<RowMedAuthProps> = ({
   const [state, setState] = useState(row.state);
 
   return (
-    <Wrapper type='pageWrapperContentColumn'>
+    <Wrapper type='column'>
       <div 
         onClick={() => onToggle?.()} 
         onMouseEnter={() => setIsHovered(true)}
@@ -65,7 +65,7 @@ export const RowMedAuth: React.FC<RowMedAuthProps> = ({
           <Wrapper type="row" style={{ width: '150px' }}>
             <Checkbox
               label={row.orderRecordsDate}
-              checked={true}
+              checked={ row.orderRecordsDate === 'Order Rec' ? false : true}
               disabled={state === 'saved'}
               onChange={() => {}}
               aria-label="Order Records"
@@ -75,7 +75,7 @@ export const RowMedAuth: React.FC<RowMedAuthProps> = ({
           <Wrapper type="row" style={{ width: '150px' }}>
             <Checkbox
               label={row.orderBillsDate}
-              checked={true}
+              checked={ row.orderBillsDate === 'Order Bill' ? false : true}
               disabled={state === 'saved'}
               onChange={() => {}}
               aria-label="Order Bills"
@@ -85,9 +85,10 @@ export const RowMedAuth: React.FC<RowMedAuthProps> = ({
           <Wrapper type="row" style={{ position: 'relative', top: 4 }}>
             <Input
               value={row.providerName}
+              placeholder="Provider Name"
               disabled={state === 'saved'}
               showLabel={false}
-              noBorder={true}
+              noBorder={state === 'saved'}
               onChange={(e) => {
                 console.log('Provider Name', e.target.value);
               }}
@@ -116,17 +117,18 @@ export const RowMedAuth: React.FC<RowMedAuthProps> = ({
             />
           </Wrapper>
 
-          <Wrapper type="row" style={{ position: 'relative', top: 8 }}>
+          <Wrapper type="row" style={{ position: 'relative', top: 4 }}>
             <Input
               value={row.billedAmount}
+              placeholder="Billed Amount"
               disabled={state === 'saved'}
               showLabel={false}
-              noBorder={true}
+              noBorder={state === 'saved'}
               onChange={(e) => {
                 console.log('Billed Amount', e.target.value);
               }}
               aria-label="Billed Amount"
-              size="large"
+              size="medium"
               label="Billed Amount"
               customSize={{ width: '100px' }}
             />
@@ -135,9 +137,10 @@ export const RowMedAuth: React.FC<RowMedAuthProps> = ({
           <Wrapper type="row" style={{ position: 'relative', top: 4 }}>
             <Input
               value={row.notes}
+              placeholder="Notes"
               disabled={state === 'saved'}
               showLabel={false}
-              noBorder={true}
+              noBorder={state === 'saved'}
               onChange={(e) => {
                 console.log('Notes', e.target.value);
               }}
@@ -165,51 +168,59 @@ export const RowMedAuth: React.FC<RowMedAuthProps> = ({
       </div>
 
           {isOpen && (
-          <Wrapper type="pageWrapperContentColumn">
+          <Wrapper type="column">
             <Wrapper type="row" style={{ padding: '20px', gap: '40px' }}>
-              <Wrapper type="pageWrapperContentColumn" style={{ gap: '40px' }}>
+              <Wrapper type="column" style={{ gap: '40px' }}>
                 <Input 
                   label="Address" 
+                  placeholder="Address"
                   value={row.address} 
                   onChange={() => {}} 
                   customSize={{ width: '100%' }}
                   noBorder={state === 'saved'}
                   disabled={state === 'saved'}
                   style={{ gap: 0 }}
+                  size="medium"
                 />
 
                 <Wrapper type="row" style={{ gap: '10px' }}>
                   <Input 
                     label="City" 
+                    placeholder="City"
                     value={row.city} 
                     onChange={() => {}} 
                     customSize={{ width: '200px' }}
                     noBorder={state === 'saved'}
                     disabled={state === 'saved'}
                     style={{ gap: 0 }}
+                    size="medium"
                   />
                   <Input 
                     label="State" 
+                    placeholder="State"
                     value={row.stateCode} 
                     onChange={() => {}} 
                     customSize={{ width: '80px' }}
                     noBorder={state === 'saved'}
                     disabled={state === 'saved'}
                     style={{ gap: 0 }}
+                    size="medium"
                   />
                   <Input 
                     label="Zip Code" 
+                    placeholder="Zip Code"
                     value={row.zipCode} 
                     onChange={() => {}} 
                     customSize={{ width: '100px' }}
                     noBorder={state === 'saved'}
                     disabled={state === 'saved'}
                     style={{ gap: 0 }}
+                    size="medium"
                   />
                 </Wrapper>
               </Wrapper>
 
-              <Wrapper type="pageWrapperContentColumn" style={{ gap: '40px' }}>
+              <Wrapper type="column" style={{ gap: '40px' }}>
               <Spacer customSize={30} />
                 <Wrapper type="row" style={{ gap: 40, justifyContent: 'space-between' }}>
                   <Spacer horizontal customSize={30} />

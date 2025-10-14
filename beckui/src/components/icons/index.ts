@@ -28,3 +28,7 @@ export { UploadIcon } from './UploadIcon';
 export { DownloadBillsIcon } from './DownloadBillsIcon';
 export { TagIcon } from './TagIcon';
 export { AccordionIcon } from './AccordionIcon';
+export { BriefcaseIcon } from './BriefcaseIcon';
+export { TextIcon } from './TextIcon';
+export { ESignIcon } from './ESignIcon';
+export { PhoneIcon } from './PhoneIcon';

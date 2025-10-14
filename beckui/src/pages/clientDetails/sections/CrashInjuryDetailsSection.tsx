@@ -45,7 +45,7 @@ export const CrashInjuryDetailsSection: React.FC<CrashInjuryDetailsSectionProps>
       </Wrapper>
     </Wrapper>
       
-      <Wrapper type="pageWrapperContentColumn" style={{ marginTop: '20px' }}>
+      <Wrapper type="column" style={{ marginTop: '20px' }}>
          <Input
             inputType="textarea"
             label="Crash Details" 
@@ -81,7 +81,7 @@ export const CrashInjuryDetailsSection: React.FC<CrashInjuryDetailsSectionProps>
           />
         </Wrapper>
 
-        <Wrapper type="pageWrapperContentColumn" style={{ gap: '20px', marginTop: '20px' }}>
+        <Wrapper type="column" style={{ gap: '20px', marginTop: '20px' }}>
           <Checkbox
             label="High-Value Policy - Company vehicle at fault or insurance coverage likely exceeds $100K"
             checked={formData?.highValuePolicy || false}

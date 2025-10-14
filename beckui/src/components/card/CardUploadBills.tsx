@@ -27,7 +27,7 @@ export const CardUploadBills: React.FC<CardUploadBillsProps> = ({
 }) => {
   return (
     <Wrapper type="row" style={{ gap: 60, justifyContent: 'space-around' }}>
-      <Wrapper type="pageWrapperContentColumn" style={{ minWidth: 500, flex: 1, gap: 0  }}>
+      <Wrapper type="column" style={{ minWidth: 500, flex: 1, gap: 0  }}>
           <Typography variant="sectionTitleSmall" style={{ paddingLeft: 28 }}>
               {title}
           </Typography>

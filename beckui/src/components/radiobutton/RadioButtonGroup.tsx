@@ -61,7 +61,7 @@ export const RadioButtonGroup: React.FC<RadioButtonGroupProps> = ({
   };
 
   return (
-    <Wrapper type="pageWrapperContentColumn" style={{ gap: '20px' }} >
+    <Wrapper type="column" style={{ gap: '20px' }} >
       <Typography variant="titleSmall" style={{ textAlign: 'left' }}>{title}</Typography>
       
       <Wrapper type="row" style={radioContainerStyle}>

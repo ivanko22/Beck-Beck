@@ -4,7 +4,7 @@ import { Footer } from '../footer/Footer';
 import { Wrapper } from '../wrapper/PageWrapper';
 import { EditIcon, RemoveIcon } from '../icons';
 export interface PageActionsProps {
-  state: 'save' | 'saved' | 'edit' | 'adding';
+  state: 'saved' | 'edit' | 'adding';
   type: 'button' | 'iconButton';
   noLabel?: boolean;
   onSave?: () => void;

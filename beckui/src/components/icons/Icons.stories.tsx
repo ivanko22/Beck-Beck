@@ -10,6 +10,7 @@ import {
   EmailIcon,
   ClipboardIcon,
   CheckIcon,
+  CheckmarkIcon,
   HandshakeIcon,
   ScaleIcon,
   CloseIcon,
@@ -29,6 +30,10 @@ import {
   DownloadBillsIcon,
   TagIcon,
   AccordionIcon,
+  BriefcaseIcon,
+  TextIcon,
+  ESignIcon,
+  PhoneIcon,
 
 } from './index';
 
@@ -129,6 +134,15 @@ export const Check: Story = {
     color: '#000000',
   },
   render: (args) => <CheckIcon {...args} />,
+};
+
+export const Checkmark: Story = {
+
+  args: {
+    size: 24,
+    color: '#000000',
+  },
+  render: (args) => <CheckmarkIcon {...args} />,
 };
 
 export const Handshake: Story = {
@@ -295,6 +309,7 @@ export const IconShowcase: Story = {
       { name: 'Letter', component: LetterIcon },
       { name: 'Clipboard', component: ClipboardIcon },
       { name: 'Check', component: CheckIcon },
+      { name: 'Checkmark', component: CheckmarkIcon },
       { name: 'Handshake', component: HandshakeIcon },
       { name: 'Scale', component: ScaleIcon },
       { name: 'Close', component: CloseIcon },
@@ -313,6 +328,10 @@ export const IconShowcase: Story = {
       { name: 'DownloadBills', component: DownloadBillsIcon },
       { name: 'Tag', component: TagIcon },
       { name: 'Accordion', component: AccordionIcon },
+      { name: 'Briefcase', component: BriefcaseIcon },
+      { name: 'Text', component: TextIcon },
+      { name: 'ESign', component: ESignIcon },
+      { name: 'Phone', component: PhoneIcon },
     ];
 
     const colors = [

@@ -32,7 +32,7 @@ interface MedicalFolderPageProps {
   clientInfo?: ClientInfo;
   medAuthRows?: Array<{
     id: string;
-    state: 'saved' | 'edit';
+    state: 'saved' | 'edit' | 'adding';
     orderRecordsDate: string;
     orderBillsDate: string;
     providerName: string;
@@ -51,6 +51,8 @@ interface MedicalFolderPageProps {
     medicalAuths?: BillRow[];
     duplicates?: BillRow[];
   };
+  openRowId?: string | null;
+  onToggleRow?: (id: string) => void;
 }
 
 export const MedicalFolderPage: React.FC<MedicalFolderPageProps> = ({
@@ -63,8 +65,12 @@ export const MedicalFolderPage: React.FC<MedicalFolderPageProps> = ({
     duplicates: [],
     isOpen: false,
   },
+  openRowId: externalOpenRowId,
+  onToggleRow,
 }) => {
-  const [openRowId, setOpenRowId] = React.useState<string | null>(null);
+  const [internalOpenRowId, setInternalOpenRowId] = React.useState<string | null>(null);
+  const openRowId = externalOpenRowId !== undefined ? externalOpenRowId : internalOpenRowId;
+  const setOpenRowId = onToggleRow ? (id: string | null) => onToggleRow(id || '') : setInternalOpenRowId;
   return (
     <Wrapper type="pageWrapper">
       <Navigation
@@ -165,7 +171,7 @@ export const MedicalFolderPage: React.FC<MedicalFolderPageProps> = ({
 
           <Wrapper type="contentWrapper" style={{ marginTop: 0 }}>
             <Wrapper type="row" style={{ gap: 50 }}>
-              <Wrapper type="pageWrapperContentColumn" style={{ gap: 10 }}>
+              <Wrapper type="column" style={{ gap: 10 }}>
                 <Typography variant="secondaryTitle" color="var(--primary-color)" style={{paddingLeft: 14}}>
                   {clientInfo?.name}
                 </Typography>
@@ -216,7 +222,7 @@ export const MedicalFolderPage: React.FC<MedicalFolderPageProps> = ({
                 </Wrapper>
               </Wrapper>
 
-              <Wrapper type="pageWrapperContentColumn" style={{ gap: 30 }}>
+              <Wrapper type="column" style={{ gap: 30 }}>
                 <Spacer customSize={30} />
                 <Checkbox
                   label="Add Advanced Injury Care"
@@ -237,7 +243,7 @@ export const MedicalFolderPage: React.FC<MedicalFolderPageProps> = ({
                 />
               </Wrapper>
 
-              <Wrapper type="pageWrapperContentColumn">
+              <Wrapper type="column">
                 <Spacer customSize={43} />
 
                 <Button
@@ -258,7 +264,7 @@ export const MedicalFolderPage: React.FC<MedicalFolderPageProps> = ({
             <Spacer customSize={20} />
 
             {/* Medical & Folder Authorization */}
-            <Wrapper type="pageWrapperContentColumn" style={{ gap: 0}}>
+            <Wrapper type="column" style={{ gap: 0}}>
               <TableHeader
                 columns={[
                   { label: 'Order Records', width: '160px' },
@@ -295,7 +301,7 @@ export const MedicalFolderPage: React.FC<MedicalFolderPageProps> = ({
               <Spacer horizontal customSize={14} />
               <Spacer horizontal customSize={14} />
 
-              <Wrapper type="pageWrapperContentColumn" style={{ gap: '24px', alignItems: 'flex-end' }}>
+              <Wrapper type="column" style={{ gap: '24px', alignItems: 'flex-end' }}>
                 <Typography variant="sectionTitleSmall" color="var(--middle-grey)">
                   Total Bills: 
                 </Typography>
@@ -307,7 +313,7 @@ export const MedicalFolderPage: React.FC<MedicalFolderPageProps> = ({
                 </Typography>
               </Wrapper>
 
-              <Wrapper type="pageWrapperContentColumn" style={{ gap: '12px', alignItems: 'flex-end' }}>
+              <Wrapper type="column" style={{ gap: '12px', alignItems: 'flex-end' }}>
                 <Typography variant="sectionTitle" color="var(--primary-color)">
                   ${'18,475'}
                 </Typography>

@@ -30,7 +30,7 @@ export const ActionCardsSection: React.FC<ActionCardsSectionProps> = ({
 
         <Wrapper type="row" style={{width: '100%', justifyContent: 'space-around'}}>
 
-            <Wrapper type="pageWrapperContentColumn">                
+            <Wrapper type="column">                
                 <Typography variant="titleSmall" color="var(--middle-grey)">
                     Generate Reduction Letters
                 </Typography>
@@ -75,14 +75,14 @@ export const ActionCardsSection: React.FC<ActionCardsSectionProps> = ({
                 </Wrapper>
             </Wrapper>
 
-            <Wrapper type="pageWrapperContentColumn">                
+            <Wrapper type="column">                
                 <Typography variant="titleSmall" color="var(--middle-grey)">
                     Loan Actions
                 </Typography>
 
                 <Wrapper type="row" style={{marginLeft: -18}}>
 
-                    <Wrapper type="pageWrapperContentColumn">
+                    <Wrapper type="column">
                         <Button
                             label="Request Loan Amount"
                             size="medium"
@@ -108,7 +108,7 @@ export const ActionCardsSection: React.FC<ActionCardsSectionProps> = ({
                 </Wrapper>
             </Wrapper>
 
-            <Wrapper type="pageWrapperContentColumn">                
+            <Wrapper type="column">                
                 <Typography variant="titleSmall" color="var(--middle-grey)">
                     Settlement Actions
                 </Typography>

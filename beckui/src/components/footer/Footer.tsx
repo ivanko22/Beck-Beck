@@ -24,7 +24,7 @@ export const Footer: React.FC<FooterProps> = ({
 }) => {
 
   return (
-    <Wrapper type="pageWrapperContentColumn" style={{ alignItems: 'center', marginTop: '30px' }}>
+    <Wrapper type="column" style={{ alignItems: 'center', marginTop: '30px' }}>
       <Border />
 
       <Wrapper type="row">

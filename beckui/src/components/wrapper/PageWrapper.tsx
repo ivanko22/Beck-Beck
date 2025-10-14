@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface WrapperProps {
-  type?: 'contentWrapper' | 'pageWrapper' | 'mainWrapper' | 'row' | 'pageWrapperContentColumn' | 'fullWidth';
+  type?: 'contentWrapper' | 'pageWrapper' | 'mainWrapper' | 'row' | 'column' | 'fullWidth';
   background?: 'white' | 'gray' | 'darkBlue' | 'custom';
   customBackgroundColor?: string;
   padding?: string;
@@ -23,7 +23,7 @@ const row: React.CSSProperties = {
   flexDirection: 'row',
 };
 
-const pageWrapperContentColumn: React.CSSProperties = {
+const column: React.CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
   gap: '10px',
@@ -93,8 +93,8 @@ export const Wrapper: React.FC<WrapperProps> = ({
       <div style={{...row, ...style}}>
         {children}
       </div>
-    ) : type === 'pageWrapperContentColumn' ? (
-      <div style={{...pageWrapperContentColumn, ...style}}>
+    ) : type === 'column' ? (
+      <div style={{...column, ...style}}>
         {children}
       </div>
     ) : type === 'fullWidth' ? (
