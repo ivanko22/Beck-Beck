@@ -12,7 +12,7 @@ import { Spacer } from '../spacer/Spacer';
 
 interface LienTableRowProps {
   index?: number;
-  state?: 'save' | 'saved' | 'edit';
+  state?: 'saved' | 'edit' | 'adding';
   type?: 'button' | 'iconButton';
 
   formData?: {
@@ -115,7 +115,7 @@ export const LienTableRow: React.FC<LienTableRowProps> = ({
 
       <Wrapper type="row" style={styles.rowContentStyle}>
         
-        <Wrapper type="pageWrapperContentColumn" style={ { gap: 0 }}>
+        <Wrapper type="column" style={ { gap: 0 }}>
           {formData?.insuranceType && (
             <Typography variant="titleSmall" style={{ paddingLeft: '16px', marginBottom: '-45px', fontWeight: 400, color: 'var(--middle-grey)' }}>
               {formData.insuranceType}
@@ -270,10 +270,10 @@ export const LienTableRow: React.FC<LienTableRowProps> = ({
       />
 
       <PageActions 
-        state={state || 'save'} 
+        state={state || 'adding'} 
         type={'iconButton'} 
-        leftIcon={state === 'save' ? <RemoveIcon size={20} /> : <CloseIcon size={20} />}
-        rightIcon={state === 'save' ? <EditIcon size={20} /> : <CheckmarkIcon size={20} />}
+        leftIcon={state === 'adding' ? <RemoveIcon size={20} /> : <CloseIcon size={20} />}
+        rightIcon={state === 'adding' ? <EditIcon size={20} /> : <CheckmarkIcon size={20} />}
       />
 
       </Wrapper>
@@ -283,7 +283,7 @@ export const LienTableRow: React.FC<LienTableRowProps> = ({
         <>
           <Spacer size="md" customSize={20} />
           <PageActions 
-            state={state || 'save'} 
+            state={state || 'adding'} 
             type={'button'} 
           />
         </>

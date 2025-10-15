@@ -21,7 +21,7 @@ export const Empty: Story = {
     title: 'Bills',
   },
   render: (args) => (
-    <Wrapper type="pageWrapperContentColumn" style={{ minWidth: 500, flex: 1, gap: 0 }}>
+    <Wrapper type="column" style={{ minWidth: 500, flex: 1, gap: 0 }}>
       <CardUploadBills {...args} />
     </Wrapper>
   ),
@@ -37,7 +37,7 @@ export const WithBills: Story = {
     title: 'Records',
   },
   render: (args) => (
-    <Wrapper type="pageWrapperContentColumn" style={{ minWidth: 500, flex: 1, gap: 0 }}>
+    <Wrapper type="column" style={{ minWidth: 500, flex: 1, gap: 0 }}>
       <CardUploadBills {...args} />
     </Wrapper>
   ),
@@ -57,7 +57,7 @@ export const LongList: Story = {
     title: 'Records',
   },
   render: (args) => (
-    <Wrapper type="pageWrapperContentColumn" style={{ minWidth: 500, flex: 1, gap: 0 }}>
+    <Wrapper type="column" style={{ minWidth: 500, flex: 1, gap: 0 }}>
       <CardUploadBills {...args} />
     </Wrapper>
   ),

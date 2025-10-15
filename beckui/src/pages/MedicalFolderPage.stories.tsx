@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
 import { MedicalFolderPage } from './MedicalFolderPage';
 
 const meta: Meta<typeof MedicalFolderPage> = {
@@ -239,7 +240,22 @@ const sampleMedAuthRows = [
 
 export const Empty: Story = {
   args: {
-    clientInfo: clientInfo, 
+    clientInfo: clientInfo,
+    medAuthRows: [{
+      id: '1',
+      state: 'adding' as const,
+      orderRecordsDate: 'Order Rec',
+      orderBillsDate: 'Order Bill',
+      providerName: '',
+      address: '',
+      city: '',
+      stateCode: '',
+      zipCode: '',
+      recordsArrived: false,
+      billsArrived: false,
+      billedAmount: '',
+      notes: '',
+    }],
     uploadedMedicalDocuments: {
       bills: [],
       records: [],
@@ -247,9 +263,62 @@ export const Empty: Story = {
       duplicates: [],
     },
   },
+  render: (args) => {
+    const [openRowId, setOpenRowId] = React.useState<string | null>('1');
+    
+    return (
+      <MedicalFolderPage
+        {...args}
+        openRowId={openRowId}
+        onToggleRow={(id) => {
+          setOpenRowId(openRowId === id ? null : id);
+        }}
+      />
+    );
+  },
 };
 
-export const WithFewDocuments: Story = {
+export const OrderRecords: Story = {
+  args: {
+    clientInfo: clientInfo,
+    medAuthRows: [{
+      id: '1',
+      state: 'edit' as const,
+      orderRecordsDate: '31/01/25',
+      orderBillsDate: 'Order Bill',
+      providerName: 'Synapse Chiropractic Center',
+      address: '2468 Spine Rd',
+      city: 'Springfield',
+      stateCode: 'IL',
+      zipCode: '62706',
+      recordsArrived: false,
+      billsArrived: false,
+      billedAmount: '',
+      notes: '',
+    }],
+    uploadedMedicalDocuments: {
+      bills: [],
+      records: [],
+      medicalAuths: [],
+      duplicates: [],
+    },
+  },
+  render: (args) => {
+    const [openRowId, setOpenRowId] = React.useState<string | null>('1');
+    
+    return (
+      <MedicalFolderPage
+        {...args}
+        openRowId={openRowId}
+        onToggleRow={(id) => {
+          setOpenRowId(openRowId === id ? null : id);
+        }}
+      />
+    );
+  },
+};
+
+export const SavedWithFewDocuments: Story = {
   args: {
     clientInfo: clientInfo,
     medAuthRows: sampleMedAuthRows,
@@ -259,5 +328,62 @@ export const WithFewDocuments: Story = {
       medicalAuths: sampleMedicalAuths,
       duplicates: sampleDuplicates,
     },
+  },
+};
+
+export const OpenMedicalAuthorizationRow: Story = {
+  args: {
+    clientInfo: clientInfo,
+    medAuthRows: sampleMedAuthRows,
+    uploadedMedicalDocuments: {
+      bills: sampleBills,
+      records: sampleRecords,
+      medicalAuths: sampleMedicalAuths,
+      duplicates: sampleDuplicates,
+    },
+  },
+  render: (args) => {
+    const [openRowId, setOpenRowId] = React.useState<string | null>('1');
+    
+    return (
+      <MedicalFolderPage
+        {...args}
+        openRowId={openRowId}
+        onToggleRow={(id) => {
+          setOpenRowId(openRowId === id ? null : id);
+        }}
+      />
+    );
+  },
+};
+
+export const EditMedicalAuthorizationRow: Story = {
+  args: {
+    clientInfo: clientInfo,
+    medAuthRows: sampleMedAuthRows,
+    uploadedMedicalDocuments: {
+      bills: sampleBills,
+      records: sampleRecords,
+      medicalAuths: sampleMedicalAuths,
+      duplicates: sampleDuplicates,
+    },
+  },
+  render: (args) => {
+    const [openRowId, setOpenRowId] = React.useState<string | null>('3'); 
+    
+    const editRows = args.medAuthRows?.map(row => 
+      row.id === '3' ? { ...row, state: 'edit' as const } : row
+    );
+    
+    return (
+      <MedicalFolderPage
+        {...args}
+        medAuthRows={editRows}
+        openRowId={openRowId}
+        onToggleRow={(id) => {
+          setOpenRowId(openRowId === id ? null : id);
+        }}
+      />
+    );
   },
 };

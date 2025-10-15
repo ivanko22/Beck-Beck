@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface TypographyProps {
-  variant?: 'title' | 'subtitle' | 'sectionTitle' | 'leftLabel' | 'titleSmall' | 'sectionTitleSmall' | 'secondaryTitle' | 'title16' | 'title15' | 'title17' | 'title12';
+  variant?: 'title' | 'subtitle' | 'sectionTitle' | 'leftLabel' | 'titleSmall' | 'sectionTitleSmall' | 'secondaryTitle' | 'title16' | 'title15' | 'title17' | 'title12' | 'title18';
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
@@ -21,6 +21,7 @@ const styles = {
   leftLabel:   { ...base.default, fontSize: '16px', textAlign: 'right' },
   secondaryTitle:{ ...base.primary, fontSize: '20px', fontWeight: 600 },
   title16:     { ...base.default, fontSize: '16px' },
+  title18:     { ...base.default, fontSize: '18px' },
   title17:     { ...base.default, fontSize: '17px' },
   title15:     { ...base.default, fontSize: '15px' },
   titleSmall:  { ...base.default, fontSize: '14px' },

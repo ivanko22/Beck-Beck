@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Header } from '../components/header/Header';
-import { Navigation } from '../components/navigation/Navigation';
-import { Wrapper } from '../components/wrapper/PageWrapper';
-import { Spacer } from '../components/spacer/Spacer';
-import { ActionCardsSection } from './settlement/ActionCardsSection';
-import { Checkbox } from '../components/checkbox/Checkbox';
-import { SettlementCard } from './settlement/SettlementCard';
+import { Header } from '../../components/header/Header';
+import { Navigation } from '../../components/navigation/Navigation';
+import { Wrapper } from '../../components/wrapper/PageWrapper';
+import { Spacer } from '../../components/spacer/Spacer';
+import { ActionCardsSection } from './ActionCardsSection';
+import { Checkbox } from '../../components/checkbox/Checkbox';
+import { SettlementCard } from './SettlementCard';
 
 interface SettlementStatementPageProps {
   caseNumber?: string;

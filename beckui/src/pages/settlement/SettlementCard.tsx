@@ -20,14 +20,14 @@ export const SettlementCard: React.FC<SettlementCardProps> = ({
   formData,
 }) => {
   return (
-    <Wrapper type="pageWrapperContentColumn" style={{ gap: 0 }}>
+    <Wrapper type="column" style={{ gap: 0 }}>
         <Spacer customSize={20} />
         <Typography variant="title15" color="var(--middle-grey)" style={{ fontWeight: 400, paddingLeft: 25 }}>
             {formData?.settlementCard} {formData?.id}
         </Typography>
 
-        <Card style={{ height: '100%', minWidth: 490, display: 'flex', flexDirection: 'column' }}>
-            <Wrapper type="pageWrapperContentColumn" style={{ width: '100%', flex: 1, gap: 0 }}>
+        <Card style={{ height: '100%', width: 490, display: 'flex', flexDirection: 'column' }}>
+            <Wrapper type="column" style={{ width: '100%', flex: 1, gap: 0 }}>
                 <Wrapper type="row" style={{ gap: 10, alignItems: 'center', paddingBottom: 10 }}>
                     <Typography variant="titleSmall" color="var(--middle-grey)" style={{ fontWeight: 400 }}>Insurance Company Name:</Typography>
                     <Typography variant="sectionTitleSmall">{ formData?.insuranceCompanyName }</Typography>
@@ -44,7 +44,7 @@ export const SettlementCard: React.FC<SettlementCardProps> = ({
                 </Wrapper>
 
                 <Typography variant="title16">Non-Medical Payments Settlement</Typography>
-                <Wrapper type="pageWrapperContentColumn" style={{ width: '270px', alignItems: 'flex-start'  }}>
+                <Wrapper type="column" style={{ width: '270px', alignItems: 'flex-start'  }}>
                     <Input 
                         leftLabel={true}
                         label="Attorney Fees%" 
@@ -71,7 +71,7 @@ export const SettlementCard: React.FC<SettlementCardProps> = ({
                 <Spacer customSize={10} />
                 <Typography variant="title16">Gross Settlement</Typography>
                 
-                <Wrapper type="pageWrapperContentColumn" style={{ width: '270px', alignItems: 'flex-start'  }}>
+                <Wrapper type="column" style={{ width: '270px', alignItems: 'flex-start'  }}>
                     <Input 
                         leftLabel={true}
                         label="Medical Payments Settlement 1" 
@@ -105,7 +105,7 @@ export const SettlementCard: React.FC<SettlementCardProps> = ({
                 <Spacer customSize={20} />
                 <Typography variant="titleSmall" style={{ fontWeight: 500 }}>Loan Repayment</Typography>
 
-                <Wrapper type="pageWrapperContentColumn" style={{  alignItems: 'flex-start' }}>
+                <Wrapper type="column" style={{  alignItems: 'flex-start' }}>
                 
                     <TableHeader 
                         columns={['Bill Company', 'Amount Paid', 'Amount Due', 'Client Says Don\'t Pay']} 

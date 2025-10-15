@@ -51,6 +51,7 @@ export const Checkbox: React.FC<CheckboxProps> =  ({
   onChange,
   id,
   name,
+  style,
 }) => {
   const isControlled = checked !== undefined;
   const [internal, setInternal] = React.useState<boolean>(defaultChecked);
@@ -67,7 +68,8 @@ export const Checkbox: React.FC<CheckboxProps> =  ({
     <label
       style={{
         ...styles.label,
-        ...(disabled ? styles.disabled : {})
+        ...(disabled ? styles.disabled : {}),
+        ...style
       }}
     >
       <input

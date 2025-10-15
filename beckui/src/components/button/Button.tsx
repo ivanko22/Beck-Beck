@@ -23,7 +23,6 @@ const styles = {
     border: 0,
     borderRadius: '3em',
     fontWeight: 700,
-    fontFamily: 'var(--font-family-base)',
     transition: 'all 0.2s ease',
   },
 
@@ -59,7 +58,7 @@ const styles = {
   },
 
   secondary: {
-    backgroundColor: 'var(--white)',
+    backgroundColor: '#ffffff00',
     color: 'var(--middle-grey)',
     fontWeight: 500,
   },
@@ -103,7 +102,7 @@ const styles = {
   iconLeft: {
     display: 'flex',
     alignItems: 'center',
-    gap: '8px',
+    gap: '13px',
     pointerEvents: 'none' as const,
   },
 
@@ -162,7 +161,7 @@ export const Button: React.FC<ButtonProps> = ({
     
     return (
       <div style={iconStyle}>
-        <div style={{ color: 'inherit', pointerEvents: 'none' as const }}>
+        <div style={{display: 'flex', alignItems: 'center', color: 'inherit', pointerEvents: 'none' as const }}>
           {icon}
         </div>
         <span style={{ textAlign: 'left' }}>{label}</span>

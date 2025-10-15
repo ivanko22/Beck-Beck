@@ -36,7 +36,7 @@ export const Default: Story = {
     row: sampleRow,
   },
   render: (args) => (
-    <Wrapper type="pageWrapperContentColumn" style={{ width: '100%' }}>
+    <Wrapper type="column" style={{ width: '100%' }}>
       <TableHeader
         columns={[
           { label: 'Order Records', width: '160px' },
@@ -63,7 +63,7 @@ export const EditMode: Story = {
     },
   },
   render: (args) => (
-    <Wrapper type="pageWrapperContentColumn" style={{ width: '100%' }}>
+    <Wrapper type="column" style={{ width: '100%' }}>
       <TableHeader
         columns={[
           { label: 'Order Records', width: '160px' },
@@ -133,7 +133,7 @@ export const MultipleRows: Story = {
     ];
 
     return (
-      <Wrapper type="pageWrapperContentColumn" style={{ width: '100%' }}>
+      <Wrapper type="column" style={{ width: '100%' }}>
         <TableHeader
           columns={[
             { label: 'Order Records', width: '160px' },

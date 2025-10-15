@@ -20,7 +20,16 @@ const meta: Meta<typeof PageActions> = {
 export default meta;
 type Story = StoryObj<typeof PageActions>;
 
-export const Save: Story = {
+export const Adding: Story = {
+  args: {
+    state: 'adding',
+    type: 'button',
+    saveLabel: 'Save',
+  },
+};
+
+
+export const Edit: Story = {
   args: {
     state: 'edit',
     type: 'button',

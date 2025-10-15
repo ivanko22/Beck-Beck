@@ -77,20 +77,20 @@ export const Upload: React.FC<UploadProps> = ({
       
       {vertical && (
         <>
-          <Wrapper type="pageWrapperContentColumn" 
+          <Wrapper type="column" 
             style={{ 
               ...styles.wrapper, 
-              ...style, 
               height: 90,
               width: 90,
               gap: 0,
               textAlign: 'center',
               border: '2px dashed var(--light-grey)',
               borderRadius: '2px',
+              ...style,
             }}
           >
             <AttachIcon size={26} color="var(--middle-grey)" />
-            <Typography color="var(--middle-grey)" variant="title12">{label}</Typography>
+            <Typography color="var(--middle-grey)" variant="title12" style={{ width: '114px' }}>{label}</Typography>
           </Wrapper>
 
           <input

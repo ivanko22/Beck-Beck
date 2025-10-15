@@ -169,94 +169,96 @@ export const LienSheetPage: React.FC<LienSheetPageProps> = ({
         </Wrapper>
 
         <Wrapper type="contentWrapper" style={{ marginTop: 260}}>
-          <Wrapper type="pageWrapperContentColumn" style={{gap: '0px'}}>
-              {tableRows.map((rowData, index) => (
-                <LienTableRow
-                  key={index}
-                  index={index}
-                  state={pageActionsState === 'saved' ? 'saved' : 'edit'}
-                  type={pageActionsType}
-                  formData={rowData}
-                  onDelete={() => {}}
-                  onSave={() => {}}
-                  disabled={pageActionsState === 'saved'}
+          <Wrapper type="column" style={{gap: '0px'}}>
+            <Spacer customSize={20} />
+
+            {tableRows.map((rowData, index) => (
+              <LienTableRow
+                key={index}
+                index={index}
+                state={pageActionsState === 'saved' ? 'saved' : 'edit'}
+                type={pageActionsType}
+                formData={rowData}
+                onDelete={() => {}}
+                onSave={() => {}}
+                disabled={pageActionsState === 'saved'}
+              />
+            ))}
+
+            {tableRows.length === 0 && (
+              <LienTableRow
+                index={0}
+                state={pageActionsState === 'saved' ? 'saved' : 'edit'}
+                type={pageActionsType}
+                onDelete={() => {}}
+                onSave={() => {}}
+                disabled={pageActionsState === 'saved'}
                 />
-              ))}
-
-              {tableRows.length === 0 && (
-                <LienTableRow
-                  index={0}
-                  state={pageActionsState === 'saved' ? 'saved' : 'edit'}
-                  type={pageActionsType}
-                  onDelete={() => {}}
-                  onSave={() => {}}
-                  disabled={pageActionsState === 'saved'}
-                  />
-                )}
-
-              {pageActionsState === 'saved' && (
-                <>
-                  <Spacer customSize={16} />
-                  
-                  <Button
-                    label="Medical Provider"
-                    size="medium"
-                    icon={<PlusIcon size={20} />}
-                    onClick={() => {}}
-                  />
-
-                  <Spacer customSize={16} />
-
-                  <Wrapper type="row" style={{gap: '16px'}}>
-                    <Spacer horizontal customSize={95} />
-
-                    <Wrapper type="pageWrapperContentColumn" style={{ gap: '24px', alignItems: 'flex-end' }}>
-                      <Typography variant="titleSmall" color="var(--middle-grey)">
-                        Total Liens: 
-                      </Typography>
-
-                      <Typography variant="sectionTitleSmall" color="var(--middle-grey)">
-                        Civil Action Bill: 
-                      </Typography>
-                    </Wrapper>
-
-                    <Wrapper type="pageWrapperContentColumn" style={{ gap: '12px', alignItems: 'flex-end' }}>
-                        <Typography variant="sectionTitleSmall" style={{ fontWeight: 'bold', color: 'var(--primary-color)'}}>
-                          ${totalLiens}
-                        </Typography>
-                      <Typography variant="sectionTitle" color="var(--primary-color)">${civilActionBill}</Typography>
-                    </Wrapper>
-
-                    <Spacer horizontal customSize={40} />
-
-                    <Wrapper type="row" style={{ gap: 30, alignItems: 'flex-end' }}>
-                      <Button
-                        iconPosition="left"
-                        label="Request Civil Action Payoff"
-                        size="medium"
-                        icon={<RightArrowIcon size={20} />}
-                        onClick={() => {}}
-                      />
-
-                      <Wrapper type="pageWrapperContentColumn" style={{ gap: '16px', alignItems: 'flex-end' }}>
-                        <Input
-                          label="Requested Date"
-                          value="8/01/25"
-                          noBorder={true}
-                          showLabel={true}
-                          disabled={pageActionsState === 'saved'}
-                          customSize={{ width: '80px' }}
-                          style={{ gap: 0 }}
-                        />
-                      </Wrapper>
-                    </Wrapper> 
-
-                  </Wrapper>
-                </>
               )}
-            </Wrapper>
 
-            <Wrapper type="pageWrapperContentColumn">
+            {pageActionsState === 'saved' && (
+              <>
+                <Spacer customSize={16} />
+                
+                <Button
+                  label="Medical Provider"
+                  size="medium"
+                  icon={<PlusIcon size={20} />}
+                  onClick={() => {}}
+                />
+
+                <Spacer customSize={16} />
+
+                <Wrapper type="row" style={{gap: '16px'}}>
+                  <Spacer horizontal customSize={95} />
+
+                  <Wrapper type="column" style={{ gap: '24px', alignItems: 'flex-end' }}>
+                    <Typography variant="titleSmall" color="var(--middle-grey)">
+                      Total Liens: 
+                    </Typography>
+
+                    <Typography variant="sectionTitleSmall" color="var(--middle-grey)">
+                      Civil Action Bill: 
+                    </Typography>
+                  </Wrapper>
+
+                  <Wrapper type="column" style={{ gap: '12px', alignItems: 'flex-end' }}>
+                      <Typography variant="sectionTitleSmall" style={{ fontWeight: 'bold', color: 'var(--primary-color)'}}>
+                        ${totalLiens}
+                      </Typography>
+                    <Typography variant="sectionTitle" color="var(--primary-color)">${civilActionBill}</Typography>
+                  </Wrapper>
+
+                  <Spacer horizontal customSize={40} />
+
+                  <Wrapper type="row" style={{ gap: 30, alignItems: 'flex-end' }}>
+                    <Button
+                      iconPosition="left"
+                      label="Request Civil Action Payoff"
+                      size="medium"
+                      icon={<RightArrowIcon size={20} />}
+                      onClick={() => {}}
+                    />
+
+                    <Wrapper type="column" style={{ gap: '16px', alignItems: 'flex-end' }}>
+                      <Input
+                        label="Requested Date"
+                        value="8/01/25"
+                        noBorder={true}
+                        showLabel={true}
+                        disabled={pageActionsState === 'saved'}
+                        customSize={{ width: '80px' }}
+                        style={{ gap: 0 }}
+                      />
+                    </Wrapper>
+                  </Wrapper> 
+
+                </Wrapper>
+              </>
+            )}
+          </Wrapper>
+
+            <Wrapper type="column">
               <Spacer horizontal customSize={1000} />
 
               <ClientDetailsTableHeader
@@ -296,7 +298,7 @@ export const LienSheetPage: React.FC<LienSheetPageProps> = ({
                     customSize={"280px"}
                   />
 
-                  <Wrapper type="pageWrapperContentColumn" style={{ gap: '16px', alignItems: 'flex-end' }}>
+                  <Wrapper type="column" style={{ gap: '16px', alignItems: 'flex-end' }}>
                     <Input
                       label="Requested Date"
                       value="8/01/25"
@@ -314,7 +316,7 @@ export const LienSheetPage: React.FC<LienSheetPageProps> = ({
             </Wrapper>
 
 
-            <Wrapper type="pageWrapperContentColumn">
+            <Wrapper type="column">
               <Spacer horizontal customSize={1000} />
 
               <ClientDetailsTableHeader
@@ -334,7 +336,7 @@ export const LienSheetPage: React.FC<LienSheetPageProps> = ({
                   onChange={() => {}}
                 />
 
-                <Wrapper type="pageWrapperContentColumn" style={{ gap: '7px', alignItems: 'flex-start' }}>
+                <Wrapper type="column" style={{ gap: '7px', alignItems: 'flex-start' }}>
                   <Typography variant="titleSmall" style={{ paddingLeft: '17px' }}>
                     Generate & Sent Letter
                   </Typography>
@@ -361,7 +363,7 @@ export const LienSheetPage: React.FC<LienSheetPageProps> = ({
 
                 </Wrapper>
 
-                <Wrapper type="pageWrapperContentColumn" style={{ gap: '7px', alignItems: 'flex-start' }}>
+                <Wrapper type="column" style={{ gap: '7px', alignItems: 'flex-start' }}>
                   <Spacer customSize={21} />
                   
                   <Button
@@ -386,7 +388,7 @@ export const LienSheetPage: React.FC<LienSheetPageProps> = ({
 
                 </Wrapper>
 
-                <Wrapper type="pageWrapperContentColumn" style={{ gap: '7px', alignItems: 'flex-start' }}>
+                <Wrapper type="column" style={{ gap: '7px', alignItems: 'flex-start' }}>
                   <Spacer customSize={21} />
                   
                   <Button
