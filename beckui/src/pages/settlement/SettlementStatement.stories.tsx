@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { SettlementStatementPage } from './SettlementStatement';
 
 const meta: Meta<typeof SettlementStatementPage> = {
-  title: 'Pages/Settlement Statement',
+  title: 'Pages/Settlement/Statement',
   component: SettlementStatementPage,
   parameters: {
     layout: 'fullscreen',

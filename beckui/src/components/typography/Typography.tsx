@@ -3,7 +3,6 @@ import React from 'react';
 export interface TypographyProps {
   variant?: 'title' | 'subtitle' | 'sectionTitle' | 'leftLabel' | 'titleSmall' | 'sectionTitleSmall' | 'secondaryTitle' | 'title16' | 'title15' | 'title17' | 'title12' | 'title18';
   children: React.ReactNode;
-  className?: string;
   style?: React.CSSProperties;
   color?: string;
 }
@@ -32,18 +31,17 @@ const styles = {
 export const Typography: React.FC<TypographyProps> = ({
   variant = 'title',
   children,
-  className = '',
-  style = {},
+  style,
   color,
 }) => {
   const combinedStyle = {
     ...styles[variant],
-    ...style, 
     ...(color && { color}),
+    ...style, 
   };
 
   return (
-    <span className={className} style={combinedStyle}>
+    <span style={combinedStyle}>
       {children}
     </span>
   );

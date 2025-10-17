@@ -8,7 +8,6 @@ interface ButtonProps {
   customSize?: string;
   label?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  className?: string;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
   noLabel?: boolean;
@@ -24,6 +23,7 @@ const styles = {
     borderRadius: '3em',
     fontWeight: 700,
     transition: 'all 0.2s ease',
+    outline: 'none',
   },
 
   primary: {
@@ -124,7 +124,6 @@ export const Button: React.FC<ButtonProps> = ({
   customSize,
   label,
   onClick,
-  className = '',
   disabled = false,
   type = 'button',
   icon,

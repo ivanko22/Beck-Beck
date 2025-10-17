@@ -11,7 +11,7 @@ const styles: Record<string, React.CSSProperties> = {
   nav: {
     paddingTop: "6px",
     display: "flex", 
-    alignItems: "center"
+    alignItems: "center",
   },
   section: {
     fontSize: '28px',

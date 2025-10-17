@@ -6,6 +6,7 @@ import { Spacer } from '../../components/spacer/Spacer';
 import { Button } from '../../components/button/Button';
 import {  PlusIcon } from '../../components/icons/index';
 import { SettlementNegotiationsCard } from './SettlementNegotiationsCard';
+import { TableHeader } from '../../components/table/TableHeader';
 
 interface ClientInfo {
   name: string;
@@ -17,7 +18,6 @@ interface ClientInfo {
 
 interface DemandOffer {
   id: string;
-  type: 'demand' | 'offer';
   amount: string;
   date: string;
   sent?: boolean;
@@ -35,6 +35,9 @@ interface NegotiationCase {
   caseNumber: string;
   insuranceCompany: string;
   clientInfo: ClientInfo;
+  status?: {
+    text: string;
+  };
   policyLimitsAvailable?: string;
   demandSentDate: string;
   adjusterEmail: string;
@@ -68,10 +71,12 @@ interface NegotiationCase {
 
 interface SettlementNegotiationsProps {
   cases: NegotiationCase[];
+  type?: 'negotiations' | 'statement';
 }
 
 export const SettlementNegotiations: React.FC<SettlementNegotiationsProps> = ({
-  cases = []
+  cases = [],
+  type
 }) => {
   return (
     <Wrapper type="pageWrapper">
@@ -89,12 +94,38 @@ export const SettlementNegotiations: React.FC<SettlementNegotiationsProps> = ({
           onClose={() => {}}
         />
 
-        <Wrapper type="contentWrapper" style={{ marginTop: 60, width: 'fit-content' }}>
+        <Wrapper type="contentWrapper" style={{ marginTop: 60, width: 'fit-content', gap: 0 }}>
           <Spacer customSize={20} />
 
+          {(type === 'statement' && (
+            <TableHeader
+              columns={[
+                { label: 'Status / Case Number', width: '228px' },
+                { label: 'Client Info', width: '218px' },
+                { label: 'Policy Limit(s) Available', width: '224px' },
+                { label: 'Insurance Company Demand Sent To', width: '253px' },
+                { label: 'Demand Sent Date', width: '138px' },
+                { label: 'Adjuster Email Address', width: '244px' },
+                { label: 'Demand and Counter Demand Amount', width: '174px' },
+                { label: 'Insurance Offer(s)', width: '160px' },
+                { label: 'Negotiation Notes', width: '366px' },
+                { label: 'Accepted Settlement', width: '230px' },
+                { label: 'Settlement Release Received', width: '214px' },
+                { label: 'Release Sent to Client?', width: '196px' },
+                { label: 'Release Signed, Received & Sent to Adjuster', width: '200px' },
+                { label: 'Check Received?', width: '214px' },
+                { label: 'Misc. Notes', width: '440px' },
+              ]}
+              noBorder
+              useSpecificWidths={true}
+              style={{ paddingLeft: 70, gap: 30, marginBottom: 20 }}
+            /> 
+          ))}
+
           {cases.map((caseData) => (
-            <Wrapper key={caseData.id} type="column" style={{ marginBottom: 10 }}>
+            <Wrapper key={caseData.id} type="column" style={{ marginBottom: 10, gap: 0 }}>
               <SettlementNegotiationsCard 
+                type={type}
                 negotiationData={{
                   ...caseData,
                   clientName: caseData.clientInfo.name,
@@ -102,6 +133,7 @@ export const SettlementNegotiations: React.FC<SettlementNegotiationsProps> = ({
                   momsPhone: caseData.clientInfo.momsPhone,
                   email: caseData.clientInfo.email,
                   note: caseData.clientInfo.note || '',
+                  status: caseData.status,
                 }} 
               />
             </Wrapper>
