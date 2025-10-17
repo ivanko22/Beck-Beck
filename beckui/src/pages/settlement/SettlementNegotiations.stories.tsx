@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { SettlementNegotiations } from './SettlementNegotiations';
 
 const meta: Meta<typeof SettlementNegotiations> = {
-  title: 'Pages/Settlement Negotiations',
+  title: 'Pages/Settlement/Negotiations',
   component: SettlementNegotiations,
   parameters: {
     layout: 'fullscreen',
@@ -30,29 +30,28 @@ const NegotiationCase = [
     demandsOffers: [
       {
         id: '1',
-        type: 'demand' as const,
         amount: '$12,000',
         date: 'June 10, 2025',
-        sent: true,
+        status: 'Sent',
       },
       {
         id: '2',
-        type: 'offer' as const,
         amount: '$9,000',
         date: 'June 11',
+        status: 'Sent',
+
       },
       {
         id: '3',
-        type: 'demand' as const,
         amount: '$11,800',
         date: 'July 1, 2025',
-        sent: true,
+        status: 'Received',
       },
       {
         id: '4',
-        type: 'offer' as const,
         amount: '$10,000',
         date: 'July 5',
+        status: 'Created',
       },
     ],
     insuranceOffer: [
@@ -60,13 +59,13 @@ const NegotiationCase = [
         id: '1',
         amount: '$12,000',
         date: 'June 10, 2025',
-        received: true,
+        status: 'Received',
       },
       {
         id: '2',
         amount: '$18,000',
         date: 'June 27, 2025',
-        received: true,
+        status: 'Sent',
       },
     ],
     negotiationNotes: [
@@ -114,29 +113,28 @@ const NegotiationCase = [
     demandsOffers: [
       {
         id: '1',
-        type: 'demand' as const,
         amount: '$25,000',
         date: 'June 17, 2025',
-        sent: true,
+        status: 'Received',
       },
       {
         id: '2',
-        type: 'offer' as const,
         amount: '$18,000',
         date: 'June 27',
+        status: 'Created',
+
       },
       {
         id: '3',
-        type: 'demand' as const,
         amount: '$11,800',
         date: 'Sent Demand 2',
-        sent: true,
+        status: 'Sent',
       },
       {
         id: '4',
-        type: 'offer' as const,
         amount: '$21,000',
         date: 'July 12',
+        status: 'Created',
       },
     ],
     insuranceOffer: [
@@ -144,13 +142,13 @@ const NegotiationCase = [
         id: '1',
         amount: '$22,000',
         date: 'July 15, 2025',
-        received: true,
+        status: 'Sent',
       },
       {
         id: '2',
         amount: '$19,500',
         date: 'July 20, 2025',
-        received: true,
+        status: 'Sent',
       },
     ],
     negotiationNotes: [
@@ -183,20 +181,10 @@ const NegotiationCase = [
   },
 ];
 
-export const Default: Story = {
+export const TwoCases: Story = {
   args: {
+    type: 'negotiations',
     cases: NegotiationCase,
   },
 };
 
-// export const Empty: Story = {
-//   args: {
-//     cases: [],
-//   },
-// };
-
-// export const SingleCase: Story = {
-//   args: {
-//     cases: [sampleCases[0]],
-//   },
-// };
