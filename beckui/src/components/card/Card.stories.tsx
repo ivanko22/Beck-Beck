@@ -110,91 +110,123 @@ export const SettlementCardExample: Story = {
   },
 };
 
-export const SettlementNegotiationsCardExample: Story = {
-  render: () => {
-    const sampleNegotiationData = {
-      id: 'Case #2025-001',
-      caseNumber: 'Case #2025-001',
-      insuranceCompany: 'State Farm Liability',
-      clientName: 'Cooper, Jane',
+const sampleNegotiationData = {
+  id: '1',
+    caseNumber: 'Case #2025-001',
+    insuranceCompany: 'State Farm Liability',
+    status: {
+      text: 'Offer Accepted',
+    },
+    clientInfo: {
+      name: 'Cooper, Jane',
       primaryPhone: '(618) 216 2917',
       momsPhone: '(618) 226 3478',
       email: 'jane.cooper@gmail.com',
       note: 'Nick - Discuss the details of what goes here with Paul',
-      policyLimitsAvailable: '',
-      demandSentDate: 'July 24, 2025',
-      adjusterEmail: 'joshmorgan@statefarm.com',
-      demandsOffers: [
-        {
-          id: '1',
-          type: 'demand' as const,
-          amount: '$11,000',
-          date: 'June 09, 2025',
-          sent: true,
-        },
-        {
-          id: '2',
-          type: 'offer' as const,
-          amount: '$9,000',
-          date: 'June 11',
-        },
-        {
-          id: '3',
-          type: 'demand' as const,
-          amount: '$11,800',
-          date: 'July 1, 2025',
-          sent: true,
-        },
-        {
-          id: '4',
-          type: 'offer' as const,
-          amount: '$10,000',
-          date: 'July 5',
-        },
-      ],
-      insuranceOffer: [
-        {
-          id: '1',
-          type: 'offer' as const,
-          amount: '$12,000',
-          date: 'June 10, 2025',
-        },
-        {
-          id: '2',
-          type: 'offer' as const,
-          amount: '$18,000',
-          date: 'June 27',
-        },
-      ],
-      negotiationNotes: [
-        'Reviewed latest counter from insurer - client agreed to partial responsibility for Lab Center and OrthoWorks. Requesting updated offer based on revised medical summary. Pending feedback from adjuster on timeline for revised payment.',
-        '',
-      ],
-      settlementAccepted: {
-        accepted: true,
-        date: 'July 24, 2025',
+    },
+    policyLimitsAvailable: '',
+    demandSentDate: 'July 24, 2025',
+    adjusterEmail: 'joshmorgan@statefarm.com',
+    demandsOffers: [
+      {
+        id: '1',
+        amount: '$12,000',
+        date: 'June 10, 2025',
+        status: 'Sent',
       },
-      settlementReleaseReceived: {
-        received: true,
-        date: 'July 24, 2025',
-      },
-      releaseSentToClient: {
-        date: 'July 24, 2026',
-        sentBySnailMail: true,
-        sentElectronically: true,
-      },
-      releaseSignedReceived: {
-        adjusterEmail: 'joe@statefarm.com',
-        date: 'July 12, 2025',
-        signedDate: '08/11/25',
-      },
-      checkReceived: {
-        received: true,
-        date: 'July 24, 2025',
-      },
-      miscNotes: 'Reviewed all outstanding documentation. Client approved remaining balances for OrthoCare Group and Sunrise Radiology. Pending confirmation from lien holder regarding final charges. Post-deduction totals prepared for release. Awaiting adjuster verification and updated payment timeline.',
-    };
+      {
+        id: '2',
+        amount: '$9,000',
+        date: 'June 11',
+        status: 'Sent',
 
-    return <SettlementNegotiationsCard negotiationData={sampleNegotiationData} />;
+      },
+      {
+        id: '3',
+        amount: '$11,800',
+        date: 'July 1, 2025',
+        status: 'Received',
+      },
+      {
+        id: '4',
+        amount: '$10,000',
+        date: 'July 5',
+        status: 'Created',
+      },
+    ],
+    insuranceOffer: [
+      {
+        id: '1',
+        amount: '$12,000',
+        date: 'June 10, 2025',
+        status: 'Received',
+      },
+      {
+        id: '2',
+        amount: '$18,000',
+        date: 'June 27, 2025',
+        status: 'Sent',
+      },
+    ],
+    negotiationNotes: [
+      'Reviewed latest counter from insurer - client agreed to partial responsibility for Lab Center and OrthoWorks. Requesting updated offer based on revised medical summary. Pending feedback from adjuster on timeline for revised payment.',
+      '',
+    ],
+    settlementAccepted: {
+      accepted: true,
+      date: 'July 24, 2025',
+    },
+    settlementReleaseReceived: {
+      received: true,
+      date: 'July 24, 2025',
+    },
+    releaseSentToClient: {
+      date: 'July 24, 2026',
+      sentBySnailMail: true,
+      sentElectronically: true,
+    },
+    releaseSignedReceived: {
+      adjusterEmail: 'joe@statefarm.com',
+      date: 'July 12, 2025',
+      signedDate: '08/11/25',
+    },
+    checkReceived: {
+      received: true,
+      date: 'July 24, 2025',
+    },
+    miscNotes: 'Reviewed all outstanding documentation. Client approved remaining balances for OrthoCare Group and Sunrise Radiology. Pending confirmation from lien holder regarding final charges. Post-deduction totals prepared for release. Awaiting adjuster verification and updated payment timeline.',
+  };
+
+export const SettlementNegotiationsCardExample: Story = {
+  render: () => {
+
+    return <SettlementNegotiationsCard 
+      type="negotiations"
+      negotiationData={{
+        ...sampleNegotiationData,
+        clientName: sampleNegotiationData.clientInfo.name,
+        primaryPhone: sampleNegotiationData.clientInfo.primaryPhone,
+        momsPhone: sampleNegotiationData.clientInfo.momsPhone,
+        email: sampleNegotiationData.clientInfo.email,
+        note: sampleNegotiationData.clientInfo.note,
+      }}
+    />;
   },
 };
+    
+export const SettlementAllCasesNegotiationsCardExample: Story = {
+  render: () => {
+
+    return <SettlementNegotiationsCard 
+      type="statement"
+      negotiationData={{
+        ...sampleNegotiationData,
+        clientName: sampleNegotiationData.clientInfo.name,
+        primaryPhone: sampleNegotiationData.clientInfo.primaryPhone,
+        momsPhone: sampleNegotiationData.clientInfo.momsPhone,
+        email: sampleNegotiationData.clientInfo.email,
+        note: sampleNegotiationData.clientInfo.note,
+      }}
+    />;
+  },
+};   

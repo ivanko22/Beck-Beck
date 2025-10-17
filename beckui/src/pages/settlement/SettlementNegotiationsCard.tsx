@@ -176,7 +176,7 @@ export const SettlementNegotiationsCard: React.FC<SettlementNegotiationsCardProp
                   {negotiationData.clientName}
                 </Typography>
 
-                <Wrapper type="row" style={{ gap: 10 }}>
+                <Wrapper type="row" style={{ gap: 10, alignItems: 'center' }}>
                   <Typography variant="title16" style={{fontWeight: 400}}>Prim:</Typography>
                   <Typography variant="title18" color="var(--primary-color)" style={{fontWeight: 500}}>{negotiationData.primaryPhone}</Typography>
                 </Wrapper>
