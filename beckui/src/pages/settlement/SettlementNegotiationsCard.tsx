@@ -114,7 +114,6 @@ export const SettlementNegotiationsCard: React.FC<SettlementNegotiationsCardProp
       </Wrapper>)}
 
       <Card 
-        onClick={() => setIsOpen(!isOpen)}
         style={styles.cardContainer}>
         <Wrapper type="column" style={{ gap: 0 }}>
           {(type !== 'statement' && (
@@ -213,7 +212,9 @@ export const SettlementNegotiationsCard: React.FC<SettlementNegotiationsCardProp
               <BaseDropdown 
                 style={{ width: 200 }}
                 type="BaseDropdown"
-                value="Ins. Companies"
+                value={negotiationData.insuranceCompany}
+                disabled={ type === 'statement' }
+                noBorder={ type === 'statement' }
                 menuItems={[
                   { label: 'State Farm' },
                   { label: 'Dropdown Item 2' },
