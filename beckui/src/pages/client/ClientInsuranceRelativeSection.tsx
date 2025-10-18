@@ -1,15 +1,15 @@
 import React from 'react';
-import { BaseDropdown } from '../components/dropdown/Dropdown';
-import { Input } from '../components/input/Inputs';
-import { Checkbox } from '../components/checkbox/Checkbox';
-import { Radio } from '../components/radiobutton/Radiobutton';
-import { Button } from '../components/button/Button';
-import { ClientDetailsTableHeader } from '../components/header/ClientDetailsTableHeader';
-import { PlusIcon, EmailIcon } from '../components/icons/index';
-import { Typography } from '../components/typography/Typography';
-import { PageActions } from '../components/page-actions/PageActions';
-import { Card } from '../components/card/Card';
-import { Wrapper } from '../components/wrapper/PageWrapper';
+import { BaseDropdown } from '../../components/dropdown/Dropdown';
+import { Input } from '../../components/input/Inputs';
+import { Checkbox } from '../../components/checkbox/Checkbox';
+import { Radio } from '../../components/radiobutton/Radiobutton';
+import { Button } from '../../components/button/Button';
+import { ClientDetailsTableHeader } from '../../components/header/ClientDetailsTableHeader';
+import { PlusIcon, EmailIcon } from '../../components/icons/index';
+import { Typography } from '../../components/typography/Typography';
+import { PageActions } from '../../components/page-actions/PageActions';
+import { Card } from '../../components/card/Card';
+import { Wrapper } from '../../components/wrapper/PageWrapper';
 
 export interface ClientInsuranceRelativeSectionProps {
   type: 'insurance' | 'relative' | 'liability';

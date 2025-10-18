@@ -2,7 +2,7 @@ import React from "react";
 import { ArrowIcon } from "../icons";
 
 type TableHeaderProps = {
-  columns: (string | { label: string; width?: string; style?: React.CSSProperties })[];
+  columns: (string | { label: React.ReactNode; width?: string; style?: React.CSSProperties })[];
   template?: string;
   activeColumn?: number;
   noBorder?: boolean;

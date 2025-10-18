@@ -97,21 +97,22 @@ export const SettlementNegotiationsCard: React.FC<SettlementNegotiationsCardProp
         <Spacer customSize={20} />
       ))}
 
-      {type === 'negotiations' && (    <Wrapper type="row" style={{ justifyContent: 'space-between' }}>
-        <Wrapper type="row" style={{ gap: 10, alignItems: 'center', ...(type === 'negotiations' ? { paddingLeft: 25 } : { paddingLeft: 0 }) }}>
-          <Typography variant="secondaryTitle" style={{ fontWeight: 500 }}>{negotiationData.insuranceCompany}</Typography>
-          <Typography variant="title15" color="var(--middle-grey)">/ {negotiationData.caseNumber}</Typography>
-        </Wrapper>
-
-        <Wrapper type="row" style={{ justifyContent: 'flex-end', gap: 10, alignItems: 'center', marginRight: 30 }}>
-          <Typography variant="title17" color="var(--primary-color)">{negotiationData.clientName}</Typography>
-          
-          <Wrapper type="row" style={{ gap: 10, alignItems: 'center' }}> 
-            <PhoneIcon size={20} color="var(--middle-grey)" />
-            <Typography variant="title18" color="var(--primary-color)">{negotiationData.primaryPhone}</Typography>
+      {type === 'negotiations' && (    
+        <Wrapper type="row" style={{ justifyContent: 'space-between' }}>
+          <Wrapper type="row" style={{ gap: 10, alignItems: 'center', ...(type === 'negotiations' ? { paddingLeft: 25 } : { paddingLeft: 0 }) }}>
+            <Typography variant="secondaryTitle" style={{ fontWeight: 500 }}>{negotiationData.insuranceCompany}</Typography>
+            <Typography variant="title15" color="var(--middle-grey)">/ {negotiationData.caseNumber}</Typography>
           </Wrapper>
-        </Wrapper>
-      </Wrapper>)}
+
+          <Wrapper type="row" style={{ justifyContent: 'flex-end', gap: 10, alignItems: 'center', marginRight: 30 }}>
+            <Typography variant="title17" color="var(--primary-color)">{negotiationData.clientName}</Typography>
+            
+            <Wrapper type="row" style={{ gap: 10, alignItems: 'center' }}> 
+              <PhoneIcon size={20} color="var(--middle-grey)" />
+              <Typography variant="title18" color="var(--primary-color)">{negotiationData.primaryPhone}</Typography>
+            </Wrapper>
+          </Wrapper>
+        </Wrapper>)}
 
       <Card 
         style={styles.cardContainer}>

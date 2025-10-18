@@ -110,12 +110,12 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
     flexDirection: 'column',
     alignItems: 'center',
     width: '262px',
-    height: 'auto',
+    height: '400px',
     backgroundColor: 'var(--white)',
     border: '1px solid var(--light-grey)',
     borderRadius: 6,
-    zIndex: 10,
-    overflow: 'hidden',
+    zIndex: 100,
+    overflow: 'scroll',
     marginTop: '-55px',
     padding: '10px 0',
     fontWeight: 400,
@@ -212,12 +212,12 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
 
           <div style={BaseDropdownContainer} onClick={disabled ? undefined : toggle} aria-expanded={open} role="button">
             <span style={dropdownValueStyle}>{dropdownValue}</span>
-
-            <DropdownIcon 
-              size={11} 
-              color={(hover ? 'var(--light-grey)' : 'var(--middle-grey)')}
-            />
-          
+            <div>
+              <DropdownIcon 
+                size={11} 
+                color={(hover ? 'var(--light-grey)' : 'var(--middle-grey)')}
+              />
+            </div>
           </div>
           </>
         )}
@@ -243,6 +243,8 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
             </div>
         )}
       </div>
+
+      
     </>
       
   );

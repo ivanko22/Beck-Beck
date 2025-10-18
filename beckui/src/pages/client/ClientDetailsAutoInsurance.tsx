@@ -1,9 +1,9 @@
 import React from 'react';
-import { Header } from '../components/header/Header';
-import { Navigation } from '../components/navigation/Navigation';
+import { Header } from '../../components/header/Header';
+import { Navigation } from '../../components/navigation/Navigation';
 import { ClientInsuranceRelativeSection } from './ClientInsuranceRelativeSection';
-import { Wrapper } from '../components/wrapper/PageWrapper';
-import { Spacer } from '../components/spacer/Spacer';
+import { Wrapper } from '../../components/wrapper/PageWrapper';
+import { Spacer } from '../../components/spacer/Spacer';
 
 const L = {
   mainContent: {

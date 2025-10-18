@@ -1,16 +1,16 @@
 import React from 'react';
-import { Header } from '../components/header/Header';
-import { Navigation } from '../components/navigation/Navigation';
+import { Header } from '../../components/header/Header';
+import { Navigation } from '../../components/navigation/Navigation';
 import { ClientInsuranceRelativeSection } from './ClientInsuranceRelativeSection';
-import { MedicalTreatmentSection } from './clientDetails/sections/MedicalTreatmentSection';
-import { ClientInformationSection } from './clientDetails/sections/ClientInformationSection';
-import { CaseOverviewSection } from './clientDetails/sections/CaseOverviewSection';
-import { MedicalBillsHealthInsuranceSection } from './clientDetails/sections/MedicalBillsHealthInsuranceSection';
-import { Wrapper } from '../components/wrapper/PageWrapper';
-import { CrashInjuryDetailsSection } from './clientDetails/sections/CrashInjuryDetailsSection';
-import { TraumaticBrainInjurySection } from './clientDetails/sections/TraumaticBrainInjurySection';
-import { PageActions } from '../components/page-actions/PageActions';
-import { Footer } from '../components/footer/Footer';
+import { MedicalTreatmentSection } from './sections/MedicalTreatmentSection';
+import { ClientInformationSection } from './sections/ClientInformationSection';
+import { CaseOverviewSection } from './sections/CaseOverviewSection';
+import { MedicalBillsHealthInsuranceSection } from './sections/MedicalBillsHealthInsuranceSection';
+import { Wrapper } from '../../components/wrapper/PageWrapper';
+import { CrashInjuryDetailsSection } from './sections/CrashInjuryDetailsSection';
+import { TraumaticBrainInjurySection } from './sections/TraumaticBrainInjurySection';
+import { PageActions } from '../../components/page-actions/PageActions';
+
 interface InsuranceSection {
   sectionTitle: string;
   formData: any;
