@@ -29,7 +29,7 @@ export type UserDetailsPageProps = {
   defaultStillWorking?: boolean;
   defaultTeamFiles?: Partial<TeamAccess>;
 
-  pageActionsState?: 'save' | 'saved' | 'edit' | 'adding';
+  pageActionsState?: 'saved' | 'edit' | 'adding';
 
   onSave?: (data: {
     user: string;
@@ -87,7 +87,7 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
   defaultPassword = '',
   defaultStillWorking = false,
   defaultTeamFiles = {},
-  pageActionsState = 'save',
+  pageActionsState = 'saved',
   onSave,
   onCancel,
 }) => {
@@ -126,31 +126,37 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
           onClose={() => onCancel?.()}
         />
 
-        <Wrapper type="contentWrapper">
+        <Spacer customSize={30} />
 
-          <Typography variant="leftLabel" style={{textAlign: 'left'}}>User Information</Typography>
+        <Wrapper type="contentWrapper" style={{ gap: 26 }}>
+          <Wrapper type="column">
+              <Typography variant="leftLabel" style={{textAlign: 'left'}}>User Information</Typography>
 
-          <div style={L.grid}>
-            <BaseDropdown
-              label="User"
-              disabled={noBorder}
-              type="BaseDropdown"
-              state={selectedUser === 'Select User' ? 'default' : 'selected'}
-              value={selectedUser}
-              menuItems={users}
-              onSelect={(label) => setSelectedUser(label)}
-            />
+              <Wrapper type="row" style={{ gap: 22}}>
+                <BaseDropdown
+                  label="User"
+                  disabled={noBorder}
+                  type="BaseDropdown"
+                  state={selectedUser === 'Select User' ? 'default' : 'selected'}
+                  value={selectedUser}
+                  menuItems={users}
+                  onSelect={(label) => setSelectedUser(label)}
+                  width="238px"
+                />
 
-            <BaseDropdown
-              label="User Role"
-              disabled={noBorder}
-              type="BaseDropdown"
-              state={selectedRole === 'Select User Role' ? 'default' : 'selected'}            
-              value={selectedRole}
-              menuItems={roles}
-              onSelect={(label) => setSelectedRole(label)}
-            />
+                <BaseDropdown
+                  label="User Role"
+                  disabled={noBorder}
+                  type="BaseDropdown"
+                  state={selectedRole === 'Select User Role' ? 'default' : 'selected'}            
+                  value={selectedRole}
+                  menuItems={roles}
+                  onSelect={(label) => setSelectedRole(label)}
+                />
+            </Wrapper>
+          </Wrapper>
 
+          <Wrapper type="row" style={{ gap: 44 }}>
             <Input
               label="First Last Name"
               placeholder="First Last Name" 
@@ -159,16 +165,16 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
               disabled={pageActionsState === 'saved'}
             />
 
-            <div style={L.row}>
-              <Checkbox
-                label="Still Working Here"
-                checked={stillWorking}
-                onChange={setStillWorking}
-                disabled={pageActionsState === 'saved'}
+            <Checkbox
+              label="Still Working Here"
+              checked={stillWorking}
+              onChange={setStillWorking}
+              disabled={pageActionsState === 'saved'}
+              style={{ paddingTop: 26 }}
+            />
+          </Wrapper>
 
-              />
-            </div>
-
+          <Wrapper type="row" style={{ gap: 44 }}> 
             <Input 
               label="Email"
               placeholder="Email" 
@@ -185,11 +191,12 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
               onChange={(e) => setPassword(e.target.value)}
               disabled={pageActionsState === 'saved'}
             />
-          </div>
+          </Wrapper>
 
-          <div style={L.sectionTitle}>Access to Team Files</div>
+          <Spacer customSize={30} />
+          <Typography variant="leftLabel" style={{textAlign: 'left', marginBottom: 20}}>Access to Team Files</Typography>
 
-          <div style={{ ...L.row, flexWrap: 'wrap', gap: 28 }}>
+          <Wrapper type="row" style={{ flexWrap: 'wrap', gap: 28 }}>
             <Checkbox
               label="Intake & Case Review"
               checked={teamFiles.intake}
@@ -214,16 +221,16 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
               onChange={(n) => toggleFile('settlement', n)}
               disabled={pageActionsState === 'saved'}
             />
-          </div>
+          </Wrapper>
 
-          <div style={{ ...L.row, marginTop: 12 }}>
+          <Wrapper type="row" style={{ marginTop: 12 }}>
             <Checkbox
               label="Select All"
               checked={Object.values(teamFiles).every(Boolean)}
               onChange={selectAll}
               disabled={pageActionsState === 'saved'}
             />
-          </div>
+          </Wrapper>
 
           <Spacer customSize={20} />
 

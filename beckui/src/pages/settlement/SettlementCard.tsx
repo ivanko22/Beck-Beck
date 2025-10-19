@@ -112,7 +112,7 @@ export const SettlementCard: React.FC<SettlementCardProps> = ({
                         template="2.5fr 1.5fr 1.5fr 1fr"
                     />
                     {formData?.loanRepayment?.map((item: any, index: number) => (       
-                        <TemplateRowItem type="loan" key={index} row={item} />
+                        <TemplateRowItem type="loan" key={`loan-${index}-${item.id || index}`} row={item} />
                     ))}
 
                     <Spacer customSize={20} />
@@ -124,7 +124,7 @@ export const SettlementCard: React.FC<SettlementCardProps> = ({
                         template="1.55fr 1fr"
                     />
                     {formData?.lienInformation?.map((item: any, index: number) => (       
-                        <TemplateRowItem type="lien" key={index} row={item} />
+                        <TemplateRowItem type="lien" key={`lien-${index}-${item.id || index}`} row={item} />
                     ))}
 
                     <div style={{

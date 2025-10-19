@@ -1,9 +1,9 @@
 import React from 'react';
-import { Header } from '../components/header/Header';
-import { Navigation } from '../components/navigation/Navigation';
+import { Header } from '../../components/header/Header';
+import { Navigation } from '../../components/navigation/Navigation';
 import { ClientInsuranceRelativeSection } from './ClientInsuranceRelativeSection';
-import { Wrapper } from '../components/wrapper/PageWrapper';
-import { Spacer } from '../components/spacer/Spacer';
+import { Wrapper } from '../../components/wrapper/PageWrapper';
+import { Spacer } from '../../components/spacer/Spacer';
 
 const L = {
   mainContent: {
@@ -58,7 +58,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
           {insuranceSections.map((section, index) => (
             <ClientInsuranceRelativeSection
               type="insurance"
-              key={index}
+              key={`insurance-${index}-${section.sectionTitle}`}
               caseNumber={caseNumber}
               clientName={clientName}
               pageActionsState={pageActionsState}
@@ -72,7 +72,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
           {relativeInsuranceSections.map((section, index) => (
             <ClientInsuranceRelativeSection
               type="relative"
-              key={index}
+              key={`relative-${index}-${section.sectionTitle}`}
               caseNumber={caseNumber}
               clientName={clientName}
               pageActionsState={pageActionsState}

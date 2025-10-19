@@ -2,11 +2,14 @@ import React from "react";
 import { Breadcrumbs } from "../breadcrumbs/Breadcrumbs";
 import { CloseIcon, PlusIcon, EmailIcon } from "../icons";
 import { Button } from "../button/Button";
+import { Checkbox } from "../checkbox/Checkbox";
+import { Wrapper } from "../wrapper/PageWrapper";
+import { SearchBox } from "../search/SearchBox";
 
 export interface HeaderProps {
   section: string;
   current?: string;
-  type?: 'default' | 'clientDetails';
+  type?: 'default' | 'clientDetails' | 'clientDashboard';
   showButtons?: boolean;
   subtitle?: string;
   rightButton?: boolean;
@@ -15,6 +18,7 @@ export interface HeaderProps {
   onClose?: () => void;
   width?: string;
   isFixed?: boolean;
+  teams?: string[];
 }
 
 const styles = {
@@ -60,6 +64,7 @@ const styles = {
 
 export const Header: React.FC<HeaderProps> = ({
   section,
+  teams,
   current,
   subtitle,
   type = 'default',
@@ -100,7 +105,25 @@ export const Header: React.FC<HeaderProps> = ({
           />
         </div>
       )}
+
+      {type === 'clientDashboard' && (
+        <Wrapper type="row" style={{ gap: 30 }}>
+          {teams?.map((team) => (
+            <Checkbox
+              label={team}
+              onChange={() => {}}
+            />
+          ))}
+
+          {/* <SearchBox
+            placeholder="Search"
+            onChange={() => {}}
+          /> */}
+
+        </Wrapper>
+       )}
       
+
       {!rightButton ? (
         <div style={styles.close} onClick={onClose}>
           <CloseIcon size={20} color="var(--middle-grey)" hoverColor="var(--secondary-color-hover)" />

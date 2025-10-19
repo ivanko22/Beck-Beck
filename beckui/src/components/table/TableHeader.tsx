@@ -2,7 +2,7 @@ import React from "react";
 import { ArrowIcon } from "../icons";
 
 type TableHeaderProps = {
-  columns: (string | { label: string; width?: string; style?: React.CSSProperties })[];
+  columns: (string | { label: React.ReactNode; width?: string; style?: React.CSSProperties })[];
   template?: string;
   activeColumn?: number;
   noBorder?: boolean;
@@ -49,7 +49,7 @@ export const  TableHeader: React.FC<TableHeaderProps> = ({
           
           return (
             <div 
-              key={i} 
+              key={`column-${i}-${label}`} 
               style={{ 
                 padding: '6px 0',
                 display: 'flex',

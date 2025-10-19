@@ -10,7 +10,7 @@ import { Button } from '../../components/button/Button';
 import { EditIcon, EmailIcon, RightArrowIcon, TextIcon, CheckmarkIcon, ESignIcon, PhoneIcon, PlusIcon, AccordionIcon } from '../../components/icons';
 import { TableHeader } from '../../components/table/TableHeader';
 import { BaseDropdown } from '../../components/dropdown/Dropdown';
-import { StatusItem } from '../../components/case-status/CaseStatusItem';
+import { StatusItem } from '../../components/caseStatus/CaseStatusItem';
 
 interface DemandOffer {
   id: string;
@@ -97,21 +97,22 @@ export const SettlementNegotiationsCard: React.FC<SettlementNegotiationsCardProp
         <Spacer customSize={20} />
       ))}
 
-      {type === 'negotiations' && (    <Wrapper type="row" style={{ justifyContent: 'space-between' }}>
-        <Wrapper type="row" style={{ gap: 10, alignItems: 'center', ...(type === 'negotiations' ? { paddingLeft: 25 } : { paddingLeft: 0 }) }}>
-          <Typography variant="secondaryTitle" style={{ fontWeight: 500 }}>{negotiationData.insuranceCompany}</Typography>
-          <Typography variant="title15" color="var(--middle-grey)">/ {negotiationData.caseNumber}</Typography>
-        </Wrapper>
-
-        <Wrapper type="row" style={{ justifyContent: 'flex-end', gap: 10, alignItems: 'center', marginRight: 30 }}>
-          <Typography variant="title17" color="var(--primary-color)">{negotiationData.clientName}</Typography>
-          
-          <Wrapper type="row" style={{ gap: 10, alignItems: 'center' }}> 
-            <PhoneIcon size={20} color="var(--middle-grey)" />
-            <Typography variant="title18" color="var(--primary-color)">{negotiationData.primaryPhone}</Typography>
+      {type === 'negotiations' && (    
+        <Wrapper type="row" style={{ justifyContent: 'space-between' }}>
+          <Wrapper type="row" style={{ gap: 10, alignItems: 'center', ...(type === 'negotiations' ? { paddingLeft: 25 } : { paddingLeft: 0 }) }}>
+            <Typography variant="secondaryTitle" style={{ fontWeight: 500 }}>{negotiationData.insuranceCompany}</Typography>
+            <Typography variant="title15" color="var(--middle-grey)">/ {negotiationData.caseNumber}</Typography>
           </Wrapper>
-        </Wrapper>
-      </Wrapper>)}
+
+          <Wrapper type="row" style={{ justifyContent: 'flex-end', gap: 10, alignItems: 'center', marginRight: 30 }}>
+            <Typography variant="title17" color="var(--primary-color)">{negotiationData.clientName}</Typography>
+            
+            <Wrapper type="row" style={{ gap: 10, alignItems: 'center' }}> 
+              <PhoneIcon size={20} color="var(--middle-grey)" />
+              <Typography variant="title18" color="var(--primary-color)">{negotiationData.primaryPhone}</Typography>
+            </Wrapper>
+          </Wrapper>
+        </Wrapper>)}
 
       <Card 
         style={styles.cardContainer}>
@@ -235,7 +236,7 @@ export const SettlementNegotiationsCard: React.FC<SettlementNegotiationsCardProp
 
             <Wrapper type="column" style={{ gap: 6, width: 174, marginTop: -24 }}>
               {negotiationData.demandsOffers.map((demand, index) => (
-                <>
+                <React.Fragment key={`demand-${index}-${demand.amount}`}>
                   <Input
                     value={demand.amount}
                     customSize={{ width: '120px', height: '28px' }}
@@ -257,7 +258,7 @@ export const SettlementNegotiationsCard: React.FC<SettlementNegotiationsCardProp
                     </Typography>
                   </Wrapper>
                     
-                </>
+                </React.Fragment>
               ))}
               
               <Spacer customSize={10} />
@@ -277,7 +278,7 @@ export const SettlementNegotiationsCard: React.FC<SettlementNegotiationsCardProp
 
             <Wrapper type="column" style={{ gap: 6, width: 160, marginTop: -24}}>
               {(negotiationData?.insuranceOffer.map((offer, index) => (
-                  <>
+                  <React.Fragment key={`offer-${index}-${offer.amount}`}>
                     <Input
                       value={offer.amount}
                       customSize={{ width: '120px', height: '28px' }}
@@ -296,7 +297,7 @@ export const SettlementNegotiationsCard: React.FC<SettlementNegotiationsCardProp
                       </Typography>
                     </Wrapper>
                       
-                    </>
+                    </React.Fragment>
                   )))}
 
                   <Spacer customSize={10} />
