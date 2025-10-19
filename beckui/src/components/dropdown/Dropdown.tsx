@@ -110,7 +110,7 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
     flexDirection: 'column',
     alignItems: 'center',
     width: '262px',
-    height: '400px',
+    maxHeight: '400px',
     backgroundColor: 'var(--white)',
     border: '1px solid var(--light-grey)',
     borderRadius: 6,

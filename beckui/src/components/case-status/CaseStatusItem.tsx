@@ -82,7 +82,7 @@ export const StatusItem: React.FC<StatusItemProps> = ({
               value={statusText}
               noBorder={true}
               state="selected"
-              style={{ fontSize: 15, width: 170, height: 40, lineHeight: '20px', justifyContent: 'left' }}
+              style={{ fontSize: 15, width: 180, height: 40, lineHeight: '20px', justifyContent: 'left' }}
               menuItems={Object.keys(statusColors).map(status => ({ label: status }))}
               onSelect={(value: string) => {
                 console.log(value);
