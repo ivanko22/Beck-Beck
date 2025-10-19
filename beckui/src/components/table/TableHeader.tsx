@@ -49,7 +49,7 @@ export const  TableHeader: React.FC<TableHeaderProps> = ({
           
           return (
             <div 
-              key={i} 
+              key={`column-${i}-${label}`} 
               style={{ 
                 padding: '6px 0',
                 display: 'flex',

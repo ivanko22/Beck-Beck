@@ -3,7 +3,7 @@ import { ClientDashboard } from './ClientDashboard';
 import { ClientDashboardCase } from './ClientDashboardCard';
 
 const meta: Meta<typeof ClientDashboard> = {
-  title: 'Pages/Client Dashboard',
+  title: 'Pages/Client/Client Dashboard',
   component: ClientDashboard,
   parameters: {
     layout: 'fullscreen',
@@ -12,6 +12,33 @@ const meta: Meta<typeof ClientDashboard> = {
 
 export default meta;
 type Story = StoryObj<typeof ClientDashboard>;
+
+const menuItems = [
+  { label: 'Offer Accepted' },
+  { label: 'Final Offer Received, waiting on lien sheet' },
+  { label: 'Final Offer Received, lien sheet complete' },
+  { label: 'Awaiting Settlement Hearing' },
+  { label: 'Finished Case (Archive It)' },
+  { label: 'BP Received' },
+  { label: 'BP Sent Via Mail' },
+  { label: 'Blank Release' },
+  { label: 'Ordered/Waiting on Old Medical' },
+  { label: 'No Offer 30+' },
+  { label: 'Awaiting Mediation' },
+  { label: 'Referred Case' },
+  { label: 'Respond' },
+  { label: 'Treating & No medical ordered yet' },
+  { label: 'Finished Treating/ RTS & Awaiting' },
+  { label: 'Finished Treating/ RTS & All Medical' },
+  { label: 'RTS/All Medical Received' },
+  { label: 'Sent to Demand Writer' },
+  { label: 'Liability Demand Sent' },
+  { label: 'UM Demand Sent' },
+  { label: 'UIM Demand Sent' },
+  { label: '30 Day Extension Given to Adjuster' },
+  { label: 'Signed Release' },
+  { label: 'Check Pending' },
+]
 
 const sampleCases: ClientDashboardCase[] = [
   {
@@ -60,6 +87,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'July 1, 2025',
     policyReportOrdered: 'July 10, 2025',
     totalCurrentBills: '$1,246',
+    menuItems: menuItems,
   },
   {
     id: '2',
@@ -83,7 +111,7 @@ const sampleCases: ClientDashboardCase[] = [
       { date: '2/25/25', event: 'Demand Sent', status: 'Negotiating w/ State Farm' },
       { date: '3/10/25', event: 'Offer Accepted', status: 'Settlement Reached' },
       { date: '3/15/25', event: 'Check Received', status: 'Deposited' }
-    ],
+    ], 
     medRecsOrdered: {
       someOrdered: true,
       allOrdered: true,
@@ -107,6 +135,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'July 1, 2025',
     policyReportOrdered: 'July 10, 2025',
     totalCurrentBills: '$1,246',
+    menuItems: menuItems,
   },
   {
     id: '3',
@@ -153,6 +182,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'July 1, 2025',
     policyReportOrdered: 'July 10, 2025',
     totalCurrentBills: '$1,246',
+    menuItems: menuItems,
   },
   {
     id: '4',
@@ -200,6 +230,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'July 1, 2025',
     policyReportOrdered: 'July 10, 2025',
     totalCurrentBills: '$1,246',
+    menuItems: menuItems,
   },
   {
     id: '5',
@@ -248,6 +279,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'July 1, 2025',
     policyReportOrdered: 'July 10, 2025',
     totalCurrentBills: '$1,246',
+    menuItems: menuItems,
   },
   {
     id: '6',
@@ -295,6 +327,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'July 1, 2025',
     policyReportOrdered: 'July 10, 2025',
     totalCurrentBills: '$1,246',
+    menuItems: menuItems,
   },
   {
     id: '7',
@@ -340,6 +373,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'July 1, 2025',
     policyReportOrdered: 'July 10, 2025',
     totalCurrentBills: '$1,246',
+    menuItems: menuItems,
   },
   {
     id: '8',
@@ -386,6 +420,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'July 1, 2025',
     policyReportOrdered: 'July 10, 2025',
     totalCurrentBills: '$1,246',
+    menuItems: menuItems,
   },
   {
     id: '9',
@@ -433,6 +468,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'July 1, 2025',
     policyReportOrdered: 'July 10, 2025',
     totalCurrentBills: '$1,246',
+    menuItems: menuItems,
   },
   {
     id: '10',
@@ -478,52 +514,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'July 1, 2025',
     policyReportOrdered: 'July 10, 2025',
     totalCurrentBills: '$1,246',
-  },
-  {
-    id: '11',
-    caseNumber: '#2025-003',
-    status: {
-      text: 'Finished Treating/RTS & All Medical',
-      color: 'var(--orange)',
-    },
-    clientName: 'Davis, Ethan',
-    primaryPhone: '(213) 987-6543',
-    momsPhone: '(213) 555-4321',
-    email: 'ethan.davis@email.com',
-    casePlan: 'Strategy outline for intersection accident case',
-    bigPolicy: true,
-    bigInjury: false,
-    injuryDescription: 'Wrist fracture, elbow sprain',
-    clientStatusDetails: 'Pending orthopedic evaluation results.',
-    lorSent: [
-      { date: '9/22/25', event: 'MedPay - State Farm', status: 'Michael Anderson Policy' },
-      { date: '9/25/25', event: 'Med Recs Ordered', status: 'Complete' },
-      { date: '9/30/25', event: 'Demand Sent', status: 'Negotiating w/ State Farm' },
-      { date: '10/10/25', event: 'Offer Received', status: 'Under Review' }
-    ],
-    medRecsOrdered: {
-      someOrdered: true,
-      allOrdered: true,
-      allOrderedDate: '5/1/25'
-    },
-    liabilityLimits: {
-      wasInCar: true,
-      insurances: ['State Farm - $100k', 'Liberty Mutual - $50k'],
-      UmbrellaExcess: 'Yes - $1M umbrella'
-    },
-    clientUIMlimits: 'Mercury: $50,000',
-    residentUMUIMLimits: 'State Farm: $500,000 (Stacked)',
-    medpay: 'No',
-    atFaultDriverOtherPolicies: false,
-    subroSetup: 'No',
-    wageLoss: '$6,900',
-    demandSentStatus: '4/5/25 - Demand for medical records submitted to OrthoCare.',
-    settlementAcceptedRelease: '7/15/25',
-    checkReceived: '6/15/25',
-    caseAge: 196,
-    billingPacketSent: 'July 1, 2025',
-    policyReportOrdered: 'July 10, 2025',
-    totalCurrentBills: '$1,246',
+    menuItems: menuItems,
   },
   {
     id: '12',
@@ -571,6 +562,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'July 1, 2025',
     policyReportOrdered: 'July 10, 2025',
     totalCurrentBills: '$1,246',
+    menuItems: menuItems,
   },
   {
     id: '13',
@@ -616,6 +608,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'July 1, 2025',
     policyReportOrdered: 'July 10, 2025',
     totalCurrentBills: '$1,246',
+    menuItems: menuItems,
   },
   {
     id: '14',
@@ -662,6 +655,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'July 1, 2025',
     policyReportOrdered: 'July 10, 2025',
     totalCurrentBills: '$1,246',
+    menuItems: menuItems,
   },
   {
     id: '15',
@@ -709,6 +703,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'July 1, 2025',
     policyReportOrdered: 'July 10, 2025',
     totalCurrentBills: '$1,246',
+    menuItems: menuItems,
   },
   {
     id: '16',
@@ -754,6 +749,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'July 1, 2025',
     policyReportOrdered: 'July 10, 2025',
     totalCurrentBills: '$1,246',
+    menuItems: menuItems,
   },
   {
     id: '17',
@@ -801,6 +797,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'July 1, 2025',
     policyReportOrdered: 'July 10, 2025',
     totalCurrentBills: '$1,246',
+    menuItems: menuItems,
   },
   {
     id: '18',
@@ -846,6 +843,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'July 1, 2025',
     policyReportOrdered: 'July 10, 2025',
     totalCurrentBills: '$1,246',
+    menuItems: menuItems,
   },
   {
     id: '2',
@@ -893,6 +891,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'June 15, 2025',
     policyReportOrdered: 'June 20, 2025',
     totalCurrentBills: '$8,450',
+    menuItems: menuItems,
   },
   {
     id: '3',
@@ -939,6 +938,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'June 25, 2025',
     policyReportOrdered: 'July 1, 2025',
     totalCurrentBills: '$45,200',
+    menuItems: menuItems,
   },
   {
     id: '4',
@@ -986,6 +986,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'March 10, 2025',
     policyReportOrdered: 'March 15, 2025',
     totalCurrentBills: '$3,200',
+    menuItems: menuItems,
   },
   {
     id: '5',
@@ -1031,6 +1032,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'June 15, 2025',
     policyReportOrdered: 'June 20, 2025',
     totalCurrentBills: '$28,900',
+    menuItems: menuItems,
   },
   {
     id: '6',
@@ -1077,6 +1079,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'April 20, 2025',
     policyReportOrdered: 'April 25, 2025',
     totalCurrentBills: '$67,500',
+    menuItems: menuItems,
   },
   {
     id: '7',
@@ -1124,6 +1127,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'May 30, 2025',
     policyReportOrdered: 'June 5, 2025',
     totalCurrentBills: '$12,300',
+    menuItems: menuItems,
   },
   {
     id: '8',
@@ -1169,6 +1173,7 @@ const sampleCases: ClientDashboardCase[] = [
     billingPacketSent: 'July 20, 2025',
     policyReportOrdered: 'July 25, 2025',
     totalCurrentBills: '$19,700',
+    menuItems: menuItems,
   },
 ];
     

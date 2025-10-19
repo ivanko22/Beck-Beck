@@ -51,7 +51,7 @@ export const SettlementStatementPage: React.FC<SettlementStatementPageProps> = (
           <Wrapper type="row" style={{ gap: 24 }}>
             {(settlementCards || []).map((item, index) => (        
               <SettlementCard 
-                key={index}
+                key={`settlement-${index}-${item.id || index}`}
                 style={{ flex: 1 }} 
                 formData={item}
               />

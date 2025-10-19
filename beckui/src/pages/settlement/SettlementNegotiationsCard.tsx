@@ -10,7 +10,7 @@ import { Button } from '../../components/button/Button';
 import { EditIcon, EmailIcon, RightArrowIcon, TextIcon, CheckmarkIcon, ESignIcon, PhoneIcon, PlusIcon, AccordionIcon } from '../../components/icons';
 import { TableHeader } from '../../components/table/TableHeader';
 import { BaseDropdown } from '../../components/dropdown/Dropdown';
-import { StatusItem } from '../../components/case-status/CaseStatusItem';
+import { StatusItem } from '../../components/caseStatus/CaseStatusItem';
 
 interface DemandOffer {
   id: string;
@@ -236,7 +236,7 @@ export const SettlementNegotiationsCard: React.FC<SettlementNegotiationsCardProp
 
             <Wrapper type="column" style={{ gap: 6, width: 174, marginTop: -24 }}>
               {negotiationData.demandsOffers.map((demand, index) => (
-                <>
+                <React.Fragment key={`demand-${index}-${demand.amount}`}>
                   <Input
                     value={demand.amount}
                     customSize={{ width: '120px', height: '28px' }}
@@ -258,7 +258,7 @@ export const SettlementNegotiationsCard: React.FC<SettlementNegotiationsCardProp
                     </Typography>
                   </Wrapper>
                     
-                </>
+                </React.Fragment>
               ))}
               
               <Spacer customSize={10} />
@@ -278,7 +278,7 @@ export const SettlementNegotiationsCard: React.FC<SettlementNegotiationsCardProp
 
             <Wrapper type="column" style={{ gap: 6, width: 160, marginTop: -24}}>
               {(negotiationData?.insuranceOffer.map((offer, index) => (
-                  <>
+                  <React.Fragment key={`offer-${index}-${offer.amount}`}>
                     <Input
                       value={offer.amount}
                       customSize={{ width: '120px', height: '28px' }}
@@ -297,7 +297,7 @@ export const SettlementNegotiationsCard: React.FC<SettlementNegotiationsCardProp
                       </Typography>
                     </Wrapper>
                       
-                    </>
+                    </React.Fragment>
                   )))}
 
                   <Spacer customSize={10} />

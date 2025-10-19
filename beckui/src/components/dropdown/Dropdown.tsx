@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AvaIcon, DropdownIcon, SignOutIcon } from '../icons';
 import { UserDropdownItem } from './DropdownItem';
 import { Typography } from '../typography/Typography';
+import { StatusItem } from '../caseStatus/CaseStatusItem';
 interface UserDropdownProps {
   type: string;
   state?: 'default' | 'hover' | 'selected';
@@ -15,6 +16,7 @@ interface UserDropdownProps {
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
   menuItems?: { label: string; icon?: React.ComponentType<any>; state?: 'default' | 'hover' | 'selected' }[];
+  caseNumber?: string;
   onSelect?: (item: string) => void;
   onLogout?: () => void;
   style?: React.CSSProperties;
@@ -35,6 +37,7 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
   menuItems,
   style,
   onSelect,
+  caseNumber,
 }) => {
   const [internalOpen, setInternalOpen] = useState(defaultOpen);
   const controlled = isOpen !== undefined;
@@ -52,6 +55,7 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
 
   const toggle = () => {
     if (!disabled) {
+      console.log('toggle', open);
       setOpen(!open);
     }
   };
@@ -84,6 +88,13 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
     padding: '0 16px',
 
     ...style,
+  };
+
+  const statusDropdownContainer: React.CSSProperties = {
+    display: 'flex',
+    cursor: 'pointer',
+    gap: 4,
+    paddingTop: '6px',
   };
 
   const userDropdownStyle: React.CSSProperties = {
@@ -228,7 +239,7 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
               
               <UserDropdownItem
                 type='base'
-                key={index}
+                key={`base-${item.label}-${index}`}
                 label={item.label}
                 icon={item.icon}
                 hovered={item.state === 'hover'}
@@ -243,7 +254,44 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
             </div>
         )}
       </div>
+      
+      <div style={{ ...baseDropdownContainer, height: 'auto' }}>
+        {type === 'statusDropdown' && (
+          <>
+            <div style={statusDropdownContainer} onClick={disabled ? undefined : toggle} aria-expanded={open} role="button">
+              <StatusItem statusText={dropdownValue} identifier={caseNumber || ''} />
 
+              <div>
+                <DropdownIcon 
+                  size={11} 
+                  color={(hover ? 'var(--light-grey)' : 'var(--middle-grey)')}
+                />
+              </div>
+            </div>
+          </>
+        )}
+
+        {open && menuItems && type === 'statusDropdown' && (
+            <div style={{ ...BaseDropdownStyle, top: 80 }} role="menu">
+              {menuItems.map((item, index) => (
+              
+              <UserDropdownItem
+                type='base'
+                key={`status-${item.label}-${index}`}
+                label={item.label}
+                icon={item.icon}
+                hovered={item.state === 'hover'}
+                onClick={() => {
+                  setDropdownValue(item.label);
+                  setHasSelected(true);
+                  onSelect?.(item.label);
+                  toggle();
+                }}
+              />
+            ))}
+            </div>
+        )}
+      </div>
       
     </>
       

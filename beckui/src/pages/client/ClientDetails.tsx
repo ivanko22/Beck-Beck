@@ -68,7 +68,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
         {liabilityInsuranceSections.map((section, index) => (
             <ClientInsuranceRelativeSection
               type="liability"
-              key={index}
+              key={`liability-${index}-${section.sectionTitle}`}
               caseNumber={caseNumber}
               clientName={clientName}
               pageActionsState={'save'}

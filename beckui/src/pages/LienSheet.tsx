@@ -174,7 +174,7 @@ export const LienSheetPage: React.FC<LienSheetPageProps> = ({
 
             {tableRows.map((rowData, index) => (
               <LienTableRow
-                key={index}
+                key={`lien-row-${index}-${rowData.medicalProvider || index}`}
                 index={index}
                 state={pageActionsState === 'saved' ? 'saved' : 'edit'}
                 type={pageActionsType}

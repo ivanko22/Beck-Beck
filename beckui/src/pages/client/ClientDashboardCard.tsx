@@ -6,7 +6,9 @@ import { Spacer } from '../../components/spacer/Spacer';
 import { Checkbox } from '../../components/checkbox/Checkbox';
 import { Button } from '../../components/button/Button';
 import { EmailIcon, TextIcon, AccordionIcon } from '../../components/icons';
-import { StatusItem } from '../../components/case-status/CaseStatusItem';
+import { StatusItem } from '../../components/caseStatus/CaseStatusItem';
+
+import { BaseDropdown } from '../../components/dropdown/Dropdown';
 
 export interface ClientDashboardCase {
   id: string;
@@ -52,6 +54,7 @@ export interface ClientDashboardCase {
   billingPacketSent: string;
   policyReportOrdered: string;
   totalCurrentBills: string;
+  menuItems: {label: string, icon?: React.ComponentType<any>}[];
 }
 
 interface ClientDashboardCardProps {
@@ -65,8 +68,6 @@ export const ClientDashboardCard: React.FC<ClientDashboardCardProps> = ({
   isOpen = true,
   onToggle,
 }) => {
-
-  // const [isOpen, setIsOpen] = useState(false);
 
   const styles = {
     cardContainer: {
@@ -84,9 +85,8 @@ export const ClientDashboardCard: React.FC<ClientDashboardCardProps> = ({
 
   return (
     <Card style={styles.cardContainer}>
-
       <Wrapper type="column" style={{ width: 290, gap: 16 }}>
-        <Wrapper type="row">
+        <Wrapper type="row" style={{ alignItems: 'center' }}>
           <Wrapper type="row" style={{ paddingTop: 6, width: 57 }}>
             <Button
               onClick={onToggle}
@@ -95,9 +95,14 @@ export const ClientDashboardCard: React.FC<ClientDashboardCardProps> = ({
             />
           </Wrapper>
             
-          <Wrapper type="row" style={{ width: '228px', alignItems: 'center', gap: 16 }}>
-            <Spacer customSize={10} />
-            <StatusItem statusText={caseData.status.text} identifier={caseData.caseNumber} />
+          <Wrapper type="row" style={{ width: '220px', height: '44px', alignItems: 'center', gap: 16 }}>            
+            <BaseDropdown
+              type="statusDropdown"
+              value={caseData.status.text}
+              caseNumber={caseData.caseNumber}
+              menuItems={caseData.menuItems}
+            />
+            {/* <StatusItem statusText={caseData.status.text} identifier={caseData.caseNumber} /> */}
           </Wrapper>
         </Wrapper>
 
@@ -202,7 +207,7 @@ export const ClientDashboardCard: React.FC<ClientDashboardCardProps> = ({
         {/* LORs Sent */}
         <Wrapper type="column" style={{ width: '150px', gap: 16 }}>
           {caseData.lorSent.map((entry, index) => (
-            <Typography key={index} variant="titleSmall" style={{ fontWeight: 400, lineHeight: '20px' }}>
+            <Typography key={`lor-${entry.date}-${index}`} variant="titleSmall" style={{ fontWeight: 400, lineHeight: '20px' }}>
               {entry.date} – {entry.event}
               {entry.status && ` – ${entry.status}`}
             </Typography>
@@ -242,7 +247,7 @@ export const ClientDashboardCard: React.FC<ClientDashboardCardProps> = ({
             </Typography>
           </Wrapper>
           {caseData.liabilityLimits.insurances.map((insurance, index) => (
-            <Wrapper type="row" style={{ gap: 6 }}>
+            <Wrapper key={`insurance-${insurance}-${index}`} type="row" style={{ gap: 6 }}>
               <Typography variant="titleSmall" style={{ fontWeight: 400 }}>Insurance#{index+1}</Typography>
               <Typography variant="titleSmall">{insurance}</Typography>
             </Wrapper>

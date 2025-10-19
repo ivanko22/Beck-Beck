@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { Navigation } from '../../components/navigation/Navigation';
-import { Typography } from '../../components/typography/Typography';
 import { Wrapper } from '../../components/wrapper/PageWrapper';
-import { Checkbox } from '../../components/checkbox/Checkbox';
-import { Spacer } from '../../components/spacer/Spacer';
 import { TableHeader } from '../../components/table/TableHeader';
 import { ClientDashboardCard, ClientDashboardCase } from './ClientDashboardCard';
 import { Header } from '../../components/header/Header';
@@ -62,8 +59,8 @@ export const ClientDashboard: React.FC<{ cases: ClientDashboardCase[] }> = ({
             noBorder
           />
 
-          {cases.map((caseData) => (
-            <Wrapper key={caseData.id} type="column" style={{ marginBottom: 10, gap: 0 }}>
+          {cases.map((caseData, index) => (
+            <Wrapper key={`case-${caseData.id}-${index}`} type="column" style={{ marginBottom: 10, gap: 0 }}>
               <ClientDashboardCard
                 caseData={caseData}
                 isOpen={openRowId === caseData.id}
