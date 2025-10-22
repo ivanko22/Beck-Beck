@@ -34,6 +34,7 @@ import {
   TextIcon,
   ESignIcon,
   PhoneIcon,
+  AssignIcon,
 
 } from './index';
 
@@ -289,6 +290,14 @@ export const Accordion: Story = {
   render: (args) => <AccordionIcon {...args} />,
 };
 
+export const Assign: Story = {
+  args: {
+    size: 24,
+    color: '#000000',
+  },
+  render: (args) => <AssignIcon {...args} />,
+};
+
 export const IconShowcase: Story = {
   parameters: {
     docs: {
@@ -332,6 +341,7 @@ export const IconShowcase: Story = {
       { name: 'Text', component: TextIcon },
       { name: 'ESign', component: ESignIcon },
       { name: 'Phone', component: PhoneIcon },
+      { name: 'Assign', component: AssignIcon },
     ];
 
     const colors = [

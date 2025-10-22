@@ -28,7 +28,6 @@ export const Adding: Story = {
   },
 };
 
-
 export const Edit: Story = {
   args: {
     state: 'edit',

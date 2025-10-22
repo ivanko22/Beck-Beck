@@ -109,7 +109,7 @@ export const Navigation: React.FC<NavigationProps> = ({
         <BaseDropdown 
           type="userDropdown"
           value={userEmail} 
-          menuItems={dropdownMenuItems}
+          menuItems={dropdownMenuItems || [{ label: 'Profile' }, { label: 'Settings' }, { label: 'Sign out' }]}
           onSelect= {(item) => console.log('Clicked:', item)}
         />
 

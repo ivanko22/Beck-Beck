@@ -18,14 +18,14 @@ interface InsuranceSection {
 interface ClientDetailsPageProps {
   caseNumber?: string;
   clientName?: string;
-  pageActionsState?: 'save' | 'saved' | 'edit';
+  pageActionsState?: 'saved' | 'edit' | 'adding';
   liabilityInsuranceSections?: InsuranceSection[];
   formData?: any;
 }
 
 export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
   caseNumber,
-  pageActionsState = 'save',
+  pageActionsState = 'saved',
   formData = {},
   clientName,
   liabilityInsuranceSections = [],
@@ -71,7 +71,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
               key={`liability-${index}-${section.sectionTitle}`}
               caseNumber={caseNumber}
               clientName={clientName}
-              pageActionsState={'save'}
+              pageActionsState={'saved'}
               formData={section.formData}
               sectionTitle={section.sectionTitle}
             />
