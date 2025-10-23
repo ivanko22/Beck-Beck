@@ -32,3 +32,4 @@ export { BriefcaseIcon } from './BriefcaseIcon';
 export { TextIcon } from './TextIcon';
 export { ESignIcon } from './ESignIcon';
 export { PhoneIcon } from './PhoneIcon';
+export { AssignIcon } from './AssignIcon';

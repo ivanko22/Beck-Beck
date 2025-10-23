@@ -6,6 +6,8 @@ import { StatusItem } from '../caseStatus/CaseStatusItem';
 interface UserDropdownProps {
   type: string;
   state?: 'default' | 'hover' | 'selected';
+  openHeight?: string;
+  openDirection?: 'up' | 'down';
   value: string;
   label?: string;
   leftLabel?: boolean;
@@ -26,6 +28,8 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
   type,
   state,
   value,
+  openHeight,
+  openDirection,
   label,
   width,
   leftLabel,
@@ -121,13 +125,13 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
     flexDirection: 'column',
     alignItems: 'center',
     width: '262px',
-    maxHeight: '400px',
+    maxHeight: openHeight || '400px',
     backgroundColor: 'var(--white)',
     border: '1px solid var(--light-grey)',
     borderRadius: 6,
     zIndex: 100,
     overflow: 'scroll',
-    marginTop: '-55px',
+    marginTop: openDirection === 'up' ? '-55px' : '0',
     padding: '10px 0',
     fontWeight: 400,
     color: 'var(--middle-grey)',
@@ -234,7 +238,7 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
         )}
 
         {open && menuItems && type === 'BaseDropdown' && (
-            <div style={BaseDropdownStyle} role="menu">
+            <div style={{ ...BaseDropdownStyle, maxHeight: openHeight || '400px' }} role="menu">
               {menuItems.map((item, index) => (
               
               <UserDropdownItem

@@ -16,7 +16,7 @@ export interface ClientInsuranceRelativeSectionProps {
   caseNumber?: string;
   clientName?: string;
   style?: React.CSSProperties;
-  pageActionsState?: 'save' | 'saved' | 'edit';
+  pageActionsState?: 'saved' | 'edit' | 'adding';
   pageActionsType?: 'button' | 'iconButton';
 
   sectionTitle: string;
@@ -166,7 +166,7 @@ const generateFieldConfig = (type: string) => {
 
 export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSectionProps> = ({
   formData,
-  pageActionsState = 'save',
+  pageActionsState = 'saved',
   pageActionsType = 'button',
   sectionTitle,
   type,

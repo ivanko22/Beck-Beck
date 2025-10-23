@@ -1,6 +1,6 @@
 import { fn } from 'storybook/test';
 import { Button } from './Button';
-import { RemoveIcon } from '../icons';
+import { RemoveIcon, CloseIcon, CheckmarkIcon } from '../icons';
 
 export default {
   title: 'Components/Button',
@@ -47,11 +47,44 @@ export const SecondaryDisabled = {
   },
 };
 
-export const WithIconLeft = {
+export const WithIconLeftAndLabel = {
   args: {
     label: 'Remove',
     size: 'medium',
     icon: <RemoveIcon size={22} color="currentColor" />,
     iconPosition: 'left',
+  },
+};
+
+export const IconOnlyClose = {
+  args: {
+    label: '',
+    size: 'medium',
+    icon: <CloseIcon size={20} color="currentColor" />,
+    iconPosition: 'left',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Button with only an icon (no label) - Close icon for cancel actions.',
+      },
+    },
+  },
+};
+
+export const IconOnlyCheckmark = {
+  args: {
+    state: 'edit',
+    primary: true,
+    customSize: '62px',
+    type: 'iconButton',
+    icon: <CheckmarkIcon size={20} color="currentColor" />,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Button with only an icon (no label) - Checkmark icon for save/confirm actions.',
+      },
+    },
   },
 };
