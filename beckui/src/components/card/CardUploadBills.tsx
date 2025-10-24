@@ -3,7 +3,7 @@ import { Card } from './Card';
 import { Upload } from '../upload/Upload';
 import { Spacer } from '../spacer/Spacer';
 import { TableHeader } from '../table/TableHeader';
-import { TemplateRowItem, BillRow } from '../row/insurance/TemplateLibTableRow';
+import { TemplateRowItem, BillRow } from '../row/TemplateLibTableRow';
 import { Wrapper } from '../wrapper/PageWrapper';
 import { Typography } from '../typography/Typography';
 import { Button } from '../button/Button';

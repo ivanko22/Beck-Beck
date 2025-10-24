@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React, { useState } from "react";
 import { TableHeader } from "./TableHeader";
-import { ClientDetailsTableHeader } from "../header/ClientDetailsTableHeader";
-import { TemplateRowItem } from "../row/insurance/TemplateLibTableRow";
+import { TemplateRowItem } from "../row/TemplateLibTableRow";
 import { defaultRows, TemplateRow } from "../table/Types";
-import { PlusIcon } from "../icons";
 import { LienTableRow } from "./LienTableRow";
 
 const meta: Meta = {
@@ -28,21 +26,16 @@ const autoTextColumns = [
 ];
 
 const TablePreview: React.FC = () => {
-  const [data, setData] = useState<TemplateRow[]>(defaultRows);
+  const [data] = useState<TemplateRow[]>(defaultRows);
 
   return (
     <table style={{ borderCollapse: "collapse", width: "1000px" }}>
-      <TableHeader columns={columns} template="3.8fr 1.2fr 1fr 1fr"/>
+      <TableHeader columns={columns} template="628px 180px 180px 180px"/>
       <tbody>
         {data.map((row) => (
           <TemplateRowItem
             key={row.id}
             row={row}
-            onChange={(updated) =>
-              setData((prev) =>
-                prev.map((r) => (r.id === updated.id ? updated : r))
-              )
-            }
           />
         ))}
       </tbody>

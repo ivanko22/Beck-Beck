@@ -35,6 +35,8 @@ import {
   ESignIcon,
   PhoneIcon,
   AssignIcon,
+  AlertIcon,
+  StethoscopeIcon,
 
 } from './index';
 
@@ -298,6 +300,14 @@ export const Assign: Story = {
   render: (args) => <AssignIcon {...args} />,
 };
 
+export const Alert: Story = {
+  args: {
+    size: 24,
+    color: '#F06161',
+  },
+  render: (args) => <AlertIcon {...args} />,
+};
+
 export const IconShowcase: Story = {
   parameters: {
     docs: {
@@ -342,6 +352,8 @@ export const IconShowcase: Story = {
       { name: 'ESign', component: ESignIcon },
       { name: 'Phone', component: PhoneIcon },
       { name: 'Assign', component: AssignIcon },
+      { name: 'Alert', component: AlertIcon },
+      { name: 'Stethoscope', component: StethoscopeIcon },
     ];
 
     const colors = [

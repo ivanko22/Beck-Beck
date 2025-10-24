@@ -5,7 +5,7 @@ import { Wrapper } from '../../components/wrapper/PageWrapper';
 import { Input } from '../../components/input/Inputs';
 import { Spacer } from '../../components/spacer/Spacer';
 import { TableHeader } from '../../components/table/TableHeader';
-import { TemplateRowItem } from '../../components/row/insurance/TemplateLibTableRow';
+import { TemplateRowItem } from '../../components/row/TemplateLibTableRow';
 import { PageActions } from '../../components/page-actions/PageActions';
 import { EditIcon, PrintIcon } from '../../components/icons';
 

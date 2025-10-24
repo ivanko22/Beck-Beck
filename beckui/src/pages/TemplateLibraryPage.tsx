@@ -3,7 +3,7 @@ import React, { useMemo, useState } from 'react';
 import { Navigation } from '../components/navigation/Navigation';
 import { Header } from '../components/header/Header';
 import { TableHeader } from '../components/table/TableHeader';
-import { TemplateRowItem } from '../components/row/insurance/TemplateLibTableRow';
+import { TemplateRowItem } from '../components/row/TemplateLibTableRow';
 import { TemplateRow, TemplateLibraryProps, defaultRows } from '../components/table/Types';
 import { PageActions } from '../components/page-actions/PageActions';
 import { Input } from '../components/input/Inputs';

@@ -14,6 +14,7 @@ export interface HeaderProps {
   subtitle?: string;
   rightButton?: boolean;
   rightButtonLabel?: string;
+  buttonIcon?: React.ReactNode;
   borderBottom?: boolean;
   onClose?: () => void;
   width?: string;
@@ -69,7 +70,7 @@ export const Header: React.FC<HeaderProps> = ({
   subtitle,
   type = 'default',
   onClose,
-  rightButton,
+  buttonIcon,
   rightButtonLabel,
   width,
   borderBottom = true,
@@ -124,7 +125,7 @@ export const Header: React.FC<HeaderProps> = ({
        )}
       
 
-      {!rightButton ? (
+      {!rightButtonLabel ? (
         <div style={styles.close} onClick={onClose}>
           <CloseIcon size={20} color="var(--middle-grey)" hoverColor="var(--secondary-color-hover)" />
         </div>
@@ -133,6 +134,8 @@ export const Header: React.FC<HeaderProps> = ({
           primary
           size="medium"
           label={rightButtonLabel}
+          icon={buttonIcon}
+          customSize="200px"
         />
       )}
     </div>
