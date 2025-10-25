@@ -61,7 +61,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
               key={`insurance-${index}-${section.sectionTitle}`}
               caseNumber={caseNumber}
               clientName={clientName}
-              pageActionsState={pageActionsState}
+              pageActionsState={pageActionsState === 'save' ? 'edit' : pageActionsState}
               formData={section.formData}
               sectionTitle={section.sectionTitle}
             />
@@ -75,7 +75,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
               key={`relative-${index}-${section.sectionTitle}`}
               caseNumber={caseNumber}
               clientName={clientName}
-              pageActionsState={pageActionsState}
+              pageActionsState={pageActionsState === 'save' ? 'edit' : pageActionsState}
               formData={section.formData}
               sectionTitle={section.sectionTitle}
             />
