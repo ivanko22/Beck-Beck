@@ -27,13 +27,15 @@ const autoTextColumns = [
 
 const TablePreview: React.FC = () => {
   const [data] = useState<TemplateRow[]>(defaultRows);
+  console.log('data', data);
 
   return (
     <table style={{ borderCollapse: "collapse", width: "1000px" }}>
-      <TableHeader columns={columns} template="628px 180px 180px 180px"/>
+      <TableHeader columns={columns} template="648px 210px 196px 180px"/>
       <tbody>
         {data.map((row) => (
           <TemplateRowItem
+            type="template"
             key={row.id}
             row={row}
           />
