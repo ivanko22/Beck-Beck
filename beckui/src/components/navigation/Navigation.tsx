@@ -15,6 +15,7 @@ import {
   CheckIcon,
   HandshakeIcon,
   ScaleIcon,
+  Scale2Icon,
 } from '../icons';
 
 interface NavigationItem {
@@ -43,7 +44,7 @@ const navigationItems: NavigationItem[] = [
   { id: 'demand-package', label: 'Demand Package as Sent', icon: ClipboardIcon },
   { id: 'settlement-statement', label: 'Settlement Statement', icon: CheckIcon },
   { id: 'settlement-negotiations', label: 'Settlement Negotiations', icon: HandshakeIcon },
-  { id: 'lien', label: 'Lien', icon: ScaleIcon },
+  { id: 'lien', label: 'Lien', icon: Scale2Icon },
 ];
 
 type Style = React.CSSProperties;

@@ -12,6 +12,7 @@ export { AttachIcon } from './AttachIcon';
 export { GenerateIcon } from './GenerateIcon';
 export { HandshakeIcon } from './HandshakeIcon';
 export { ScaleIcon } from './ScaleIcon';
+export { Scale2Icon } from './Scale2Icon';
 export { CloseIcon } from './CloseIcon';
 export { SearchIcon } from './SearchIcon';
 export { AvaIcon } from './AvaIcon';

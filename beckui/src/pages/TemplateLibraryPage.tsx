@@ -54,7 +54,9 @@ export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({
         <Wrapper type="contentWrapper">
           <table style={L.table}>
             <TableHeader
-              template="3.85fr 1.1fr 1fr 1fr"
+              // template="3.85fr 1.1fr 1fr 1fr"
+              template="650px 210px 198px 180px"
+              // useSpaceBetween={true}
 
               columns={[
                 {label: "Email / Fax Template Name"},
@@ -67,6 +69,7 @@ export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({
             <tbody>
               {data.map(row => (
                 <TemplateRowItem
+                  type="template"
                   key={row.id}
                   row={row}
                   disabled={pageActionsState === 'saved'}
@@ -92,7 +95,7 @@ export const TemplateLibraryPage: React.FC<TemplateLibraryProps> = ({
           <Spacer customSize={20} />
 
           <PageActions
-            state={pageActionsState || 'save'}
+            state={pageActionsState === 'save' ? 'edit' : (pageActionsState || 'edit')}
             type={'button'}
             onSave={() => onSave?.(data)}
             onCancel={onCancel}

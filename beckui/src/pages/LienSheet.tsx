@@ -200,13 +200,16 @@ export const LienSheetPage: React.FC<LienSheetPageProps> = ({
               <>
                 <Spacer customSize={16} />
                 
-                <Button
-                  label="Medical Provider"
-                  size="medium"
-                  icon={<PlusIcon size={20} />}
-                  onClick={() => {}}
-                />
-
+                <Wrapper type="row">  
+                  <Button
+                    label="Medical Provider"
+                    size="medium"
+                    iconPosition="left"
+                    icon={<PlusIcon size={20} />}
+                    onClick={() => {}}
+                  />
+                </Wrapper>
+                
                 <Spacer customSize={16} />
 
                 <Wrapper type="row" style={{gap: '16px'}}>

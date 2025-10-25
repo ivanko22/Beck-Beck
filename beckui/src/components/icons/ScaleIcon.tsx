@@ -6,7 +6,7 @@ interface ScaleIconProps {
 }
 
 export const ScaleIcon: React.FC<ScaleIconProps> = ({ 
-  size = 16, 
+  size = 20, 
   color = 'var(--primary-color)' 
 }) => {
   return (

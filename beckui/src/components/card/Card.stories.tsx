@@ -94,11 +94,11 @@ export const SettlementCardExample: Story = {
       ],
       lienInformation: [
         {
-          lienSource: 'Workers Comp',
+          name: 'Workers Comp',
           amount: '$3,500',
         },
         {
-          lienSource: 'Medicare',
+          name: 'Medicare',
           amount: '$1,200',
         },
       ],

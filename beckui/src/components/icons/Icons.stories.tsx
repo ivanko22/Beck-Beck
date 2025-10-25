@@ -37,6 +37,7 @@ import {
   AssignIcon,
   AlertIcon,
   StethoscopeIcon,
+  Scale2Icon,
 
 } from './index';
 
@@ -308,6 +309,14 @@ export const Alert: Story = {
   render: (args) => <AlertIcon {...args} />,
 };
 
+export const Scale2: Story = {
+  args: {
+    size: 24,
+    color: '#000000',
+  },
+  render: (args) => <Scale2Icon {...args} />,
+};
+
 export const IconShowcase: Story = {
   parameters: {
     docs: {
@@ -354,6 +363,7 @@ export const IconShowcase: Story = {
       { name: 'Assign', component: AssignIcon },
       { name: 'Alert', component: AlertIcon },
       { name: 'Stethoscope', component: StethoscopeIcon },
+      { name: 'Scale2', component: Scale2Icon },
     ];
 
     const colors = [
