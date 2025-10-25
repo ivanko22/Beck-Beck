@@ -41,14 +41,15 @@ export const  TableHeader: React.FC<TableHeaderProps> = ({
   };
 
   return (
-    <div style={{...container, ...style}}>
+    <thead>
+      <tr style={{...container, ...style}}>
         {columns.map((column, i) => {
           const label = typeof column === 'string' ? column : column.label;
           const columnWidth = typeof column === 'object' && column.width ? column.width : undefined;
           const customStyle = typeof column === 'object' ? column.style : {};
           
           return (
-            <div 
+            <th 
               key={`column-${i}-${label}`} 
               style={{ 
                 padding: '6px 0',
@@ -56,6 +57,7 @@ export const  TableHeader: React.FC<TableHeaderProps> = ({
                 alignItems: 'center',
                 justifyContent: 'flex-start',
                 position: 'relative',
+                fontWeight: 500,
                 ...(useSpecificWidths && columnWidths[i] ? { width: columnWidths[i] } : {}),
                 ...(columnWidth ? { width: columnWidth } : {}),
                 ...customStyle
@@ -72,10 +74,11 @@ export const  TableHeader: React.FC<TableHeaderProps> = ({
               
               {label}
 
-            </div>
+            </th>
           );
         })}
-    </div>
+      </tr>
+    </thead>
   );
 };
 

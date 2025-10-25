@@ -1,15 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { InsuranceRow } from './InsuranceRow';
-import { TemplateRowItem } from './TemplateLibTableRow';
-import { defaultRows } from '../../table/Types';
-
 
 const meta: Meta<typeof InsuranceRow> = {
-  title: 'Components/Row',
+  title: 'Components/Row/Auto Insurance',
   component: InsuranceRow,
   parameters: {
     layout: 'centered',
   },
+  tags: ['autodocs'],
   argTypes: {
     state: {
       control: 'select',
@@ -20,16 +18,6 @@ const meta: Meta<typeof InsuranceRow> = {
 
 export default meta;
 type Story = StoryObj<typeof InsuranceRow>;
-
-export const TemplateLibraryRow: Story = { 
-  render: () => {
-    return(
-      <table style={{width: "1000px"}}>
-        <TemplateRowItem row={defaultRows[0]} onChange={() => {}} />
-      </table>
-    )
-  }
-};
 
 export const AutoInsuranceCompaniesRowSaved: Story = {
   render: () => (
@@ -42,7 +30,6 @@ export const AutoInsuranceCompaniesRowSaved: Story = {
     />
   ),
 };
-
 
 export const AutoInsuranceCompaniesRowAdding: Story = {
   render: () => (

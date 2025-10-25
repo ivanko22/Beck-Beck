@@ -5,7 +5,7 @@ import { Wrapper } from '../../components/wrapper/PageWrapper';
 import { Input } from '../../components/input/Inputs';
 import { Spacer } from '../../components/spacer/Spacer';
 import { TableHeader } from '../../components/table/TableHeader';
-import { TemplateRowItem } from '../../components/row/insurance/TemplateLibTableRow';
+import { TemplateRowItem } from '../../components/row/TemplateLibTableRow';
 import { PageActions } from '../../components/page-actions/PageActions';
 import { EditIcon, PrintIcon } from '../../components/icons';
 
@@ -19,6 +19,7 @@ interface SettlementCardProps {
 export const SettlementCard: React.FC<SettlementCardProps> = ({
   formData,
 }) => {
+
   return (
     <Wrapper type="column" style={{ gap: 0 }}>
         <Spacer customSize={20} />
@@ -123,6 +124,7 @@ export const SettlementCard: React.FC<SettlementCardProps> = ({
                         columns={['Lien Source', 'Amount']} 
                         template="1.55fr 1fr"
                     />
+
                     {formData?.lienInformation?.map((item: any, index: number) => (       
                         <TemplateRowItem type="lien" key={`lien-${index}-${item.id || index}`} row={item} />
                     ))}
@@ -135,7 +137,7 @@ export const SettlementCard: React.FC<SettlementCardProps> = ({
                         paddingTop: 5,
                         paddingBottom: 10,
                     }} >
-                        <Typography variant="title17" style={{ fontWeight: 600, width: 237 }}>Net To Client:</Typography>
+                        <Typography variant="title17" style={{ fontWeight: 600, width: 220 }}>Net To Client:</Typography>
                         <Typography variant="secondaryTitle" style={{ textAlign: 'right', width: '100px' }}>{formData?.netToClient || '$0'}</Typography>
                     </div>
 
@@ -157,7 +159,6 @@ export const SettlementCard: React.FC<SettlementCardProps> = ({
                             value={formData?.notes || ''}
                             customSize={{ width: '100%', height: '170px' }}
                         />
-
                     </Wrapper>
                 </Wrapper>
             </Wrapper>

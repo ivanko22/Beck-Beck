@@ -12,7 +12,7 @@ interface ButtonProps {
   type?: 'button' | 'submit' | 'reset';
   noLabel?: boolean;
   icon?: React.ReactNode;
-  iconPosition?: 'left' | 'right';
+  iconPosition?: 'left' | 'right' | 'center';
 }
 
 const styles = {
@@ -113,6 +113,12 @@ const styles = {
     flexDirection: 'row-reverse' as const,
     pointerEvents: 'none' as const,
   },
+  iconCenter: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    pointerEvents: 'none' as const,
+  },
 };
 
 export const Button: React.FC<ButtonProps> = ({
@@ -156,14 +162,14 @@ export const Button: React.FC<ButtonProps> = ({
         </div>)
     } 
 
-    const iconStyle = iconPosition === 'left' ? styles.iconLeft : styles.iconRight;
+    const iconStyle = iconPosition === 'left' ? styles.iconLeft : iconPosition === 'right' ? styles.iconRight : styles.iconCenter;
     
     return (
       <div style={iconStyle}>
         <div style={{display: 'flex', alignItems: 'center', color: 'inherit', pointerEvents: 'none' as const }}>
           {icon}
         </div>
-        <span style={{ textAlign: 'left' }}>{label}</span>
+        <span style={{ width: '100%' }}>{label}</span>
       </div>
     );
   };

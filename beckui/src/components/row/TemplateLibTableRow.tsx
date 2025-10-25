@@ -1,10 +1,9 @@
-import React from 'react';
-import { Checkbox } from '../../checkbox/Checkbox';
-import { Typography } from '../../typography/Typography';
-import { RemoveIcon } from '../../icons/Remove';
-import { Button } from '../../button/Button';
-import { Wrapper } from '../../wrapper/PageWrapper';
-import { UploadIcon } from '../../icons/index';
+import { Checkbox } from '../checkbox/Checkbox';
+import { Typography } from '../typography/Typography';
+import { RemoveIcon } from '../icons/Remove';
+import { Button } from '../button/Button';
+import { Wrapper } from '../wrapper/PageWrapper';
+import { UploadIcon } from '../icons/index';
 
 export type TemplateRow = {
   id: string;
@@ -15,7 +14,7 @@ export type TemplateRow = {
 };
 
 export type LoanRow = {
-  name: string;
+  billCompany: string;
   amountPaid: string;
   amountDue: string;
   dontPay: boolean;
@@ -90,10 +89,11 @@ const L = {
 };
 
 const LoanRowComponent: React.FC<{ row: LoanRow; disabled?: boolean }> = ({ row, disabled = true }) => (
+
   <div
     style={{
       ...L.row,
-      gridTemplateColumns: '2.5fr 1.5fr 1.5fr 1fr',
+      gridTemplateColumns: '2.9fr 1.5fr 1.5fr 1fr',
       alignItems: 'center',
       paddingLeft: '26px',
       paddingBottom: 10,
@@ -101,7 +101,7 @@ const LoanRowComponent: React.FC<{ row: LoanRow; disabled?: boolean }> = ({ row,
     }}
     role="row"
   >
-    <Typography variant="titleSmall">{row.name}</Typography>
+    <Typography variant="titleSmall">{row.billCompany}</Typography>
     <Typography variant="title15">{row.amountPaid}</Typography>
     <Typography variant="title16" style={{ fontWeight: 600 }}>
       {row.amountDue}
@@ -109,7 +109,7 @@ const LoanRowComponent: React.FC<{ row: LoanRow; disabled?: boolean }> = ({ row,
     <Checkbox
       checked={row.dontPay}
       disabled={disabled}
-      aria-label={`${row.name} - Don't Pay`}
+      aria-label={`${row.billCompany} - Don't Pay`}
     />
   </div>
 );
@@ -160,7 +160,13 @@ const TemplateRowComponent: React.FC<{ row: TemplateRow; disabled?: boolean; sav
   const textStyle = saved ? { ...L.cellText, ...L.cellTextSaved } : L.cellText;
 
   return (
-    <div style={L.row} role="row">
+    <div style={{ 
+      ...L.row, 
+      gridTemplateColumns: '600px 180px 180px 180px', 
+      justifyContent: 'flex-start',
+      paddingLeft: '36px'
+    }} 
+    role="row">
       <div style={textStyle} role="gridcell">{row.name}</div>
       <div style={L.cellCheckbox} role="gridcell">
         <Checkbox
@@ -189,13 +195,14 @@ const TemplateRowComponent: React.FC<{ row: TemplateRow; disabled?: boolean; sav
 
 export const TemplateRowItem: React.FC<RowProps> = (props) => {
   switch (props.type) {
+
     case 'loan':
       return <LoanRowComponent row={props.row} disabled={props.disabled} />;
     case 'lien':
       return <LienRowComponent row={props.row} />;
     case 'bill':
       return <BillRowComponent row={props.row} />;
-    default:
+    case 'template':
       return <TemplateRowComponent row={props.row} disabled={props.disabled} saved={props.saved} />;
   }
 };

@@ -61,31 +61,31 @@ const settlementCardsData = [
     // Loan Repayment
     loanRepayment: [
       {
-        name: 'Dentist Clinic',
+        billCompany: 'Dentist Clinic',
         amountPaid: '$2000',
         amountDue: '$220',
         dontPay: true
       },
       {
-        name: 'Physical Therapy Center',
+        billCompany: 'Physical Therapy Center',
         amountPaid: '$1500',
         amountDue: '$300',
         dontPay: true
       },
       {
-        name: 'Orthopedic Specialists',
+        billCompany: 'Orthopedic Specialists',
         amountPaid: '$2400',
         amountDue: '$100',
         dontPay: false
       },
       {
-        name: 'Chiropractic Group',
+        billCompany: 'Chiropractic Group',
         amountPaid: '$1300',
         amountDue: '$300',
         dontPay: false
       },
       {
-        name: 'Imaging Services',
+        billCompany: 'Imaging Services',
         amountPaid: '$900',
         amountDue: '$300',
         dontPay: false
@@ -145,31 +145,31 @@ const settlementCardsData = [
     // Loan Repayment
     loanRepayment: [
       {
-        name: 'City Dental Group',
+        billCompany: 'City Dental Group',
         amountPaid: '$3,200',
         amountDue: '$450',
         dontPay: true
       },
       {
-        name: 'Flex Therapy Network',
+        billCompany: 'Flex Therapy Network',
         amountPaid: '$2,800',
         amountDue: '$380',
         dontPay: true
       },
       {
-        name: 'Nova Ortho Partners',
+        billCompany: 'Nova Ortho Partners',
         amountPaid: '$4,500',
         amountDue: '$600',
         dontPay: true
       },
       {
-        name: 'Wellness Chiropractic',
+        billCompany: 'Wellness Chiropractic',
         amountPaid: '$1,950',
         amountDue: '$280',
         dontPay: false
       },
       {
-        name: 'Global Imaging Solutions',
+        billCompany: 'Global Imaging Solutions',
         amountPaid: '$1,200',
         amountDue: '$150',
         dontPay: false
@@ -229,31 +229,31 @@ const settlementCardsData = [
     // Loan Repayment
     loanRepayment: [
       {
-        name: 'Sunrise Dental Group',
+        billCompany: 'Sunrise Dental Group',
         amountPaid: '$2,750',
         amountDue: '$320',
         dontPay: true
       },
       {
-        name: 'Midwest Physical Therapy',
+        billCompany: 'Midwest Physical Therapy',
         amountPaid: '$2,100',
         amountDue: '$290',
         dontPay: false
       },
       {
-        name: 'OrthoPlus Clinic',
+        billCompany: 'OrthoPlus Clinic',
         amountPaid: '$3,800',
         amountDue: '$520',
         dontPay: false
       },
       {
-        name: 'Balance Chiropractic',
+        billCompany: 'Balance Chiropractic',
         amountPaid: '$1,650',
         amountDue: '$220',
         dontPay: false
       },
       {
-        name: 'ScanPoint Imaging',
+        billCompany: 'ScanPoint Imaging',
         amountPaid: '$950',
         amountDue: '$130',
         dontPay: false
@@ -316,31 +316,31 @@ const hospitalCardsData = [
     // Loan Repayment
     loanRepayment: [
       {
-        name: 'Sunshine Dental Group',
+        billCompany: 'Sunshine Dental Group',
         amountPaid: '$2,200',
         amountDue: '$300',
         dontPay: true
       },
       {
-        name: 'Core Physical Therapy',
+        billCompany: 'Core Physical Therapy',
         amountPaid: '$1,750',
         amountDue: '$250',
         dontPay: false
       },
       {
-        name: 'Midwest Ortho Group',
+        billCompany: 'Midwest Ortho Group',
         amountPaid: '$2,600',
         amountDue: '$0',
         dontPay: false
       },
       {
-        name: 'Harmony Chiro Center',
+        billCompany: 'Harmony Chiro Center',
         amountPaid: '$1,400',
         amountDue: '$400',
         dontPay: false
       },
       {
-        name: 'Vision Imaging Lab',
+        billCompany: 'Vision Imaging Lab',
         amountPaid: '$850',
         amountDue: '$350',
         dontPay: false

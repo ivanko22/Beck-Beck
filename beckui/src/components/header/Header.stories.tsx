@@ -68,3 +68,13 @@ export const ClientDetailsTableHeaderWithCheckboxStory: Story = {
     )
   }
 };
+
+export const withButtonIcon: Story = {
+  args: {
+    section: "Manual Texting",
+    width: "1200px",
+    rightButtonLabel: "Add Client",
+    buttonIcon: <PlusIcon size={16} />,
+    isFixed: false,
+  },
+};

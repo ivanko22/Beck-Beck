@@ -4,7 +4,7 @@ import { Navigation } from '../components/navigation/Navigation';
 import { Wrapper } from '../components/wrapper/PageWrapper';
 import { Spacer } from '../components/spacer/Spacer';
 import { Button } from '../components/button/Button';
-import { BillRow } from '../components/row/insurance/TemplateLibTableRow';
+import { BillRow } from '../components/row/TemplateLibTableRow';
 import { DownloadBillsIcon, DocumentIcon, TagIcon, EmailIcon, PlusIcon } from '../components/icons/index';
 import { CardUploadBills } from '../components/card/CardUploadBills';
 import { Input } from '../components/input/Inputs';
@@ -165,7 +165,7 @@ export const MedicalFolderPage: React.FC<MedicalFolderPageProps> = ({
             isFixed={false}
             onClose={() => {}}
             // showDropdown={true}
-            rightButton={true}
+            rightButtonLabel="Add Medical Row"
             borderBottom={false}
           />
 
