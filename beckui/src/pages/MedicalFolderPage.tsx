@@ -165,7 +165,7 @@ export const MedicalFolderPage: React.FC<MedicalFolderPageProps> = ({
             isFixed={false}
             onClose={() => {}}
             // showDropdown={true}
-            rightButton={true}
+            rightButtonLabel="Add Medical Row"
             borderBottom={false}
           />
 

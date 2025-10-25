@@ -14,6 +14,7 @@ type Story = StoryObj<typeof TemplateRowItem>;
 
 export const TemplateLibraryRow: Story = { 
     args: {
+        type: 'template',
         row: {
             id: '1',
             name: 'Email Client Button on Client Detail Page',

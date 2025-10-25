@@ -12,7 +12,6 @@ export interface HeaderProps {
   type?: 'default' | 'clientDetails' | 'clientDashboard';
   showButtons?: boolean;
   subtitle?: string;
-  rightButton?: boolean;
   rightButtonLabel?: string;
   buttonIcon?: React.ReactNode;
   borderBottom?: boolean;

@@ -209,7 +209,7 @@ export const LienSheetPage: React.FC<LienSheetPageProps> = ({
                     onClick={() => {}}
                   />
                 </Wrapper>
-                
+
                 <Spacer customSize={16} />
 
                 <Wrapper type="row" style={{gap: '16px'}}>
@@ -298,7 +298,6 @@ export const LienSheetPage: React.FC<LienSheetPageProps> = ({
                     icon={<RightArrowIcon size={20} />}
                     iconPosition="left"
                     onClick={() => {}}
-                    customSize={"280px"}
                   />
 
                   <Wrapper type="column" style={{ gap: '16px', alignItems: 'flex-end' }}>
