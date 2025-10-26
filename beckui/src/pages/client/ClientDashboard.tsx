@@ -5,7 +5,10 @@ import { TableHeader } from '../../components/table/TableHeader';
 import { ClientDashboardCard, ClientDashboardCase } from './ClientDashboardCard';
 import { Header } from '../../components/header/Header';
 
-export const ClientDashboard: React.FC<{ cases: ClientDashboardCase[] }> = ({
+export const ClientDashboard: React.FC<{ 
+  cases: ClientDashboardCase[],
+  showFilters?: boolean,
+}> = ({
   cases = [],
 }) => {
   const [openRowId, setOpenRowId] = useState<string | null>(null);
@@ -26,8 +29,8 @@ export const ClientDashboard: React.FC<{ cases: ClientDashboardCase[] }> = ({
           section={'Client Dashboard'}
           type="clientDashboard"
           rightButtonLabel="Add New Case"
-          rightButton={true}
           teams={['Team 1', 'Team 2', 'Team 3', 'Team 4']}
+          showFilters={true}
         />
         
         <Wrapper type="contentWrapper" style={{ width: 'fit-content', gap: 0, marginTop: 50 }}>

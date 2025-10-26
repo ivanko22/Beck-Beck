@@ -35,6 +35,10 @@ const withPageWrapper = (StoryFn: () => React.ReactNode) => (
   <Wrapper background="darkBlue">{StoryFn()}</Wrapper>
 );
 
+const withWhiteWrapper = (StoryFn: () => React.ReactNode) => (
+  <Wrapper background="white">{StoryFn()}</Wrapper>
+);
+
 export const Default: Story = {
   args: {
     placeholder: 'Search by Name, Phone',
@@ -57,4 +61,31 @@ export const WithValue: Story = {
     value: 'John Doe',
   },
   decorators: [withPageWrapper],
+};
+
+export const Primary: Story = {
+  args: {
+    placeholder: 'Search by Case Number',
+    type: 'primary',
+  },
+  decorators: [withWhiteWrapper],
+};
+
+export const PrimaryActive: Story = {
+  args: {
+    placeholder: 'Search by Case Number',
+    type: 'primary',
+    isActive: true,
+  },
+  decorators: [withWhiteWrapper],
+};
+
+
+export const PrimaryWithValue: Story = {
+  args: {
+    placeholder: 'Search by Case Number',
+    type: 'primary',
+    value: '#12374',
+  },
+  decorators: [withWhiteWrapper],
 };

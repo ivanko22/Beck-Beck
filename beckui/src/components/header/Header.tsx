@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Breadcrumbs } from "../breadcrumbs/Breadcrumbs";
 import { CloseIcon, PlusIcon, EmailIcon } from "../icons";
 import { Button } from "../button/Button";
 import { Checkbox } from "../checkbox/Checkbox";
 import { Wrapper } from "../wrapper/PageWrapper";
 import { SearchBox } from "../search/SearchBox";
-
+import { FiltersModal } from "../modal/FiltersModal";
+import { filtersData } from '../../data/filtersData';
 export interface HeaderProps {
   section: string;
   current?: string;
@@ -19,6 +20,8 @@ export interface HeaderProps {
   width?: string;
   isFixed?: boolean;
   teams?: string[];
+  onFiltersClick?: () => void;
+  showFilters?: boolean;
 }
 
 const styles = {
@@ -74,6 +77,7 @@ export const Header: React.FC<HeaderProps> = ({
   width,
   borderBottom = true,
   isFixed = true,
+  showFilters = false,
 }) => {
   const containerStyle = {
     ...styles.container,
@@ -81,8 +85,20 @@ export const Header: React.FC<HeaderProps> = ({
     ...(isFixed ? {} : { position: 'relative' as const, zIndex: 0 })
   };
 
+  const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(showFilters);
+
   return (
     <div style={{...containerStyle, ...(borderBottom && styles.borderBottomStyle)}}>
+      <Wrapper type="column" style={{ position: 'absolute', top: -50 }}>
+        {isFiltersModalOpen && (
+          <FiltersModal
+            onClose={() => setIsFiltersModalOpen(false)}
+            initialFilters={filtersData}
+            onApplyFilters={() => {}}
+          />
+        )}
+      </Wrapper>
+
       <div style={styles.left}>
         <Breadcrumbs section={section} current={current} />
         {subtitle && <span style={styles.subtitle}>{subtitle}</span>}
@@ -115,10 +131,15 @@ export const Header: React.FC<HeaderProps> = ({
             />
           ))}
 
-          {/* <SearchBox
-            placeholder="Search"
+          <SearchBox
+            placeholder="Search by Case Number"
             onChange={() => {}}
-          /> */}
+            onFiltersClick={() => {
+              console.log('filters clicked');
+              setIsFiltersModalOpen(true)
+            }}
+            type="primary"
+          />
 
         </Wrapper>
        )}

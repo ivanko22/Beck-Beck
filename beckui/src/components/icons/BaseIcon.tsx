@@ -9,6 +9,7 @@ export interface BaseIconProps {
   viewBox?: string;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
+  onClick?: () => void;
 }
 
 export const BaseIcon: React.FC<BaseIconProps> = ({
@@ -19,7 +20,8 @@ export const BaseIcon: React.FC<BaseIconProps> = ({
   children,
   viewBox = '0 0 31 31',
   onMouseEnter,
-  onMouseLeave
+  onMouseLeave,
+  onClick
 }) => {
   const [isHovered, setIsHovered] = React.useState(false);
 
@@ -44,12 +46,13 @@ export const BaseIcon: React.FC<BaseIconProps> = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       style={{
-        cursor: hoverColor ? 'pointer' : 'default',
+        cursor: (hoverColor || onClick) ? 'pointer' : 'default',
         transition: hoverColor ? 'color 0.2s ease' : 'none',
         ...style
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={onClick}
     >
       {children}
     </svg>
