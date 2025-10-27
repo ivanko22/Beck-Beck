@@ -130,6 +130,7 @@ export const Header: React.FC<HeaderProps> = ({
         <Wrapper type="row" style={{ gap: 30 }}>
           {teams?.map((team) => (
             <Checkbox
+              key={team}
               label={team}
               onChange={() => {}}
             />
@@ -139,7 +140,6 @@ export const Header: React.FC<HeaderProps> = ({
             placeholder="Search by Case Number"
             onChange={() => {}}
             onFiltersClick={() => {
-              console.log('filters clicked');
               setIsFiltersModalOpen(true)
             }}
             type="primary"
