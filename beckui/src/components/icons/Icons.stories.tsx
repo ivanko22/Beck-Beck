@@ -38,6 +38,7 @@ import {
   AlertIcon,
   StethoscopeIcon,
   Scale2Icon,
+  FilterIcon,
 
 } from './index';
 
@@ -304,7 +305,7 @@ export const Assign: Story = {
 export const Alert: Story = {
   args: {
     size: 24,
-    color: '#F06161',
+    color: 'var(--warning)',
   },
   render: (args) => <AlertIcon {...args} />,
 };
@@ -315,6 +316,14 @@ export const Scale2: Story = {
     color: '#000000',
   },
   render: (args) => <Scale2Icon {...args} />,
+};
+
+export const Filter: Story = {
+  args: {
+    size: 24,
+    color: '#000000',
+  },
+  render: (args) => <FilterIcon {...args} />,
 };
 
 export const IconShowcase: Story = {
@@ -364,6 +373,7 @@ export const IconShowcase: Story = {
       { name: 'Alert', component: AlertIcon },
       { name: 'Stethoscope', component: StethoscopeIcon },
       { name: 'Scale2', component: Scale2Icon },
+      { name: 'Filter', component: FilterIcon },
     ];
 
     const colors = [
@@ -506,7 +516,7 @@ export const NavigationStates: Story = {
                     borderBottom: borderColor || 'none',
                   }}
                 >
-                  <div style={{ marginRight: '8px' }}>
+                  <div style={{ marginRight: '12px', marginTop: 6 }}>
                     <IconComponent size={20} color={color} />
                   </div>
                   <span style={{ color, fontSize: '16px', fontWeight: 500 }}>{iconName}</span>

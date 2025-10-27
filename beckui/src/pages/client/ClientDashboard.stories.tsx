@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ClientDashboard } from './ClientDashboard';
 import { ClientDashboardCase } from './ClientDashboardCard';
+import { filtersData } from '../../data/filtersData';
 
 const meta: Meta<typeof ClientDashboard> = {
   title: 'Pages/Client/Client Dashboard',
@@ -1183,3 +1184,10 @@ export const AllStatuses: Story = {
   },
 };
 
+
+export const WithFilters  : Story = {
+  args: {
+    cases: sampleCases,
+    showFilters: true,
+  },
+};

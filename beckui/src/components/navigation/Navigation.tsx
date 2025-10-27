@@ -14,7 +14,6 @@ import {
   ClipboardIcon,
   CheckIcon,
   HandshakeIcon,
-  ScaleIcon,
   Scale2Icon,
 } from '../icons';
 
@@ -78,8 +77,11 @@ const styles: {
 export default styles;
 
 export const Navigation: React.FC<NavigationProps> = ({
-  onItemClick, userEmail, dropdownMenuItems,
+  onItemClick, 
+  userEmail, 
+  dropdownMenuItems,
   activeItem,
+
 }) => {
   const [activeMenuItem, setActiveMenuItem] = useState<string>(activeItem || 'client-detail');
 

@@ -36,3 +36,4 @@ export { PhoneIcon } from './PhoneIcon';
 export { AssignIcon } from './AssignIcon';
 export { AlertIcon } from './AlertIcon';
 export { StethoscopeIcon } from './StethoscopeIcon';
+export { FilterIcon } from './FilterIcon';

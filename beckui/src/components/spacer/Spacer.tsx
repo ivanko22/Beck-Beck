@@ -20,7 +20,7 @@ export const Spacer: React.FC<SpacerProps> = ({
   customSize,
   horizontal = false,
 }) => {
-  const spacerSize = customSize ?? sizeMap[size];
+  const spacerSize = customSize ?? sizeMap[size] ?? 16;
 
   const spacerStyle: React.CSSProperties = {
     ...(horizontal ? { width: spacerSize } : { height: spacerSize }),
