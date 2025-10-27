@@ -8,7 +8,6 @@ import { CloseIcon } from '../icons/index';
 
 export interface FiltersModalProps {
   onClose: () => void;
-  onApplyFilters?: (filters: any) => void;
   initialFilters?: any;
 }
 
@@ -24,7 +23,6 @@ export const FiltersModal: React.FC<FiltersModalProps> = ({
                 <div style={{ marginRight: -7 }}
                     onClick={(e) => {
                         e.stopPropagation();
-                        console.log('close clicked');
                         onClose();
                     }}>
                     <CloseIcon 

@@ -19,8 +19,8 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
   isActive,
   onChange,
   onSearch,
-  style,
   type,
+  style,
   onFiltersClick,
 }) => {
   const [searchValue, setSearchValue] = useState(value);
@@ -94,7 +94,7 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
   };
 
   return (
-    <Wrapper type="row" style={{ alignItems: 'center', gap: 18 }}>
+    <Wrapper type="row" style={{ alignItems: 'center', gap: 18, ...style }}>
       <div style={searchBoxStyle}>
         <div style={searchIconStyle} onClick={handleSearchClick}>
           <SearchIcon size={14} />
@@ -126,7 +126,6 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
       {type === 'primary' && 
         <FilterIcon size={20} 
           onClick={() => {
-            console.log('filters clicked from search box');
             onFiltersClick?.();
           }} 
         />}

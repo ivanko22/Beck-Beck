@@ -27,7 +27,6 @@ const autoTextColumns = [
 
 const TablePreview: React.FC = () => {
   const [data] = useState<TemplateRow[]>(defaultRows);
-  console.log('data', data);
 
   return (
     <table style={{ borderCollapse: "collapse", width: "1000px" }}>
