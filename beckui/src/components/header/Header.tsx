@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Breadcrumbs } from "../breadcrumbs/Breadcrumbs";
 import { CloseIcon, PlusIcon, EmailIcon } from "../icons";
 import { Button } from "../button/Button";
@@ -86,6 +86,10 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(showFilters);
+
+  useEffect(() => {
+    setIsFiltersModalOpen(showFilters);
+  }, [showFilters]);
 
   return (
     <div style={{...containerStyle, ...(borderBottom && styles.borderBottomStyle)}}>
