@@ -98,7 +98,6 @@ export const Header: React.FC<HeaderProps> = ({
           <FiltersModal
             onClose={() => setIsFiltersModalOpen(false)}
             initialFilters={filtersData}
-            onApplyFilters={() => {}}
           />
         )}
       </Wrapper>

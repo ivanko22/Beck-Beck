@@ -9,18 +9,11 @@ const meta: Meta<typeof FiltersModal> = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  argTypes: {
-    onApplyFilters: {
-      action: 'filters applied',
-      description: 'Callback function called when filters are applied',
-    },
-  },
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Default story
 export const Default: Story = {
   args: {
     initialFilters: filtersData,
