@@ -49,8 +49,8 @@ export const ClientDashboard: React.FC<{
     setOpenRowId(openRowId === caseId ? null : caseId);
   };
 
-  const handleRemoveFilter = (label: string) => {
-    setActiveFilters(activeFilters.filter(f => f.label !== label));
+  const handleRemoveFilter = (label: string, phase: string) => {
+    setActiveFilters(activeFilters.filter(f => !(f.label === label && f.phase === phase)));
   };
 
   return (
@@ -79,7 +79,7 @@ export const ClientDashboard: React.FC<{
                   key={`${filter.phase}-${filter.label}`}
                   label={filter.label}
                   color={getFilterColor(filter.phase)}
-                  onClose={() => handleRemoveFilter(filter.label)}
+                  onClose={() => handleRemoveFilter(filter.label, filter.phase)}
                 />
               ))}
             </Wrapper>
