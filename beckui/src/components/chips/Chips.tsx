@@ -86,7 +86,7 @@ export const Chips: React.FC<ChipsProps> = ({
   };
 
   return (
-    <div style={chipsStyle} onClick={onClose}>
+    <div style={chipsStyle} onClick={onClose || undefined}>
       <Typography variant='title13' color='var(--dark-grey)'>{label}</Typography>
     
       <div style={{ ...closeIconStyle }}>
