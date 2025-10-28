@@ -122,7 +122,7 @@ export const SettlementCard: React.FC<SettlementCardProps> = ({
 
                     <TableHeader 
                         columns={['Lien Source', 'Amount']} 
-                        template="1.55fr 1fr"
+                        template="294px 197px"
                     />
 
                     {formData?.lienInformation?.map((item: any, index: number) => (       
