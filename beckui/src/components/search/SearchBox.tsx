@@ -128,6 +128,7 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
           onClick={() => {
             onFiltersClick?.();
           }} 
+          style={{ cursor: 'pointer' }}
         />}
     </Wrapper>
   );

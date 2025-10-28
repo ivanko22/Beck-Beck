@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowIcon } from "../icons";
+import { ArrowIcon, FilterIcon } from "../icons";
 
 type TableHeaderProps = {
   columns: (string | { label: React.ReactNode; width?: string; style?: React.CSSProperties })[];
@@ -10,6 +10,7 @@ type TableHeaderProps = {
   columnWidths?: string[];
   style?: React.CSSProperties;
   useSpaceBetween?: boolean;
+  onFiltersClick?: () => void;
 };
 
 export const  TableHeader: React.FC<TableHeaderProps> = ({
@@ -21,6 +22,7 @@ export const  TableHeader: React.FC<TableHeaderProps> = ({
   columnWidths = [],
   useSpaceBetween = false,
   style,
+  onFiltersClick,
 }) => {
   const container: React.CSSProperties = {
     display: useSpecificWidths || useSpaceBetween ? 'flex' : 'grid',
@@ -41,15 +43,26 @@ export const  TableHeader: React.FC<TableHeaderProps> = ({
   };
 
   return (
-    <thead style={{ width: '100%', display: 'block' }}>
-      <tr style={{...container, ...style}}>
+    <div style={{ width: '100%', display: 'block' }}>
+      <div style={{...container, ...style}}>
+        {onFiltersClick && (
+          <div style={{ 
+            padding: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+          }}>
+            <FilterIcon size={20} onClick={onFiltersClick} style={{ cursor: 'pointer' }} />
+          </div>
+        )}
+
         {columns.map((column, i) => {
           const label = typeof column === 'string' ? column : column.label;
           const columnWidth = typeof column === 'object' && column.width ? column.width : undefined;
           const customStyle = typeof column === 'object' ? column.style : {};
           
           return (
-            <th 
+            <div 
               key={`column-${i}-${label}`} 
               style={{ 
                 padding: '6px 0',
@@ -62,7 +75,8 @@ export const  TableHeader: React.FC<TableHeaderProps> = ({
                 ...(columnWidth ? { width: columnWidth } : {}),
                 ...customStyle
               }}
-            >
+            >   
+
               {i === activeColumn && (
                 <div style={{ marginLeft: '8px', paddingTop: '4px' }}>
                   <ArrowIcon 
@@ -74,11 +88,11 @@ export const  TableHeader: React.FC<TableHeaderProps> = ({
               
               {label}
 
-            </th>
+            </div>
           );
         })}
-      </tr>
-    </thead>
+      </div>
+    </div>
   );
 };
 
