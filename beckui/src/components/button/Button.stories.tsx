@@ -1,6 +1,6 @@
 import { fn } from 'storybook/test';
 import { Button } from './Button';
-import { RemoveIcon, CloseIcon, CheckmarkIcon } from '../icons';
+import { RemoveIcon, CloseIcon, CheckmarkIcon, PlusIcon } from '../icons';
 
 export default {
   title: 'Components/Button',
@@ -19,6 +19,15 @@ export const Primary = {
   args: {
     primary: true,
     label: 'Primary Button',
+    size: 'large',
+  },
+};
+
+export const PrimaryWithIcon = {
+  args: {
+    primary: true,
+    label: 'Primary Button',
+    icon: <PlusIcon size={20} color="currentColor" />,
     size: 'large',
   },
 };

@@ -70,9 +70,11 @@ export const ClientDashboard: React.FC<{
         />
 
         <Wrapper type="contentWrapper" style={{ width: 'fit-content', gap: 0, marginTop: 50 }}>
-          <Spacer customSize={30} />
 
           {activeFilters.length > 0 && (
+            <>
+            <Spacer customSize={30} />
+
             <Wrapper type="row" style={{ gap: 12,  flexWrap: 'wrap' }}>
               {activeFilters.map((filter) => (
                 <Chips
@@ -83,6 +85,7 @@ export const ClientDashboard: React.FC<{
                 />
               ))}
             </Wrapper>
+            </>
           )}
 
           <TableHeader
