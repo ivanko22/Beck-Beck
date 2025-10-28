@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ClientDashboard } from './ClientDashboard';
 import { ClientDashboardCase } from './ClientDashboardCard';
-import { filtersData } from '../../data/filtersData';
 
 const meta: Meta<typeof ClientDashboard> = {
   title: 'Pages/Client/Client Dashboard',
@@ -40,6 +39,15 @@ const menuItems = [
   { label: 'Signed Release' },
   { label: 'Check Pending' },
 ]
+
+const appliedFilters = {
+  phase1: ['BP Received'],
+  phase2: ['Finished Treating/RTS & All Medical Ordered'],
+  phase3: ['Ordered/Waiting on Old Medical',],
+  phase4: ['Liability Demand Sent'],
+  phase5: ['Awaiting Mediation'], 
+  phase6: ['Final Offer Received, waiting on lien sheet'],
+};
 
 const sampleCases: ClientDashboardCase[] = [
   {
@@ -1185,9 +1193,16 @@ export const AllStatuses: Story = {
 };
 
 
+export const WithFiltersModal  : Story = {
+  args: {
+    cases: sampleCases,
+    showFiltersModal: true,
+  },
+};
+
 export const WithFilters  : Story = {
   args: {
     cases: sampleCases,
-    showFilters: true,
+    appliedFilters: appliedFilters,
   },
 };

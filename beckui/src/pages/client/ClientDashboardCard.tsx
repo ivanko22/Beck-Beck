@@ -6,8 +6,6 @@ import { Spacer } from '../../components/spacer/Spacer';
 import { Checkbox } from '../../components/checkbox/Checkbox';
 import { Button } from '../../components/button/Button';
 import { EmailIcon, TextIcon, AccordionIcon } from '../../components/icons';
-import { StatusItem } from '../../components/caseStatus/CaseStatusItem';
-
 import { BaseDropdown } from '../../components/dropdown/Dropdown';
 
 export interface ClientDashboardCase {

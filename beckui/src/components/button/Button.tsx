@@ -74,6 +74,7 @@ const styles = {
 
   small: {
     fontSize: '14px',
+    gap: '10px',
   },
 
   medium: {
@@ -102,7 +103,7 @@ const styles = {
   iconLeft: {
     display: 'flex',
     alignItems: 'center',
-    gap: '13px',
+    gap: '11px',
     pointerEvents: 'none' as const,
   },
 
@@ -169,7 +170,7 @@ export const Button: React.FC<ButtonProps> = ({
         <div style={{display: 'flex', alignItems: 'center', color: 'inherit', pointerEvents: 'none' as const }}>
           {icon}
         </div>
-        <span style={{ width: '100%', textAlign: 'left' }}>{label}</span>
+        <span style={{ width: '100%',  }}>{label}</span>
       </div>
     );
   };

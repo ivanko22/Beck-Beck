@@ -21,7 +21,7 @@ export interface HeaderProps {
   isFixed?: boolean;
   teams?: string[];
   onFiltersClick?: () => void;
-  showFilters?: boolean;
+  showFiltersModal?: boolean;
 }
 
 const styles = {
@@ -77,7 +77,7 @@ export const Header: React.FC<HeaderProps> = ({
   width,
   borderBottom = true,
   isFixed = true,
-  showFilters = false,
+  showFiltersModal = false,
 }) => {
   const containerStyle = {
     ...styles.container,
@@ -85,11 +85,11 @@ export const Header: React.FC<HeaderProps> = ({
     ...(isFixed ? {} : { position: 'relative' as const, zIndex: 0 })
   };
 
-  const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(showFilters);
+  const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(showFiltersModal);
 
   useEffect(() => {
-    setIsFiltersModalOpen(showFilters);
-  }, [showFilters]);
+    setIsFiltersModalOpen(showFiltersModal);
+  }, [showFiltersModal]);
 
   return (
     <div style={{...containerStyle, ...(borderBottom && styles.borderBottomStyle)}}>

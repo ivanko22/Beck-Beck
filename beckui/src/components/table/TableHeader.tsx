@@ -41,7 +41,7 @@ export const  TableHeader: React.FC<TableHeaderProps> = ({
   };
 
   return (
-    <thead>
+    <thead style={{ width: '100%', display: 'block' }}>
       <tr style={{...container, ...style}}>
         {columns.map((column, i) => {
           const label = typeof column === 'string' ? column : column.label;

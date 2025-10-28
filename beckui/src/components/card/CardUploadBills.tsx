@@ -42,7 +42,9 @@ export const CardUploadBills: React.FC<CardUploadBillsProps> = ({
               <TableHeader 
                 columns={columns} 
                 template={columnTemplate}
+                style={{ width: '100%' }}
               />
+   
             )}
 
             {items.map((bill, index) => (

@@ -82,7 +82,6 @@ export const MedicalFolderPage: React.FC<MedicalFolderPageProps> = ({
         <Header
           section="Medical Folder & Authorization"
           current={clientInfo?.name}
-          // showDropdown={true}
           onClose={() => {}}
         />
 
@@ -94,7 +93,7 @@ export const MedicalFolderPage: React.FC<MedicalFolderPageProps> = ({
               items={uploadedMedicalDocuments.bills}
               title="Bills"
               columns={['Bill Name', 'Uploaded']}
-              columnTemplate="4.2fr 1.5fr 2fr 1fr"
+              columnTemplate="4.1fr 1.5fr 2fr 1fr"
               uploadLabel="Drop medical bills here"
             />
 
@@ -102,7 +101,7 @@ export const MedicalFolderPage: React.FC<MedicalFolderPageProps> = ({
               items={uploadedMedicalDocuments.records}
               title="Records"
               columns={['Record Name', 'Uploaded']}
-              columnTemplate="4.2fr 1.5fr 2fr 1fr"
+              columnTemplate="4.1fr 1.5fr 2fr 1fr"
               uploadLabel="Drop medical records here"
             />
           </Wrapper>
@@ -142,7 +141,7 @@ export const MedicalFolderPage: React.FC<MedicalFolderPageProps> = ({
               items={uploadedMedicalDocuments.medicalAuths}
               title="Medical Authorization(s)"
               columns={['Bill Name', 'Uploaded']}
-              columnTemplate="4.2fr 1.5fr 2fr 1fr"
+              columnTemplate="4.1fr 1.5fr 2fr 1fr"
               uploadLabel="Click or drag to replace files medical Authorization"
             />
 
@@ -150,7 +149,7 @@ export const MedicalFolderPage: React.FC<MedicalFolderPageProps> = ({
               items={uploadedMedicalDocuments.duplicates}
               title="Duplicates"
               columns={['Record Name', 'Uploaded']}
-              columnTemplate="4.2fr 1.5fr 2fr 1fr"
+              columnTemplate="4.1fr 1.5fr 2fr 1fr"
               uploadLabel="Click or drag Duplicates"
             />
           </Wrapper>
