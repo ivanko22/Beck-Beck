@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Breadcrumbs } from "../breadcrumbs/Breadcrumbs";
 import { CloseIcon, PlusIcon, EmailIcon } from "../icons";
 import { Button } from "../button/Button";
@@ -22,6 +22,7 @@ export interface HeaderProps {
   teams?: string[];
   onFiltersClick?: () => void;
   showFiltersModal?: boolean;
+  onShowFiltersModalChange?: (isOpen: boolean) => void;
 }
 
 const styles = {
@@ -78,6 +79,7 @@ export const Header: React.FC<HeaderProps> = ({
   borderBottom = true,
   isFixed = true,
   showFiltersModal = false,
+  onShowFiltersModalChange,
 }) => {
   const containerStyle = {
     ...styles.container,
@@ -85,18 +87,12 @@ export const Header: React.FC<HeaderProps> = ({
     ...(isFixed ? {} : { position: 'relative' as const, zIndex: 0 })
   };
 
-  const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(showFiltersModal);
-
-  useEffect(() => {
-    setIsFiltersModalOpen(showFiltersModal);
-  }, [showFiltersModal]);
-
   return (
     <div style={{...containerStyle, ...(borderBottom && styles.borderBottomStyle)}}>
       <Wrapper type="column" style={{ position: 'absolute', top: -50 }}>
-        {isFiltersModalOpen && (
+        {showFiltersModal && (
           <FiltersModal
-            onClose={() => setIsFiltersModalOpen(false)}
+            onClose={() => onShowFiltersModalChange?.(false)}
             initialFilters={filtersData}
           />
         )}
@@ -138,9 +134,7 @@ export const Header: React.FC<HeaderProps> = ({
           <SearchBox
             placeholder="Search by Case Number"
             onChange={() => {}}
-            onFiltersClick={() => {
-              setIsFiltersModalOpen(true)
-            }}
+            onFiltersClick={() => onShowFiltersModalChange?.(true)}
             type="primary"
           />
 

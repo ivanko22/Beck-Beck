@@ -29,6 +29,7 @@ export const FiltersModal: React.FC<FiltersModalProps> = ({
                         size={14} 
                         color="var(--middle-grey)" 
                         hoverColor="var(--secondary-color)"
+                        style={{ cursor: 'pointer' }}
                     />
                 </div>
             </Wrapper>

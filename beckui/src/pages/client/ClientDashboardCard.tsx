@@ -100,7 +100,6 @@ export const ClientDashboardCard: React.FC<ClientDashboardCardProps> = ({
               caseNumber={caseData.caseNumber}
               menuItems={caseData.menuItems}
             />
-            {/* <StatusItem statusText={caseData.status.text} identifier={caseData.caseNumber} /> */}
           </Wrapper>
         </Wrapper>
 
@@ -268,14 +267,14 @@ export const ClientDashboardCard: React.FC<ClientDashboardCardProps> = ({
 
         {/* Medpay */}
         <Wrapper type="row" style={{ width: '100px', height: "100%", alignItems: 'center' }}>
-          <Typography variant="title15">
+          <Typography variant="title15" style={{ paddingLeft: 18 }}>
             {caseData.medpay}
           </Typography>
         </Wrapper>
 
         {/* At Fault Driver Other Policies */}
         <Wrapper type="row" style={{ width: '97px', paddingTop: 18 }}>
-          <Typography variant="title15">
+          <Typography variant="title15" style={{ paddingLeft: 18 }}>
             {caseData.atFaultDriverOtherPolicies ? 'Yes' : 'No'}
           </Typography>
         </Wrapper>
@@ -302,7 +301,7 @@ export const ClientDashboardCard: React.FC<ClientDashboardCardProps> = ({
         </Wrapper>
 
         {/* Settlement Accepted/Release */}
-        <Wrapper type="row" style={{ width: '116px',  paddingTop: 18 }}>
+        <Wrapper type="row" style={{ width: '98px',  paddingTop: 18 }}>
           <Typography variant="title15">
             {caseData.settlementAcceptedRelease}
           </Typography>

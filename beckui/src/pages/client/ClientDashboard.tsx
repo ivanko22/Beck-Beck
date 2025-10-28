@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navigation } from '../../components/navigation/Navigation';
 import { Wrapper } from '../../components/wrapper/PageWrapper';
 import { TableHeader } from '../../components/table/TableHeader';
@@ -17,6 +17,12 @@ export const ClientDashboard: React.FC<{
   appliedFilters,
 }) => {
   const [openRowId, setOpenRowId] = useState<string | null>(null);
+  const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(showFiltersModal);
+  
+  useEffect(() => {
+    setIsFiltersModalOpen(showFiltersModal);
+  }, [showFiltersModal]);
+
   const [activeFilters, setActiveFilters] = useState<Array<{label: string, phase: string}>>(() => {
     if (!appliedFilters) return [];
     const filters: Array<{label: string, phase: string}> = [];
@@ -66,7 +72,8 @@ export const ClientDashboard: React.FC<{
           type="clientDashboard"
           rightButtonLabel="Add New Case"
           teams={['Team 1', 'Team 2', 'Team 3', 'Team 4']}
-          showFiltersModal={showFiltersModal}
+          showFiltersModal={isFiltersModalOpen}
+          onShowFiltersModalChange={setIsFiltersModalOpen}
         />
 
         <Wrapper type="contentWrapper" style={{ width: 'fit-content', gap: 0, marginTop: 50 }}>
@@ -92,10 +99,10 @@ export const ClientDashboard: React.FC<{
             columns={[
               { label: 'Status / Case Number', width: '228px' },
               { label: 'Client Name', width: '190px' },
-              { label: 'Case Plan', width: '167px' },
+              { label: 'Case Plan', width: '156px' },
               { label: 'Big Policy?', width: '48px' },
-              { label: 'Big Injury?', width: '65px' },
-              { label: 'Injury Description', width: '158px' },
+              { label: 'Big Injury?', width: '65px', style: { paddingRight: 12 } },
+              { label: 'Injury Description', width: '156px' },
               { label: 'Client Status Details', width: '213px' },
               { label: 'LORs Sent', width: '153px' },
               { label: 'Med Recs Ordered', width: '185px' },
@@ -106,14 +113,15 @@ export const ClientDashboard: React.FC<{
               { label: <>At Fault Driver<br/>has Other Policies?</>, width: '100px' },
               { label: <>Subro<br/>Setup?</>, width: '82px' },
               { label: 'Wage-Loss', width: '96px' },
-              { label: <>Demand Sent /<br/>Status</>, width: '167px' },
+              { label: <>Demand Sent /<br/>Status</>, width: '148px' },
               { label: <>Settlement<br/>Accepted/Release<br/>Requested?</> , width: '127px' },
               { label: <>Check<br/>Received</>, width: '120px' },
               { label: '', width: '32px' },
             ]}
             useSpecificWidths={true}
-            style={{ paddingLeft: 70, gap: 20, marginBottom: 26 }}
+            style={{ paddingLeft: 30, gap: 20, marginBottom: 26 }}
             noBorder
+            onFiltersClick={() => setIsFiltersModalOpen(true)}
           />
 
           {cases.map((caseData, index) => (

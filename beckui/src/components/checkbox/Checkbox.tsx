@@ -61,8 +61,8 @@ const styles = {
   },
 
   disabled: {
-    color: 'var(--dark-grey)',
-    cursor: 'not-allowed'
+    color: 'var(--middle-grey)',
+    cursor: 'not-allowed',
   },
 }
 
@@ -108,14 +108,18 @@ export const Checkbox: React.FC<CheckboxProps> =  ({
           onChange={handleChange}
           style={{
             ...styles.checkbox,
-            ...(value ? { 
-              ...styles.checkboxChecked, 
+            ...(value && !disabled ? { 
               backgroundColor: color, 
               borderColor: color 
-            } : { borderColor: color }),
-            ...(disabled ? { ...styles.disabled} : {}),
+            } : {}),
+            ...(value && disabled ? {
+              backgroundColor: 'var(--light-grey)',
+              borderColor: 'var(--light-grey)',
+            } : {}),
+            ...(!value && !disabled ? { borderColor: color } : {}),
+            ...(!value && disabled ? { borderColor: 'var(--light-grey)' } : {}),
+            ...(disabled ? styles.disabled : {}),
           }}
-          area-checked={value}
         />
         {value && (
           <Wrapper type="row" 
