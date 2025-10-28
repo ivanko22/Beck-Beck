@@ -4,18 +4,54 @@ import { Wrapper } from '../../components/wrapper/PageWrapper';
 import { TableHeader } from '../../components/table/TableHeader';
 import { ClientDashboardCard, ClientDashboardCase } from './ClientDashboardCard';
 import { Header } from '../../components/header/Header';
+import { Chips } from '../../components/chips/Chips';
+import { Spacer } from '../../components/spacer/Spacer';
 
 export const ClientDashboard: React.FC<{ 
   cases: ClientDashboardCase[],
-  showFilters?: boolean,
+  showFiltersModal?: boolean,
+  appliedFilters?: any,
 }> = ({
   cases = [],
-  showFilters = false,
+  showFiltersModal = false,
+  appliedFilters,
 }) => {
   const [openRowId, setOpenRowId] = useState<string | null>(null);
+  const [activeFilters, setActiveFilters] = useState<Array<{label: string, phase: string}>>(() => {
+    if (!appliedFilters) return [];
+    const filters: Array<{label: string, phase: string}> = [];
+    
+    Object.entries(appliedFilters).forEach(([phase, phaseData]) => {
+      if (Array.isArray(phaseData)) {
+        phaseData.forEach((label) => {
+          filters.push({ label, phase });
+        });
+      }
+    });
+    
+    return filters;
+  });
+
+  const getFilterColor = (phase: string): 'purple' | 'secondary' | 'orange' | 'green' | 'yellow' | 'blue' | 'red' | 'gray' => {
+    const phaseMap: Record<string, 'purple' | 'secondary' | 'orange' | 'green' | 'yellow' | 'blue' | 'red' | 'gray'> = {
+      phase1: 'blue',
+      phase2: 'yellow',
+      phase3: 'secondary',
+      phase4: 'purple',
+      phase5: 'orange',
+      phase6: 'green',
+    };    
+    console.log('phaseMap[phase]', phaseMap[phase], phase);
+
+    return phaseMap[phase] || 'gray';
+  };
 
   const handleToggleRow = (caseId: string) => {
     setOpenRowId(openRowId === caseId ? null : caseId);
+  };
+
+  const handleRemoveFilter = (label: string) => {
+    setActiveFilters(activeFilters.filter(f => f.label !== label));
   };
 
   return (
@@ -31,10 +67,25 @@ export const ClientDashboard: React.FC<{
           type="clientDashboard"
           rightButtonLabel="Add New Case"
           teams={['Team 1', 'Team 2', 'Team 3', 'Team 4']}
-          showFilters={showFilters}
+          showFiltersModal={showFiltersModal}
         />
-        
+
         <Wrapper type="contentWrapper" style={{ width: 'fit-content', gap: 0, marginTop: 50 }}>
+          <Spacer customSize={30} />
+
+          {activeFilters.length > 0 && (
+            <Wrapper type="row" style={{ gap: 12,  flexWrap: 'wrap' }}>
+              {activeFilters.map((filter) => (
+                <Chips
+                  key={`${filter.phase}-${filter.label}`}
+                  label={filter.label}
+                  color={getFilterColor(filter.phase)}
+                  onClose={() => handleRemoveFilter(filter.label)}
+                />
+              ))}
+            </Wrapper>
+          )}
+
           <TableHeader
             columns={[
               { label: 'Status / Case Number', width: '228px' },

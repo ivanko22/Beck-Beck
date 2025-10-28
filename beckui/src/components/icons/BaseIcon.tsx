@@ -46,7 +46,6 @@ export const BaseIcon: React.FC<BaseIconProps> = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       style={{
-        cursor: (hoverColor || onClick) ? 'pointer' : 'default',
         transition: hoverColor ? 'color 0.2s ease' : 'none',
         ...style
       }}
