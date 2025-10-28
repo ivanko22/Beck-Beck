@@ -73,7 +73,7 @@ const closeIconStyle: React.CSSProperties = {
 
 export const Chips: React.FC<ChipsProps> = ({ 
   label, 
-  color, 
+  color = 'gray', 
   onClose,
 }) => {
   const colors = chipsStyles[color as keyof typeof chipsStyles];

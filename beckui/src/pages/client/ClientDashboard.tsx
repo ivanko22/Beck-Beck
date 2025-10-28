@@ -41,7 +41,6 @@ export const ClientDashboard: React.FC<{
       phase5: 'orange',
       phase6: 'green',
     };    
-    console.log('phaseMap[phase]', phaseMap[phase], phase);
 
     return phaseMap[phase] || 'gray';
   };
