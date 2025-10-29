@@ -10,6 +10,7 @@ import { Typography } from '../../components/typography/Typography';
 import { PageActions } from '../../components/page-actions/PageActions';
 import { Card } from '../../components/card/Card';
 import { Wrapper } from '../../components/wrapper/PageWrapper';
+import { Banner } from '../../components/banner/Banner';
 
 export interface ClientInsuranceRelativeSectionProps {
   type: 'insurance' | 'relative' | 'liability';
@@ -56,6 +57,8 @@ export interface ClientInsuranceRelativeSectionProps {
     umbrellaSecondaryLiabilityPolicy?: string;
     excessLiabilityCoverage?: string;
     notes?: string;
+    bannerMessage?: string;
+    bannerVariant?: 'warning' | 'info' | 'success' | 'error';
   };
 }
 
@@ -419,12 +422,19 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
                   onClick={() => {console.log('add another client insurance co section')}}
                 />
               </div>
-
             </div>
-            
           </div>
 
-          <div style={{...L.rightColumn, paddingTop: type === 'insurance' ? 208 : 286}}>
+          <div style={{...L.rightColumn, paddingTop: type === 'insurance' ? 20 : 286}}>
+            <Wrapper type="pageWrapper" style={formData?.bannerMessage ? {opacity: 1} : {opacity: 0}}>
+              <Banner 
+                variant={formData?.bannerVariant} 
+                message={formData?.bannerMessage || ''} 
+                style={{marginBottom: 86, width: 500, height: 68}} 
+              />
+
+            </Wrapper>
+ 
             {type !== 'liability' && (<div style={L.controlGroup}>
               <span style={L.radioTitle}>Does Client Have Own Policy?</span>
               

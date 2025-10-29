@@ -385,3 +385,20 @@ export const AutoInsuranceSaved: Story = {
   },
 };
 
+export const AutoInsuranceWithAlert: Story = {
+  args: {
+    caseNumber: 'Case #2025-0003',
+    clientName: 'John Doe',
+    pageActionsState: 'edit',
+    insuranceSections: [{
+      ...insuranceSectionData[0],
+      formData: {
+        ...insuranceSectionData[0].formData,
+        bannerMessage: 'Driver and policyholder names different. Compare BP with PR to check if the client has their own policy. If confirmed, add a second insurance section.',
+        bannerVariant: 'warning',
+      },
+    }],
+    relativeInsuranceSections: [residentRelativeInsuranceCoData],
+  },
+};
+

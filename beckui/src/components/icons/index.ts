@@ -35,5 +35,6 @@ export { ESignIcon } from './ESignIcon';
 export { PhoneIcon } from './PhoneIcon';
 export { AssignIcon } from './AssignIcon';
 export { AlertIcon } from './AlertIcon';
+export { Alert2Icon } from './Alert2Icon';
 export { StethoscopeIcon } from './StethoscopeIcon';
 export { FilterIcon } from './FilterIcon';
