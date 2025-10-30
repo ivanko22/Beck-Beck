@@ -59,6 +59,7 @@ export interface ClientInsuranceRelativeSectionProps {
     notes?: string;
     bannerMessage?: string;
     bannerVariant?: 'warning' | 'info' | 'success' | 'error';
+    wasClientInThisCar?: 'Yes' | 'No';
   };
 }
 
@@ -229,13 +230,13 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
                         )}
                         <Radio
                           label="Yes"
-                          checked={formData?.medPayLimit === '5k' || false}
+                          checked={formData?.wasClientInThisCar === 'Yes' || false}
                           onChange={() => {}}
                           disabled={isFilled ? true : undefined}
                         />
                         <Radio
                           label="No"
-                          checked={formData?.medPayLimit === '10k' || false}
+                          checked={formData?.wasClientInThisCar === 'No' || false}
                           onChange={() => {}}
                           disabled={isFilled ? true : undefined}
                         />
@@ -425,7 +426,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
             </div>
           </div>
 
-          <div style={{...L.rightColumn, paddingTop: type === 'insurance' ? 20 : 286}}>
+          <div style={{...L.rightColumn, paddingTop: type === 'insurance' ? 20 : 95 }}>
             <Wrapper type="pageWrapper" style={formData?.bannerMessage ? {opacity: 1} : {opacity: 0}}>
               <Banner 
                 variant={formData?.bannerVariant} 
@@ -522,7 +523,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
               </div>
             </div>
 
-            <div style={{...L.controlGroup, ...{paddingTop: type === 'insurance' ? 298 : type === 'liability' ? 335 : 325, marginLeft: '-21px'}}}>
+            <div style={{...L.controlGroup, ...{paddingTop: type === 'insurance' ? 298 : type === 'liability' ? 335 : 342, marginLeft: '-21px'}}}>
               <div style={{...L.checkboxGroupBorder}}>
                 <div style={{display: 'flex', alignItems: 'flex-start', paddingTop: 32}}>
                   <Button
@@ -641,7 +642,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
             </div>
         
             {type === 'insurance' || type === 'liability' && (
-                <div style={{...L.controlGroup, ...{paddingTop: 38}}}>
+                <div style={{...L.controlGroup, ...{paddingTop: 40}}}>
                   <div style={L.radioRow}>
                     <Checkbox
                         label="Adjuster will not disclose limits"
@@ -653,7 +654,7 @@ export const ClientInsuranceRelativeSection: React.FC<ClientInsuranceRelativeSec
                 </div>
               )}
 
-            <div style={{...L.controlGroup, ...{paddingTop: type === 'insurance' ? 114 : 194}}}>
+            <div style={{...L.controlGroup, ...{paddingTop: type === 'insurance' ? 114 : 200}}}>
               <div style={L.radioRow}>
                 <Checkbox
                     label="Injuries not large enough"

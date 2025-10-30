@@ -40,6 +40,7 @@ import {
   StethoscopeIcon,
   Scale2Icon,
   FilterIcon,
+  DatabaseIcon,
 
 } from './index';
 
@@ -335,6 +336,14 @@ export const Filter: Story = {
   render: (args) => <FilterIcon {...args} />,
 };
 
+export const Database: Story = {
+  args: {
+    size: 24,
+    color: '#D6D6DD',
+  },
+  render: (args) => <DatabaseIcon {...args} />,
+};
+
 export const IconShowcase: Story = {
   parameters: {
     docs: {
@@ -384,6 +393,7 @@ export const IconShowcase: Story = {
       { name: 'Stethoscope', component: StethoscopeIcon },
       { name: 'Scale2', component: Scale2Icon },
       { name: 'Filter', component: FilterIcon },
+      { name: 'Database', component: DatabaseIcon },
     ];
 
     const colors = [

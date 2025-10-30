@@ -3,6 +3,9 @@ import { Typography } from '../../../components/typography/Typography';
 import { Card } from '../../../components/card/Card';
 import { Input } from '../../../components/input/Inputs';
 import { BaseDropdown } from '../../../components/dropdown/Dropdown';
+import { Wrapper } from '../../../components/wrapper/PageWrapper';
+import { Button } from '../../../components/button/Button';
+import { EmailIcon, ClipboardIcon, PlusIcon, DatabaseIcon, EditIcon } from '../../../components/icons/index';
 
 const L = {
   caseOverviewCard: {
@@ -81,32 +84,75 @@ interface CaseOverviewSectionProps {
     clientPhone?: string;
     [key: string]: any;
   };
+  state?: 'saved' | 'edit' | 'adding';
   progressPercent?: number;
 }
 
 export const CaseOverviewSection: React.FC<CaseOverviewSectionProps> = ({ 
   formData = {}, 
-  progressPercent = 5.6 
+  progressPercent = 5.6,
+  state,
 }) => {
   const progressWidth = `${progressPercent}%`;
 
   return (
     <>
-      <Typography variant="leftLabel" style={{ textAlign: 'left' }}>Case Overview</Typography>
+      <Wrapper type="row" style={{alignItems: 'center', justifyContent: 'space-between'}}>
+        <Typography variant="leftLabel" style={{ textAlign: 'left' }}>Case Overview</Typography>
+        
+     {state !== 'edit' && (   
+      <Wrapper type="row" style={{ gap: 10 }}>  
+          <Button
+            label="Email Client"
+            icon={<EmailIcon size={24} />}
+            iconPosition="left"
+            onClick={() => {}}
+            size="medium"
+          />
+          <Button
+            label="Reffer Case"
+            icon={<ClipboardIcon size={26} />}
+            iconPosition="left"
+            onClick={() => {}}
+            size="medium"
+          />
+          <Button
+            label="Create Drop Case Letter"
+            icon={<PlusIcon size={23} />}
+            iconPosition="left"
+            onClick={() => {}}
+            size="medium"
+          />
+          <Button
+            label="Request Loan"
+            icon={<DatabaseIcon size={24} />}
+            iconPosition="left"
+            onClick={() => {}}
+            size="medium"
+          />
+          <Button
+            label="Edit"
+            icon={<EditIcon size={24} />}
+            iconPosition="left"
+            onClick={() => {}}
+            size="medium"
+          />
+        </Wrapper>)}
+        
+      </Wrapper>
       <Card style={L.caseOverviewCard}>
         <div style={L.caseOverviewLeftSide}>
-          
           <div style={L.caseOverviewTitleGroup}>
             <span style={L.casePhaseText}>Case Phase <b>1</b> of <b>18</b></span>
           </div>
           
           <div style={{ marginTop: '-26px' }}>
             <BaseDropdown 
-              disabled={false} 
               type="BaseDropdown" 
               value="File Setup" 
               noBorder={true}
               state='selected'
+              disabled={state !== 'edit'}
               onSelect={(item) => {
                 console.log(item);
               }}
@@ -124,7 +170,6 @@ export const CaseOverviewSection: React.FC<CaseOverviewSectionProps> = ({
             </div>
             <span style={L.caseOverviewProgressValue}>{progressPercent}%</span>
           </div>
-
         </div>
 
         <div style={{ ...L.InputsRow, width: '100%', padding: '0 20px' }}>
@@ -134,6 +179,7 @@ export const CaseOverviewSection: React.FC<CaseOverviewSectionProps> = ({
             value={formData?.incidentDate || ''}
             size="large"
             customSize={{ width: '150px' }}
+            disabled={state !== 'edit'}
           />
 
           <Input
@@ -142,6 +188,7 @@ export const CaseOverviewSection: React.FC<CaseOverviewSectionProps> = ({
             value={formData?.medicalBills || ''}
             size="large"
             customSize={{ width: '170px' }}
+            disabled={state !== 'edit'}
           />
 
           <Input
@@ -150,6 +197,7 @@ export const CaseOverviewSection: React.FC<CaseOverviewSectionProps> = ({
             value={formData?.totalLiabilityPP || ''}
             size="large"
             customSize={{ width: '170px' }}
+            disabled={state !== 'edit'}
           />
           
           <Input
@@ -158,6 +206,7 @@ export const CaseOverviewSection: React.FC<CaseOverviewSectionProps> = ({
             value={formData?.totalUMPP || ''}
             size="large"
             customSize={{ width: '170px' }}
+            disabled={state !== 'edit'}
           />
 
           <Input
@@ -166,6 +215,7 @@ export const CaseOverviewSection: React.FC<CaseOverviewSectionProps> = ({
             value={formData?.totalUMPolicy || ''}
             size="large"
             customSize={{ width: '170px' }}
+            disabled={state !== 'edit'}
           />
 
           <Input
@@ -174,6 +224,7 @@ export const CaseOverviewSection: React.FC<CaseOverviewSectionProps> = ({
             value={formData?.clientPhone || ''}
             size="large"
             customSize={{ width: '170px' }}
+            disabled={state !== 'edit'}
           />
         </div>
       </Card>

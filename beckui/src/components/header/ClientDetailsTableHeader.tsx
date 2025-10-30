@@ -97,7 +97,7 @@ export const ClientDetailsTableHeader: React.FC<ClientDetailsTableHeaderProps> =
       <div>
         {(type === 'relative' || type === 'liability') && (
           <Checkbox
-            label={checkboxLabel || (type === "relative" ? "No Resident Relative Ins. Co" : "No Liability Insurance Co")}
+            label={checkboxLabel || (type === "relative" ? "No Resident Relative Ins. Co" : "No Liability, thi is a UM Case")}
             checked={false}
             onChange={() => {}}
           />

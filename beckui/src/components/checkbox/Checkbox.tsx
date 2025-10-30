@@ -75,7 +75,7 @@ export const Checkbox: React.FC<CheckboxProps> =  ({
   onChange,
   id,
   name,
-  color = 'var(--secondary-color)',
+  color = 'var(--light-grey)',
   style,
 }) => {
   const isControlled = checked !== undefined;

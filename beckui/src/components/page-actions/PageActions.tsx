@@ -38,7 +38,6 @@ export const PageActions: React.FC<PageActionsProps> = ({
   onLeftClick,
   onRightClick,
 }) => {
-  console.log(state, type);
 
   if (type === 'button') {
     if (state === 'saved') {

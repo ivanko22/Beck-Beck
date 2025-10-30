@@ -4,6 +4,7 @@ import { Input } from '../../../components/input/Inputs';
 import { BaseDropdown } from '../../../components/dropdown/Dropdown';
 import { Checkbox } from '../../../components/checkbox/Checkbox';
 import { Radio } from '../../../components/radiobutton/Radiobutton';
+import { Wrapper } from '../../../components/wrapper/PageWrapper';
 
 const L = {
   InputsRow: {
@@ -24,6 +25,7 @@ const L = {
 };
 
 interface ClientInformationSectionProps {
+  state?: 'saved' | 'edit' | 'adding';
   formData?: {
     assignedTeam?: string;
     referredFirm?: string;
@@ -54,19 +56,20 @@ interface ClientInformationSectionProps {
   };
 }
 
-export const ClientInformationSection: React.FC<ClientInformationSectionProps> = ({ formData = {} }) => {
+export const ClientInformationSection: React.FC<ClientInformationSectionProps> = ({ formData = {}, state }) => {
   return (
     <>
       <Typography style={{ textAlign: 'left', paddingBottom: '10px' }} variant="leftLabel">
         Client Information
       </Typography>
 
-      <div style={{ ...L.InputsRow, width: 'auto' }}>
+      <Wrapper type="row" style={{ justifyContent: 'space-between', paddingBottom: 30 }}>
         <BaseDropdown
           type="BaseDropdown"
           value={formData?.assignedTeam || "Team 1"}
           label="Assigned to Team"
           state='selected'
+          disabled={state !== 'edit'}
           menuItems={[
             { label: 'Team 1' },
             { label: 'Team 2' },
@@ -81,6 +84,8 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
           type="BaseDropdown"
           value={formData?.referredFirm || "Referred Firm"}
           label="Referred Firm"
+          state='selected'
+          disabled={state !== 'edit'}
           menuItems={[
             { label: 'Firm 1' },
             { label: 'Firm 2' },
@@ -97,6 +102,7 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
           value={formData?.firstName || ''}
           size="large"
           customSize={{ width: '270px' }}
+          disabled={state !== 'edit'}
         />
 
         <Input
@@ -105,6 +111,7 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
           value={formData?.email || ''}
           size="large"
           customSize={{ width: '300px' }}
+          disabled={state !== 'edit'}
         />
 
         <BaseDropdown
@@ -112,6 +119,7 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
           value={formData?.bestContact || "Phone"}
           state='selected'
           label="Best Contact"
+          width="120px"
           menuItems={[
             { label: 'Phone' },
             { label: 'Email' },
@@ -120,16 +128,18 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
           onSelect={(item) => {
             console.log(item);
           }}
+          disabled={state !== 'edit'}
         />
-      </div>
+      </Wrapper>
 
-      <div style={{ ...L.InputsRow, width: 'auto' }}>
+      <Wrapper type="row" style={{ justifyContent: 'space-between', paddingBottom: 30 }}>
         <Input
           placeholder="Address"
           label="Address"
           value={formData?.address || ''}
           size="large"
           customSize={{ width: '400px' }}
+          disabled={state !== 'edit'}
         />
 
         <BaseDropdown
@@ -146,6 +156,7 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
           onSelect={(item) => {
             console.log(item);
           }}
+          disabled={state !== 'edit'}
         />
 
         <Input
@@ -153,7 +164,8 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
           label="City"
           value={formData?.city || ''}
           size="large"
-          customSize={{ width: '240px' }}
+          customSize={{ width: '200px' }}
+          disabled={state !== 'edit'}
         />
 
         <Input
@@ -161,7 +173,8 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
           label="Zip"
           value={formData?.zipCode || ''}
           size="large"
-          customSize={{ width: '120px' }}
+          customSize={{ width: '100px' }}
+          disabled={state !== 'edit'}
         />
         
         <Input
@@ -169,7 +182,8 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
           label="DOB"
           value={formData?.dob || ''}
           size="large"
-          customSize={{ width: '140px' }}
+          customSize={{ width: '130px' }}
+          disabled={state !== 'edit'}
         />
 
         <Input
@@ -177,7 +191,8 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
           label="SSN"
           value={formData?.ssn || ''}
           size="large"
-          customSize={{ width: '160px' }}
+          customSize={{ width: '140px' }}
+          disabled={state !== 'edit'}
         />
 
         <Input
@@ -185,135 +200,172 @@ export const ClientInformationSection: React.FC<ClientInformationSectionProps> =
           label="DOL (Crash Date)"
           value={formData?.crashDate || ''}
           size="large"
-          customSize={{ width: '182px' }}
-        />     
-      </div>
+          customSize={{ width: '130px' }}
+          disabled={state !== 'edit'}
+          />     
+      </Wrapper>
 
-      <div style={{ ...L.InputsRow, width: 'auto' }}>
-        <div style={{  }}>
-          <Input
-            placeholder="Other Clients in Crash"
-            label="Other Clients in Crash"
-            value={formData?.otherClientsInCrash || ''}
-            size="large"
-            customSize={{ width: '440px' }}
-          />
-
-          <div style={{ marginTop: '30px', width: '440px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      <Wrapper type="column" style={{ paddingBottom: 30 }}>
+        <Wrapper type="row" style={{ alignItems: 'flex-start', justifyContent: 'space-between' }}>
+          <Wrapper type="column" style={{ gap: 30 }}>
+            <Input
+              placeholder="Other Clients in Crash"
+              label="Other Clients in Crash"
+              value={formData?.otherClientsInCrash || ''}
+              size="large"
+              customSize={{ width: '450px' }}
+              disabled={state !== 'edit'}
+            />
             <Checkbox
               label="Do NOT Send Automated Texts re: Medical Providers"
               checked={formData?.doNotSendAutomatedTexts || false}
               onChange={() => {}}
+              disabled={state !== 'edit'}
             />
+          </Wrapper>
 
-            <div style={{ ...L.InputsRadioRow  }}>
+          <Input
+            placeholder="Parent Name (if a minor/disabled child)"
+            label="Parent Name (if a minor/disabled child)"
+            value={formData?.parentName || ''}
+            size="large"
+            customSize={{ width: '270px' }}
+            disabled={state !== 'edit'}
+          />
+
+          <Input
+            inputType="textarea"
+            placeholder="Case Plan"
+            label="Case Plan"
+            value={formData?.casePlan || ''}
+            size="large"
+            customSize={{ width: '560px', height: '120px' }}
+            disabled={state !== 'edit'}
+          />
+        </Wrapper>
+
+        <Wrapper type="column" style={{ gap: 30 }}>
+          {/* Phone 1 */}
+          <Wrapper type="row" style={{ width: '660px', gap: '40px', height: '60px' }}>
+            <Wrapper type="row" style={{ gap: '20px', alignItems: 'center' }}> 
               <Input
-                placeholder="Phone 1"
+                placeholder="Client Phone 1"
                 value={formData?.phone1 || ''}
                 size="large"
                 customSize={{ width: '160px' }}
+                disabled={state !== 'edit'}
               />
-
-              <div style={{ display: 'flex', gap: '40px', paddingTop: '30px' }}>
+              <Wrapper type="row" style={{ paddingTop: '30px', gap: '20px', alignItems: 'center' }}>
                 <Radio
-                  label="Client Phone"
-                  checked={formData?.phone1Type === 'Client Phone'}
+                  label="Client Phone 1"
+                  checked={formData?.phone1Type === 'Client Phone' || formData?.phone1Type === 'Client Phone 1'}
                   onChange={() => {}}
+                  disabled={state !== 'edit'}
                 />
+             </Wrapper>
+            </Wrapper>
+
+            <Wrapper type="row" style={{ gap: '20px', alignItems: 'center' }}> 
+              <Wrapper type="row" style={{ paddingTop: '30px', gap: '20px', alignItems: 'center' }}>
                 <Radio
                   label="Other"
                   checked={formData?.phone1Type === 'Other'}
                   onChange={() => {}}
+                  disabled={state !== 'edit'}
                 />
-              </div>
-
-              <Input
+             </Wrapper>
+             <Input
                 placeholder="Other Phone 1"
                 value={formData?.otherPhone1 || ''}
                 size="large"
                 customSize={{ width: '160px' }}
+                disabled={state !== 'edit'}
               />
-            </div>
+            </Wrapper>
+          </Wrapper>
 
-            <div style={{ ...L.InputsRadioRow  }}>
+          {/* Phone 2 */}
+          <Wrapper type="row" style={{ width: '660px', gap: '40px', height: '60px' }}>
+            <Wrapper type="row" style={{ gap: '20px', alignItems: 'center' }}> 
               <Input
-                placeholder="Phone 2"
+                placeholder="Client Phone 2"
                 value={formData?.phone2 || ''}
                 size="large"
                 customSize={{ width: '160px' }}
+                disabled={state !== 'edit'}
               />
-
-              <div style={{ display: 'flex', gap: '40px', paddingTop: '30px' }}>
+              <Wrapper type="row" style={{ paddingTop: '30px', gap: '20px', alignItems: 'center' }}>
                 <Radio
-                  label="Client Phone"
+                  label="Client Phone 2"
                   checked={formData?.phone2Type === 'Client Phone'}
                   onChange={() => {}}
+                  disabled={state !== 'edit'}
                 />
+             </Wrapper>
+            </Wrapper>
+
+            <Wrapper type="row" style={{ gap: '20px', alignItems: 'center' }}> 
+              <Wrapper type="row" style={{ paddingTop: '30px', gap: '20px', alignItems: 'center' }}>
                 <Radio
                   label="Other"
-                  checked={formData?.phone2Type === 'Other'}
+                  checked={formData?.otherPhone2Type === 'Client Phone'}
                   onChange={() => {}}
+                  disabled={state !== 'edit'}
                 />
-              </div>
-
-              <Input
+             </Wrapper>
+             <Input
                 placeholder="Other Phone 2"
                 value={formData?.otherPhone2 || ''}
                 size="large"
                 customSize={{ width: '160px' }}
+                disabled={state !== 'edit'}
               />
-            </div>
+            </Wrapper>
+          </Wrapper>
 
-            <div style={{ ...L.InputsRadioRow  }}>
+          {/* Phone 3 */}
+          <Wrapper type="row" style={{ width: '660px', gap: '40px', height: '60px' }}>
+            <Wrapper type="row" style={{ gap: '20px', alignItems: 'center' }}> 
               <Input
-                placeholder="Phone 3"
+                placeholder="Client Phone 3"
                 value={formData?.phone3 || ''}
                 size="large"
                 customSize={{ width: '160px' }}
+                disabled={state !== 'edit'}
               />
-
-              <div style={{ display: 'flex', gap: '40px', paddingTop: '30px' }}>
+              <Wrapper type="row" style={{ paddingTop: '30px', gap: '20px', alignItems: 'center' }}>
                 <Radio
-                  label="Client Phone"
+                  label="Client Phone 3"
                   checked={formData?.phone3Type === 'Client Phone'}
                   onChange={() => {}}
+                  disabled={state !== 'edit'}
                 />
+             </Wrapper>
+            </Wrapper>
+
+            <Wrapper type="row" style={{ gap: '20px', alignItems: 'center' }}> 
+              <Wrapper type="row" style={{ paddingTop: '30px', gap: '20px', alignItems: 'center' }}>
                 <Radio
                   label="Other"
                   checked={formData?.phone3Type === 'Other'}
                   onChange={() => {}}
+                  disabled={state !== 'edit'}
                 />
-              </div>
-
-              <Input
+             </Wrapper>
+             <Input
                 placeholder="Other Phone 3"
-                label="Other Phone 3"
                 value={formData?.otherPhone3 || ''}
                 size="large"
                 customSize={{ width: '160px' }}
+                disabled={state !== 'edit'}
               />
-            </div>
-          </div>
-        </div>
-      
-        <Input
-          placeholder="Parent Name (if a minor/disabled child)"
-          label="Parent Name (if a minor/disabled child)"
-          value={formData?.parentName || ''}
-          size="large"
-          customSize={{ width: '400px' }}
-        />
+            </Wrapper>
+          </Wrapper>
 
-        <Input
-          inputType="textarea"
-          placeholder="Case Plan"
-          label="Case Plan"
-          value={formData?.casePlan || ''}
-          size="large"
-          customSize={{ width: '560px', height: '120px' }}
-          style={{ marginTop: '32px' }}
-        />
-      </div>
+        </Wrapper>
+      
+      </Wrapper>
+
     </>
   );
 };
