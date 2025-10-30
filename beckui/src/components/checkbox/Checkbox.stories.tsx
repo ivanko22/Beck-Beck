@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Checkbox } from './Checkbox';
+import { Wrapper } from '../wrapper/PageWrapper';
 
 const meta: Meta<typeof Checkbox> = {
   title: 'Components/Checkbox',
@@ -110,14 +111,25 @@ export const Green: Story = {
 export const AllPhases: Story = {
   render: () => {
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
-        <Checkbox label="Intake & Planning" colorLabel="var(--dark-grey)" color="var(--secondary-color)" checked />
-        <Checkbox label="Treatment Phase" colorLabel="var(--dark-grey)" color="var(--yellow)" checked />
-        <Checkbox label="Post-Treatment" colorLabel="var(--dark-grey)" color="var(--blue)" checked />
-        <Checkbox label="Demand Preparation" colorLabel="var(--dark-grey)" color="var(--purple)" checked />
-        <Checkbox label="Negotiation" colorLabel="var(--dark-grey)" color="var(--orange)" checked />
-        <Checkbox label="Settlement" colorLabel="var(--dark-grey)" color="var(--success)" checked />
-      </div>
+      <Wrapper type="row" style={{ gap: 28 }}>
+        <Wrapper type="column" style={{ gap: 20 }}>
+          <Checkbox label="Intake & Planning" colorLabel="var(--dark-grey)" color="var(--secondary-color)"  />
+          <Checkbox label="Treatment Phase" colorLabel="var(--dark-grey)" color="var(--yellow)"  />
+          <Checkbox label="Post-Treatment" colorLabel="var(--dark-grey)" color="var(--blue)"  />
+          <Checkbox label="Demand Preparation" colorLabel="var(--dark-grey)" color="var(--purple)"  />
+          <Checkbox label="Negotiation" colorLabel="var(--dark-grey)" color="var(--orange)"  />
+          <Checkbox label="Settlement" colorLabel="var(--dark-grey)" color="var(--success)"  />
+        </Wrapper>
+
+        <Wrapper type="column" style={{ gap: 20 }}>
+          <Checkbox label="Intake & Planning" colorLabel="var(--dark-grey)" color="var(--secondary-color)" checked />
+          <Checkbox label="Treatment Phase" colorLabel="var(--dark-grey)" color="var(--yellow)" checked />
+          <Checkbox label="Post-Treatment" colorLabel="var(--dark-grey)" color="var(--blue)" checked />
+          <Checkbox label="Demand Preparation" colorLabel="var(--dark-grey)" color="var(--purple)" checked />
+          <Checkbox label="Negotiation" colorLabel="var(--dark-grey)" color="var(--orange)" checked />
+          <Checkbox label="Settlement" colorLabel="var(--dark-grey)" color="var(--success)" checked />          
+        </Wrapper>
+      </Wrapper>
     );
   },
 };

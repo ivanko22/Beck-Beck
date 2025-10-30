@@ -8,6 +8,7 @@ import { Wrapper } from '../../../components/wrapper/PageWrapper';
 import { Spacer } from '../../../components/spacer/Spacer';
 
 interface CrashInjuryDetailsSectionProps {
+  state?: 'saved' | 'edit' | 'adding';
   formData?: {
     crashDetails?: string;
     crashInjuries?: string;
@@ -26,7 +27,7 @@ interface CrashInjuryDetailsSectionProps {
   };
 }
 
-export const CrashInjuryDetailsSection: React.FC<CrashInjuryDetailsSectionProps> = ({ formData = {} }) => {
+export const CrashInjuryDetailsSection: React.FC<CrashInjuryDetailsSectionProps> = ({ formData = {}, state }) => {
   return (
     <>
     <Wrapper type="row" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
@@ -55,7 +56,8 @@ export const CrashInjuryDetailsSection: React.FC<CrashInjuryDetailsSectionProps>
             size="large"
             customSize={{ width: '100%', height: '120px' }}
             style={{ marginTop: '-20px' }}
-         />
+            disabled={state !== 'edit'}
+          />
 
         <Spacer customSize={40} />
 
@@ -68,6 +70,7 @@ export const CrashInjuryDetailsSection: React.FC<CrashInjuryDetailsSectionProps>
             size="large"
             customSize={{ height: '120px', width: '100%' }}
             style={{ flex: 1, marginRight: '12px' }}
+            disabled={state !== 'edit'}
           />
 
           <Input
@@ -78,6 +81,7 @@ export const CrashInjuryDetailsSection: React.FC<CrashInjuryDetailsSectionProps>
             size="large"
             customSize={{ height: '120px', width: '100%' }}
             style={{ flex: 1, marginLeft: '12px' }}
+            disabled={state !== 'edit'}
           />
         </Wrapper>
 
@@ -86,11 +90,13 @@ export const CrashInjuryDetailsSection: React.FC<CrashInjuryDetailsSectionProps>
             label="High-Value Policy - Company vehicle at fault or insurance coverage likely exceeds $100K"
             checked={formData?.highValuePolicy || false}
             onChange={() => {}}
+            disabled={state !== 'edit'}
           />
           <Checkbox
             label="Severe Injury - Broken bones, surgery required, or overnight hospitalization"
             checked={formData?.severeInjury || false}
             onChange={() => {}}
+            disabled={state !== 'edit'}
           />
         </Wrapper>
 

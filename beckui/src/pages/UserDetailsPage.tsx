@@ -132,7 +132,7 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
           <Wrapper type="column">
               <Typography variant="leftLabel" style={{textAlign: 'left'}}>User Information</Typography>
 
-              <Wrapper type="row" style={{ gap: 22}}>
+              <Wrapper type="row" style={{ gap: 44}}>
                 <BaseDropdown
                   label="User"
                   disabled={noBorder}

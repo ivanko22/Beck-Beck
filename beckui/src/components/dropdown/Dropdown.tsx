@@ -174,58 +174,55 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
 
   return (
     <>
-      <div style={userDropdownContainer}>
-        {type === 'userDropdown' && (
-          <>
-            <div 
-              style={UserDropdownContainer} 
-              onClick={toggle} 
-              aria-expanded={open} 
-              role="button"
-              onMouseEnter={() => setHover(true)}
-              onMouseLeave={() => setHover(false)}
-            >
-              <AvaIcon 
-                size={32} 
-                color={hover ? 'var(--light-grey)' : 'var(--middle-grey)'}
-              />
-                <span>{dropdownValue}</span>
-              
-              <DropdownIcon 
-                size={8} 
-                color={hover ? 'var(--light-grey)' : 'var(--middle-grey)'}
+      {type === 'userDropdown' && (
+        <div style={userDropdownContainer}>
+          <div 
+            style={UserDropdownContainer} 
+            onClick={toggle} 
+            aria-expanded={open} 
+            role="button"
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+          >
+            <AvaIcon 
+              size={32} 
+              color={hover ? 'var(--light-grey)' : 'var(--middle-grey)'}
+            />
+              <span>{dropdownValue}</span>
+            
+            <DropdownIcon 
+              size={8} 
+              color={hover ? 'var(--light-grey)' : 'var(--middle-grey)'}
+            />
+          </div>
+
+          {open && menuItems && (
+            <div style={userDropdownStyle} role="menu">
+              <UserDropdownItem type='user' label='Profile' />
+              <UserDropdownItem type='user' label='Settings' hovered={state === 'hover'} />
+              <UserDropdownItem
+                type='user'
+                label='Sign out'
+                icon={SignOutIcon}
+                style={{ borderBottom: 'none' }}
               />
             </div>
+          )}
+        </div>
+      )}
 
-            {open && menuItems && (
-              <div style={userDropdownStyle} role="menu">
-                <UserDropdownItem type='user' label='Profile' />
-                <UserDropdownItem type='user' label='Settings' hovered={state === 'hover'} />
-                <UserDropdownItem
-                  type='user'
-                  label='Sign out'
-                  icon={SignOutIcon}
-                  style={{ borderBottom: 'none' }}
-                />
-              </div>
-            )}
-          </>
-        )}
-      </div>
-
-      <div style={baseDropdownContainer}>
-        {type === 'BaseDropdown' && (
-          <>
-            {effectiveState === 'selected' && !leftLabel && (
-              <div style={labelStyle}>
-                {label}
-              </div>
-            )}
-            {leftLabel && (
-              <div style={leftLabelWrapper}>
-                <Typography variant="leftLabel">{label}</Typography>
-              </div>
-            )}
+      {type === 'BaseDropdown' && (
+        <div style={baseDropdownContainer}>
+          {effectiveState === 'selected' && !leftLabel && (
+            <div style={labelStyle}>
+              {label}
+            </div>
+          )}
+          {leftLabel && (
+            <div style={leftLabelWrapper}>
+              <Typography variant="leftLabel">{label}</Typography>
+            </div>
+          )}
 
           <div style={BaseDropdownContainer} onClick={disabled ? undefined : toggle} aria-expanded={open} role="button">
             <span style={dropdownValueStyle}>{dropdownValue}</span>
@@ -236,10 +233,8 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
               />
             </div>
           </div>
-          </>
-        )}
 
-        {open && menuItems && type === 'BaseDropdown' && (
+          {open && menuItems && (
             <div style={{ ...BaseDropdownStyle, maxHeight: openHeight || '400px' }} role="menu">
               {menuItems.map((item, index) => (
               
@@ -258,26 +253,24 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
               />
             ))}
             </div>
-        )}
-      </div>
+          )}
+        </div>
+      )}
       
-      <div style={{ ...baseDropdownContainer, height: 'auto' }}>
-        {type === 'statusDropdown' && (
-          <>
-            <div style={statusDropdownContainer} onClick={disabled ? undefined : toggle} aria-expanded={open} role="button">
-              <StatusItem statusText={dropdownValue} identifier={caseNumber || ''} />
+      {type === 'statusDropdown' && (
+        <div style={{ ...baseDropdownContainer, height: 'auto' }}>
+          <div style={statusDropdownContainer} onClick={disabled ? undefined : toggle} aria-expanded={open} role="button">
+            <StatusItem statusText={dropdownValue} identifier={caseNumber || ''} />
 
-              <div>
-                <DropdownIcon 
-                  size={11} 
-                  color={(hover ? 'var(--light-grey)' : 'var(--middle-grey)')}
-                />
-              </div>
+            <div>
+              <DropdownIcon 
+                size={11} 
+                color={(hover ? 'var(--light-grey)' : 'var(--middle-grey)')}
+              />
             </div>
-          </>
-        )}
+          </div>
 
-        {open && menuItems && type === 'statusDropdown' && (
+          {open && menuItems && (
             <div style={{ ...BaseDropdownStyle, top: 80 }} role="menu">
               {menuItems.map((item, index) => (
               
@@ -296,8 +289,9 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
               />
             ))}
             </div>
-        )}
-      </div>
+          )}
+        </div>
+      )}
       
     </>
       

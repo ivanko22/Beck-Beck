@@ -29,6 +29,7 @@ const L = {
 };
 
 interface MedicalBillsHealthInsuranceSectionProps {
+  state?: 'saved' | 'edit' | 'adding';
   formData?: {
     estimatedMedicalBills?: string;
     insuranceType?: {
@@ -61,7 +62,10 @@ interface MedicalBillsHealthInsuranceSectionProps {
   };
 }
 
-export const MedicalBillsHealthInsuranceSection: React.FC<MedicalBillsHealthInsuranceSectionProps> = ({ formData = {} }) => {
+export const MedicalBillsHealthInsuranceSection: React.FC<MedicalBillsHealthInsuranceSectionProps> = ({ 
+  formData = {}, 
+  state 
+}) => {
   return (
     <>
       <ClientDetailsTableHeader
@@ -86,41 +90,47 @@ export const MedicalBillsHealthInsuranceSection: React.FC<MedicalBillsHealthInsu
 
           <div style={{...L.checkboxGroup, gap: '40px'}}>
               <Input
-                  label=""
-                  placeholder=""
-                  value={formData?.estimatedMedicalBills || ''}
-                  size="large"
-                  customSize={{ width: '110px' }}
+                label=""
+                placeholder=""
+                value={formData?.estimatedMedicalBills || ''}
+                size="large"
+                customSize={{ width: '110px' }}
+                disabled={state !== 'edit'}
               />
 
               <div style={{ display: 'flex', gap: '36px', paddingTop: '26px' }}>
                   <Checkbox
-                      label="None"
-                      checked={formData?.insuranceType?.medicaid || false}
-                      onChange={() => {}}
+                    label="None"
+                    checked={formData?.insuranceType?.medicaid || false}
+                    onChange={() => {}}
+                    disabled={state !== 'edit'}
                   />
                   <Checkbox
-                      label="Medicaid"
-                      checked={formData?.insuranceType?.medicaid || false}
-                      onChange={() => {}}
-                  />
-
-                  <Checkbox
-                      label="Medicare"
-                      checked={formData?.insuranceType?.medicare || false}
-                      onChange={() => {}}
+                    label="Medicaid"
+                    checked={formData?.insuranceType?.medicaid || false}
+                    onChange={() => {}}
+                    disabled={state !== 'edit'}
                   />
 
                   <Checkbox
-                      label="Tricare"
-                      checked={formData?.insuranceType?.tricare || false}
-                      onChange={() => {}}
+                    label="Medicare"
+                    checked={formData?.insuranceType?.medicare || false}
+                    onChange={() => {}}
+                    disabled={state !== 'edit'}
                   />
 
                   <Checkbox
-                      label="Private"
-                      checked={formData?.insuranceType?.private || false}
-                      onChange={() => {}}
+                    label="Tricare"
+                    checked={formData?.insuranceType?.tricare || false}
+                    onChange={() => {}}
+                    disabled={state !== 'edit'}
+                  />
+
+                  <Checkbox
+                    label="Private"
+                    checked={formData?.insuranceType?.private || false}
+                    onChange={() => {}}
+                    disabled={state !== 'edit'}
                   />
               </div>
                 
@@ -130,6 +140,7 @@ export const MedicalBillsHealthInsuranceSection: React.FC<MedicalBillsHealthInsu
                   value={formData?.otherInsuranceType || ''}
                   size="large"
                   customSize={{ width: '300px' }}
+                  disabled={state !== 'edit'}
                 />
             </div>
           </div>
@@ -147,54 +158,61 @@ export const MedicalBillsHealthInsuranceSection: React.FC<MedicalBillsHealthInsu
               label="Wage Loss"
               checked={formData?.wageLoss === 'Yes'}
               onChange={() => {}}
+              disabled={state !== 'edit'}
             />
 
             <Input
               label="Missed Days"
               showLabel={true}
               placeholder=""
-              value={formData?.estimatedMedicalBills || ''}
+              value={formData?.missedDays || ''}
               size="large"
               customSize={{ width: '118px' }}
+              disabled={state !== 'edit'}
             />
 
-            <Input
+            <Input  
               label="Total Missed Days"
               showLabel={true}
               placeholder=""
-              value={formData?.estimatedMedicalBills || ''}
+              value={formData?.totalMissedDays || ''}
               size="large"
               customSize={{ width: '144px' }}
+              disabled={state !== 'edit'}
             />
 
             <Input
               label="Hours Worked / Days"
               showLabel={true}
               placeholder=""
-              value={formData?.estimatedMedicalBills || ''}
+              value={formData?.hoursWorkedDays || ''}
               size="large"
               customSize={{ width: '165px' }}
+              disabled={state !== 'edit'}
             />
 
             <Input
               label="Total Wage Loss"
               showLabel={true}
               placeholder=""
-              value={formData?.estimatedMedicalBills || ''}
+              value={formData?.totalWageLoss || ''}
               size="large"
               customSize={{ width: '144px' }}
+              disabled={state !== 'edit'}
             />
 
             <Toggle
               label="Paid for Missed Time?"
-              checked={formData?.wageLoss === 'Yes'}
+              checked={formData?.paidForMissedTime === 'Yes'}
               onChange={() => {}}
+              disabled={state !== 'edit'}
             />
 
             <Toggle
               label="Contact Employer"
-              checked={formData?.wageLoss === 'Yes'}
+              checked={formData?.contactEmployer === 'Ok'}
               onChange={() => {}}
+              disabled={state !== 'edit'}
             />
           </div>
 
@@ -207,6 +225,7 @@ export const MedicalBillsHealthInsuranceSection: React.FC<MedicalBillsHealthInsu
               value={formData?.employerName || ''}
               size="large"
               customSize={{ width: '250px' }}
+              disabled={state !== 'edit'}
             />
             
             <Input
@@ -215,6 +234,7 @@ export const MedicalBillsHealthInsuranceSection: React.FC<MedicalBillsHealthInsu
               value={formData?.employerCity || ''}
               size="large"
               customSize={{ width: '160px' }}
+              disabled={state !== 'edit'}
             />
             
             <BaseDropdown
@@ -231,6 +251,7 @@ export const MedicalBillsHealthInsuranceSection: React.FC<MedicalBillsHealthInsu
               onSelect={(item) => {
                 console.log(item);
               }}
+              disabled={state !== 'edit'}
             />
             <Input
               placeholder="Zip Code"
@@ -238,6 +259,7 @@ export const MedicalBillsHealthInsuranceSection: React.FC<MedicalBillsHealthInsu
               value={formData?.employerZipCode || ''}
               size="large"
               customSize={{ width: '108px' }}
+              disabled={state !== 'edit'}
             />
             <Input
               placeholder="Employer Email"
@@ -245,6 +267,7 @@ export const MedicalBillsHealthInsuranceSection: React.FC<MedicalBillsHealthInsu
               value={formData?.employerEmail || ''}
               size="large"
               customSize={{ width: '360px' }}
+              disabled={state !== 'edit'}
             />
           </div>
 
@@ -259,6 +282,7 @@ export const MedicalBillsHealthInsuranceSection: React.FC<MedicalBillsHealthInsu
               value={formData?.otherInnocentInjuredParties || ''}
               size="large"
               customSize={{ width: '500px', height: '100px' }}
+              disabled={state !== 'edit'}
             />
 
             <Wrapper type="column">
@@ -269,28 +293,33 @@ export const MedicalBillsHealthInsuranceSection: React.FC<MedicalBillsHealthInsu
                     label="Text"
                     checked={formData?.sendBigPackage?.text || false}
                     onChange={() => {}}
+                    disabled={state !== 'edit'}
                   />
 
                   <Checkbox
                     label="Email"
                     checked={formData?.sendBigPackage?.email || false}
                     onChange={() => {}}
+                    disabled={state !== 'edit'}
                   />
 
                   <Checkbox
                     label="Snail Mail"
                     checked={formData?.sendBigPackage?.snailMail || false}
                     onChange={() => {}}
+                    disabled={state !== 'edit'}
                   />
               </div>
 
-              <Button
-                label="Sent the Big Package"
-                icon={<LetterIcon size={22} />}
-                iconPosition="left"
-                onClick={() => {}}
-                size="medium"
-              />
+              <Wrapper type="row" style={{ marginLeft: -14 }}>
+                <Button
+                  label="Sent the Big Package"
+                  icon={<LetterIcon size={22} />}
+                  iconPosition="left"
+                  onClick={() => {}}
+                  size="medium"
+                />
+              </Wrapper>
             </Wrapper>
           </Wrapper>
       </div>

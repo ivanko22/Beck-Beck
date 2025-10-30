@@ -7,6 +7,7 @@ import { Wrapper } from '../../../components/wrapper/PageWrapper';
 import { Border } from '../../../components/border/Border';
 
 interface TraumaticBrainInjurySectionProps {
+  state?: 'saved' | 'edit' | 'adding';
   formData?: {
     adultTBI?: boolean;
     adultHeadache?: boolean;
@@ -20,7 +21,7 @@ interface TraumaticBrainInjurySectionProps {
   };
 }
 
-export const TraumaticBrainInjurySection: React.FC<TraumaticBrainInjurySectionProps> = ({ formData = {} }) => {
+export const TraumaticBrainInjurySection: React.FC<TraumaticBrainInjurySectionProps> = ({ formData = {}, state }) => {
   return (
     <>
       <Wrapper type="row" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
@@ -43,6 +44,7 @@ export const TraumaticBrainInjurySection: React.FC<TraumaticBrainInjurySectionPr
               label="Adult Traumatic Brain Injury Symptoms?"
               checked={formData?.adultTBI || false}
               onChange={() => {}}
+              disabled={state !== 'edit'}
             />
             {[1, 2, 3].map((rowIndex) => (
               <Wrapper key={rowIndex} type="row" style={{gap: '24px', paddingLeft: '78px'}}>
@@ -50,16 +52,19 @@ export const TraumaticBrainInjurySection: React.FC<TraumaticBrainInjurySectionPr
                   label="Headache"
                   checked={formData?.childHeadache || false}
                   onChange={() => {}}
+                  disabled={state !== 'edit'}
                 />
                 <Checkbox
                   label="Nausea"
                   checked={formData?.childNausea || false}
                   onChange={() => {}}
+                  disabled={state !== 'edit'}
                 />
                 <Checkbox
                   label="Seizures"
                   checked={formData?.childSeizures || false}
                   onChange={() => {}}
+                  disabled={state !== 'edit'}
                 />
               </Wrapper>
             ))}
@@ -70,6 +75,7 @@ export const TraumaticBrainInjurySection: React.FC<TraumaticBrainInjurySectionPr
               label="Child Traumatic Brain Injury Symptoms?"
               checked={formData?.childTBI || false}
               onChange={() => {}}
+              disabled={state !== 'edit'}
             />
             {[1, 2, 3].map((rowIndex) => (
               <Wrapper key={rowIndex} type="row" style={{gap: '24px', paddingLeft: '78px'}}>
@@ -77,16 +83,19 @@ export const TraumaticBrainInjurySection: React.FC<TraumaticBrainInjurySectionPr
                   label="Headache"
                   checked={formData?.childHeadache || false}
                   onChange={() => {}}
+                  disabled={state !== 'edit'}
                 />
                 <Checkbox
                   label="Nausea"
                   checked={formData?.childNausea || false}
                   onChange={() => {}}
+                  disabled={state !== 'edit'}
                 />
                 <Checkbox
                   label="Seizures"
                   checked={formData?.childSeizures || false}
                   onChange={() => {}}
+                  disabled={state !== 'edit'}
                 />
               </Wrapper>
             ))}
@@ -106,8 +115,6 @@ export const TraumaticBrainInjurySection: React.FC<TraumaticBrainInjurySectionPr
             size="medium"
         />
       </Wrapper>
-
-
     </>
   );
 };

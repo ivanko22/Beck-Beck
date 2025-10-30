@@ -75,7 +75,7 @@ export const Checkbox: React.FC<CheckboxProps> =  ({
   onChange,
   id,
   name,
-  color = 'var(--secondary-color)',
+  color,
   style,
 }) => {
   const isControlled = checked !== undefined;
@@ -109,14 +109,14 @@ export const Checkbox: React.FC<CheckboxProps> =  ({
           style={{
             ...styles.checkbox,
             ...(value && !disabled ? { 
-              backgroundColor: color, 
-              borderColor: color 
+              backgroundColor: color || 'var(--secondary-color)', 
+              borderColor: color || 'var(--secondary-color)'
             } : {}),
             ...(value && disabled ? {
-              backgroundColor: 'var(--light-grey)',
-              borderColor: 'var(--light-grey)',
+              backgroundColor: 'var(--middle-grey)',
+              borderColor: 'var(--middle-grey)',
             } : {}),
-            ...(!value && !disabled ? { borderColor: color } : {}),
+            ...(!value && !disabled && color ? { borderColor: color } : {}),
             ...(!value && disabled ? { borderColor: 'var(--light-grey)' } : {}),
             ...(disabled ? styles.disabled : {}),
           }}

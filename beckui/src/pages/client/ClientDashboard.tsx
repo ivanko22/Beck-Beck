@@ -97,11 +97,11 @@ export const ClientDashboard: React.FC<{
 
           <TableHeader
             columns={[
-              { label: 'Status / Case Number', width: '228px' },
+              { label: 'Status / Case Number', width: '238px' },
               { label: 'Client Name', width: '190px' },
-              { label: 'Case Plan', width: '156px' },
+              { label: 'Case Plan', width: '162px' },
               { label: 'Big Policy?', width: '48px' },
-              { label: 'Big Injury?', width: '65px', style: { paddingRight: 12 } },
+              { label: 'Big Injury?', width: '65px', style: { paddingRight: 8 } },
               { label: 'Injury Description', width: '156px' },
               { label: 'Client Status Details', width: '213px' },
               { label: 'LORs Sent', width: '153px' },

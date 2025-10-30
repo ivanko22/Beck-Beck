@@ -18,6 +18,7 @@ const L = {
 };
 
 interface MedicalTreatmentSectionProps {
+  state?: 'saved' | 'edit' | 'adding';
   formData?: {
     ongoingTreatment?: boolean;
     treatmentCompleted?: boolean;
@@ -35,7 +36,7 @@ interface MedicalTreatmentSectionProps {
   };
 }
 
-export const MedicalTreatmentSection: React.FC<MedicalTreatmentSectionProps> = ({ formData = {} }) => {
+export const MedicalTreatmentSection: React.FC<MedicalTreatmentSectionProps> = ({ formData = {}, state }) => {
   return (
     <>
       <ClientDetailsTableHeader
@@ -43,6 +44,7 @@ export const MedicalTreatmentSection: React.FC<MedicalTreatmentSectionProps> = (
         title="Medical & Treatment"
         buttonLabel={['Order Police Report', 'Email AIC to Contact Client']}
         buttonIcon={[<PoliceIcon size={24} />, <EmailIcon size={20} />]}
+        borderBottom={false}
       />
       
       <Card style={{ marginTop: '0px', gap: '36px', paddingBottom: '36px' }}>
@@ -55,21 +57,25 @@ export const MedicalTreatmentSection: React.FC<MedicalTreatmentSectionProps> = (
             label="Ongoing Treatment"
             checked={formData?.ongoingTreatment || false}
             onChange={() => {}}
+            disabled={state !== 'edit'}
           />
           <Checkbox
             label="Treatment Completed"
             checked={formData?.treatmentCompleted || false}
             onChange={() => {}}
+            disabled={state !== 'edit'}
           />
           <Checkbox
             label="Emergency Room Visit"
             checked={formData?.emergencyRoomVisit || false}
             onChange={() => {}}
+            disabled={state !== 'edit'}
           />
           <Checkbox
             label="Vehicle Ambulance 1"
             checked={formData?.vehicleAmbulance1 || false}
             onChange={() => {}}
+            disabled={state !== 'edit'}
           />
         </div>
 
@@ -78,16 +84,19 @@ export const MedicalTreatmentSection: React.FC<MedicalTreatmentSectionProps> = (
             label="Vehicle Ambulance 2"
             checked={formData?.vehicleAmbulance2 || false}
             onChange={() => {}}
+            disabled={state !== 'edit'}
           />
           <Checkbox
             label="Helicopter Air Ambulance - 1"
             checked={formData?.helicopterAirAmbulance1 || false}
             onChange={() => {}}
+            disabled={state !== 'edit'}
           />
           <Checkbox
             label="Helicopter Air Ambulance - 2"
             checked={formData?.helicopterAirAmbulance2 || false}
             onChange={() => {}}
+            disabled={state !== 'edit'}
           />
         </div>
 
@@ -105,6 +114,7 @@ export const MedicalTreatmentSection: React.FC<MedicalTreatmentSectionProps> = (
             onSelect={(item) => {
               console.log(item);
             }}
+            disabled={state !== 'edit'}
           />
 
           <Input
@@ -113,6 +123,7 @@ export const MedicalTreatmentSection: React.FC<MedicalTreatmentSectionProps> = (
             value={formData?.accidentLocation || ''}
             size="large"
             customSize={{ width: '400px' }}
+            disabled={state !== 'edit'}
           />
 
           <div style={{ display: 'flex', gap: '20px', paddingBottom: '10px', }}>
@@ -120,11 +131,13 @@ export const MedicalTreatmentSection: React.FC<MedicalTreatmentSectionProps> = (
               label="No Police Report Taken"
               checked={formData?.noPoliceReportTaken || false}
               onChange={() => {}}
+              disabled={state !== 'edit'}
             />
             <Checkbox
               label="Waiting on Information to Order PR"
               checked={formData?.waitingOnInformationToOrderPR || false}
               onChange={() => {}}
+              disabled={state !== 'edit'}
             />
           </div>
 
@@ -136,7 +149,7 @@ export const MedicalTreatmentSection: React.FC<MedicalTreatmentSectionProps> = (
             label="Treatment Needs"
             value={formData?.treatmentNeeds || 'Select Treatment Needs'}
             state={formData?.treatmentNeeds ? 'selected' : 'default'}
-            disabled={false}
+            disabled={state !== 'edit'}
             menuItems={[
               { label: 'Ambulance' },
               { label: 'Emergency Room' },

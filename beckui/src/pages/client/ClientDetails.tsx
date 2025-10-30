@@ -10,6 +10,7 @@ import { Wrapper } from '../../components/wrapper/PageWrapper';
 import { CrashInjuryDetailsSection } from './sections/CrashInjuryDetailsSection';
 import { TraumaticBrainInjurySection } from './sections/TraumaticBrainInjurySection';
 import { PageActions } from '../../components/page-actions/PageActions';
+import { Spacer } from '../../components/spacer/Spacer';
 
 interface InsuranceSection {
   sectionTitle: string;
@@ -21,6 +22,7 @@ interface ClientDetailsPageProps {
   pageActionsState?: 'saved' | 'edit' | 'adding';
   liabilityInsuranceSections?: InsuranceSection[];
   formData?: any;
+  type?: 'liabilityInsuranceSection';
 }
 
 export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
@@ -29,6 +31,7 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
   formData = {},
   clientName,
   liabilityInsuranceSections = [],
+  type,
 }) => {
 
   const progressPercent = 5.6;
@@ -46,14 +49,15 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
           current={caseNumber}
           onClose={() => {}}
         />
-
-        <Wrapper type="contentWrapper">
-          <CaseOverviewSection formData={formData} progressPercent={progressPercent} />
-          <ClientInformationSection formData={formData} />
-          <MedicalTreatmentSection formData={formData} />
-          <MedicalBillsHealthInsuranceSection formData={formData} />
-          <CrashInjuryDetailsSection formData={formData} />
-          <TraumaticBrainInjurySection formData={formData} />
+      
+      <Wrapper type="column" style={{ width: '100%', alignItems: 'center' }}>
+        {type !== 'liabilityInsuranceSection' && (<Wrapper type="contentWrapper" style={{ maxWidth: 1500 }}>
+          <CaseOverviewSection formData={formData} progressPercent={progressPercent} state={pageActionsState} />
+          <ClientInformationSection formData={formData} state={pageActionsState} />
+          <MedicalTreatmentSection formData={formData} state={pageActionsState} />
+          <MedicalBillsHealthInsuranceSection formData={formData} state={pageActionsState} />
+          <CrashInjuryDetailsSection formData={formData} state={pageActionsState} />
+          <TraumaticBrainInjurySection formData={formData} state={pageActionsState} />
 
           <PageActions
             state={pageActionsState}
@@ -62,20 +66,22 @@ export const ClientDetailsPage: React.FC<ClientDetailsPageProps> = ({
             onEdit={() => {}}
             onRemove={() => {}}
           />
+        </Wrapper>)}
 
-        </Wrapper>
+        {type === 'liabilityInsuranceSection' && (<Spacer customSize={60} />)}
 
         {liabilityInsuranceSections.map((section, index) => (
-            <ClientInsuranceRelativeSection
-              type="liability"
-              key={`liability-${index}-${section.sectionTitle}`}
-              caseNumber={caseNumber}
-              clientName={clientName}
-              pageActionsState={'saved'}
-              formData={section.formData}
-              sectionTitle={section.sectionTitle}
-            />
-          ))}
+          <ClientInsuranceRelativeSection
+            type="liability"
+            key={`liability-${index}-${section.sectionTitle}`}
+            caseNumber={caseNumber}
+            clientName={clientName}
+            pageActionsState={'saved'}
+            formData={section.formData}
+            sectionTitle={section.sectionTitle}
+          />
+        ))}
+      </Wrapper>
 
       </Wrapper>
     </Wrapper>

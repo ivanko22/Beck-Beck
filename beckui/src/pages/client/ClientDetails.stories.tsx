@@ -82,7 +82,6 @@ interface liabilityInsuranceSections {
   };
 }
 
-
 const filledFormData = {
   progressPercent: 75,
   incidentDate: '2024-12-15',
@@ -108,11 +107,12 @@ const filledFormData = {
   parentName: 'Robert Doe',
   casePlan: 'Settlement',
   phone1: '(417) 555-0123',
-  phone1Type: 'Mobile',
+  phone1Type: 'Client Phone',
   phone2: '(417) 555-0124',
-  phone2Type: 'Work',
+  phone2Type: 'Other',
+  otherPhone2Type: 'Client Phone',
   phone3: '(417) 555-0125',
-  phone3Type: 'Home',
+  phone3Type: 'Client Phone',
   doNotSendAutomatedTexts: false,
   
   ongoingTreatment: true,
@@ -281,11 +281,121 @@ const liabilityInsuranceSections = [
       }
     }
   ]
+
+  const liabilityInsuranceSectionsTwo = [
+    {
+      sectionTitle: 'Liability Insurance Co #1',
+      formData: {
+        insuranceCompany: 'State Farm Insurance',
+        noLiabilityUMCase: false,
+        wasClientInThisCar: 'No',
+        
+        insuranceAddress: '123 Main Street, Springfield, MO 65801',
+        defendantName: 'Jane Smith',
+        policyHolderName: 'Jane Smith',
+        claimNumber: 'SF-2025-001',
+        policyNumber: 'POL-123456',
+        mainInsPhone: '(417) 555-0123',
+        
+        biAdjusterName: 'Mike Johnson',
+        biAdjusterPhone: '(417) 555-0124',
+        biAdjusterFax: '(417) 555-0125',
+        biAdjusterEmail: 'mike.johnson@statefarm.com',
+        
+        medPayAdjusterName: 'Sarah Wilson',
+        medPayAdjusterPhone: '(417) 555-0126',
+        medPayAdjusterEmail: 'sarah.wilson@statefarm.com',
+        medPayAdjusterFax: '(417) 555-0127',
+        
+        driverPolicyHolderDifferent: 'No',
+        demandLetterSent: false,
+        emailOptions: {
+          liability: false,
+          medpay: false,
+          uim: false,
+          um: false,
+          excess: false
+        },
+        
+        medPayLimit: '25k',
+        medPayLimitOther: '',
+        
+        liabilityLimitsPerPerson: '100000',
+        liabilityLimitsDisclosed: false,
+        uimLimitsPerPerson: '50000',
+        uimLimitsDisclosed: false,
+        umLimitsPerPerson: '50000',
+        umLimitsDisclosed: false,
+        
+        vehiclesOnPolicy: '2',
+        totalUmStackedLimits: '100000',
+        umbrellaSecondaryLiabilityPolicy: 'None',
+        injuriesNotLargeEnough: false,
+        umbrellaLimitsDisclosed: false,
+        
+        notes: 'Primary liability insurance. Good coverage limits. Responsive adjuster.'
+      }
+    },
+    {
+      sectionTitle: 'Liability Insurance Co #2',
+      formData: {
+        insuranceCompany: 'Allstate Insurance',
+        noLiabilityUMCase: false,
+        wasClientInThisCar: 'Yes',
+        
+        insuranceAddress: '456 Oak Avenue, Kansas City, MO 64101',
+        defendantName: 'Robert Johnson',
+        policyHolderName: 'Robert Johnson',
+        claimNumber: 'ALL-2025-002',
+        policyNumber: 'POL-789012',
+        mainInsPhone: '(816) 555-0456',
+        
+        biAdjusterName: 'Lisa Brown',
+        biAdjusterPhone: '(816) 555-0457',
+        biAdjusterFax: '(816) 555-0458',
+        biAdjusterEmail: 'lisa.brown@allstate.com',
+        
+        medPayAdjusterName: 'David Wilson',
+        medPayAdjusterPhone: '(816) 555-0459',
+        medPayAdjusterEmail: 'david.wilson@allstate.com',
+        medPayAdjusterFax: '(816) 555-0460',
+        
+        driverPolicyHolderDifferent: 'No',
+        demandLetterSent: true,
+        emailOptions: {
+          liability: true,
+          medpay: true,
+          uim: false,
+          um: false,
+          excess: false
+        },
+        
+        medPayLimit: '10k',
+        medPayLimitOther: '',
+        
+        liabilityLimitsPerPerson: '250000',
+        liabilityLimitsDisclosed: true,
+        uimLimitsPerPerson: '100000',
+        uimLimitsDisclosed: true,
+        umLimitsPerPerson: '100000',
+        umLimitsDisclosed: true,
+        
+        vehiclesOnPolicy: '1',
+        totalUmStackedLimits: '100000',
+        umbrellaSecondaryLiabilityPolicy: 'Yes',
+        injuriesNotLargeEnough: false,
+        umbrellaLimitsDisclosed: true,
+        
+        notes: 'Secondary liability insurance. Higher limits available. Umbrella coverage confirmed.'
+      }
+    }
+  ];
+
 export const Empty: Story = {
   args: {
     caseNumber: 'Case #2025-0003',
     clientName: 'John Doe',
-    pageActionsState: 'save',
+    pageActionsState: 'adding',
     formData: emptyFormData,
     liabilityInsuranceSections: liabilityInsuranceSectionsEmpty,
   },
@@ -311,115 +421,6 @@ export const Edit: Story = {
   },
 };
 
-const liabilityInsuranceSectionsTwo = [
-  {
-    sectionTitle: 'Liability Insurance Co #1',
-    formData: {
-      insuranceCompany: 'State Farm Insurance',
-      noLiabilityUMCase: false,
-      wasClientInThisCar: 'No',
-      
-      insuranceAddress: '123 Main Street, Springfield, MO 65801',
-      defendantName: 'Jane Smith',
-      policyHolderName: 'Jane Smith',
-      claimNumber: 'SF-2025-001',
-      policyNumber: 'POL-123456',
-      mainInsPhone: '(417) 555-0123',
-      
-      biAdjusterName: 'Mike Johnson',
-      biAdjusterPhone: '(417) 555-0124',
-      biAdjusterFax: '(417) 555-0125',
-      biAdjusterEmail: 'mike.johnson@statefarm.com',
-      
-      medPayAdjusterName: 'Sarah Wilson',
-      medPayAdjusterPhone: '(417) 555-0126',
-      medPayAdjusterEmail: 'sarah.wilson@statefarm.com',
-      medPayAdjusterFax: '(417) 555-0127',
-      
-      driverPolicyHolderDifferent: 'No',
-      demandLetterSent: false,
-      emailOptions: {
-        liability: false,
-        medpay: false,
-        uim: false,
-        um: false,
-        excess: false
-      },
-      
-      medPayLimit: '25k',
-      medPayLimitOther: '',
-      
-      liabilityLimitsPerPerson: '100000',
-      liabilityLimitsDisclosed: false,
-      uimLimitsPerPerson: '50000',
-      uimLimitsDisclosed: false,
-      umLimitsPerPerson: '50000',
-      umLimitsDisclosed: false,
-      
-      vehiclesOnPolicy: '2',
-      totalUmStackedLimits: '100000',
-      umbrellaSecondaryLiabilityPolicy: 'None',
-      injuriesNotLargeEnough: false,
-      umbrellaLimitsDisclosed: false,
-      
-      notes: 'Primary liability insurance. Good coverage limits. Responsive adjuster.'
-    }
-  },
-  {
-    sectionTitle: 'Liability Insurance Co #2',
-    formData: {
-      insuranceCompany: 'Allstate Insurance',
-      noLiabilityUMCase: false,
-      wasClientInThisCar: 'Yes',
-      
-      insuranceAddress: '456 Oak Avenue, Kansas City, MO 64101',
-      defendantName: 'Robert Johnson',
-      policyHolderName: 'Robert Johnson',
-      claimNumber: 'ALL-2025-002',
-      policyNumber: 'POL-789012',
-      mainInsPhone: '(816) 555-0456',
-      
-      biAdjusterName: 'Lisa Brown',
-      biAdjusterPhone: '(816) 555-0457',
-      biAdjusterFax: '(816) 555-0458',
-      biAdjusterEmail: 'lisa.brown@allstate.com',
-      
-      medPayAdjusterName: 'David Wilson',
-      medPayAdjusterPhone: '(816) 555-0459',
-      medPayAdjusterEmail: 'david.wilson@allstate.com',
-      medPayAdjusterFax: '(816) 555-0460',
-      
-      driverPolicyHolderDifferent: 'No',
-      demandLetterSent: true,
-      emailOptions: {
-        liability: true,
-        medpay: true,
-        uim: false,
-        um: false,
-        excess: false
-      },
-      
-      medPayLimit: '10k',
-      medPayLimitOther: '',
-      
-      liabilityLimitsPerPerson: '250000',
-      liabilityLimitsDisclosed: true,
-      uimLimitsPerPerson: '100000',
-      uimLimitsDisclosed: true,
-      umLimitsPerPerson: '100000',
-      umLimitsDisclosed: true,
-      
-      vehiclesOnPolicy: '1',
-      totalUmStackedLimits: '100000',
-      umbrellaSecondaryLiabilityPolicy: 'Yes',
-      injuriesNotLargeEnough: false,
-      umbrellaLimitsDisclosed: true,
-      
-      notes: 'Secondary liability insurance. Higher limits available. Umbrella coverage confirmed.'
-    }
-  }
-];
-
 export const WithTwoLiabilitySections: Story = {
   args: {
     caseNumber: 'Case #2025-0003',
@@ -430,4 +431,12 @@ export const WithTwoLiabilitySections: Story = {
   },
 };
 
-
+export const LiabilityInsuranceCo1: Story = {
+  args: {
+    type: 'liabilityInsuranceSection',
+    caseNumber: 'Case #2025-0003',
+    clientName: 'John Doe',
+    pageActionsState: 'saved',
+    liabilityInsuranceSections: liabilityInsuranceSections,
+  },
+};

@@ -83,8 +83,8 @@ export const ClientDashboardCard: React.FC<ClientDashboardCardProps> = ({
 
   return (
     <Card style={styles.cardContainer}>
-      <Wrapper type="column" style={{ width: 290, gap: 16 }}>
-        <Wrapper type="row" style={{ alignItems: 'center' }}>
+      <Wrapper type="column" style={{ width: 300, gap: 16 }}>
+        <Wrapper type="row" style={{ alignItems: 'center', gap: 14 }}>
           <Wrapper type="row" style={{ paddingTop: 6, width: 57 }}>
             <Button
               onClick={onToggle}

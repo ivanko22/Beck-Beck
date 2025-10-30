@@ -36,9 +36,11 @@ import {
   PhoneIcon,
   AssignIcon,
   AlertIcon,
+  Alert2Icon,
   StethoscopeIcon,
   Scale2Icon,
   FilterIcon,
+  DatabaseIcon,
 
 } from './index';
 
@@ -310,6 +312,14 @@ export const Alert: Story = {
   render: (args) => <AlertIcon {...args} />,
 };
 
+export const Alert2: Story = {
+  args: {
+    size: 24,
+    color: '#F06161',
+  },
+  render: (args) => <Alert2Icon {...args} />,
+};
+
 export const Scale2: Story = {
   args: {
     size: 24,
@@ -324,6 +334,14 @@ export const Filter: Story = {
     color: '#000000',
   },
   render: (args) => <FilterIcon {...args} />,
+};
+
+export const Database: Story = {
+  args: {
+    size: 24,
+    color: '#D6D6DD',
+  },
+  render: (args) => <DatabaseIcon {...args} />,
 };
 
 export const IconShowcase: Story = {
@@ -371,9 +389,11 @@ export const IconShowcase: Story = {
       { name: 'Phone', component: PhoneIcon },
       { name: 'Assign', component: AssignIcon },
       { name: 'Alert', component: AlertIcon },
+      { name: 'Alert2', component: Alert2Icon },
       { name: 'Stethoscope', component: StethoscopeIcon },
       { name: 'Scale2', component: Scale2Icon },
       { name: 'Filter', component: FilterIcon },
+      { name: 'Database', component: DatabaseIcon },
     ];
 
     const colors = [
