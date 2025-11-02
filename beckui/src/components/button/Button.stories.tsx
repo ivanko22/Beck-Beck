@@ -26,6 +26,7 @@ export const Primary = {
 export const PrimaryWithIcon = {
   args: {
     primary: true,
+    labelAlign: 'center',
     label: 'Primary Button',
     icon: <PlusIcon size={20} color="currentColor" />,
     size: 'large',

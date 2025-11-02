@@ -65,12 +65,14 @@ interface NegotiationCase {
 
 interface SettlementNegotiationsProps {
   cases: NegotiationCase[];
+  showFiltersModal?: boolean;
   type?: 'negotiations' | 'statement';
 }
 
 export const SettlementNegotiations: React.FC<SettlementNegotiationsProps> = ({
   cases = [],
   type,
+  showFiltersModal = false,
 }) => {
   
   return (
@@ -115,6 +117,7 @@ export const SettlementNegotiations: React.FC<SettlementNegotiationsProps> = ({
               useSpecificWidths={true}
               style={{ paddingLeft: 32, gap: 30, marginBottom: 20 }}
               filterType='settlementNegotiations'
+              showFiltersModal={showFiltersModal}
             /> 
           ))}
 

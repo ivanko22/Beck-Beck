@@ -9,9 +9,11 @@ import { Spacer } from '../../components/spacer/Spacer';
 
 export const ClientDashboard: React.FC<{ 
   cases: ClientDashboardCase[],
+  showFiltersModal?: boolean;
   appliedFilters?: any,
 }> = ({
   cases = [],
+  showFiltersModal = false,
   appliedFilters,
 }) => {
   const [openRowId, setOpenRowId] = useState<string | null>(null);
@@ -113,6 +115,7 @@ export const ClientDashboard: React.FC<{
             style={{ paddingLeft: 30, gap: 20, marginBottom: 26 }}
             noBorder
             filterType='clientDashboard'
+            showFiltersModal={showFiltersModal}
           />
 
           {cases.map((caseData, index) => (

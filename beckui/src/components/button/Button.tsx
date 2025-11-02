@@ -7,6 +7,7 @@ interface ButtonProps {
   size?: 'small' | 'medium' | 'large' ;
   customSize?: string;
   label?: string;
+  labelAlign?: 'left' | 'center' | 'right';
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
@@ -132,6 +133,7 @@ export const Button: React.FC<ButtonProps> = ({
   color = null,
   customSize,
   label,
+  labelAlign,
   onClick,
   disabled = false,
   type = 'button',
@@ -172,7 +174,7 @@ export const Button: React.FC<ButtonProps> = ({
         <div style={{display: 'flex', alignItems: 'center', color: 'inherit', pointerEvents: 'none' as const }}>
           {icon}
         </div>
-        <span style={{ width: '100%',  }}>{label}</span>
+        <span style={{ width: '100%', textAlign: labelAlign }}>{label}</span>
       </div>
     );
   };

@@ -538,3 +538,11 @@ export const AllCases: Story = {
     type: 'statement',
   },
 };
+
+export const AllCasesWithFiltersModalCheckboxes: Story = {
+  args: {
+    cases: AllNegotiationCases,
+    type: 'statement',
+    showFiltersModal: true,
+  },
+};

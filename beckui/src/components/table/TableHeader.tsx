@@ -14,6 +14,7 @@ type TableHeaderProps = {
   columnWidths?: string[];
   style?: React.CSSProperties;
   useSpaceBetween?: boolean;  filterType?: 'clientDashboard' | 'settlementNegotiations';
+  showFiltersModal?: boolean;
 };
 
 export const  TableHeader: React.FC<TableHeaderProps> = ({
@@ -26,6 +27,7 @@ export const  TableHeader: React.FC<TableHeaderProps> = ({
   useSpaceBetween = false,
   style,
   filterType,
+  showFiltersModal = false,
 }) => {
 
   const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(false);
@@ -49,7 +51,7 @@ export const  TableHeader: React.FC<TableHeaderProps> = ({
   };
 
   return (
-    <Wrapper type="pageWrapper">
+    <Wrapper type="pageWrapper" style={{ width: '100%' }}>
       <div style={{...container, ...style}}>
         
         {(filterType === 'clientDashboard' || filterType === 'settlementNegotiations') && (
@@ -65,7 +67,7 @@ export const  TableHeader: React.FC<TableHeaderProps> = ({
               <FilterIcon size={20}  />
             </div>
             
-            {(isFiltersModalOpen && filterType === 'clientDashboard') && (
+            {(isFiltersModalOpen && filterType === 'clientDashboard'|| showFiltersModal && filterType === 'clientDashboard') && (
               <Wrapper type="pageWrapper" style={{ position: 'absolute', top: -80, left: -40, zIndex: 101 }}>
                 <FiltersModal
                   onClose={() => setIsFiltersModalOpen(false)}
@@ -74,7 +76,7 @@ export const  TableHeader: React.FC<TableHeaderProps> = ({
               </Wrapper>
             )}
 
-          {(isFiltersModalOpen && filterType === 'settlementNegotiations') && (
+          {(isFiltersModalOpen && filterType === 'settlementNegotiations' || showFiltersModal && filterType === 'settlementNegotiations') && (
             <Wrapper type="pageWrapper" style={{ position: 'absolute', top: 30, left: -10, zIndex: 101 }}>
               <FilterCheckboxes
                 onClose={() => setIsFiltersModalOpen(false)}
