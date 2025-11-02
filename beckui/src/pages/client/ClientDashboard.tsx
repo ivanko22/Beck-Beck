@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Navigation } from '../../components/navigation/Navigation';
 import { Wrapper } from '../../components/wrapper/PageWrapper';
 import { TableHeader } from '../../components/table/TableHeader';
@@ -9,19 +9,12 @@ import { Spacer } from '../../components/spacer/Spacer';
 
 export const ClientDashboard: React.FC<{ 
   cases: ClientDashboardCase[],
-  showFiltersModal?: boolean,
   appliedFilters?: any,
 }> = ({
   cases = [],
-  showFiltersModal = false,
   appliedFilters,
 }) => {
   const [openRowId, setOpenRowId] = useState<string | null>(null);
-  const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(showFiltersModal);
-  
-  useEffect(() => {
-    setIsFiltersModalOpen(showFiltersModal);
-  }, [showFiltersModal]);
 
   const [activeFilters, setActiveFilters] = useState<Array<{label: string, phase: string}>>(() => {
     if (!appliedFilters) return [];
@@ -72,8 +65,6 @@ export const ClientDashboard: React.FC<{
           type="clientDashboard"
           rightButtonLabel="Add New Case"
           teams={['Team 1', 'Team 2', 'Team 3', 'Team 4']}
-          showFiltersModal={isFiltersModalOpen}
-          onShowFiltersModalChange={setIsFiltersModalOpen}
         />
 
         <Wrapper type="contentWrapper" style={{ width: 'fit-content', gap: 0, marginTop: 50 }}>
@@ -121,7 +112,7 @@ export const ClientDashboard: React.FC<{
             useSpecificWidths={true}
             style={{ paddingLeft: 30, gap: 20, marginBottom: 26 }}
             noBorder
-            onFiltersClick={() => setIsFiltersModalOpen(true)}
+            filterType='clientDashboard'
           />
 
           {cases.map((caseData, index) => (

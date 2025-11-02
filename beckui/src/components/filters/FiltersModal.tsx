@@ -17,8 +17,8 @@ export const FiltersModal: React.FC<FiltersModalProps> = ({
 }) => {
 
   return (
-    <Wrapper type="contentWrapper" style={{ gap: 0 }}>
-        <Card style={{ boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.25)'}}>
+    <Wrapper type="contentWrapper" style={{ gap: 0, zIndex: 101 }}>
+        <Card style={{ boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.25)' }}>
             <Wrapper type="row" style={{ justifyContent: 'flex-end', width: '100%', marginTop: -12 }}>
                 <div style={{ marginRight: -7 }}
                     onClick={(e) => {

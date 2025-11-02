@@ -103,6 +103,7 @@ const styles = {
   iconLeft: {
     display: 'flex',
     alignItems: 'center',
+    textAlign: 'left' as const,
     gap: '11px',
     pointerEvents: 'none' as const,
   },
@@ -114,6 +115,7 @@ const styles = {
     flexDirection: 'row-reverse' as const,
     pointerEvents: 'none' as const,
   },
+
   iconCenter: {
     display: 'flex',
     alignItems: 'center',

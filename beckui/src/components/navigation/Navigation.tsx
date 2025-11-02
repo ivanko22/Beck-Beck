@@ -64,7 +64,7 @@ const styles: {
     position: 'fixed',
     left: 0,
     top: 0,
-    zIndex: 1000,
+    zIndex: 100,
   },
 
   navigationContainer: {

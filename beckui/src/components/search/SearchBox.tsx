@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { CloseIcon, SearchIcon } from '../icons/index.ts';
 import { Wrapper } from '../wrapper/PageWrapper';
 import { FilterIcon } from '../icons/FilterIcon';
+import { FilterCheckboxes } from '../filters/FilterCheckboxes.tsx';
+import { filtersData } from '../../data/filtersData.ts';
+import { FiltersModal } from '../filters/FiltersModal.tsx';
 interface SearchBoxProps {
   placeholder?: string;
   value?: string;
@@ -11,6 +14,8 @@ interface SearchBoxProps {
   isActive?: boolean;  
   style?: React.CSSProperties;
   onFiltersClick?: () => void;
+  filterType?: 'clientDashboard' | 'settlementNegotiations';
+  onShowFiltersModalChange?: (isOpen: boolean) => void;
 };
 
 export const SearchBox: React.FC<SearchBoxProps> = ({
@@ -22,6 +27,8 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
   type,
   style,
   onFiltersClick,
+  filterType,
+  onShowFiltersModalChange,
 }) => {
   const [searchValue, setSearchValue] = useState(value);
   const [isFocused, setIsFocused] = useState(false);
@@ -30,6 +37,7 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
     setSearchValue(value ?? '');
   }, [value]);
 
+  const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
@@ -94,7 +102,7 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
   };
 
   return (
-    <Wrapper type="row" style={{ alignItems: 'center', gap: 18, ...style }}>
+    <Wrapper type="row" style={{ alignItems: 'center', gap: 18, position: 'relative', ...style }}>
       <div style={searchBoxStyle}>
         <div style={searchIconStyle} onClick={handleSearchClick}>
           <SearchIcon size={14} />
@@ -126,10 +134,50 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
       {type === 'primary' && 
         <FilterIcon size={20} 
           onClick={() => {
+            setIsFiltersModalOpen(true);
             onFiltersClick?.();
           }} 
           style={{ cursor: 'pointer' }}
         />}
+
+        {isFiltersModalOpen && filterType === 'settlementNegotiations' && (
+          <div style={{ 
+            position: 'absolute', 
+            top: 40, 
+            right: 7,
+          }}>
+            <FilterCheckboxes
+              onClose={() => {
+                setIsFiltersModalOpen(false);
+                onFiltersClick?.();
+              }}
+            options={[
+              { label: 'No Offer 30+', checked: false },
+              { label: 'Offer Accepted', checked: false },
+              { label: 'Respond', checked: false },
+              { label: 'Waiting on Signed Release', checked: false },
+              { label: 'Waiting on Blank Release', checked: false },
+              { label: 'Check Pending', checked: false },
+            ]}
+          />
+          </div>
+        )}
+
+        {isFiltersModalOpen && filterType === 'clientDashboard' && (
+          <div style={{ 
+            position: 'absolute', 
+            top: -70, 
+            right: -50,
+          }}>
+            <FiltersModal
+              onClose={() => {
+                setIsFiltersModalOpen(false);
+                onShowFiltersModalChange?.(false);
+              }}
+              initialFilters={filtersData}
+            />
+          </div>
+        )}
     </Wrapper>
   );
 };

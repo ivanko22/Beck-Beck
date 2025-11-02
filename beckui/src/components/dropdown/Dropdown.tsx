@@ -131,9 +131,7 @@ export const BaseDropdown: React.FC<UserDropdownProps> = ({
     borderRadius: 6,
     zIndex: 100,
     overflow: 'scroll',
-    // marginTop: openDirection === 'up' ? '-55px' : '0',
     top: openDirection === 'down' ? '10px' : '',
-
     padding: '10px 0',
     fontWeight: 400,
     color: 'var(--middle-grey)',

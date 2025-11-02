@@ -8,41 +8,35 @@ import {  PlusIcon } from '../../components/icons/index';
 import { SettlementNegotiationsCard } from './SettlementNegotiationsCard';
 import { TableHeader } from '../../components/table/TableHeader';
 
-interface ClientInfo {
-  name: string;
-  primaryPhone: string;
-  momsPhone: string;
-  email: string;
-  note?: string;
-}
-
-interface DemandOffer {
-  id: string;
-  amount: string;
-  date: string;
-  sent?: boolean;
-}
-
-interface InsuranceOffer {
-  id: string;
-  amount: string;
-  date: string;
-  received?: boolean;
-}
-
 interface NegotiationCase {
   id: string;
   caseNumber: string;
   insuranceCompany: string;
-  clientInfo: ClientInfo;
+  clientInfo: {
+    name: string;
+    primaryPhone: string;
+    momsPhone: string;
+    email: string;
+    note?: string;
+  };
   status?: {
     text: string;
   };
   policyLimitsAvailable?: string;
   demandSentDate: string;
   adjusterEmail: string;
-  demandsOffers: DemandOffer[];
-  insuranceOffer: InsuranceOffer[];
+  demandsOffers: Array<{
+    id: string;
+    amount: string;
+    date: string;
+    sent?: boolean;
+  }>;
+  insuranceOffer: Array<{
+    id: string;
+    amount: string;
+    date: string;
+    received?: boolean;
+  }>;
   negotiationNotes: string[];
   settlementAccepted?: {
     accepted: boolean;
@@ -76,8 +70,9 @@ interface SettlementNegotiationsProps {
 
 export const SettlementNegotiations: React.FC<SettlementNegotiationsProps> = ({
   cases = [],
-  type
+  type,
 }) => {
+  
   return (
     <Wrapper type="pageWrapper">
       <Navigation
@@ -89,7 +84,7 @@ export const SettlementNegotiations: React.FC<SettlementNegotiationsProps> = ({
         <Header
           section="Settlement Negotiations"
           current=""
-          rightButton={true}
+          type="settlementNegotiations"
           rightButtonLabel="Add New Negotiation"
           onClose={() => {}}
         />
@@ -118,7 +113,8 @@ export const SettlementNegotiations: React.FC<SettlementNegotiationsProps> = ({
               ]}
               noBorder
               useSpecificWidths={true}
-              style={{ paddingLeft: 70, gap: 30, marginBottom: 20 }}
+              style={{ paddingLeft: 32, gap: 30, marginBottom: 20 }}
+              filterType='settlementNegotiations'
             /> 
           ))}
 

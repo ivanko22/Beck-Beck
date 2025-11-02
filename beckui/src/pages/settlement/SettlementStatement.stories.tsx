@@ -8,10 +8,6 @@ const meta: Meta<typeof SettlementStatementPage> = {
     layout: 'fullscreen',
   },
   argTypes: {
-    caseNumber: {
-      control: 'text',
-      description: 'Case number to display in header',
-    },
     clientName: {
       control: 'text',
       description: 'Client name to display in header',
@@ -376,9 +372,9 @@ const hospitalCardsData = [
 
 export const MultipleSettlements: Story = {
   args: {
-    caseNumber: 'Multiple Settlements',
-    clientName: 'Multiple Clients',
-    claim: 'Multiple Claims',
+    clientName: 'Jeferson Garry',
+    primaryPhone: '555-123-4567',
+    claim: '#564583',
     settlementCards: settlementCardsData,
     hospitalCards: hospitalCardsData,
   },

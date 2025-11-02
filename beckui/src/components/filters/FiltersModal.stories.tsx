@@ -3,7 +3,7 @@ import { FiltersModal } from './FiltersModal';
 import { filtersData } from '../../data/filtersData';
 
 const meta: Meta<typeof FiltersModal> = {
-  title: 'Components/Modal/FiltersModal',
+  title: 'Components/Filters/FiltersModal',
   component: FiltersModal,
   parameters: {
     layout: 'centered',

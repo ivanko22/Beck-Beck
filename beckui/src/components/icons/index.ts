@@ -39,3 +39,4 @@ export { Alert2Icon } from './Alert2Icon';
 export { StethoscopeIcon } from './StethoscopeIcon';
 export { FilterIcon } from './FilterIcon';
 export { DatabaseIcon } from './DatabaseIcon';
+export { InfoIcon } from './InfoIcon';

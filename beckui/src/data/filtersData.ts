@@ -1,7 +1,7 @@
 export const filtersData = {
   phase1: {
     'BP Received': false,
-    'BP Sent Via Mail': true,
+    'BP Sent Via Mail': false,
   },
   phase2: {
     'Treating & No medical ordered yet': false,
@@ -13,7 +13,7 @@ export const filtersData = {
     'Finished Treating/RTS & Awaiting additional medical provider names': false,
     'Finished Treating/RTS & All Medical Ordered': false,
     'RTS/ All Medical Received': false,
-    'Ordered/ Waiting on Old Medical': true,
+    'Ordered/ Waiting on Old Medical': false,
   },
   phase4: {
     'Sent to Demand Writer': false,
@@ -24,11 +24,11 @@ export const filtersData = {
   },
   phase5: {
     'Negotiating Settlement': false,
-    'Awaiting Mediation': true,
+    'Awaiting Mediation': false,
     'Referred Case': false,
   },
   phase6: {
-    'Final Offer Received, waiting on lien sheet': true,
+    'Final Offer Received, waiting on lien sheet': false,
     'Final Offer Received, lien sheet complete': false,
     'Accepted Settlement': false,
     'Awaiting Settlement Hearing': false,

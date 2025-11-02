@@ -9,27 +9,12 @@ interface ActionCardsSectionProps {
   style?: React.CSSProperties;
 }
 
-const styles = {
-  itemLabel: {
-    color: 'var(--dark-grey)',
-    fontSize: '14px',
-  },
-  
-  itemSubtext: {
-    color: 'var(--middle-grey)',
-    fontSize: '12px',
-  },
-};
-
 export const ActionCardsSection: React.FC<ActionCardsSectionProps> = ({
-  style,
 }) => {
 
   return (
-      <Card>
-
-        <Wrapper type="row" style={{width: '100%', justifyContent: 'space-around'}}>
-
+      <Card style={{maxWidth: 1620}}>
+        <Wrapper type="row" style={{justifyContent: 'space-around', width: '100%'}}>
             <Wrapper type="column">                
                 <Typography variant="titleSmall" color="var(--middle-grey)">
                     Generate Reduction Letters
@@ -81,7 +66,6 @@ export const ActionCardsSection: React.FC<ActionCardsSectionProps> = ({
                 </Typography>
 
                 <Wrapper type="row" style={{marginLeft: -18}}>
-
                     <Wrapper type="column">
                         <Button
                             label="Request Loan Amount"
@@ -89,7 +73,7 @@ export const ActionCardsSection: React.FC<ActionCardsSectionProps> = ({
                             icon={<GenerateIcon size={22} />}
                             iconPosition="left"
                             onClick={() => {}}
-                            customSize={"200px"}
+                            customSize={"250px"}
                         />
 
                         <Typography variant="titleSmall" color="var(--middle-grey)" style={{fontWeight: 400, paddingLeft: 20}}>Requested: 08/03/25</Typography>
@@ -120,7 +104,7 @@ export const ActionCardsSection: React.FC<ActionCardsSectionProps> = ({
                         icon={<GenerateIcon size={22} />}
                         iconPosition="left"
                         onClick={() => {}}
-                        customSize={"270px"}
+                        customSize={"280px"}
                     />
                 </Wrapper>
             </Wrapper>
