@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { ArrowIcon, FilterIcon } from "../icons";
+import { filtersData } from '../../data/filtersData';
+import { FiltersModal } from '../filters/FiltersModal';
+import { FilterCheckboxes } from '../filters/FilterCheckboxes';
+import { Wrapper } from "../wrapper/PageWrapper";
 
 type TableHeaderProps = {
   columns: (string | { label: React.ReactNode; width?: string; style?: React.CSSProperties })[];
@@ -9,8 +13,8 @@ type TableHeaderProps = {
   useSpecificWidths?: boolean;
   columnWidths?: string[];
   style?: React.CSSProperties;
-  useSpaceBetween?: boolean;
-  onFiltersClick?: () => void;
+  useSpaceBetween?: boolean;  filterType?: 'clientDashboard' | 'settlementNegotiations';
+  showFiltersModal?: boolean;
 };
 
 export const  TableHeader: React.FC<TableHeaderProps> = ({
@@ -22,8 +26,12 @@ export const  TableHeader: React.FC<TableHeaderProps> = ({
   columnWidths = [],
   useSpaceBetween = false,
   style,
-  onFiltersClick,
+  filterType,
+  showFiltersModal = false,
 }) => {
+
+  const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(false);
+
   const container: React.CSSProperties = {
     display: useSpecificWidths || useSpaceBetween ? 'flex' : 'grid',
     ...(useSpecificWidths || useSpaceBetween ? {} : { gridTemplateColumns: template }),
@@ -43,17 +51,47 @@ export const  TableHeader: React.FC<TableHeaderProps> = ({
   };
 
   return (
-    <div style={{ width: '100%', display: 'block' }}>
+    <Wrapper type="pageWrapper" style={{ width: '100%' }}>
       <div style={{...container, ...style}}>
-        {onFiltersClick && (
-          <div style={{ 
-            padding: 0,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-start',
-          }}>
-            <FilterIcon size={20} onClick={onFiltersClick} style={{ cursor: 'pointer' }} />
-          </div>
+        
+        {(filterType === 'clientDashboard' || filterType === 'settlementNegotiations') && (
+          <>
+            <div onClick={() => setIsFiltersModalOpen(true)}
+              style={{ 
+                padding: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-start',
+                cursor: 'pointer'
+              }}>
+              <FilterIcon size={20}  />
+            </div>
+            
+            {(isFiltersModalOpen && filterType === 'clientDashboard'|| showFiltersModal && filterType === 'clientDashboard') && (
+              <Wrapper type="pageWrapper" style={{ position: 'absolute', top: -80, left: -40, zIndex: 101 }}>
+                <FiltersModal
+                  onClose={() => setIsFiltersModalOpen(false)}
+                  initialFilters={filtersData}
+                />
+              </Wrapper>
+            )}
+
+          {(isFiltersModalOpen && filterType === 'settlementNegotiations' || showFiltersModal && filterType === 'settlementNegotiations') && (
+            <Wrapper type="pageWrapper" style={{ position: 'absolute', top: 30, left: -10, zIndex: 101 }}>
+              <FilterCheckboxes
+                onClose={() => setIsFiltersModalOpen(false)}
+                options={[
+                  { label: 'No Offer 30+', checked: false },
+                  { label: 'Offer Accepted', checked: false },
+                  { label: 'Respond', checked: false },
+                  { label: 'Waiting on Signed Release', checked: false },
+                  { label: 'Waiting on Blank Release', checked: false },
+                  { label: 'Check Pending', checked: false },
+                ]}
+              />
+            </Wrapper>
+          )}
+          </>
         )}
 
         {columns.map((column, i) => {
@@ -92,7 +130,6 @@ export const  TableHeader: React.FC<TableHeaderProps> = ({
           );
         })}
       </div>
-    </div>
+    </Wrapper>
   );
 };
-

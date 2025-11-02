@@ -1,16 +1,16 @@
 import React from "react";
 import { Breadcrumbs } from "../breadcrumbs/Breadcrumbs";
-import { CloseIcon, PlusIcon, EmailIcon } from "../icons";
+import { CloseIcon, PlusIcon, EmailIcon, Scale2Icon, BriefcaseIcon, MedicalIcon, PhoneIcon } from "../icons";
 import { Button } from "../button/Button";
 import { Checkbox } from "../checkbox/Checkbox";
 import { Wrapper } from "../wrapper/PageWrapper";
 import { SearchBox } from "../search/SearchBox";
-import { FiltersModal } from "../modal/FiltersModal";
-import { filtersData } from '../../data/filtersData';
+import { Spacer } from "../spacer/Spacer";
+import { Typography } from "../typography/Typography";
 export interface HeaderProps {
   section: string;
   current?: string;
-  type?: 'default' | 'clientDetails' | 'clientDashboard';
+  type?: 'default' | 'clientDetails' | 'clientDashboard' | 'settlementNegotiations' | 'settlementStatement';
   showButtons?: boolean;
   subtitle?: string;
   rightButtonLabel?: string;
@@ -20,9 +20,7 @@ export interface HeaderProps {
   width?: string;
   isFixed?: boolean;
   teams?: string[];
-  onFiltersClick?: () => void;
-  showFiltersModal?: boolean;
-  onShowFiltersModalChange?: (isOpen: boolean) => void;
+  clientNamePhone?: [string | undefined, string | undefined];
 }
 
 const styles = {
@@ -71,15 +69,14 @@ export const Header: React.FC<HeaderProps> = ({
   teams,
   current,
   subtitle,
-  type = 'default',
+  type,
   onClose,
   buttonIcon,
   rightButtonLabel,
   width,
   borderBottom = true,
   isFixed = true,
-  showFiltersModal = false,
-  onShowFiltersModalChange,
+  clientNamePhone,
 }) => {
   const containerStyle = {
     ...styles.container,
@@ -90,12 +87,7 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <div style={{...containerStyle, ...(borderBottom && styles.borderBottomStyle)}}>
       <Wrapper type="column" style={{ position: 'absolute', top: -50 }}>
-        {showFiltersModal && (
-          <FiltersModal
-            onClose={() => onShowFiltersModalChange?.(false)}
-            initialFilters={filtersData}
-          />
-        )}
+
       </Wrapper>
 
       <div style={styles.left}>
@@ -121,8 +113,86 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       )}
 
+      {type === 'settlementNegotiations' && (
+        <Wrapper type="row">
+          <Button 
+            icon={<Scale2Icon size={22}  />}
+            iconPosition="left"
+            size="medium"
+            label="Jump to Settlement Statement"
+          />
+
+          <Button 
+            icon={<BriefcaseIcon size={22}  />}
+            iconPosition="left"
+            size="medium"
+            label="Settlement Accepted"
+          />
+
+          <Button 
+            icon={<Scale2Icon size={22}  />}
+            iconPosition="left"
+            size="medium"
+            label="Jump to Lien Sheet"
+          />
+
+          <Button 
+            icon={<MedicalIcon size={22}  />}
+            iconPosition="left"
+            size="medium"
+            label="Request Lien Sheet"
+          />
+
+          <Spacer horizontal={true} customSize={20} />
+
+          <SearchBox
+            placeholder="Search by Case Number"
+            onChange={() => {}}
+            type="primary"
+            filterType='settlementNegotiations'
+          />
+        </Wrapper>
+      )}
+
+      {type === 'settlementStatement' && (
+        <>
+          <Wrapper type="row">
+            <Button 
+              icon={<Scale2Icon size={22}  />}
+              iconPosition="left"
+              size="medium"
+              label="Jump to Lien Sheet"
+            />
+
+            <Button 
+              icon={<BriefcaseIcon size={22}  />}
+              iconPosition="left"
+              size="medium"
+              label="Request Lien Sheet"
+            />
+
+            <Button 
+              icon={<MedicalIcon size={22}  />}
+              iconPosition="left"
+              size="medium"
+              label="Jump to MedPay"
+            />
+          </Wrapper>
+
+          <Wrapper type="row" style={{ gap: 16, alignItems: 'center' }}> 
+          <Typography variant="title18" color="var(--primary-color)">{clientNamePhone?.[0]}</Typography>
+
+          <Wrapper type="row" style={{ gap: 10, alignItems: 'center' }}> 
+            <PhoneIcon size={20} color="var(--middle-grey)" />
+            <Typography variant="title18" color="var(--primary-color)">{clientNamePhone?.[1]}</Typography>
+          </Wrapper>
+          </Wrapper>
+        </>
+      )}
+
       {type === 'clientDashboard' && (
         <Wrapper type="row" style={{ gap: 30 }}>
+          
           {teams?.map((team) => (
             <Checkbox
               key={team}
@@ -134,25 +204,25 @@ export const Header: React.FC<HeaderProps> = ({
           <SearchBox
             placeholder="Search by Case Number"
             onChange={() => {}}
-            onFiltersClick={() => onShowFiltersModalChange?.(true)}
             type="primary"
+            filterType='clientDashboard'
           />
 
         </Wrapper>
        )}
       
-
-      {!rightButtonLabel ? (
+      {type !== 'settlementStatement' && !rightButtonLabel && (
         <div style={styles.close} onClick={onClose}>
           <CloseIcon size={20} color="var(--middle-grey)" hoverColor="var(--secondary-color-hover)" />
         </div>
-      ) : (
+      )}
+      {rightButtonLabel && (
         <Button
           primary
           size="medium"
           label={rightButtonLabel}
           icon={buttonIcon}
-          customSize="200px"
+          customSize="auto"
         />
       )}
     </div>

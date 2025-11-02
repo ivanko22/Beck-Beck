@@ -41,6 +41,7 @@ import {
   Scale2Icon,
   FilterIcon,
   DatabaseIcon,
+  InfoIcon,
 
 } from './index';
 
@@ -344,6 +345,14 @@ export const Database: Story = {
   render: (args) => <DatabaseIcon {...args} />,
 };
 
+export const Info: Story = {
+  args: {
+    size: 24,
+    color: '#87889C',
+  },
+  render: (args) => <InfoIcon {...args} />,
+};
+
 export const IconShowcase: Story = {
   parameters: {
     docs: {
@@ -394,6 +403,7 @@ export const IconShowcase: Story = {
       { name: 'Scale2', component: Scale2Icon },
       { name: 'Filter', component: FilterIcon },
       { name: 'Database', component: DatabaseIcon },
+      { name: 'Info', component: InfoIcon },
     ];
 
     const colors = [

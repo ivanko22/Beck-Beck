@@ -116,8 +116,14 @@ export const Checkbox: React.FC<CheckboxProps> =  ({
               backgroundColor: 'var(--middle-grey)',
               borderColor: 'var(--middle-grey)',
             } : {}),
-            ...(!value && !disabled && color ? { borderColor: color } : {}),
-            ...(!value && disabled ? { borderColor: 'var(--light-grey)' } : {}),
+            ...(!value && !disabled ? { 
+              backgroundColor: 'transparent',
+              borderColor: color || 'var(--light-grey)'
+            } : {}),
+            ...(!value && disabled ? { 
+              backgroundColor: 'transparent',
+              borderColor: 'var(--light-grey)' 
+            } : {}),
             ...(disabled ? styles.disabled : {}),
           }}
         />
