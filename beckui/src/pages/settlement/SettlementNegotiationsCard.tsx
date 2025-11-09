@@ -209,9 +209,9 @@ export const SettlementNegotiationsCard: React.FC<SettlementNegotiationsCardProp
               {negotiationData.note}
             </Typography>
 
-            <Wrapper type="row" style={{ marginTop: -29 }}>
+            <Wrapper type="row" style={{ marginTop: -29, width: 200 }}>
               <BaseDropdown 
-                style={{ width: 200 }}
+                style={ type !== 'statement' ? { width: 200 } : undefined }
                 type="BaseDropdown"
                 value={negotiationData.insuranceCompany}
                 disabled={ type === 'statement' }
