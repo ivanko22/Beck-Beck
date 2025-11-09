@@ -97,10 +97,10 @@ export const SettlementNegotiations: React.FC<SettlementNegotiationsProps> = ({
           {(type === 'statement' && (
             <TableHeader
               columns={[
-                { label: 'Status / Case Number', width: '228px' },
-                { label: 'Client Info', width: '218px' },
-                { label: 'Policy Limit(s) Available', width: '224px' },
-                { label: 'Insurance Company Demand Sent To', width: '253px' },
+                { label: 'Status / Case Number', width: '232px' },
+                { label: 'Client Info', width: '222px' },
+                { label: 'Policy Limit(s) Available', width: '244px' },
+                { label: 'Insurance Company Demand Sent To', width: '183px' },
                 { label: 'Demand Sent Date', width: '138px' },
                 { label: 'Adjuster Email Address', width: '244px' },
                 { label: 'Demand and Counter Demand Amount', width: '174px' },
@@ -115,7 +115,7 @@ export const SettlementNegotiations: React.FC<SettlementNegotiationsProps> = ({
               ]}
               noBorder
               useSpecificWidths={true}
-              style={{ paddingLeft: 32, gap: 30, marginBottom: 20 }}
+              style={{ paddingLeft: 32, gap: 22, marginBottom: 20 }}
               filterType='settlementNegotiations'
               showFiltersModal={showFiltersModal}
             /> 
